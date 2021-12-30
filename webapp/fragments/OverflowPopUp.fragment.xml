@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+   <Popover placement="Bottom" showHeader="false">
+   	<content>
+   		<List id="list">
+					<StandardListItem title="Edit" type="Active" icon="sap-icon://edit" press="onEdit" />
+					<StandardListItem title="Block" type="Active" icon="sap-icon://cancel" press="onBlock" />
+		</List>
+   	</content>
+   </Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,257 @@
+{
+	"preview": false,
+	"vndDetails": false,
+	"approvalView": false,
+	"changeReq": {
+		"genData": {
+			"changeReqID": "",
+			"desc": "",
+			"priority": "",
+			"dueDate": "",
+			"reason": ""
+		},
+		"processData": {
+			"status": "",
+			"currWrkItem": "",
+			"createdBy": "",
+			"dateCreation": "",
+			"timeCreation": ""
+		}
+	},
+	"erpVndDetail": {
+		"administritativeData": {
+			"vnd": "",
+			"accountGrp": ""
+		},
+		"genData": {
+			"title": "",
+			"name1": "",
+			"name2": "",
+			"name3": "",
+			"lglName4": "",
+			"naturalPerson": "",
+			"srchTerms": ""
+		},
+		"commData": {
+			"tel": "",
+			"telPhn": "",
+			"telExt": "",
+			"mobile": "",
+			"mobilePhone": "",
+			"email": "",
+			"fax": "",
+			"faxPhone": "",
+			"faxExt": "",
+			"poBoxLobby": "",
+			"typDelSer": "",
+			"NumDelSer": "",
+			"poBox": "",
+			"unDelivery": ""
+		},
+		"address": {
+			"street": "",
+			"streetNo": "",
+			"dist": "",
+			"street2": "",
+			"street3": "",
+			"street4": "",
+			"street5": "",
+			"postCode": "",
+			"postCity": "",
+			"country": "",
+			"region": "",
+			"Lnguage": "",
+			"transportationZone": "",
+			"poBoxCode": "",
+			"poBoxWithoutCode": "",
+			"compPostCode": "",
+			"Suppliment": ""
+		}
+	},
+	"controlData": {
+		"acountControl": {
+			"authGrp": "",
+			"grpKey": "",
+			"tradePartner": "",
+			"customer": ""
+		},
+		"procureMonitoring": {
+			"factoryCal": ""
+		}
+	},
+	"referenceData": {
+		"trainStn": "",
+		"extManufact": "",
+		"relPOD": "",
+		"scac": "",
+		"actQMSystem": "",
+		"carFreightGrp": "",
+		"industry": "",
+		"serAgentProcGrp": "",
+		"creditInfoNo": "",
+		"lastExtRvw": "",
+		"statisticGrp": "",
+		"qmSysValidTo": ""
+	},
+	"taxNum": {
+		"taxNumTbl": {
+			"taxNumCat": "",
+			"taxNum": "",
+			"desc": ""
+		}
+	},
+	"taxInfo": {
+		"fiscalAdd": "",
+		"taxOfc": "",
+		"taxNo": "",
+		"taxBase": "",
+		"taxType": "",
+		"typBusiness": "",
+		"nameRepresentative": "",
+		"saleEqlTax": "",
+		"liableForVat": "",
+		"taxSplit": "",
+		"socialInsurance": "",
+		"socialInsuranceCode": "",
+		"typeofIndus": ""
+	},
+	"bankAccount": {
+		"bankDetID": "",
+		"bankAcc": "",
+		"accHolder": "",
+		"iban": "",
+		"ibanGenIBAN": "",
+		"ibamGenBankDet": "",
+		"accountNo": "",
+		"cntrolKey": "",
+		"refDet": "",
+		"collAuth": "",
+		"bankCountry": "",
+		"bankKey": "",
+		"bankName": "",
+		"street": "",
+		"city": ""
+	},
+	"paymentTransaction": {
+		"paymentTr": {
+			"dmeIndic": "",
+			"instructionKey": "",
+			"isrNo": ""
+		},
+		"altPayee": {
+			"payeeInDocument": "",
+			"altPayee": ""
+		}
+	},
+	"murphyData": {
+		"aribaSuppID": "",
+		"vaidFrom": "",
+		"validTo": ""
+	},
+	"companyCode": {
+		"companyCode": "",
+		"accountingInfo": {
+			"reconAcc": "",
+			"headOfc": "",
+			"authGrp": "",
+			"minorityIndicator": "",
+			"sortKey": "",
+			"planningGrp": "",
+			"releaseGrp": "",
+			"certDate": ""
+		},
+		"intrestCal": {
+			"intrestIndicator": "",
+			"intrestCalFreq": "",
+			"lastKeyDate": "",
+			"lastKeyRun": ""
+		},
+		"withholdingTax": {
+			"withholdingTaxCode": "",
+			"withholdingTaxCountry": "",
+			"recipentType": "",
+			"mainEcoActCIIUCode": "",
+			"exempNo": "",
+			"validUnit": "",
+			"exempAuth": ""
+		},
+		"extendedWithholdingTax": {
+			"withholdingTaxType": "",
+			"recipientType": "",
+			"withholdingTaxIdenNo": "",
+			"exempRate": "",
+			"exempStartDate": "",
+			"withholdingTaxCode": "",
+			"subToWithholdingTax": "",
+			"exempCertNo": "",
+			"exempReason": "",
+			"exempEndDate": ""
+		}
+	},
+	"workflow": [{
+		"Name": "Laurent Dubois",
+		"IconInitial" : "LD",
+		"JobTitle": "Background Step",
+		"Photo": "/images/Laurent_Dubois.png",
+		"Icon": "sap-icon://activity-individual",
+		"JobResponsibilities": "Set Status 04 for Change request 418432 \n Completed",
+		"HireDate": "Date(1371020400000)"
+	}, {
+		"Name": "Sabine Mayer",
+		"IconInitial" : "SM",
+		"JobTitle": "Background Step",
+		"Photo": "/images/Sabine_Mayer.png",
+		"Icon": "sap-icon://settings",
+		"JobResponsibilities": "Set Status 04 for Change request 418432 \n Completed",
+		"HireDate": "Date(1376290800000)"
+	}, {
+		"Name": "Alain Chevalier",
+		"IconInitial" : "AC",
+		"JobTitle": "added a work item",
+		"Photo": "/images/Alain_Chevalier.png",
+		"Icon": "sap-icon://manager-insight",
+		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD') \n Pending",
+		"HireDate": "Date(1332403200000)"
+	}, {
+		"Name": "Monique Legrand",
+		"IconInitial" : "ML",
+		"JobTitle": "added a work item",
+		"Photo": "/images/Monique_Legrand.png",
+		"Icon": "sap-icon://account",
+		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD') \n Pending",
+		"HireDate": "Date(1422777600000)"
+	}],
+	"comments": [{
+		"Name": "Laurent Dubois",
+		"IconInitial" : "LD",
+		"JobTitle": "added a Comment",
+		"Photo": "/images/Laurent_Dubois.png",
+		"Icon": "sap-icon://activity-individual",
+		"JobResponsibilities": "Please Update Vendor 3008765 in the system. This vendor has the same Tax ID as the vendor you have attached",
+		"HireDate": "Date(1371020400000)"
+	}, {
+		"Name": "Sabine Mayer",
+		"IconInitial" : "SM",
+		"JobTitle": "added a Comment",
+		"Photo": "/images/Sabine_Mayer.png",
+		"Icon": "sap-icon://settings",
+		"JobResponsibilities": "Set Status 04 for Change request 418432",
+		"HireDate": "Date(1376290800000)"
+	}, {
+		"Name": "Alain Chevalier",
+		"IconInitial" : "AC",
+		"JobTitle": "added a Comment",
+		"Photo": "/images/Alain_Chevalier.png",
+		"Icon": "sap-icon://manager-insight",
+		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD')",
+		"HireDate": "Date(1332403200000)"
+	}, {
+		"Name": "Monique Legrand",
+		"IconInitial" : "ML",
+		"JobTitle": "added a Comment",
+		"Photo": "/images/Monique_Legrand.png",
+		"Icon": "sap-icon://account",
+		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD')",
+		"HireDate": "Date(1422777600000)"
+	}]
+}

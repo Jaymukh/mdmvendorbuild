@@ -1,0 +1,1758 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="crtVnd" showHeader="false" showNavButton="false">
+		<content>
+			<Toolbar>
+				<Title text="Organization: BP9422, (no description available)" level="H2"></Title>
+			</Toolbar>
+			<Page id="sideContentContainer" showHeader="false" showNavButton="false" showFooter="true">
+				<content>
+					<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
+						sideContentFallDown="BelowM" breakpointChanged="handleBreakpointChangeEvent">
+						<VBox>
+							<Panel expandable="true" expanded="true" headerText="Change Requests">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="General Data"/>
+											<Label text="Change Request ID"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/changeReqID}" valueLiveUpdate="true"/>
+											<Label text="Description" required="true"/>
+											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
+											<Label text="Priority"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/priority}">
+												<items>
+													<core:Item text="Low" key="low"/>
+													<core:Item text="Medium" key="medium"/>
+													<core:Item text="High" key="high"/>
+												</items>
+											</Select>
+											<Label text="Due Date"/>
+											<DatePicker value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<Label text="Reason"/>
+											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/reason}">
+												<items>
+													<core:Item text="Reason1" key="1"/>
+													<core:Item text="Reason2" key="2"/>
+													<core:Item text="Reason3" key="3"/>
+												</items>
+											</Select>
+											<core:Title text="Process Data"/>
+											<Label text="Status"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/status}"/>
+											<Label text="Current Work Item"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
+											<Label text="Created By"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+											<Label text="Date/Time of Creation"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/dateCreation}"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/timeCreation}">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="true" headerText="ERP Vendor Details">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Administritative Data"/>
+											<Label text="Vendor"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Account Group"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/accountgrp}">
+												<items>
+													<core:Item text="Group1" key="1"/>
+													<core:Item text="Group2" key="2"/>
+													<core:Item text="Group3" key="3"/>
+												</items>
+											</Select>
+											<core:Title text="General Data"/>
+											<Label text="Title"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/title}">
+												<items>
+													<core:Item text="Title1" key="1"/>
+													<core:Item text="Title2" key="2"/>
+													<core:Item text="Title3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Name1"/>
+											<Input value=""/>
+											<Label text="Name2"/>
+											<Input value=""/>
+											<Label text="Name3"/>
+											<Input value=""/>
+											<core:Title/>
+											<Label text="Legal Name (Name4)"/>
+											<Input value=""/>
+											<Label text="Natural person"/>
+											<CheckBox/>
+											<Label text="Search Terms"/>
+											<Input value=""/>
+											<core:Title text="Communication Data"/>
+											<Label text="Telephone"/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Phone">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Ext"/>
+											<Label text="Mobile"/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Phone">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="E-mail Address"/>
+											<Input value=""/>
+											<Label text="Fax"/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Phone">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Ext"/>
+											<Label text="Web site"/>
+											<Input value=""/>
+											<core:Title/>
+											<Label text="PO Box Lobby"/>
+											<Input value=""/>
+											<Label text="Type of Delivery Service"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
+													<core:CustomData key="table" value="ADDRC_DELI_SERV"></core:CustomData>
+													<core:CustomData key="Key1" value="Delivery Type"></core:CustomData>
+													<core:CustomData key="Key2" value="Description"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Number of Delivery Service"/>
+											<Input value=""/>
+											<Label text="PO Box"/>
+											<Input value=""/>
+											<Label text="Undeliverable"/>
+											<Input value=""/>
+											<core:Title text="Address"/>
+											<Label text="Street / No." required="true"/>
+											<Input value=""/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="District"/>
+											<Input value=""/>
+											<Label text="Strret 2" required="true"/>
+											<Input value=""/>
+											<Label text="Strret 3"/>
+											<Input value=""/>
+											<Label text="Strret 4"/>
+											<Input value=""/>
+											<Label text="Strret 5"/>
+											<Input value=""/>
+											<Label text="Postal Code / City"/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value=""/>
+											<Label text="Country" required="true"/>
+											<Input value=""/>
+											<core:Title/>
+											<Label text="Region"/>
+											<Input value=""/>
+											<Label text="Language" required="true"/>
+											<Input value=""/>
+											<Label text="Transportation Zone"/>
+											<Input value=""/>
+											<Label text="PO Box Postal Code/ PO Box"/>
+											<Input value=""/>
+											<Label text="PO Box Without No."/>
+											<CheckBox/>
+											<Label text="Company POstal Code"/>
+											<Input value=""/>
+											<Label text="Supplement"/>
+											<Input value=""/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Control Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Account Control"/>
+											<Label text="Authorization Group"/>
+											<Input/>
+											<Label text="Group Key"/>
+											<Input/>
+											<Label text="Trading Partner"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Trading Partner"></core:CustomData>
+													<core:CustomData key="table" value="T880"></core:CustomData>
+													<core:CustomData key="Key1" value="Company"></core:CustomData>
+													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
+													<core:CustomData key="Key3" value="Country"></core:CustomData>
+													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Customer"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Customer"></core:CustomData>
+													<core:CustomData key="table" value="KNA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Company code"></core:CustomData>
+													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
+													<core:CustomData key="Key3" value="Country"></core:CustomData>
+													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+												</customData>
+											</Input>
+											<core:Title text="Procurement Monitoring"/>
+											<Label text="factory Calendar"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Factory Calendar"></core:CustomData>
+													<core:CustomData key="table" value="TFACD"></core:CustomData>
+													<core:CustomData key="Key1" value="Company code"></core:CustomData>
+													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
+													<core:CustomData key="Key3" value="Country"></core:CustomData>
+													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+												</customData>
+											</Input>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Reference Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Reference Data"/>
+											<Label text="Train Station"/>
+											<Input/>
+											<Label text="External Manufaturer"/>
+											<Input/>
+											<Label text="Relevant for POD"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/relPOD}">
+												<items>
+													<core:Item text="POD1" key="1"/>
+													<core:Item text="POD2" key="2"/>
+													<core:Item text="POD3" key="3"/>
+												</items>
+											</Select>
+											<Label text="SCAC"/>
+											<Input/>
+											<Label text="Actual QM System"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/actQMSys}">
+												<items>
+													<core:Item text="System1" key="1"/>
+													<core:Item text="System2" key="2"/>
+													<core:Item text="System3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Carrier Freight Group"/>
+											<Input/>
+											<core:Title text=""/>
+											<Label text="Industry"/>
+											<Input/>
+											<Label text="Service agent procedure group"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/procGrp}">
+												<items>
+													<core:Item text="Group1" key="1"/>
+													<core:Item text="Group2" key="2"/>
+													<core:Item text="Group3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Credit information No."/>
+											<Input/>
+											<Label text="Last External Review"/>
+											<DatePicker/>
+											<Label text="Statistics Group, Service agent"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/agent}">
+												<items>
+													<core:Item text="Agent 1" key="1"/>
+													<core:Item text="Agent 2" key="2"/>
+													<core:Item text="Agent 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="QM System Valid to"/>
+											<DatePicker/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Tax Numbers">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Tax Numbers"/>
+											<!--<Label text="Edit or Create New"/>-->
+											<!--<Input/>-->
+											<Label text="Tax Numbers Category"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Tax Numbers Category"></core:CustomData>
+													<core:CustomData key="table" value=""></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Description"/>
+											<DatePicker/>
+											<core:Title text=""/>
+											<Label text="Tax Number"/>
+											<DatePicker/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Tax Information">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Tax Information"/>
+											<Label text="Fiscal Address"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Fiscal Address"></core:CustomData>
+													<core:CustomData key="table" value="LFA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Tax Office"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Tax Office"></core:CustomData>
+													<core:CustomData key="table" value="LFA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Tax No."/>
+											<Input value=""/>
+											<Label text="Tax Base"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/taxBase}">
+												<items>
+													<core:Item text="TaxBase 1" key="1"/>
+													<core:Item text="TaxBase 2" key="2"/>
+													<core:Item text="TaxBase 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Tax Type"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/taxType}">
+												<items>
+													<core:Item text="TaxType 1" key="1"/>
+													<core:Item text="TaxType 2" key="2"/>
+													<core:Item text="TaxType 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Type of Business"/>
+											<Input value=""/>
+											<Label text="Name of Representative"/>
+											<Input value=""/>
+											<core:Title text=""/>
+											<Label text="Sales Equalization Tax"/>
+											<CheckBox/>
+											<Label text="Liable for VAT"/>
+											<CheckBox/>
+											<Label text="Tax Split"/>
+											<CheckBox/>
+											<Label text="Social Insurance"/>
+											<CheckBox/>
+											<Label text="Social Insurance Code"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/socialInsCode}">
+												<items>
+													<core:Item text="Code 1" key="1"/>
+													<core:Item text="Code 2" key="2"/>
+													<core:Item text="Code 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Type of Industry"/>
+											<Input value=""/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Bank Accounts">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Bank Accounts - Table"/>
+											<!--<Label text="Edit or Create New"/>-->
+											<!--<Input/>-->
+											<Label text="Bank Detail ID"/>
+											<Input value=""/>
+											<Label text="Bank Account"/>
+											<Input value=""/>
+											<Label text="Account Holder"/>
+											<Input value=""/>
+											<Label text="IBAN"/>
+											<Input value=""/>
+											<Label text="IBAN-Generate IBAN"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/ibanGenIBAM}">
+												<items>
+													<core:Item text="IBAN 1" key="1"/>
+													<core:Item text="IBAN 2" key="2"/>
+													<core:Item text="IBAN 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="IBAN-Generate Bank Details"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}">
+												<items>
+													<core:Item text="IBAN 1" key="1"/>
+													<core:Item text="IBAN 2" key="2"/>
+													<core:Item text="IBAN 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Account No."/>
+											<Input value=""/>
+											<Label text="Control key"/>
+											<Input value=""/>
+											<core:Title text=""/>
+											<Label text="Reference Details"/>
+											<Input value=""/>
+											<Label text="Collection Authorization"/>
+											<Input value=""/>
+											<Label text="Bank Country / Desc."/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Bank Country / Desc."></core:CustomData>
+													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="land1" value="Country code"></core:CustomData>
+													<core:CustomData key="lkvrz" value="Name"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Bank Key"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Bank Key"></core:CustomData>
+													<core:CustomData key="table" value="BNKA"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Bank Name"/>
+											<Input value=""/>
+											<Label text="Street"/>
+											<Input value=""/>
+											<Label text="City"/>
+											<Input value=""/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Payment Transactions">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Payment Transactions"/>
+											<Label text="DME Indicator"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/dmeInd}">
+												<items>
+													<core:Item text="Use house bank default value" key=""/>
+													<core:Item text="Single data record can be forwarded to the Bundesbank" key="0"/>
+													<core:Item text="Single data record not to be forwarded to the Bundesbank" key="1"/>
+												</items>
+											</Select>
+											<Label text="Instruction Key"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Instruction Key"></core:CustomData>
+													<core:CustomData key="table" value="T015W"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="ISR No."/>
+											<Input value=""/>
+											<core:Title text="Alternate Payee"/>
+											<Label text="Payee in Document"/>
+											<CheckBox/>
+											<Label text="Alternative Payee"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Alternative payee"></core:CustomData>
+													<core:CustomData key="table" value="LFA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Murphy Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<!--<core:Title text="Payment Transactions"/>-->
+											<Label text="Ariba Supplier Network ID"/>
+											<Input/>
+											<Label text="Validate From Date"/>
+											<DatePicker/>
+											<core:Title/>
+											<Label text="Validate To Date"/>
+											<DatePicker/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Company Codes">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="ERP Vendor Company Code"/>
+											<Label text="Company Code"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Company Code"></core:CustomData>
+													<core:CustomData key="table" value="T001"></core:CustomData>
+													<core:CustomData key="bukrs" value="Company code"></core:CustomData>
+													<core:CustomData key="butxt" value="Company Name"></core:CustomData>
+													<core:CustomData key="land1" value="Country"></core:CustomData>
+													<core:CustomData key="waers" value="Currency"></core:CustomData>
+												</customData>
+											</Input>
+											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
+											<Label text="Reconcillation Account"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Reconcillation Account"></core:CustomData>
+													<core:CustomData key="table" value="SKA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Head Office"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Head Office"></core:CustomData>
+													<core:CustomData key="table" value="LFA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Authorization Group"/>
+											<Input/>
+											<Label text="Minority Indicator"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/MinorInd}">
+												<items>
+													<core:Item text="Indicator 1" key="1"/>
+													<core:Item text="Indicator 2" key="2"/>
+													<core:Item text="Indicator 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Sort Key"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Sort Key"></core:CustomData>
+													<core:CustomData key="table" value="TZUN"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Planning Group"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Planning Group"></core:CustomData>
+													<core:CustomData key="table" value="T035"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Release Group"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/relGrp}">
+												<items>
+													<core:Item text="Release group 1" key="1"/>
+													<core:Item text="Release group 2" key="2"/>
+													<core:Item text="Release group 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Certification Date"/>
+											<DatePicker/>
+											<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
+											<Label text="Intrest Indicator"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Intrest Indicator"></core:CustomData>
+													<core:CustomData key="table" value="T056"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Intrest Calculation Frequency"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/intCalFreq}">
+												<items>
+													<core:Item text="1 Month" key="01"/>
+													<core:Item text="2 Month" key="02"/>
+													<core:Item text="3 Month" key="03"/>
+													<core:Item text="4 Month" key="04"/>
+													<core:Item text="5 Month" key="05"/>
+													<core:Item text="6 Month" key="06"/>
+													<core:Item text="7 Month" key="07"/>
+													<core:Item text="8 Month" key="08"/>
+													<core:Item text="9 Month" key="09"/>
+													<core:Item text="10 Month" key="10"/>
+													<core:Item text="11 Month" key="11"/>
+													<core:Item text="12 Month" key="12"/>
+												</items>
+											</Select>
+											<Label text="Last Key Date"/>
+											<DatePicker/>
+											<Label text="Last Key Run"/>
+											<DatePicker/>
+											<core:Title text="Withholding Tax"/>
+											<Label text="Withholding Tax Code"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="0" value="Withholding Tax Code"></core:CustomData>
+													<core:CustomData key="table" value="T059Z"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Withholding Tax Country"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Withholding Tax Country"></core:CustomData>
+													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="land1" value="Country Code"></core:CustomData>
+													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Recipient Type"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Recipient Type"></core:CustomData>
+													<core:CustomData key="table" value="T059C"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Main Economic activity per CIIU Code"/>
+											<Input/>
+											<Label text="Exemption No."/>
+											<Input/>
+											<Label text="Valid Unit"/>
+											<DatePicker/>
+											<Label text="Exemption Authority"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/exemAuth}">
+												<items>
+													<core:Item text="No Exemption Reason Reported" key="0"/>
+													<core:Item text="Income Connected with a Company in the USA" key="1"/>
+													<core:Item text="Exempt due to an IRS Code" key="2"/>
+													<core:Item text="Income not from the USA" key="3"/>
+													<core:Item text="Exempt due to a Tax Agreement" key="4"/>
+													<core:Item text="Interest Exemption Portfolio for Internal Revenue Code Sect." key="5"/>
+													<core:Item text="Intermediary with Responsibility for Withholding Tax Amount" key="6"/>
+													<core:Item text="Foreign Private Limited Company / Trust with WH Tax Oblig." key="7"/>
+													<core:Item text="U.S. Branch with Status of a U.S. Person" key="8"/>
+													<core:Item text="Revenues in Accord. with Qualified Intermediary: Tax-Exempt" key="9"/>
+													<core:Item text="Securities Lender for Replacement Dividends" key="A"/>
+												</items>
+											</Select>
+											<core:Title text="Extended Withholding Tax"/>
+											<Label text="Withholding Tax Type"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Withholding Tax Type"></core:CustomData>
+													<core:CustomData key="table" value="T059P"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Recipient Type"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Recipient Type"></core:CustomData>
+													<core:CustomData key="table" value="T059C"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Withholding Tax Identification No."/>
+											<Input/>
+											<Label text="Exemption Rate in %"/>
+											<Input/>
+											<Label text="Date on which exemption starts"/>
+											<DatePicker/>
+											<core:Title/>
+											<Label text="Withholding Tax Code"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Withholding Tax Code"></core:CustomData>
+													<core:CustomData key="table" value="T059Z"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Sub. To Withholding Tax"/>
+											<CheckBox/>
+											<Label text="Exemption Cert. no."/>
+											<Input/>
+											<Label text="Exemption Reason"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Exemption Reason"></core:CustomData>
+													<core:CustomData key="table" value="T059V"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Date on which Exemption Ends"/>
+											<DatePicker/>
+											<core:Title text="ERP Vendor Company Code : Reference data"/>
+											<Label text="Previous Account No."/>
+											<Input/>
+											<Label text="Personnel No."/>
+											<Input/>
+											<core:Title text="ERP Vendor Company Code : Payment data"/>
+											<Label text="Terms of Payment"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>
+													<core:CustomData key="table" value="LFB1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Check Cashing Times"/>
+											<Input/>
+											<Label text="Credit Memo Payment Term"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Credit Memo Payment Term"></core:CustomData>
+													<core:CustomData key="table" value="LFB1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Tolerance Group"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Tolerance Group"></core:CustomData>
+													<core:CustomData key="table" value="T043G"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Check Double Invoice"/>
+											<CheckBox/>
+											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
+											<Label text="Payment Method"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Payment Method"></core:CustomData>
+													<core:CustomData key="table" value="LFB1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Alternative Payee"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Alternate Payee"></core:CustomData>
+													<core:CustomData key="table" value="LFA1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Grouping Key"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/grpKey}">
+												<items>
+													<core:Item text="Key 1" key="1"/>
+													<core:Item text="Key 2" key="2"/>
+													<core:Item text="Key 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Bill of Exchange limit"/>
+											<Input/>
+											<Label text="Payment Method Suppliement"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/payMethod}">
+												<items>
+													<core:Item text="Payment 1" key="1"/>
+													<core:Item text="Payment 2" key="2"/>
+													<core:Item text="Payment 3" key="3"/>
+												</items>
+											</Select>
+											<core:Title/>
+											<Label text="Payment Block"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/payBlock}">
+												<items>
+													<core:Item text="Block 1" key="1"/>
+													<core:Item text="Block 2" key="2"/>
+													<core:Item text="Block 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="House Bank"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="House Bank"></core:CustomData>
+													<core:CustomData key="table" value="T012"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Individual Payment"/>
+											<CheckBox/>
+											<Label text="Payment Advice by EDI"/>
+											<CheckBox/>
+											<Label text="Clearing with Cust."/>
+											<CheckBox/>
+											<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+											<Label text="Delivery Tolerance Group"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Delivery Tolerance Group"></core:CustomData>
+													<core:CustomData key="table" value="T043G"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<core:Title text="ERP Vendor Company Code : Correspondance"/>
+											<Label text="Account Clerk"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Account Clerk"></core:CustomData>
+													<core:CustomData key="table" value="LFB1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Account With Vendor"/>
+											<Input/>
+											<Label text="Clerk's Telephone No."/>
+											<Input/>
+											<Label text="Clerk's Internet Addredd"/>
+											<Input/>
+											<!--<core:Title/>-->
+											<Label text="Local Processing"/>
+											<CheckBox/>
+											<Label text="Account Statement"/>
+											<Input/>
+											<Label text="Account Memo"/>
+											<Input/>
+											<Label text="Clerk's Fax no."/>
+											<Input/>
+											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+											<Label text="Grouping Key"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/grpKey}">
+												<items>
+													<core:Item text="Key 1" key="1"/>
+													<core:Item text="Key 2" key="2"/>
+													<core:Item text="Key 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="ESTMA (CAN)"/>
+											<Input/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="ERP Vendor Parchasing Organization"/>
+											<Label text="Purchasing Organization"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/purOrg}">
+												<items>
+													<core:Item text="Org 1" key="1"/>
+													<core:Item text="Org 2" key="2"/>
+													<core:Item text="Org 3" key="3"/>
+												</items>
+											</Select>
+											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
+											<Label text="Order Currency"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Order Currency"></core:CustomData>
+													<core:CustomData key="table" value="TCURC"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Minimum Order Value"/>
+											<Input/>
+											<Label text="Schema Group (Vendor)"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Schema Group (Vendor)"></core:CustomData>
+													<core:CustomData key="table" value="TMKK"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="LB Restriction Profile"/>
+											<Input/>
+											<Label text="Terms of Payment"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>
+													<core:CustomData key="table" value="LFM1"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Incoterms"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Incoterms"></core:CustomData>
+													<core:CustomData key="table" value="TINC"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Incoterms"/>
+											<Input/>
+											<Label text="Pricing date Control"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/pricDateCtrl}">
+												<items>
+													<core:Item text="No Control" key=""/>
+													<core:Item text="Purchase Order Date" key="1"/>
+													<core:Item text="Delivery Date" key="2"/>
+													<core:Item text="Current Date" key="3"/>
+													<core:Item text="Manual" key="4"/>
+													<core:Item text="GR Date" key="5"/>
+												</items>
+											</Select>
+											<core:Title text="ERP Vendor Company Code : Sales Data"/>
+											<Label text="Sales Person"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Account with Vendor"/>
+											<Input/>
+											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
+											<Label text="ABC Indicator"/>
+											<Input/>
+											<Label text="Mode of Transport-Border"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Mode of Transport Border"></core:CustomData>
+													<core:CustomData key="table" value="T618"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Customs Office"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Customs Office"></core:CustomData>
+													<core:CustomData key="table" value="T615"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Sort Criterion"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/sortCriteria}">
+												<items>
+													<core:Item text="By VSR sequence number" key=""/>
+													<core:Item text="By EAN" key="A"/>
+													<core:Item text="By material number" key="B"/>
+													<core:Item text="By vendor material number" key="C"/>
+													<core:Item text="By material group" key="D"/>
+												</items>
+											</Select>
+											<Label text="Proact Control Profile"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/proCtrlProfile}">
+												<items>
+													<core:Item text="Control 1" key="1"/>
+													<core:Item text="Control 2" key="2"/>
+													<core:Item text="Control 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Shipping Conditions"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Shipping Conditions"></core:CustomData>
+													<core:CustomData key="table" value="TVSB"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Revaluation Allowed"/>
+											<CheckBox/>
+											<Label text="Qualifying for Discount in kind"/>
+											<CheckBox/>
+											<Label text="Relevant for price determination"/>
+											<CheckBox/>
+											<Label text="Relevant for Agency Business"/>
+											<CheckBox/>
+											<Label text="Goods Receipt-Based Invoice Verification"/>
+											<CheckBox/>
+											<Label text="Automatic Evaluated Receipt Settlement for Deliveries"/>
+											<CheckBox/>
+											<core:Title/>
+											<Label text="Automatic Evaluated Receipt Settlement for Return Items"/>
+											<CheckBox/>
+											<Label text="Acknowledgment Required"/>
+											<CheckBox/>
+											<Label text="Automatic Purchase Order Generation Allowed"/>
+											<CheckBox/>
+											<Label text="Subject to subsequent Settlement Accounting"/>
+											<CheckBox/>
+											<Label text="Index Compilation for Subsequent Settlement Active"/>
+											<Input/>
+											<Label text="Comparision/Agreement of Business Volume Required"/>
+											<CheckBox/>
+											<Label text="Document Index Active"/>
+											<CheckBox/>
+											<Label text="Goods Receipt-Based Invoice Verification"/>
+											<CheckBox/>
+											<Label text="Service-Based Invoice Verification"/>
+											<CheckBox/>
+											<core:Title text="Murphy Data"/>
+											<Label text="Qualified Supplier List Flag"/>
+											<CheckBox/>
+											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
+											<Label text="Purchasing Group"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Purchasing Group"></core:CustomData>
+													<core:CustomData key="table" value="T024"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Confirmation Control"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Confirmation Control"></core:CustomData>
+													<core:CustomData key="table" value="T163L"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Rounding profile"/>
+											<Input/>
+											<Label text="Planned delivery time in Days"/>
+											<Input/>
+											<Label text="Unit of Measure Group"/>
+											<Input/>
+											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
+											<Label text="Price Marketing Agreed"/>
+											<Input/>
+											<Label text="Vendor Service Level"/>
+											<Input/>
+											<Label text="Rack Jobbing Agreement with Vendor Exists"/>
+											<CheckBox/>
+											<Label text="Order Entry by Vendor"/>
+											<CheckBox/>
+											<!--<core:Title text="ERP Vendor Company Code : Invoice Verification"/>-->
+											<!--<Label text="Delivery Tolerance Group"/>-->
+											<!--<Input/>-->
+											<!--<core:Title text="ERP Vendor Company Code : Correspondance"/>-->
+											<!--<Label text="Account Clerk"/>-->
+											<!--<Input/>-->
+											<!--<Label text="Account With Vendor"/>-->
+											<!--<Input/>-->
+											<!--<Label text="Clerk's Telephone No."/>-->
+											<!--<Input/>-->
+											<!--<Label text="Clerk's Internet Addredd"/>-->
+											<!--<Input/>-->
+											<!--<core:Title/>-->
+											<!--<Label text="Local Processing"/>-->
+											<!--<CheckBox/>-->
+											<!--<Label text="Account Statement"/>-->
+											<!--<Input/>-->
+											<!--<Label text="Account Memo"/>-->
+											<!--<Input/>-->
+											<!--<Label text="Clerk's Fax no."/>-->
+											<!--<Input/>-->
+											<!--<core:Title text="ERP Vendor Company Code : Dunning Data"/>-->
+											<!--<Label text="Grouping Key"/>-->
+											<!--<Input/>-->
+											<!--<Label text="ESTMA (CAN)"/>-->
+											<!--<Input/>-->
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Additional Purchasing Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Data Maintenance Levels"/>
+											<Label text="plant level relevant"/>
+											<CheckBox/>
+											<Label text="plant"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Vendor Sub-Range Relevant"/>
+											<CheckBox/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Address">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Addresses"/>
+											<Label text="Street/House No."/>
+											<Input/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="Postal Code / City"/>
+											<Input/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="Country"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Country"></core:CustomData>
+													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="land1" value="Country Code"></core:CustomData>
+													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Region"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Region"></core:CustomData>
+													<core:CustomData key="table" value="T005S"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Language"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Language"></core:CustomData>
+													<core:CustomData key="table" value="T002"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Transportation Zone"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Transportation Zone"></core:CustomData>
+													<core:CustomData key="table" value="TZONE"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<core:Title/>
+											<Label text="Timezone"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Timezone"></core:CustomData>
+													<core:CustomData key="table" value="TTZZ"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="PO Box postal code / PO Box"/>
+											<Input/>
+											<Label text="PO Box Without No."/>
+											<Input/>
+											<Label text="Company Post code"/>
+											<Input/>
+											<Label text="Supplement"/>
+											<Input/>
+											<core:Title text="Telephone No's."/>
+											<Label text="Country"/>
+											<Input/>
+											<Label text="Telephone"/>
+											<Input/>
+											<Label text="Extention"/>
+											<Input/>
+											<Label text="Standard"/>
+											<CheckBox/>
+											<core:Title text="Fax No."/>
+											<Label text="Country"/>
+											<Input/>
+											<Label text="Telephone"/>
+											<Input/>
+											<Label text="Extention"/>
+											<Input/>
+											<Label text="Standard"/>
+											<CheckBox/>
+											<core:Title text="Email Address"/>
+											<Label text="Email Address"/>
+											<Input/>
+											<Label text="Standard"/>
+											<CheckBox/>
+											<core:Title text="Website"/>
+											<Label text="URL"/>
+											<Input/>
+											<core:Title text="International Versions"/>
+											<Label text="Address Version"/>
+											<Input/>
+											<Label text="Name"/>
+											<Input/>
+											<Label text="Address"/>
+											<Input/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Contact Persons">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Relationship"/>
+											<Label text="Partner ID"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Partner Description"/>
+											<Input/>
+											<core:Title text="General Data"/>
+											<Label text="Title"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/title}">
+												<items>
+													<core:Item text="Title 1" key="1"/>
+													<core:Item text="Title 2" key="2"/>
+													<core:Item text="Title 3" key="3"/>
+												</items>
+											</Select>
+											<Label text="Last Name"/>
+											<Input/>
+											<Label text="First Name"/>
+											<Input/>
+											<Label text="Academic Title"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/acdmicTitle}">
+												<items>
+													<core:Item text="Title 1" key="1"/>
+													<core:Item text="Title 2" key="2"/>
+													<core:Item text="Title 3" key="3"/>
+												</items>
+											</Select>
+											<core:Title/>
+											<Label text="Gender/Sex"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/gender}">
+												<items>
+													<core:Item text="Male" key="1"/>
+													<core:Item text="Female" key="2"/>
+													<core:Item text="Others" key="3"/>
+												</items>
+											</Select>
+											<Label text="Date of Birth"/>
+											<Input/>
+											<Label text="Marital Status"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/maritalSts}">
+												<items>
+													<core:Item text="Single" key="1"/>
+													<core:Item text="Married" key="2"/>
+													<core:Item text="Widow" key="3"/>
+												</items>
+											</Select>
+											<Label text="Correspondance Language"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Correspondance Language"></core:CustomData>
+													<core:CustomData key="table" value=""></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<core:Title text="Contact Person Details"/>
+											<Label text="Department"/>
+											<Input/>
+											<Label text="Function"/>
+											<Input/>
+											<Label text="Note"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Authority"/>
+											<Input/>
+											<Label text="VIP"/>
+											<Input/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Workplace Address">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Company"/>
+											<Label text="Address"/>
+											<Input/>
+											<core:Title text="Workplace"/>
+											<Label text="Function"/>
+											<Input/>
+											<Label text="Department"/>
+											<Input/>
+											<Label text="Room No"/>
+											<Input/>
+											<Label text="Floor"/>
+											<Input/>
+											<Label text="Building"/>
+											<Input/>
+											<core:Title text="Communication"/>
+											<Label text="Communication Method"/>
+											<Select selectedKey="{CreateVendorModel>/changeReq/genData/commMethod}">
+												<items>
+													<core:Item text="Method 1" key="1"/>
+													<core:Item text="Method 2" key="2"/>
+													<core:Item text="Method 3" key="3"/>
+												</items>
+											</Select>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Industry">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<!--<core:Title text="Relationship"/>-->
+											<Label text="Industry"/>
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Industry"></core:CustomData>
+													<core:CustomData key="table" value="T016"></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Description"/>
+											<Input/>
+											<core:Title/>
+											<Label text="Standard Industry"/>
+											<CheckBox/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="PRA Data">
+								<content>
+									<IconTabBar expanded="true">
+										<items>
+											<IconTabFilter text="Accounting" key="accounting">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<core:Title text="General Information"/>
+														<Label text="Intercompany Code"/>
+														<Input/>
+														<Label text="Resident Country"/>
+														<Input/>
+														<Label text="Entity Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/entityType}">
+															<items>
+																<core:Item text="Charitable" key="01"/>
+																<core:Item text="Federal" key="02"/>
+																<core:Item text="Indian" key="03"/>
+																<core:Item text="State" key="04"/>
+																<core:Item text="Other Exempt Entities" key="05"/>
+																<core:Item text="Not Applicable" key="06"/>
+																<core:Item text="Taxable Indians" key="07"/>
+																<core:Item text="Corporation" key="08"/>
+																<core:Item text="Individual" key="09"/>
+																<core:Item text="Partnership, Trust, or Estate" key="10"/>
+																<core:Item text="Trust or Fiduciary" key="11"/>
+															</items>
+														</Select>
+														<Label text="Levy"/>
+														<Input/>
+														<Label text="CDEX Company"/>
+														<Input/>
+														<Label text="Region"/>
+														<Input/>
+														<Label text="Tribe No."/>
+														<Input/>
+														<core:Title text="Payment Information"/>
+														<Label text="Payment Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/payType}">
+															<items>
+																<core:Item text="Payment 1" key="1"/>
+																<core:Item text="Payment 2" key="2"/>
+																<core:Item text="Payment 3" key="3"/>
+															</items>
+														</Select>
+														<Label text="Owner Minimum Pay"/>
+														<Input/>
+														<Label text="Do Not Recoup"/>
+														<CheckBox/>
+														<Label text="Pay Frequency"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/payFreq}">
+															<items>
+																<core:Item text="Normal" key="1"/>
+																<core:Item text="Quarterly" key="2"/>
+																<core:Item text="Semi-Annually" key="3"/>
+																<core:Item text="Annually" key="4"/>
+															</items>
+														</Select>
+														<Label text="No Check Statement"/>
+														<CheckBox/>
+														<Label text="Direct pay"/>
+														<CheckBox/>
+														<core:Title text="Special Handling Codes"/>
+														<Label text="Special Handling CD"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Special hanling CD"></core:CustomData>
+																<core:CustomData key="table" value=""></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="Comment"/>
+														<Input/>
+														<Label text="Description"/>
+														<Input/>
+														<core:Title text="Recoupment Groups"/>
+														<Label text="Recoupment Grp"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Recoupment Group"></core:CustomData>
+																<core:CustomData key="table" value=""></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="Comment"/>
+														<Input/>
+														<Label text="Description"/>
+														<Input/>
+														<core:Title text="Exempt withholdings"/>
+														<Label text="Withholding Type CD"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Withholding Type CD"></core:CustomData>
+																<core:CustomData key="table" value="/PRA/C_PP_WH"></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="Comment"/>
+														<Input/>
+														<core:Title/>
+														<Label text="Description"/>
+														<Input/>
+														<core:Title text="Tax Information"/>
+														<Label text="Tax ID"/>
+														<Input/>
+														<Label text="Tin match Date"/>
+														<DatePicker/>
+														<Label text="B Notice 1 Date"/>
+														<DatePicker/>
+														<Label text="B Notice 2 Date"/>
+														<DatePicker/>
+														<Label text="Backup Withholding"/>
+														<CheckBox/>
+														<Label text="Don't Report to ONRR"/>
+														<CheckBox/>
+														<Label text="Tax ID Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/taxIDType}">
+															<items>
+																<core:Item text="Social Security Number" key="S"/>
+																<core:Item text="Employer Identification Number" key="T"/>
+																<core:Item text="No TIN Available" key="N"/>
+																<core:Item text="Social Insurance Number" key="C"/>
+															</items>
+														</Select>
+														<Label text="Response Date"/>
+														<DatePicker/>
+														<core:Title/>
+														<Label text="IRS Form Response Date"/>
+														<DatePicker/>
+														<Label text="NRA"/>
+														<CheckBox/>
+														<Label text="1099"/>
+														<CheckBox/>
+														<Label text="W8"/>
+														<CheckBox/>
+														<Label text="W9"/>
+														<CheckBox/>
+														<Label text="Others"/>
+														<CheckBox/>
+														<Label text="Reporting Entity Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/reportingEntityType}">
+															<items>
+																<core:Item text="Charitable" key="01"/>
+																<core:Item text="Federal" key="02"/>
+																<core:Item text="Indian" key="03"/>
+																<core:Item text="State" key="04"/>
+																<core:Item text="Other Exempt Entities" key="05"/>
+																<core:Item text="Not Applicable" key="06"/>
+																<core:Item text="Taxable Indians" key="07"/>
+																<core:Item text="Corporation" key="08"/>
+																<core:Item text="Individual" key="09"/>
+																<core:Item text="Partnership, Trust, or Estate" key="10"/>
+																<core:Item text="Trust or Fiduciary" key="11"/>
+															</items>
+														</Select>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+											<IconTabFilter text="Address" key="address">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<!--<core:Title text="General Information"/>-->
+														<Label text="Address Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/addType}">
+															<items>
+																<core:Item text="Add 1" key="1"/>
+																<core:Item text="Add 2" key="2"/>
+																<core:Item text="Add 3" key="3"/>
+															</items>
+														</Select>
+														<Label text="Title"/>
+														<Input/>
+														<Label text="Name"/>
+														<Input/>
+														<Label text="Name2"/>
+														<Input/>
+														<Label text="Search Term 1"/>
+														<Input/>
+														<Label text="Street"/>
+														<Input/>
+														<Label text="House No."/>
+														<Input/>
+														<Label text="Supplement"/>
+														<Input/>
+														<Label text="Postal Code"/>
+														<Input/>
+														<Label text="Country Key"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Country Key"></core:CustomData>
+																<core:CustomData key="table" value="T005"></core:CustomData>
+																<core:CustomData key="land1" value="Country Code"></core:CustomData>
+																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="City"/>
+														<Input/>
+														<core:Title/>
+														<Label text="Region"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Region"></core:CustomData>
+																<core:CustomData key="table" value=""></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="PO Box"/>
+														<Input/>
+														<Label text="PO Box Postal Code"/>
+														<Input/>
+														<Label text="Company Postal Code"/>
+														<Input/>
+														<Label text="Language Key"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Langauge Key"></core:CustomData>
+																<core:CustomData key="table" value="T002"></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="Telephone"/>
+														<Input/>
+														<Label text="Ext."/>
+														<Input/>
+														<Label text="Mobile Phone"/>
+														<Input/>
+														<Label text="Fax"/>
+														<Input/>
+														<Label text="Email"/>
+														<Input/>
+														<Label text="Comm Method"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Communication Method"></core:CustomData>
+																<core:CustomData key="table" value="TSAC"></core:CustomData>
+																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+															</customData>
+														</Input>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+											<IconTabFilter text="Escheat" key="escheat">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<!--<core:Title text="General Information"/>-->
+														<Label text="Owner Type"/>
+														<Select selectedKey="{CreateVendorModel>/changeReq/genData/ownerType}">
+															<items>
+																<core:Item text="Company" key="C"/>
+																<core:Item text="Individual" key=""/>
+																<core:Item text="Trust" key="T"/>
+															</items>
+														</Select>
+														<Label text="Title"/>
+														<Input/>
+														<Label text="First Name"/>
+														<Input/>
+														<Label text="Name Prefix"/>
+														<Input/>
+														<Label text="Date Of Birth"/>
+														<DatePicker/>
+														<Label text="Tax ID"/>
+														<Input/>
+														<Label text="Address Line 1"/>
+														<Input/>
+														<Label text="Address Line 2"/>
+														<Input/>
+														<Label text="Address Line 3"/>
+														<Input/>
+														<core:Title/>
+														<Label text="City"/>
+														<Input/>
+														<Label text="Country"/>
+														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															<customData>
+																<core:CustomData key="title" value="Country"></core:CustomData>
+																<core:CustomData key="table" value="T005"></core:CustomData>
+																<core:CustomData key="land1" value="Country Code"></core:CustomData>
+																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+															</customData>
+														</Input>
+														<Label text="County"/>
+														<Input/>
+														<Label text="Name"/>
+														<Input/>
+														<Label text="Middle Name"/>
+														<Input/>
+														<Label text="Name suffix"/>
+														<Input/>
+														<Label text="Tax ID Extension"/>
+														<Input/>
+														<Label text="State Code"/>
+														<Input/>
+														<Label text="Zip Code"/>
+														<Input/>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+										</items>
+									</IconTabBar>
+								</content>
+							</Panel>
+						</VBox>
+						<l:sideContent>
+							<IconTabBar expanded="true">
+								<items>
+									<!--<IconTabFilter text="Notes" key="notes">-->
+									<!--<Text text="Notes go here ..."/>-->
+									<!--	<VBox>-->
+									<!--		<Label text="Write a Note:"/>-->
+									<!--		<TextArea width="100%"></TextArea>-->
+									<!--		<Toolbar>-->
+									<!--			<ToolbarSpacer/>-->
+									<!--			<Button text="Add"/>-->
+									<!--		</Toolbar>-->
+									<!--	</VBox>-->
+									<!--</IconTabFilter>-->
+									<IconTabFilter text="Attachments" key="attachments">
+										<!--<Text text="Attachments go here ..."/>-->
+										<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
+											instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
+											fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+											uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
+										<Toolbar>
+											<!--<Button text="Add"/>-->
+											<ToolbarSpacer/>
+											<Button text="Upload"/>
+										</Toolbar>
+									</IconTabFilter>
+									<IconTabFilter text="Comments" key="comments">
+										<!--<VBox>-->
+										<Label text="Write a Comment:"/>
+										<HBox width="100%">
+											<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
+											<TextArea width="164%"></TextArea>
+										</HBox>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<Button text="Add"/>
+										</Toolbar>
+										<!--</VBox>-->
+										<List headerText="Added Comments" items="{/Comments}">
+											<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
+												timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+												<FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+											</FeedListItem>
+										</List>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</l:sideContent>
+					</l:DynamicSideContent>
+				</content>
+			</Page>
+		</content>
+		<footer>
+			<Toolbar><ToolbarSpacer/>
+				<Button text="Save" type="Transparent" press="onSaveClick"/>
+				<Button text="Submit" type="Transparent" press="onSubmitClick"/>
+				<Button text="Check" type="Transparent" press="onCheckClick"/>
+				<Button icon="sap-icon://undo" type="Transparent" press="onUndoClick"/>
+				<Button icon="sap-icon://redo" type="Transparent" press="onRedoClick"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

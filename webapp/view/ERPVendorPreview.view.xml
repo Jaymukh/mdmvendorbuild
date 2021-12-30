@@ -1,0 +1,781 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="VendorPreview" showHeader="false" showNavButton="false">
+		<content>
+			<Toolbar>
+				<Title text="Organization: BP9422, (no description available)" level="H2"></Title>
+			</Toolbar>
+			<Page id="sideContentContainer" showHeader="false" showNavButton="false" showFooter="true">
+				<content>
+					<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
+						sideContentFallDown="BelowM" breakpointChanged="handleBreakpointChangeEvent">
+						<VBox>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Change Requests" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="General Data"/>
+									<Label text="Change Request ID"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/changeReqID}"/>
+									<Label text="Description" required="true"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/desc}"/>
+									<Label text="Priority"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/priority}"/>
+									<Label text="Due Date"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/dueDate}"></Text>
+									<Label text="Reason"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>
+									<core:Title text="Process Data"/>
+									<Label text="Status"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/status}"/>
+									<Label text="Current Work Item"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
+									<Label text="Created By"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+									<Label text="Date/Time of Creation"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/dateCreation}"/>
+									<Text text="{CreateVendorModel>/changeReq/genData/timeCreation}">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="ERP Vendor Details" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Administritative Data"/>
+									<Label text="Vendor"/>
+									<Text/>
+									<Label text="Account Group"/>
+									<Text/>
+									<core:Title text="General Data"/>
+									<Label text="Title"/>
+									<Text text=""/>
+									<Label text="Name1" required="true"/>
+									<Text text=""/>
+									<Label text="Name2"/>
+									<Text text=""/>
+									<Label text="Name3"/>
+									<Text text=""/>
+									<Label text="Legal Name (Name4)"/>
+									<Text text=""/>
+									<Label text="Natural person"/>
+									<Text/>
+									<Label text="Search Terms"/>
+									<Text text=""/>
+									<core:Title text="Communication Data"/>
+									<Label text="Telephone"/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text=""/>
+									<Label text="Mobile" required="true"/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Label text="E-mail Address"/>
+									<Text text=""/>
+									<Label text="Fax"/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text=""/>
+									<Label text="Web site"/>
+									<Text text=""/>
+									<Label text="PO Box Lobby"/>
+									<Text text=""/>
+									<Label text="Type of Delivery Service" required="true"/>
+									<Text text=""/>
+									<Label text="Number of Delivery Service"/>
+									<Text text=""/>
+									<Label text="PO Box"/>
+									<Text text=""/>
+									<Label text="Undeliverable"/>
+									<Text text=""/>
+									<core:Title text="Address"/>
+									<Label text="Street / No." required="true"/>
+									<Text text=""/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Label text="District"/>
+									<Text text=""/>
+									<Label text="Strret 2" required="true"/>
+									<Text text=""/>
+									<Label text="Strret 3"/>
+									<Text text=""/>
+									<Label text="Strret 4"/>
+									<Text text=""/>
+									<Label text="Strret 5"/>
+									<Text text=""/>
+									<Label text="Postal Code / City"/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Text text=""/>
+									<Label text="Country" required="true"/>
+									<Text text=""/>
+									<Label text="Region"/>
+									<Text text=""/>
+									<Label text="Language" required="true"/>
+									<Text text=""/>
+									<Label text="Transportation Zone"/>
+									<Text text=""/>
+									<Label text="PO Box Postal Code/ PO Box"/>
+									<Text text=""/>
+									<Label text="PO Box Without No."/>
+									<Text/>
+									<Label text="Company POstal Code"/>
+									<Text text=""/>
+									<Label text="Supplement"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Control Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Account Control"/>
+									<Label text="Authorization Group"/>
+									<Text/>
+									<Label text="Group Key"/>
+									<Text/>
+									<Label text="Trading Partner"/>
+									<Text/>
+									<Label text="Customer"/>
+									<Text/>
+									<core:Title text="Procurement Monitoring"/>
+									<Label text="factory Calendar"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Reference Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Reference Data"/>
+									<Label text="Train Station"/>
+									<Text/>
+									<Label text="External Manufaturer"/>
+									<Text/>
+									<Label text="Relevant for POD"/>
+									<Text/>
+									<Label text="SCAC"/>
+									<Text/>
+									<Label text="Actual QM System"/>
+									<Text text=""/>
+									<Label text="Carrier Freight Group"/>
+									<Text/>
+									<core:Title text=""/>
+									<Label text="Industry"/>
+									<Text/>
+									<Label text="Service agent procedure group"/>
+									<Text/>
+									<Label text="Credit information No."/>
+									<Text/>
+									<Label text="Last External Review"/>
+									<Text/>
+									<Label text="Statistics Group, Service agent"/>
+									<Text/>
+									<Label text="QM System Valid to"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Tax Numbers" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Tax Numbers - Table"/>
+									<!--<Label text="Edit or Create New"/>-->
+									<!--<Text/>-->
+									<Label text="Tax Numbers Category"/>
+									<Text text=""/>
+									<Label text="Description"/>
+									<Text text=""/>
+									<core:Title text=""/>
+									<Label text="Tax Number"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Tax Information" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Tax Information"/>
+									<Label text="Fiscal Address"/>
+									<Text/>
+									<Label text="Tax Office"/>
+									<Text text=""/>
+									<Label text="Tax No."/>
+									<Text text=""/>
+									<Label text="Tax Base"/>
+									<Text text=""/>
+									<Label text="Tax Type"/>
+									<Text text=""/>
+									<Label text="Type of Business"/>
+									<Text text=""/>
+									<Label text="Name of Representative"/>
+									<Text text=""/>
+									<core:Title text=""/>
+									<Label text="Sales Equalization Tax"/>
+									<Text/>
+									<Label text="Liable for VAT"/>
+									<Text/>
+									<Label text="Tax Split"/>
+									<Text/>
+									<Label text="Social Insurance"/>
+									<Text/>
+									<Label text="Social Insurance Code"/>
+									<Text text=""/>
+									<Label text="Type of Industry"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Bank Accounts" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Bank Accounts - Table"/>
+									<!--<Label text="Edit or Create New"/>-->
+									<!--<Text/>-->
+									<Label text="Bank Detail ID"/>
+									<Text text=""/>
+									<Label text="Bank Account"/>
+									<Text text=""/>
+									<Label text="Account Holder"/>
+									<Text text=""/>
+									<Label text="IBAN"/>
+									<Text text=""/>
+									<Label text="IBAN-Generate IBAN"/>
+									<Text text=""/>
+									<Label text="IBAN-Generate Bank Details"/>
+									<Text text=""/>
+									<Label text="Account No."/>
+									<Text text=""/>
+									<Label text="Control key"/>
+									<Text text=""/>
+									<core:Title text=""/>
+									<Label text="Reference Details"/>
+									<Text text=""/>
+									<Label text="Collection Authorization"/>
+									<Text text=""/>
+									<Label text="Bank Country / Desc."/>
+									<Text text=""/>
+									<Label text="Bank Key"/>
+									<Text text=""/>
+									<Label text="Bank Name"/>
+									<Text text=""/>
+									<Label text="Street"/>
+									<Text text=""/>
+									<Label text="City"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Payment Transactions" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Payment Transactions"/>
+									<Label text="DME Indicator"/>
+									<Text/>
+									<Label text="Instruction Key"/>
+									<Text text=""/>
+									<Label text="ISR No."/>
+									<Text text=""/>
+									<core:Title text="Alternate Payee"/>
+									<Label text="Payee in Document"/>
+									<Text/>
+									<Label text="Alternative Payee"/>
+									<Text text=""/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Murphy Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<!--<core:Title text="Payment Transactions"/>-->
+									<Label text="Ariba Supplier Network ID"/>
+									<Text/>
+									<Label text="Validate From Date"/>
+									<Text/>
+									<core:Title/>
+									<Label text="Validate To Date"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Company Codes" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="ERP Vendor Company Code"/>
+									<Label text="Company Code"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Accounting Information"/>
+									<Label text="Reconcillation Account"/>
+									<Text/>
+									<Label text="Head Office"/>
+									<Text/>
+									<Label text="Authorization Group"/>
+									<Text/>
+									<Label text="Minority Indicator"/>
+									<Text/>
+									<Label text="Sort Key"/>
+									<Text/>
+									<Label text="Planning Group"/>
+									<Text/>
+									<Label text="Release Group"/>
+									<Text/>
+									<Label text="Certification Date"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
+									<Label text="Intrest Indicator"/>
+									<Text/>
+									<Label text="Intrest Calculation Frequency"/>
+									<Text/>
+									<Label text="Last Key Date"/>
+									<Text/>
+									<Label text="Last Key Run"/>
+									<Text/>
+									<core:Title text="Withholding Tax"/>
+									<Label text="Withholding Tax Code"/>
+									<Text/>
+									<Label text="Withholding Tax Country"/>
+									<Text/>
+									<Label text="Recipient Type"/>
+									<Text/>
+									<Label text="Main Economic activity per CIIU Code"/>
+									<Text/>
+									<Label text="Exemption No."/>
+									<Text/>
+									<Label text="Valid Unit"/>
+									<Text/>
+									<Label text="Exemption Authority"/>
+									<Text/>
+									<core:Title text="Extended Withholding Tax"/>
+									<Label text="Withholding Tax Type"/>
+									<Text/>
+									<Label text="Recipient Type"/>
+									<Text/>
+									<Label text="Withholding Tax Identification No."/>
+									<Text/>
+									<Label text="Exemption Rate in %"/>
+									<Text/>
+									<Label text="Date on which exemption starts"/>
+									<Text/>
+									<Label text="Withholding Tax Code"/>
+									<Text/>
+									<Label text="Sub. To Withholding Tax"/>
+									<Text/>
+									<Label text="Exemption Cert. no."/>
+									<Text/>
+									<Label text="Exemption Reason"/>
+									<Text/>
+									<Label text="Date on which Exemption Ends"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Reference data"/>
+									<Label text="Previous Account No."/>
+									<Text/>
+									<Label text="Personnel No."/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Payment data"/>
+									<Label text="Terms of Payment"/>
+									<Text/>
+									<Label text="Check Cashing Times"/>
+									<Text/>
+									<Label text="Credit Memo Payment Term"/>
+									<Text/>
+									<Label text="Tolerance Group"/>
+									<Text/>
+									<Label text="Check Double Invoice"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
+									<Label text="Payment Method"/>
+									<Text/>
+									<Label text="Alternative Payee"/>
+									<Text/>
+									<Label text="Grouping Key"/>
+									<Text/>
+									<Label text="Bill of Exchange limit"/>
+									<Text/>
+									<Label text="Payment Method Suppliement"/>
+									<Text/>
+									<Label text="Payment Block"/>
+									<Text/>
+									<Label text="House Bank"/>
+									<Text/>
+									<Label text="Individual Payment"/>
+									<Text/>
+									<Label text="Payment Advice by EDI"/>
+									<Text/>
+									<Label text="Clearing with Cust."/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+									<Label text="Delivery Tolerance Group"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Correspondance"/>
+									<Label text="Account Clerk"/>
+									<Text/>
+									<Label text="Account With Vendor"/>
+									<Text/>
+									<Label text="Clerk's Telephone No."/>
+									<Text/>
+									<Label text="Clerk's Internet Addredd"/>
+									<Text/>
+									<Label text="Local Processing"/>
+									<Text/>
+									<Label text="Account Statement"/>
+									<Text/>
+									<Label text="Account Memo"/>
+									<Text/>
+									<Label text="Clerk's Fax no."/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+									<Label text="Grouping Key"/>
+									<Text/>
+									<Label text="ESTMA (CAN)"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Purchasing Organization" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="ERP Vendor Parchasing Organization"/>
+									<Label text="Purchasing Organization"/>
+									<Text/>
+									<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
+									<Label text="Order Currency"/>
+									<Text/>
+									<Label text="Minimum Order text"/>
+									<Text/>
+									<Label text="Schema Group (Vendor)"/>
+									<Text/>
+									<Label text="LB Restriction Profile"/>
+									<Text/>
+									<Label text="Terms of Payment"/>
+									<Text/>
+									<Label text="Incoterms"/>
+									<Text/>
+									<Label text="Incoterms"/>
+									<Text/>
+									<Label text="Pricing date Control"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Sales Data"/>
+									<Label text="Sales Person"/>
+									<Text/>
+									<Label text="Account with Vendor"/>
+									<Text/>
+									<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
+									<Label text="ABC Indicator"/>
+									<Text/>
+									<Label text="Mode of Transport-Border"/>
+									<Text/>
+									<Label text="Customs Office"/>
+									<Text/>
+									<Label text="Sort Criterion"/>
+									<Text/>
+									<Label text="Proact Control Profile"/>
+									<Text/>
+									<Label text="Shipping Conditions"/>
+									<Text/>
+									<Label text="Revaluation Allowed"/>
+									<Text/>
+									<Label text="Qualifying for Discount in kind"/>
+									<Text/>
+									<Label text="Relevant for price determination"/>
+									<Text/>
+									<Label text="Relevant for Agency Business"/>
+									<Text/>
+									<Label text="Goods Receipt-Based Invoice Verification"/>
+									<Text/>
+									<Label text="Automatic Evaluated Receipt Settlement for Deliveries"/>
+									<Text/>
+									<Label text="Automatic Evaluated Receipt Settlement for Return Items"/>
+									<Text/>
+									<Label text="Acknowledgment Required"/>
+									<Text/>
+									<Label text="Automatic Purchase Order Generation Allowed"/>
+									<Text/>
+									<Label text="Subject to subsequent Settlement Accounting"/>
+									<Text/>
+									<Label text="Index Compilation for Subsequent Settlement Active"/>
+									<Text/>
+									<Label text="Comparision/Agreement of Business Volume Required"/>
+									<Text/>
+									<Label text="Document Index Active"/>
+									<Text/>
+									<Label text="Goods Receipt-Based Invoice Verification"/>
+									<Text/>
+									<Label text="Service-Based Invoice Verification"/>
+									<Text/>
+									<core:Title text="Murphy Data"/>
+									<Label text="Qualified Supplier List Flag"/>
+									<Text/>
+									<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
+									<Label text="Purchasing Group"/>
+									<Text/>
+									<Label text="Confirmation Control"/>
+									<Text/>
+									<Label text="Rounding profile"/>
+									<Text/>
+									<Label text="Planned delivery time in Days"/>
+									<Text/>
+									<Label text="Unit of Measure Group"/>
+									<Text/>
+									<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
+									<Label text="Price Marketing Agreed"/>
+									<Text/>
+									<Label text="Vendor Service Level"/>
+									<Text/>
+									<Label text="Rack Jobbing Agreement with Vendor Exists"/>
+									<Text/>
+									<Label text="Order Entry by Vendor"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+									<Label text="Delivery Tolerance Group"/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Correspondance"/>
+									<Label text="Account Clerk"/>
+									<Text/>
+									<Label text="Account With Vendor"/>
+									<Text/>
+									<Label text="Clerk's Telephone No."/>
+									<Text/>
+									<Label text="Clerk's Internet Addredd"/>
+									<Text/>
+									<Label text="Local Processing"/>
+									<Text/>
+									<Label text="Account Statement"/>
+									<Text/>
+									<Label text="Account Memo"/>
+									<Text/>
+									<Label text="Clerk's Fax no."/>
+									<Text/>
+									<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+									<Label text="Grouping Key"/>
+									<Text/>
+									<Label text="ESTMA (CAN)"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Additional Purchasing Data" labelSpanXL="4" labelSpanL="4"
+								labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+								columnsL="2" columnsM="2" singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Data Maintenance Levels"/>
+									<Label text="plant level relevant"/>
+									<Text/>
+									<Label text="plant"/>
+									<Text/>
+									<Label text="Vendor Sub-Range Relevant"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Addresses"/>
+									<Label text="Street/House No."/>
+									<Text/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Label text="Postal Code / City"/>
+									<Text/>
+									<Text text="">
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4"/>
+										</layoutData>
+									</Text>
+									<Label text="Country"/>
+									<Text/>
+									<Label text="Region"/>
+									<Text/>
+									<Label text="Language"/>
+									<Text/>
+									<Label text="Transportation Zone"/>
+									<Text/>
+									<Label text="Timezone"/>
+									<Text/>
+									<Label text="PO Box postal code / PO Box"/>
+									<Text/>
+									<Label text="PO Box Without No."/>
+									<Text/>
+									<Label text="Company Post code"/>
+									<Text/>
+									<Label text="Supplement"/>
+									<Text/>
+									<core:Title text="Telephone No's."/>
+									<Label text="Country"/>
+									<Text/>
+									<Label text="Telephone"/>
+									<Text/>
+									<Label text="Extention"/>
+									<Text/>
+									<Label text="Standard"/>
+									<Text/>
+									<core:Title text="Fax No."/>
+									<Label text="Country"/>
+									<Text/>
+									<Label text="Telephone"/>
+									<Text/>
+									<Label text="Extention"/>
+									<Text/>
+									<Label text="Standard"/>
+									<Text/>
+									<core:Title text="Email Address"/>
+									<Label text="Email Address"/>
+									<Text/>
+									<Label text="Standard"/>
+									<Text/>
+									<core:Title text="Website"/>
+									<Label text="URL"/>
+									<Text/>
+									<core:Title text="International Versions"/>
+									<Label text="Address Version"/>
+									<Text/>
+									<Label text="Name"/>
+									<Text/>
+									<Label text="Address"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Contact Persons" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="Relationship"/>
+									<Label text="Partner ID"/>
+									<Text/>
+									<Label text="Partner Description"/>
+									<Text/>
+									<core:Title text="General Data"/>
+									<Label text="Title"/>
+									<Text/>
+									<Label text="Last Name"/>
+									<Text/>
+									<Label text="First Name"/>
+									<Text/>
+									<Label text="Academic Title"/>
+									<Text/>
+									<Label text="Gender/Sex"/>
+									<Text/>
+									<Label text="Date of Birth"/>
+									<Text/>
+									<Label text="Marital Status"/>
+									<Text/>
+									<Label text="Correspondance Language"/>
+									<Text/>
+									<core:Title text="Contact Person Details"/>
+									<Label text="Department"/>
+									<Text/>
+									<Label text="Function"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Industry" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false">
+								<form:content>
+									<!--<core:Title text="Relationship"/>-->
+									<Label text="Industry"/>
+									<Text/>
+									<Label text="Description"/>
+									<Text/>
+									<Label text="Standard Industry"/>
+									<Text/>
+								</form:content>
+							</form:SimpleForm>
+						</VBox>
+						<l:sideContent>
+							<IconTabBar expanded="true">
+								<items>
+									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/preview} === false}">
+										<Text text="Workflow comes here"/>
+									</IconTabFilter>
+									<IconTabFilter text="Change Documents" key="changeDoc" visible="{= ${CreateVendorModel>/vndDetails} === true}">
+										<Text text="Change Documents comes here"/>
+									</IconTabFilter>
+									<IconTabFilter text="Attachments" key="attachments">
+										<!--<Text text="Attachments go here ..."/>-->
+										<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
+											instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
+											fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+											uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
+										<Toolbar>
+											<!--<Button text="Add"/>-->
+											<ToolbarSpacer/>
+											<Button text="Upload"/>
+										</Toolbar>
+									</IconTabFilter>
+									<IconTabFilter text="Comments" key="comments">
+										<!--<VBox>-->
+										<Label text="Write a Comment:"/>
+										<HBox width="100%">
+											<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
+											<TextArea width="164%"></TextArea>
+										</HBox>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<Button text="Add"/>
+										</Toolbar>
+										<!--</VBox>-->
+										<List headerText="Added Comments" items="{/Comments}">
+											<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
+												timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+												<FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+											</FeedListItem>
+										</List>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</l:sideContent>
+					</l:DynamicSideContent>
+				</content>
+			</Page>
+		</content>
+		<footer>
+			<Toolbar><ToolbarSpacer/>
+				<Button text="Edit" type="Transparent" press="onEditClick"/>
+				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
+				<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>
+				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
+				<Button text="Reject" type="Reject" press="onRejectClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
+				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
+					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
+				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToListClick"
+					visible="{= ${CreateVendorModel>/vndDetails} === true}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,160 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" height="100%" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants" xmlns:uxap="sap.uxap"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:filterbar="sap.ui.comp.filterbar"
+	xmlns:vm="sap.ui.comp.variants" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.searchvendor"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer width="20px"/>
+				<Title id="idTitle" text="Search ERP Vendor">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Title>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation id="sideNavigation" selectedKey="srchVnd" itemSelect=".onSideItemSelect">
+				<tnt:NavigationList>
+					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
+					<tnt:NavigationListItem text="Create Vendor" icon="sap-icon://create" key="createERPVendorView"/>
+					<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="myReq">
+						<tnt:NavigationListItem text="My Chnage Request" key="changeRequestId"/>
+						<tnt:NavigationListItem text="All Change Request" key="allReq"/>
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Mass Change" icon="sap-icon://copy" key="copy"/>
+				</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList>
+						<tnt:NavigationListItem text="Lock Menu" icon="sap-icon://unlocked" key="unlock"/>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="srchVnd">
+				<pages>
+					<!--<ScrollContainer id="srchVnd" horizontal="false" vertical="true" height="100%">-->
+					<!--<content>-->
+					<f:DynamicPage id="srchVnd" fitContent="true">
+						<f:title>
+							<f:DynamicPageTitle>
+								<f:heading>
+									<!--	<sv:SmartVariantManagement id="__SVM01" persistencyKey="fiori.test.application2.view.S4.FilterBar" showShare="true"
+										showExecuteOnSelection="true"/> -->
+									<vm:VariantManagement select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+										<vm:variantItems>
+											<vm:VariantItem text="Bank Details" key="bankDetails"></vm:VariantItem>
+										</vm:variantItems>
+									</vm:VariantManagement>
+								</f:heading>
+							</f:DynamicPageTitle>
+						</f:title>
+						<f:header>
+							<f:DynamicPageHeader>
+								<f:content>
+									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+										<filterbar:filterGroupItems >
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name1">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name12" label="Name2">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="city" label="City">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+										</filterbar:filterGroupItems>
+										<filterbar:filterGroupItems>
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="businessPartnerID" label="Business Partner ID">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankAccount" label="Bank Account">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankKey" label="Bank Key">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="street" label="Street">
+												<filterbar:control>
+													<Input></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+										</filterbar:filterGroupItems>
+									</filterbar:FilterBar>
+								</f:content>
+							</f:DynamicPageHeader>
+						</f:header>
+						<f:content>
+							<Table mode="SingleSelectLeft" columns="{/columns}" items="{/rows}">
+								<headerToolbar>
+									<Toolbar>
+										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
+										<ToolbarSpacer></ToolbarSpacer>
+										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
+										<Button text="Replicate"></Button>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column>
+										<header>
+											<Label text="{header}" design="Bold"></Label>
+										</header>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Link text="{businessPartnerId}"></Link>
+											<ObjectStatus state="{path:'pendigRequest', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
+											<Text text="{description}"></Text>
+											<Text text="{customerContact}"></Text>
+											<Text text="{category}"></Text>
+											<Text text="{rank}"></Text>
+											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</f:content>
+					</f:DynamicPage>
+					<mvc:XMLView id="createERPVendorView" viewName="murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor"/>
+					<mvc:XMLView id="changeRequestId" viewName="murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest"/>
+					<!--<ScrollContainer id="myReq" horizontal="false" vertical="true" height="100%">-->
+					<!--	<Text text="This is the My Request Page"/>-->
+					<!--</ScrollContainer>-->
+					<!--<ScrollContainer id="allReq" horizontal="false" vertical="true" height="100%">-->
+					<!--	<Text text="This is All Request Page"/>-->
+					<!--</ScrollContainer>-->
+					<ScrollContainer id="copy" horizontal="false" vertical="true" height="100%">
+						<Text text="This is copy Page"/>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>
