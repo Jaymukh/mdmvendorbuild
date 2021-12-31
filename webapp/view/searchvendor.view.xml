@@ -60,48 +60,48 @@
 						<f:header>
 							<f:DynamicPageHeader>
 								<f:content>
-									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" >
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name1">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbName1"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name12" label="Name2">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name2" label="Name2">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbName2"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="city" label="City">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbCity"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
 										<filterbar:filterGroupItems>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="businessPartnerID" label="Business Partner ID">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbBPId"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankAccount" label="Bank Account">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbBankAcc"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankKey" label="Bank Key">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbBankKey"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="street" label="Street">
 												<filterbar:control>
-													<Input></Input>
+													<Input  id="fbBankStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -110,7 +110,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{/columns}" items="{/rows}">
+							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{/}">
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
@@ -122,19 +122,19 @@
 								<columns>
 									<Column>
 										<header>
-											<Label text="{header}" design="Bold"></Label>
+											<Label text="{SearchVendorMetadataModel>header}" design="Bold"></Label>
 										</header>
 									</Column>
 								</columns>
 								<items>
 									<ColumnListItem>
 										<cells>
-											<Link text="{businessPartnerId}"></Link>
-											<ObjectStatus state="{path:'pendigRequest', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
-											<Text text="{description}"></Text>
-											<Text text="{customerContact}"></Text>
-											<Text text="{category}"></Text>
-											<Text text="{rank}"></Text>
+											<Link text="{SearchVendorModel>customVendorLFA1Entity/Lifnr}"></Link>
+											<ObjectStatus state="{path:'SearchVendorModel>listOfCRs/status', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
+											<Text text="{SearchVendorModel>listOfCRs/change_request_due_date}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1Entity/description}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1Entity/vbund}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1Entity/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>
