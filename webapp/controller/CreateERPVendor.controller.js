@@ -61,7 +61,13 @@ sap.ui.define([
 			var aCols = oData.cols;
 			this._oBasicSearchField = new SearchField();
 			// debugger;
-			this.serviceCall.handleServiceRequest(oData.table).then(function (oDataResp) {
+			var objParamCreate = {
+				url : "/murphyCustom/config-service/configurations/configuration",
+				data :{
+						   "configType":oData.table  
+						}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
 					this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
 					this.oTableDataModel.refresh();

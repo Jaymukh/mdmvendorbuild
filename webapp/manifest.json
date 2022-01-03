@@ -14,6 +14,10 @@
 			"version": "1.40.12"
 		},
 		"dataSources": {
+			"searchVendorMetatDataSource": {
+				"uri": "model/SearchVendorMetaData.json",
+				"type": "JSON"
+			},
 			"createVndrDataSource": {
 				"uri": "model/localJson.json",
 				"type": "JSON"
@@ -73,6 +77,17 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"SearchVendorMetadataModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "searchVendorMetatDataSource",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"SearchVendorModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {"defaultBindingMode": "TwoWay"}
 			}
 		},
 		"resources": {
