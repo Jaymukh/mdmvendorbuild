@@ -190,7 +190,7 @@
 	},
 	"workflow": [{
 		"Name": "Laurent Dubois",
-		"IconInitial" : "LD",
+		"IconInitial": "LD",
 		"JobTitle": "Background Step",
 		"Photo": "/images/Laurent_Dubois.png",
 		"Icon": "sap-icon://activity-individual",
@@ -198,7 +198,7 @@
 		"HireDate": "Date(1371020400000)"
 	}, {
 		"Name": "Sabine Mayer",
-		"IconInitial" : "SM",
+		"IconInitial": "SM",
 		"JobTitle": "Background Step",
 		"Photo": "/images/Sabine_Mayer.png",
 		"Icon": "sap-icon://settings",
@@ -206,7 +206,7 @@
 		"HireDate": "Date(1376290800000)"
 	}, {
 		"Name": "Alain Chevalier",
-		"IconInitial" : "AC",
+		"IconInitial": "AC",
 		"JobTitle": "added a work item",
 		"Photo": "/images/Alain_Chevalier.png",
 		"Icon": "sap-icon://manager-insight",
@@ -214,7 +214,7 @@
 		"HireDate": "Date(1332403200000)"
 	}, {
 		"Name": "Monique Legrand",
-		"IconInitial" : "ML",
+		"IconInitial": "ML",
 		"JobTitle": "added a work item",
 		"Photo": "/images/Monique_Legrand.png",
 		"Icon": "sap-icon://account",
@@ -223,7 +223,7 @@
 	}],
 	"comments": [{
 		"Name": "Laurent Dubois",
-		"IconInitial" : "LD",
+		"IconInitial": "LD",
 		"JobTitle": "added a Comment",
 		"Photo": "/images/Laurent_Dubois.png",
 		"Icon": "sap-icon://activity-individual",
@@ -231,7 +231,7 @@
 		"HireDate": "Date(1371020400000)"
 	}, {
 		"Name": "Sabine Mayer",
-		"IconInitial" : "SM",
+		"IconInitial": "SM",
 		"JobTitle": "added a Comment",
 		"Photo": "/images/Sabine_Mayer.png",
 		"Icon": "sap-icon://settings",
@@ -239,7 +239,7 @@
 		"HireDate": "Date(1376290800000)"
 	}, {
 		"Name": "Alain Chevalier",
-		"IconInitial" : "AC",
+		"IconInitial": "AC",
 		"JobTitle": "added a Comment",
 		"Photo": "/images/Alain_Chevalier.png",
 		"Icon": "sap-icon://manager-insight",
@@ -247,11 +247,51 @@
 		"HireDate": "Date(1332403200000)"
 	}, {
 		"Name": "Monique Legrand",
-		"IconInitial" : "ML",
+		"IconInitial": "ML",
 		"JobTitle": "added a Comment",
 		"Photo": "/images/Monique_Legrand.png",
 		"Icon": "sap-icon://account",
 		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD')",
 		"HireDate": "Date(1422777600000)"
-	}]
+	}],
+	"createCRDD" : {},
+	"createCRVendorData": {
+		"entityId": "",
+		"formData": {
+			"entitySearchType": "ENTITY_BY_ENITY_ID",
+			"entityType": "VENDOR",
+			"parentDTO": {
+				"customData": {
+					"vnd_lfa1": {
+						"entity_id": "",
+						"LAND1": "",
+						"NAME1": "",
+						"NAME2": ""
+					},
+					"vnd_lfb1": {
+						"entity_id": "",
+						"BUKRS": "",
+						"PERNER": ""
+					},
+					"vnd_lfbk": {
+						"entity_id": "",
+						"BANKL": "",
+						"BANKN": "",
+						"BKONT": "",
+						"BVTYP": ""
+					},
+					"vnd_lfbw": {
+						"entity_id": ""
+					},
+					"vnd_lfm1": {
+						"entity_id": ""
+					},
+					"vnd_pra": {
+						"entity_id": ""
+					}
+				}
+			}
+		}
+
+	}
 }
