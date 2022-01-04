@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/Fragment",
-	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
-], function (Controller, Fragment, ServiceCall) {
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
+	"sap/m/MessageToast"
+], function (Controller, Fragment, ServiceCall, MessageToast) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.searchvendor", {
@@ -22,32 +23,34 @@ sap.ui.define([
 			this.handleGo();
 		},
 
-		handleGo : function(oParameters = {}){
+		handleGo: function (oParameters = {}) {
 			var oSearchVendorModel = this.getOwnerComponent().getModel("SearchVendorModel");
-			var oFilterParameters ={};
-			if(Object.keys(oParameters).length === 0){
-				oFilterParameters = {"vnd_lfa1":{}};
-			}else{
+			var oFilterParameters = {};
+			if (Object.keys(oParameters).length === 0) {
+				oFilterParameters = {
+					"vnd_lfa1": {}
+				};
+			} else {
 				oFilterParameters = oParameters;
 			}
 			var objParam = {
-				url : "/murphyCustom/mdm/entity-service/entities/entity/get",
-				data : {
-					"entitySearchType":"ENTITY_BY_ALL",
-					"entityType":"VENDOR",
-					"parentDTO":{
-						"customData":oFilterParameters
+				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				data: {
+					"entitySearchType": "ENTITY_BY_ALL",
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": oFilterParameters
 					}
-            	}
+				}
 			};
-			
-			this.serviceCall.handleServiceRequest(objParam).then(function(oData){
+
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				oSearchVendorModel.setData(oData);
 				console.log(oData);
-			});                         
+			});
 		},
-		
-		onSearch : function(){
+
+		onSearch: function () {
 			var sName1 = this.getView().byId('fbName1').getValue();
 			var sName2 = this.getView().byId('fbName2').getValue();
 			var sCity = this.getView().byId('fbCity').getValue();
@@ -57,36 +60,36 @@ sap.ui.define([
 			var sBankKey = this.getView().byId('fbBankKey').getValue();
 			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
 			var oFilterBarParam = {
-				 vnd_lfa1:{},
-				 vnd_lfbk:{}
+				vnd_lfa1: {},
+				vnd_lfbk: {}
 			};
-			if(sName1){
+			if (sName1) {
 				oFilterBarParam['vnd_lfa1']['NAME1'] = sName1;
 			}
-			if(sName2){
+			if (sName2) {
 				oFilterBarParam['vnd_lfa1']['NAME2'] = sName2;
 			}
-			if(sCity){
+			if (sCity) {
 				oFilterBarParam['vnd_lfa1']['ORT01'] = sCity;
 			}
-			if(sStreet){
+			if (sStreet) {
 				oFilterBarParam['vnd_lfa1']['STREET'] = sStreet;
 			}
-			if(sBPId){
+			if (sBPId) {
 				oFilterBarParam['vnd_lfbk']['LIFNR'] = sBPId;
 			}
-			if(sBankAcc){
+			if (sBankAcc) {
 				oFilterBarParam['vnd_lfbk']['BKONT'] = sBankAcc;
 			}
-			if(sBankKey){
+			if (sBankKey) {
 				oFilterBarParam['vnd_lfbk']['BANKL'] = sBankKey;
 			}
-			if(sBankStreet){
+			if (sBankStreet) {
 				oFilterBarParam['vnd_lfbk']['STRAS'] = sBankStreet;
 			}
 			this.handleGo(oFilterBarParam);
 		},
-		
+
 		onSideNavButtonPress: function () {
 			var oToolPage = this.byId("toolPage");
 			var bSideExpanded = oToolPage.getSideExpanded();
@@ -110,9 +113,61 @@ sap.ui.define([
 			var titleID = this.getView().byId("idTitle");
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
+			if (sKey === "createERPVendorView") {
+				this._createCREntityID();
+			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
 			// }
+		},
+
+		_createCREntityID: function () {
+			var objParam = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+				data: {
+					"entitySearchType": "ENTITY_BY_ENITY_ID",
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_type_id": "1",
+								"created_by": "1",
+								"modified_by": "1",
+								"is_draft": "1"
+							}
+						}
+					}
+				}
+			}
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				debugger;
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusEntity
+					.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_pra/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+				this.getView().getModel("CreateVendorModel").refresh();
+				// console.log(oData);
+			}.bind(this), function (oData) {
+				debugger
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
+				MessageToast.show("Entity ID not created. Please try after some time");
+			}.bind(this));
+		},
+
+		onSearchVendorTableUpdated: function (oEvent) {
+			debugger;
 		},
 
 		onPressChngReqTile: function (oEvent) {

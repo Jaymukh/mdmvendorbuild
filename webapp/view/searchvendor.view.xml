@@ -110,7 +110,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{/}">
+							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{/}" updateFinished="onSearchVendorTableUpdated">
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
