@@ -22,7 +22,23 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
 		 */
-		onInit: function () {},
+		onInit: function () {
+			this._getDropDownData();
+		},
+		
+		_getDropDownData: function(){
+			var objParamCreate = {
+				url: "/murphyCustom/config-service/configurations/configuration",
+				data: {
+					"configType": "TAXONOMY"
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result) {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
+				}
+			}.bind(this));
+		},
 
 		onSaveClick: function (oEvent) {
 			var sID = this.getView().getParent().getPages().find(function (e) {
@@ -62,10 +78,10 @@ sap.ui.define([
 			this._oBasicSearchField = new SearchField();
 			// debugger;
 			var objParamCreate = {
-				url : "/murphyCustom/config-service/configurations/configuration",
-				data :{
-						   "configType":oData.table  
-						}
+				url: "/murphyCustom/config-service/configurations/configuration",
+				data: {
+					"configType": oData.table
+				}
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
@@ -109,16 +125,15 @@ sap.ui.define([
 
 					this._oValueHelpDialog.update();
 				}.bind(this));
-
-				// this._oValueHelpDialog.setTokens(this._oInput.getTokens());
 				this._oValueHelpDialog.open();
 			}.bind(this));
 
 		},
 
 		onValueHelpOkPress: function (oEvent) {
-			var aTokens = oEvent.getParameter("tokens");
-			this._oInput.setTokens(aTokens);
+			var aToken = oEvent.getParameter("tokens");
+			var oVal = aToken[0].getCustomData()[0].getValue();
+			this._oInput.setValue("(" + oVal.land1 + ") " + oVal.lkvrz);
 			this._oValueHelpDialog.close();
 		},
 
