@@ -243,7 +243,7 @@
 											</Input>
 											<core:Title text="Procurement Monitoring"/>
 											<Label text="factory Calendar"/>
-											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PLKAL}">
 												<customData>
 													<core:CustomData key="title" value="Factory Calendar"></core:CustomData>
