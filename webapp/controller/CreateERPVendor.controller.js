@@ -25,8 +25,8 @@ sap.ui.define([
 		onInit: function () {
 			this._getDropDownData();
 		},
-		
-		_getDropDownData: function(){
+
+		_getDropDownData: function () {
 			var objParamCreate = {
 				url: "/murphyCustom/config-service/configurations/configuration",
 				data: {
@@ -194,6 +194,15 @@ sap.ui.define([
 
 				oValueHelpDialog.update();
 			});
+		},
+
+		onSelectCheckBox: function (oEvent) {
+			var sKey = oEvent.getSource().getCustomData()[0].getKey();
+			if (oEvent.getParameter("selected")) {
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "X");
+			} else {
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
+			}
 		}
 
 		/**
