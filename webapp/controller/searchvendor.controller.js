@@ -25,7 +25,6 @@ sap.ui.define([
 
 		handleGo: function (oParameters = {}) {
 			var oSearchVendorModel = this.getOwnerComponent().getModel("SearchVendorModel");
-			var oTableLabel =this.getView().byId('idTableTitle');
 			var oFilterParameters = {};
 			if (Object.keys(oParameters).length === 0) {
 				oFilterParameters = {
