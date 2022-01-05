@@ -110,10 +110,10 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" updateFinished="onSearchVendorTableUpdated">
+							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" >
 								<headerToolbar>
 									<Toolbar>
-										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
+										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
 										<Button text="Replicate"></Button>

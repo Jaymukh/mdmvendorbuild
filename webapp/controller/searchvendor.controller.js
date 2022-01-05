@@ -25,6 +25,7 @@ sap.ui.define([
 
 		handleGo: function (oParameters = {}) {
 			var oSearchVendorModel = this.getOwnerComponent().getModel("SearchVendorModel");
+			var oTableLabel =this.getView().byId('idTableTitle');
 			var oFilterParameters = {};
 			if (Object.keys(oParameters).length === 0) {
 				oFilterParameters = {
@@ -45,12 +46,33 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				oSearchVendorModel.setData(oData);
-				console.log(oData);
+				var aResultDataArr = oData.result.vendorDTOs;
+				oData.result.totalRecords = aResultDataArr.length;
+				aResultDataArr.forEach(oItem => {
+					var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
+					var sResultDate = '';
+					var sDate = '';
+					var sPendingRequest = '';
+					if (sValue) {
+						sDate = sValue.split('T')[0];
+						sResultDate = new Date(sDate);
+						sResultDate = sResultDate.getDate() + '-' + (sResultDate.getMonth() + 1) + '-' + sResultDate.getFullYear();
+						if (new Date(sDate).getTime() > new Date().getTime()) {
+							sPendingRequest = "Pending";
+						} else {
+							sPendingRequest = "OverDue"
+						}
+					}
+					oItem.overDueDate = sResultDate;
+					oItem.pendingRequest = sPendingRequest;
+				})
+				
+				oSearchVendorModel.setData(oData.result);
 			});
 		},
 
 		onSearch: function () {
+			var sVMSelectedKey = this.getView().byId('searchVendorVM').getSelectionKey();
 			var sName1 = this.getView().byId('fbName1').getValue();
 			var sName2 = this.getView().byId('fbName2').getValue();
 			var sCity = this.getView().byId('fbCity').getValue();
@@ -59,33 +81,35 @@ sap.ui.define([
 			var sBankAcc = this.getView().byId('fbBankAcc').getValue();
 			var sBankKey = this.getView().byId('fbBankKey').getValue();
 			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
-			var oFilterBarParam = {
-				vnd_lfa1: {},
-				vnd_lfbk: {}
-			};
-			if (sName1) {
-				oFilterBarParam['vnd_lfa1']['NAME1'] = sName1;
-			}
-			if (sName2) {
-				oFilterBarParam['vnd_lfa1']['NAME2'] = sName2;
-			}
-			if (sCity) {
-				oFilterBarParam['vnd_lfa1']['ORT01'] = sCity;
-			}
-			if (sStreet) {
-				oFilterBarParam['vnd_lfa1']['STREET'] = sStreet;
-			}
-			if (sBPId) {
-				oFilterBarParam['vnd_lfbk']['LIFNR'] = sBPId;
-			}
-			if (sBankAcc) {
-				oFilterBarParam['vnd_lfbk']['BKONT'] = sBankAcc;
-			}
-			if (sBankKey) {
-				oFilterBarParam['vnd_lfbk']['BANKL'] = sBankKey;
-			}
-			if (sBankStreet) {
-				oFilterBarParam['vnd_lfbk']['STRAS'] = sBankStreet;
+			var oFilterBarParam = {};
+			if (sVMSelectedKey === "*standard*") {
+				oFilterBarParam.vnd_lfa1 = {};
+				if (sName1) {
+					oFilterBarParam['vnd_lfa1']['NAME1'] = sName1;
+				}
+				if (sName2) {
+					oFilterBarParam['vnd_lfa1']['NAME2'] = sName2;
+				}
+				if (sCity) {
+					oFilterBarParam['vnd_lfa1']['ORT01'] = sCity;
+				}
+				if (sStreet) {
+					oFilterBarParam['vnd_lfa1']['STREET'] = sStreet;
+				}
+			} else if (sVMSelectedKey === "bankDetails") {
+				oFilterBarParam.vnd_lfbk = {};
+				if (sBPId) {
+					oFilterBarParam['vnd_lfbk']['LIFNR'] = sBPId;
+				}
+				if (sBankAcc) {
+					oFilterBarParam['vnd_lfbk']['BKONT'] = sBankAcc;
+				}
+				if (sBankKey) {
+					oFilterBarParam['vnd_lfbk']['BANKL'] = sBankKey;
+				}
+				if (sBankStreet) {
+					oFilterBarParam['vnd_lfbk']['STRAS'] = sBankStreet;
+				}
 			}
 			this.handleGo(oFilterBarParam);
 		},
@@ -140,7 +164,6 @@ sap.ui.define([
 				}
 			}
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				debugger;
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusEntity
 					.entityId);
@@ -159,7 +182,6 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").refresh();
 				// console.log(oData);
 			}.bind(this), function (oData) {
-				debugger
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
 				MessageToast.show("Entity ID not created. Please try after some time");
@@ -167,7 +189,7 @@ sap.ui.define([
 		},
 
 		onSearchVendorTableUpdated: function (oEvent) {
-			debugger;
+
 		},
 
 		onPressChngReqTile: function (oEvent) {
@@ -175,7 +197,7 @@ sap.ui.define([
 		},
 
 		handlePendingRequest: function (sValue) {
-			var sStatus = "None";
+			var sStatus = '';
 			switch (sValue.toLowerCase()) {
 			case "pending":
 				sStatus = "Warning";
@@ -183,12 +205,15 @@ sap.ui.define([
 			case "overdue":
 				sStatus = "Error";
 				break;
-
+			default:
+				sStatus = "None";
 			}
 			return sStatus;
 		},
 
 		handleOverFlowButton: function (oEvent) {
+			var oBindingObj = oEvent.getSource().getBindingContext('SearchVendorModel').getObject();
+			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oBindingObj);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
 
@@ -241,6 +266,15 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", true);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+		},
+		
+		handleDescription : function(value1,value2,value3,value4){
+			var sText = '';
+				sText = value1 ? sText+value1 : sText;
+				sText = value2 ? sText+' '+value2 : sText;
+				sText = value3 ? sText+' '+value3 : sText;
+				sText = value4 ? sText+' '+value4 : sText;
+			return  sText;
 		}
 
 		// onSaveClick : function(oEvent){
