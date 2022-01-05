@@ -4,8 +4,12 @@
    <Popover placement="Bottom" showHeader="false">
    	<content>
    		<List id="list">
-					<StandardListItem title="Edit" type="Active" icon="sap-icon://edit" press="onEdit" />
-					<StandardListItem title="Block" type="Active" icon="sap-icon://cancel" press="onBlock" />
+					<StandardListItem title="Edit" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"
+					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
+					icon="sap-icon://edit" press="onEdit" />
+					<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}" 
+					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
+					icon="sap-icon://cancel" press="onBlock" />
 		</List>
    	</content>
    </Popover>

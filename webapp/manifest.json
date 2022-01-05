@@ -88,6 +88,10 @@
 			"SearchVendorModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {"defaultBindingMode": "TwoWay"}
+			},
+			"SearchVendorPopupModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {"defaultBindingMode": "TwoWay"}
 			}
 		},
 		"resources": {

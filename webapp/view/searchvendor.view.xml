@@ -49,7 +49,7 @@
 								<f:heading>
 									<!--	<sv:SmartVariantManagement id="__SVM01" persistencyKey="fiori.test.application2.view.S4.FilterBar" showShare="true"
 										showExecuteOnSelection="true"/> -->
-									<vm:VariantManagement select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+									<vm:VariantManagement  id="searchVendorVM" select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 										<vm:variantItems>
 											<vm:VariantItem text="Bank Details" key="bankDetails"></vm:VariantItem>
 										</vm:variantItems>
@@ -110,10 +110,10 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{/}" updateFinished="onSearchVendorTableUpdated">
+							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" >
 								<headerToolbar>
 									<Toolbar>
-										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
+										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
 										<Button text="Replicate"></Button>
@@ -129,10 +129,20 @@
 								<items>
 									<ColumnListItem>
 										<cells>
-											<Link text="{SearchVendorModel>customVendorLFA1Entity/Lifnr}"></Link>
-											<ObjectStatus state="{path:'SearchVendorModel>listOfCRs/status', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
-											<Text text="{SearchVendorModel>listOfCRs/change_request_due_date}"></Text>
-											<Text text="{SearchVendorModel>customVendorLFA1Entity/description}"></Text>
+											<Link text="{SearchVendorModel>customVendorLFA1Entity/lifnr}"></Link>
+											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest',
+																	formatter : '.handlePendingRequest'}" 
+													      text="{SearchVendorModel>pendingRequest}"/>
+											<Text text="{SearchVendorModel>overDueDate}"></Text>
+											<Text text="{
+														parts:[
+															{path:'SearchVendorModel>customVendorLFA1Entity/name1'},
+															{path:'SearchVendorModel>customVendorLFA1Entity/name2'},
+															{path:'SearchVendorModel>customVendorLFA1Entity/name3'},
+															{path:'SearchVendorModel>customVendorLFA1Entity/name4'}
+													],
+													formatter:'.handleDescription'
+											}"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1Entity/vbund}"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1Entity/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
