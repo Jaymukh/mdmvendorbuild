@@ -23,10 +23,11 @@ sap.ui.define([
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
 		 */
 		onInit: function () {
+			this._getTaxonomyData();
 			this._getDropDownData();
 		},
 
-		_getDropDownData: function () {
+		_getTaxonomyData: function () {
 			var objParamCreate = {
 				url: "/murphyCustom/config-service/configurations/configuration",
 				data: {
@@ -40,14 +41,57 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		_getDropDownData: function () {
+			var that = this;
+			var aConfigDD = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRDDConfig");
+			$.each(aConfigDD, function (index, item) {
+				$.ajax({
+					url: "/murphyCustom/config-service/configurations/configuration",
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						"configType": item.controlTable
+					}),
+					async: false,
+					success: searchCallback
+				});
+
+				function searchCallback(data) {
+					var oJsonModel = new sap.ui.model.json.JSONModel(data.result);
+					var sControlID = item.controlID;
+					that.getView().byId(sControlID).setModel(oJsonModel);
+					var oItemSelectTemplate1 = new sap.ui.core.Item({
+						key: "{" + item.controlField + "}",
+						text: "{" + item.controlField + "}"
+					});
+					that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+				}
+			});
+			// });
+		},
+
 		onSaveClick: function (oEvent) {
-			var sID = this.getView().getParent().getPages().find(function (e) {
-				return e.getId().indexOf("erpVendorPreview") !== -1;
-			}).getId();
-			this.getView().getParent().to(sID);
-			this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
-			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+
+			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
+
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+				data: oData
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				debugger;
+				if (oDataResp.result) {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
+				}
+			}.bind(this));
+
+			// var sID = this.getView().getParent().getPages().find(function (e) {
+			// 	return e.getId().indexOf("erpVendorPreview") !== -1;
+			// }).getId();
+			// this.getView().getParent().to(sID);
+			// this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
+			// this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+			// this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 		},
 
 		onValueHelpRequested: function (oEvent) {
@@ -58,7 +102,7 @@ sap.ui.define([
 				cols: []
 			};
 			for (var i = 0; i < aCustomData.length; i++) {
-				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table") {
+				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table" && aCustomData[i].getKey() !== "inputKey") {
 					var col = {
 						"label": aCustomData[i].getValue(),
 						"template": aCustomData[i].getKey()
@@ -66,8 +110,10 @@ sap.ui.define([
 					oData.cols.push(col);
 				} else if (aCustomData[i].getKey() === "title") {
 					oData.title = aCustomData[i].getValue();
-				} else {
+				} else if (aCustomData[i].getKey() === "table") {
 					oData.table = aCustomData[i].getValue();
+				} else {
+					this._sKey = aCustomData[i].getValue();
 				}
 			}
 			this.oColModel = new JSONModel(oData);
@@ -133,7 +179,7 @@ sap.ui.define([
 		onValueHelpOkPress: function (oEvent) {
 			var aToken = oEvent.getParameter("tokens");
 			var oVal = aToken[0].getCustomData()[0].getValue();
-			this._oInput.setValue("(" + oVal.land1 + ") " + oVal.lkvrz);
+			this._oInput.setValue(oVal[this._sKey]);
 			this._oValueHelpDialog.close();
 		},
 
@@ -198,11 +244,35 @@ sap.ui.define([
 
 		onSelectCheckBox: function (oEvent) {
 			var sKey = oEvent.getSource().getCustomData()[0].getKey();
-			if (oEvent.getParameter("selected")) {
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "X");
-			} else {
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
+			if (sKey) {
+				if (oEvent.getParameter("selected")) {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "X");
+				} else {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
+				}
 			}
+		},
+
+		onAddComment: function () {
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+				data: {
+					"parentCrDTOs": [{
+						"crCommentDTOs": [{
+							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
+							"note_by": "Default User"
+						}]
+					}]
+				}
+			};
+			debugger;
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result) {
+					debugger;
+				}
+			}.bind(this));
+
 		}
 
 		/**
