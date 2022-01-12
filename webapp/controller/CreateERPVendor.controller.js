@@ -30,8 +30,11 @@ sap.ui.define([
 		_getTaxonomyData: function () {
 			var objParamCreate = {
 				url: "/murphyCustom/config-service/configurations/configuration",
+				type: 'POST',
+				hasPayload: true,
+			//	contentType: 'application/json',
 				data: {
-					"configType": "TAXONOMY"
+					configType: "TAXONOMY"
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
@@ -57,12 +60,13 @@ sap.ui.define([
 				});
 
 				function searchCallback(data) {
-					var oJsonModel = new sap.ui.model.json.JSONModel(data.result);
+					var oJsonModel = new JSONModel(data.result);
+					console.log(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
 					var oItemSelectTemplate1 = new sap.ui.core.Item({
 						key: "{" + item.controlField + "}",
-						text: "{" + item.controlField + "}"
+						text: "{" + item.controlFieldName + "}"
 					});
 					that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
 				}
@@ -76,10 +80,11 @@ sap.ui.define([
 
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
-				data: oData
+				hasPayload: true,
+				data: oData,
+				type: 'POST'
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				debugger;
 				if (oDataResp.result) {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
 				}
@@ -102,7 +107,7 @@ sap.ui.define([
 				cols: []
 			};
 			for (var i = 0; i < aCustomData.length; i++) {
-				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table" && aCustomData[i].getKey() !== "inputKey") {
+				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table" && aCustomData[i].getKey() !== "inputKey" &&  aCustomData[i].getKey() !== "inputText") {
 					var col = {
 						"label": aCustomData[i].getValue(),
 						"template": aCustomData[i].getKey()
@@ -112,7 +117,7 @@ sap.ui.define([
 					oData.title = aCustomData[i].getValue();
 				} else if (aCustomData[i].getKey() === "table") {
 					oData.table = aCustomData[i].getValue();
-				} else {
+				} else if(aCustomData[i].getKey() ==="inputText"){
 					this._sKey = aCustomData[i].getValue();
 				}
 			}
@@ -125,6 +130,8 @@ sap.ui.define([
 			// debugger;
 			var objParamCreate = {
 				url: "/murphyCustom/config-service/configurations/configuration",
+				type: 'POST',
+				hasPayload: true,
 				data: {
 					"configType": oData.table
 				}
@@ -177,6 +184,7 @@ sap.ui.define([
 		},
 
 		onValueHelpOkPress: function (oEvent) {
+			debugger;
 			var aToken = oEvent.getParameter("tokens");
 			var oVal = aToken[0].getCustomData()[0].getValue();
 			this._oInput.setValue(oVal[this._sKey]);
@@ -256,23 +264,62 @@ sap.ui.define([
 		onAddComment: function () {
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+				type: 'POST',
+				hasPayload: true,
 				data: {
 					"parentCrDTOs": [{
 						"crCommentDTOs": [{
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
-							"note_by": "Default User"
+							"note_by": 1
 						}]
 					}]
 				}
 			};
-			debugger;
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				this.getView().byId("createERPVendorCommentBoxId").setValue('');
 				if (oDataResp.result) {
-					debugger;
+					var oModel = new JSONModel(oDataResp.result);
+					this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
 				}
 			}.bind(this));
 
+		},
+
+		onCreateERPVendorUpload: function (oEvent) {
+			var file = this.getView().byId('UploadCollection');      
+		/*	this.getBase64(file);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crCommentDTOs": [{
+							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
+							"note_by": 1
+						}]
+					}]
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				this.getView().byId("createERPVendorCommentBoxId").setValue('');
+				if (oDataResp.result) {
+					var oModel = new JSONModel(oDataResp.result);
+					this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
+					debugger;
+				}
+			}.bind(this));*/
+		},
+
+		getBase64: function (file) {
+			return new Promise(function(resolve, reject){
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(){ resolve(reader.result);};
+				reader.onerror = function(error){ reject(error);};
+			});
 		}
 
 		/**

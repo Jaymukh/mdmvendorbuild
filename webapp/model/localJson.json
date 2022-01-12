@@ -151,11 +151,70 @@
 	"createCRDDConfig": [{
 		"controlID": "accountGrpID",
 		"controlTable": "T077K",
-		"controlField": "KTOKK"
+		"controlField": "ktokk",
+		"controlFieldName" :"txt30"
 	},
 	{
 		"controlID": "taxTypeId",
 		"controlTable": "J_1AFITPV",
-		"controlField": "J_1AFITP"
-	}]
+		"controlField": "j_1afitp",
+		"controlFieldName" :"text60"
+	},
+	{
+		"controlID": "taxInfoSocialInsuCodeId",
+		"controlTable": "J_1AACT",
+		"controlField": "actss",
+		"controlFieldName" : "actss"
+	},
+	{
+		"controlID": "compCodesMinorIndicatorId",
+		"controlTable": "T059M",
+		"controlField": "mindk",
+		"controlFieldName" : "mindk"
+	},
+	{
+		"controlID": "compCodesReleaseGroupId",
+		"controlTable": "VBWF08",
+		"controlField": "frgrp",
+		"controlFieldName" : "frgrt"
+	},
+	{
+		"controlID": "compCodesGroupKeyId",
+		"controlTable": "TZGR",
+		"controlField": "zgrup",
+		"controlFieldName" : "name1"
+	},
+	{
+		"controlID": "compCodesPayMethodSuppliementId",
+		"controlTable": "T042F",
+		"controlField": "uzawe",
+		"controlFieldName" : "txt30"
+	},
+	{
+		"controlID": "compCodesPaymentBlockId",
+		"controlTable": "T008",
+		"controlField": "zahls",
+		"controlFieldName" : "textl"
+	},
+	{
+		"controlID": "purOrgPurOrgId",
+		"controlTable": "T024E",
+		"controlField": "ekorg",
+		"controlFieldName" : "ekotx"
+	},
+	{
+		"controlID": "purOrgProactContrlProfileId",
+		"controlTable": "TWVMO",
+		"controlField": "paprf",
+		"controlFieldName" : "prtxt"
+	},
+	{
+		"controlID": "praDataAddrTabAddressTypeId",
+		"controlTable": "OIUCM_ADDR_TYPE",
+		"controlField": "addr_TYPE",
+		"controlFieldName" : "description"
+	}
+	
+	
+	]
 }

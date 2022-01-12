@@ -24,28 +24,28 @@
 									<FlexBox renderType="Bare">
 										<TileContent footer="Total Request">
 											<content>
-												<NumericContent value="123" valueColor="Neutral" press="onPressChngReqTile" icon="sap-icon://request"/>
+												<NumericContent value="{changeRequestStatisticsModel>/totalCount}" valueColor="Neutral" press="onPressChngReqTile" icon="sap-icon://request"/>
 											</content>
 										</TileContent>
 										<TileContent footer="Pending">
 											<content>
-												<NumericContent value="32" valueColor="Critical" press="onPressChngReqTile" icon="sap-icon://pending"/>
+												<NumericContent value="{changeRequestStatisticsModel>/pendingCount}" valueColor="Critical" press="onPressChngReqTile" icon="sap-icon://pending"/>
 											</content>
 										</TileContent>
 										<TileContent footer="Rejected">
 											<content>
-												<NumericContent value="2" valueColor="Error" press="onPressChngReqTile" icon="sap-icon://decline"/>
+												<NumericContent value="{changeRequestStatisticsModel>/rejectedCount}" valueColor="Error" press="onPressChngReqTile" icon="sap-icon://decline"/>
 											</content>
 										</TileContent>
 										<TileContent footer="Approved">
 											<content>
-												<NumericContent value="89" valueColor="Good" press="onPressChngReqTile" icon="sap-icon://accept"/>
+												<NumericContent value="{changeRequestStatisticsModel>/approvedCount}" valueColor="Good" press="onPressChngReqTile" icon="sap-icon://accept"/>
 											</content>
 										</TileContent>
 									</FlexBox>
 									<Toolbar>
 										<SearchField/>
-										<Button icon="sap-icon://filter"></Button>
+										<!--<Button icon="sap-icon://filter"></Button>-->
 										<ToggleButton icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
 									</Toolbar>
 									<filterbar:FilterBar id="fbChangeRequestId" showFilterConfiguration="false" showGoOnFB="false">
@@ -80,16 +80,16 @@
 								</VBox>
 							</uxap:headerContent>
 							<uxap:sections>
-								<uxap:ObjectPageSection>
-									<uxap:ObjectPageSubSection>
+								<uxap:ObjectPageSection showTitle="false">
+									<uxap:ObjectPageSubSection showTitle="false" >
 										<uxap:blocks>
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table mode="SingleSelectLeft" columns="{/columns}" items="{/rows}">
+													<Table mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/parentCrDTOs}">
 														<headerToolbar>
 															<Toolbar>
-																<Label id="idAllChangeRequest" text="All Change Request(123)" design="Bold"></Label>
+																<Label id="idAllChangeRequest" text="All Change Request({=${changeRequestGetAllModel>/parentCrDTOs}.length})" design="Bold"></Label>
 																<ToolbarSpacer></ToolbarSpacer>
 																<Button icon="sap-icon://sort"></Button>
 																<Button text="My Request"></Button>
@@ -98,19 +98,21 @@
 														<columns>
 															<Column>
 																<header>
-																	<Label text="{header}" design="Bold"></Label>
+																	<Label text="{ChangeRequestMetadataModel>header}" design="Bold"></Label>
 																</header>
 															</Column>
 														</columns>
 														<items>
 															<ColumnListItem>
 																<cells>
-																	<Link text="{changeRequest}" press="onChangeReqLinkPress"></Link>
-																	<ObjectStatus state="{path:'changeStatus', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
-																	<Text text="{lastUpdate}"></Text>
-																	<Text text="{changedBy}"></Text>
-																	<Text text="{bpID}"></Text>
-																	<Text text="{category}"></Text>
+																	<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity_id}:
+																	${changeRequestGetAllModel>crDTO/change_request_id}}" 
+																	press="onChangeReqLinkPress"></Link>
+																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
+																	<ObjectStatus  text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
+																	
+																	
+																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by}"></Text>
 																	<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 																</cells>
 															</ColumnListItem>

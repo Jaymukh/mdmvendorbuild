@@ -22,9 +22,13 @@
 				"uri": "model/localJson.json",
 				"type": "JSON"
 			},
-			"murphyVendor" : {
-				"uri" : "/murphyCustom",
-				"type" : "OData"
+			"murphyVendor": {
+				"uri": "/murphyCustom",
+				"type": "OData"
+			},
+			"changeRequestMetatDataSource": {
+				"uri": "model/ChangeRequestMetaData.json",
+				"type": "JSON"
 			}
 		}
 	},
@@ -87,11 +91,41 @@
 			},
 			"SearchVendorModel": {
 				"type": "sap.ui.model.json.JSONModel",
-				"settings": {"defaultBindingMode": "TwoWay"}
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
 			},
 			"SearchVendorPopupModel": {
 				"type": "sap.ui.model.json.JSONModel",
-				"settings": {"defaultBindingMode": "TwoWay"}
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"ChangeRequestMetadataModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "changeRequestMetatDataSource",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"changeRequestGetAllModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"changeRequestStatisticsModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"CreateERPVendorAddrTableModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"rows": []
+				}
 			}
 		},
 		"resources": {
@@ -157,5 +191,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }
