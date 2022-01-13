@@ -112,36 +112,62 @@
 	"createCRVendorData": {
 		"entityId": "",
 		"formData": {
-			"entitySearchType": "ENTITY_BY_ENITY_ID",
+			
 			"entityType": "VENDOR",
 			"parentDTO": {
 				"customData": {
 					"vnd_lfa1": {
-						"entity_id": "",
-						"LAND1": "",
-						"NAME1": "",
-						"NAME2": ""
+						"entity_id": ""
 					},
 					"vnd_lfb1": {
-						"entity_id": "",
-						"BUKRS": "",
-						"PERNER": ""
+						"vnd_lfb1": {
+							"entity_id": ""
+						}
 					},
 					"vnd_lfbk": {
-						"entity_id": "",
-						"BANKL": "",
-						"BANKN": "",
-						"BKONT": "",
-						"BVTYP": ""
+						"vnd_lfbk": {
+							"entity_id": ""
+						}
 					},
 					"vnd_lfbw": {
-						"entity_id": ""
+						"vnd_lfbw": {
+							"entity_id": ""
+						}
 					},
 					"vnd_lfm1": {
-						"entity_id": ""
+						"vnd_lfm1": {
+							"entity_id": ""
+						}
 					},
-					"vnd_pra": {
-						"entity_id": ""
+					"pra_bp_ad": {
+						"pra_bp_ad": {
+							"entity_id": ""
+						}
+					},
+					"pra_bp_cust_md": {
+						"pra_bp_cust_md": {
+							"entity_id": ""
+						}
+					},
+					"gen_adrc": {
+						"gen_adrc_1": {
+							"entity_id": ""
+						}
+					},
+					"gen_adr": {
+						"gen_adr_1": {
+							"entity_id": ""
+						}
+					},
+					"gen_bnka": {
+						"gen_bnka": {
+							"entity_id": ""
+						}
+					},
+					"vnd_knvk": {
+						"vnd_knvk": {
+							"entity_id": ""
+						}
 					}
 				}
 			}
@@ -149,72 +175,61 @@
 
 	},
 	"createCRDDConfig": [{
-		"controlID": "accountGrpID",
-		"controlTable": "T077K",
-		"controlField": "ktokk",
-		"controlFieldName" :"txt30"
-	},
-	{
-		"controlID": "taxTypeId",
-		"controlTable": "J_1AFITPV",
-		"controlField": "j_1afitp",
-		"controlFieldName" :"text60"
-	},
-	{
-		"controlID": "taxInfoSocialInsuCodeId",
-		"controlTable": "J_1AACT",
-		"controlField": "actss",
-		"controlFieldName" : "actss"
-	},
-	{
-		"controlID": "compCodesMinorIndicatorId",
-		"controlTable": "T059M",
-		"controlField": "mindk",
-		"controlFieldName" : "mindk"
-	},
-	{
-		"controlID": "compCodesReleaseGroupId",
-		"controlTable": "VBWF08",
-		"controlField": "frgrp",
-		"controlFieldName" : "frgrt"
-	},
-	{
-		"controlID": "compCodesGroupKeyId",
-		"controlTable": "TZGR",
-		"controlField": "zgrup",
-		"controlFieldName" : "name1"
-	},
-	{
-		"controlID": "compCodesPayMethodSuppliementId",
-		"controlTable": "T042F",
-		"controlField": "uzawe",
-		"controlFieldName" : "txt30"
-	},
-	{
-		"controlID": "compCodesPaymentBlockId",
-		"controlTable": "T008",
-		"controlField": "zahls",
-		"controlFieldName" : "textl"
-	},
-	{
-		"controlID": "purOrgPurOrgId",
-		"controlTable": "T024E",
-		"controlField": "ekorg",
-		"controlFieldName" : "ekotx"
-	},
-	{
-		"controlID": "purOrgProactContrlProfileId",
-		"controlTable": "TWVMO",
-		"controlField": "paprf",
-		"controlFieldName" : "prtxt"
-	},
-	{
-		"controlID": "praDataAddrTabAddressTypeId",
-		"controlTable": "OIUCM_ADDR_TYPE",
-		"controlField": "addr_TYPE",
-		"controlFieldName" : "description"
-	}
-	
-	
+			"controlID": "accountGrpID",
+			"controlTable": "T077K",
+			"controlField": "ktokk",
+			"controlFieldName": "txt30"
+		}, {
+			"controlID": "taxTypeId",
+			"controlTable": "J_1AFITPV",
+			"controlField": "j_1afitp",
+			"controlFieldName": "text60"
+		}, {
+			"controlID": "taxInfoSocialInsuCodeId",
+			"controlTable": "J_1AACT",
+			"controlField": "actss",
+			"controlFieldName": "actss"
+		}, {
+			"controlID": "compCodesMinorIndicatorId",
+			"controlTable": "T059M",
+			"controlField": "mindk",
+			"controlFieldName": "mindk"
+		}, {
+			"controlID": "compCodesReleaseGroupId",
+			"controlTable": "VBWF08",
+			"controlField": "frgrp",
+			"controlFieldName": "frgrt"
+		}, {
+			"controlID": "compCodesGroupKeyId",
+			"controlTable": "TZGR",
+			"controlField": "zgrup",
+			"controlFieldName": "name1"
+		}, {
+			"controlID": "compCodesPayMethodSuppliementId",
+			"controlTable": "T042F",
+			"controlField": "uzawe",
+			"controlFieldName": "txt30"
+		}, {
+			"controlID": "compCodesPaymentBlockId",
+			"controlTable": "T008",
+			"controlField": "zahls",
+			"controlFieldName": "textl"
+		}, {
+			"controlID": "purOrgPurOrgId",
+			"controlTable": "T024E",
+			"controlField": "ekorg",
+			"controlFieldName": "ekotx"
+		}, {
+			"controlID": "purOrgProactContrlProfileId",
+			"controlTable": "TWVMO",
+			"controlField": "paprf",
+			"controlFieldName": "prtxt"
+		}, {
+			"controlID": "praDataAddrTabAddressTypeId",
+			"controlTable": "OIUCM_ADDR_TYPE",
+			"controlField": "addr_TYPE",
+			"controlFieldName": "description"
+		}
+
 	]
 }
