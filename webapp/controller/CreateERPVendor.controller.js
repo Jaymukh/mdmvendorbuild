@@ -79,7 +79,7 @@ sap.ui.define([
 			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
 
 			var objParamCreate = {
-				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
 				data: oData,
 				type: 'POST'
