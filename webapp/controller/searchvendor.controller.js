@@ -140,7 +140,7 @@ sap.ui.define([
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
 			if (sKey === "createERPVendorView") {
-			//	this._createCREntityID();
+				this._createCREntityID();
 			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
@@ -245,7 +245,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
-		//	this._createCREntityID();
+			this._createCREntityID();
 		},
 
 		handleSelect: function (oEvent) {

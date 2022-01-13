@@ -18,7 +18,7 @@
 										<form:content>
 											<core:Title text="General Data"/>
 											<Label text="Change Request ID"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}" enabled="false"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"\   enabled="false"/>
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
 											<Label text="Priority"/>
@@ -82,7 +82,7 @@
 												</items>-->
 											</Select>
 											<Label text="Name1"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"/>
 											<Label text="Name2"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}"/>
 											<Label text="Name3"/>
@@ -177,17 +177,17 @@
 											<Label text="Strret 5"/>
 											<Input value=""/>
 											<Label text="Postal Code / City"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
 											<Label text="Country"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"/>
 											<core:Title/>
 											<Label text="Region"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"/>
 											<Label text="Language"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"/>
 											<Label text="Transportation Zone"/>
@@ -981,11 +981,10 @@
 												<customData>
 													<core:CustomData key="title" value="Delivery Tolerance Group"></core:CustomData>
 													<core:CustomData key="table" value="T043G"></core:CustomData>
-													<core:CustomData key="txt30" value="Name"></core:CustomData>
-													<core:CustomData key="togru" value="Key"></core:CustomData>
-													<core:CustomData key="bukrs" value="BUKRS"></core:CustomData>
-													<core:CustomData key="inputKey" value="togru"></core:CustomData>
-													<core:CustomData key="inputText" value="txt30"></core:CustomData>
+													<core:CustomData key="inputKey" value="txt30"></core:CustomData>
+													<core:CustomData key="inputText" value="togru"></core:CustomData>
+													<core:CustomData key="togru" value="Text"></core:CustomData>
+													<core:CustomData key="txt30" value="Key"></core:CustomData>
 												</customData>
 											</Input>
 											<core:Title text="ERP Vendor Company Code : Correspondance"/>
@@ -1874,10 +1873,10 @@
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
-																<core:CustomData key="inputKey" value="land1"></core:CustomData>
-																<core:CustomData key="inputText" value="bezei"></core:CustomData>
-																<core:CustomData key="land1" value="Code"></core:CustomData>
+																<core:CustomData key="inputKey" value="bezei"></core:CustomData>
+																<core:CustomData key="inputText" value="land1"></core:CustomData>
 																<core:CustomData key="bezei" value="Region"></core:CustomData>
+																<core:CustomData key="land1" value="Code"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
@@ -1961,8 +1960,8 @@
 																<core:CustomData key="table" value="T005"></core:CustomData>
 																<core:CustomData key="inputKey" value="lkvrz"></core:CustomData>
 																<core:CustomData key="inputText" value="land1"></core:CustomData>
-																<core:CustomData key="lkvrz" value="Country Code"></core:CustomData>
-																<core:CustomData key="land1" value="Country"></core:CustomData>
+																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+																<core:CustomData key="land1" value="Country Code"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="County"/>

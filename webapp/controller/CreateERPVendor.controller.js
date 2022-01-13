@@ -320,6 +320,22 @@ sap.ui.define([
 				reader.onload = function(){ resolve(reader.result);};
 				reader.onerror = function(error){ reject(error);};
 			});
+		},
+		
+		onCheckClick : function(){
+			var aMandFields =[{name:"",key:""}];
+			var aEmptyFields =[];
+			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
+			aMandFields.forEach(function(oItem){
+				if(oData[oItem.key] === ''){
+					oEmptyFields.push(oItem);
+				}
+			});
+			if(aEmptyFields.length){
+				
+			}else{
+				this.handleSubmitButton();
+			}
 		}
 
 		/**
