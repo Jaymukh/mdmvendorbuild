@@ -65,21 +65,21 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}"/>
 											<core:Title/>
 											<Label text="Account Group"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
-												<items>
-													<core:Item text="Group1" key="1"/>
-													<core:Item text="Group2" key="2"/>
-													<core:Item text="Group3" key="3"/>
-												</items>
+											<Select id="accountGrpID" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
+												<!--<items>-->
+												<!--	<core:Item text="Group1" key="1"/>-->
+												<!--	<core:Item text="Group2" key="2"/>-->
+												<!--	<core:Item text="Group3" key="3"/>-->
+												<!--</items>-->
 											</Select>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
-												<items>
+											<Select id="generalDataTitleId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
+												<!--<items>
 													<core:Item text="Title1" key="1"/>
 													<core:Item text="Title2" key="2"/>
 													<core:Item text="Title3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Name1"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"/>
@@ -146,8 +146,10 @@
 												<customData>
 													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
 													<core:CustomData key="table" value="ADDRC_DELI_SERV"></core:CustomData>
-													<core:CustomData key="Key1" value="Delivery Type"></core:CustomData>
-													<core:CustomData key="Key2" value="Description"></core:CustomData>
+													<core:CustomData key="inputKey" value="deli_SERV_TYPE"></core:CustomData>
+													<core:CustomData key="inputText" value="deli_SERV_DSCR"></core:CustomData>
+													<core:CustomData key="deli_SERV_TYPE" value="Delivery Type"></core:CustomData>
+													<core:CustomData key="deli_SERV_DSCR" value="Description"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Number of Delivery Service"/>
@@ -223,10 +225,13 @@
 												<customData>
 													<core:CustomData key="title" value="Trading Partner"></core:CustomData>
 													<core:CustomData key="table" value="T880"></core:CustomData>
-													<core:CustomData key="Key1" value="Company"></core:CustomData>
-													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
-													<core:CustomData key="Key3" value="Country"></core:CustomData>
-													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+													<core:CustomData key="rcomp" value="Company"></core:CustomData>
+													<core:CustomData key="name1" value="Company Name"></core:CustomData>
+													<core:CustomData key="cntry" value="Country"></core:CustomData>
+													<core:CustomData key="curr" value="Currency"></core:CustomData>
+													<core:CustomData key="inputKey" value="rcomp"></core:CustomData>
+													<core:CustomData key="inputText" value="name1"></core:CustomData>
+													
 												</customData>
 											</Input>
 											<Label text="Customer"/>
@@ -239,6 +244,9 @@
 													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
 													<core:CustomData key="Key3" value="Country"></core:CustomData>
 													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
+													
 												</customData>
 											</Input>
 											<core:Title text="Procurement Monitoring"/>
@@ -252,6 +260,8 @@
 													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
 													<core:CustomData key="Key3" value="Country"></core:CustomData>
 													<core:CustomData key="Key4" value="Currency"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 										</form:content>
@@ -270,22 +280,22 @@
 											<Label text="External Manufaturer"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}"/>
 											<Label text="Relevant for POD"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
+											<Select id="refDataRelevantPODId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
 												<items>
-													<core:Item text="POD1" key="1"/>
-													<core:Item text="POD2" key="2"/>
-													<core:Item text="POD3" key="3"/>
+													<core:Item text="Do Not send POD" key="1"/>
+													<core:Item text="Always Send POD" key="A"/>
+													<core:Item text="Only Send POD if any Changes" key="B"/>
 												</items>
 											</Select>
 											<Label text="SCAC"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}"/>
 											<Label text="Actual QM System"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
-												<items>
+											<Select id="refDataActualQMSystemId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
+												<!--<items>
 													<core:Item text="System1" key="1"/>
 													<core:Item text="System2" key="2"/>
 													<core:Item text="System3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Carrier Freight Group"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}"/>
@@ -293,24 +303,24 @@
 											<Label text="Industry"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>
 											<Label text="Service agent procedure group"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
-												<items>
+											<Select id="refDataServiceAgentPGId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
+												<!--<items>
 													<core:Item text="Group1" key="1"/>
 													<core:Item text="Group2" key="2"/>
 													<core:Item text="Group3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Credit information No."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}"/>
 											<Label text="Last External Review"/>
 											<DatePicker value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
 											<Label text="Statistics Group, Service agent"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
-												<items>
+											<Select id="refDataStatGrpServiceAgntId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
+											<!--	<items>
 													<core:Item text="Agent 1" key="1"/>
 													<core:Item text="Agent 2" key="2"/>
 													<core:Item text="Agent 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="QM System Valid to"/>
 											<DatePicker value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
@@ -334,6 +344,8 @@
 													<core:CustomData key="table" value=""></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Description"/>
@@ -360,6 +372,8 @@
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Tax Office"/>
@@ -370,25 +384,25 @@
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Tax No."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}"/>
 											<Label text="Tax Base"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
+											<Select id="taxInfoTaxBaseId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
 												<items>
-													<core:Item text="TaxBase 1" key="1"/>
-													<core:Item text="TaxBase 2" key="2"/>
-													<core:Item text="TaxBase 3" key="3"/>
+													<core:Item text="80%" key="1"/>
 												</items>
 											</Select>
 											<Label text="Tax Type"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
-												<items>
-													<core:Item text="TaxType 1" key="1"/>
-													<core:Item text="TaxType 2" key="2"/>
-													<core:Item text="TaxType 3" key="3"/>
-												</items>
+											<Select id="taxTypeId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
+												<!--<items>-->
+												<!--	<core:Item text="TaxType 1" key="1"/>-->
+												<!--	<core:Item text="TaxType 2" key="2"/>-->
+												<!--	<core:Item text="TaxType 3" key="3"/>-->
+												<!--</items>-->
 											</Select>
 											<Label text="Type of Business"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}"/>
@@ -420,12 +434,12 @@
 												</customData>
 											</CheckBox>
 											<Label text="Social Insurance Code"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
-												<items>
+											<Select id="taxInfoSocialInsuCodeId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+												<!--<items>
 													<core:Item text="Code 1" key="1"/>
 													<core:Item text="Code 2" key="2"/>
 													<core:Item text="Code 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Type of Industry"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}"/>
@@ -481,8 +495,11 @@
 												<customData>
 													<core:CustomData key="title" value="Bank Country / Desc."></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
 													<core:CustomData key="land1" value="Country code"></core:CustomData>
 													<core:CustomData key="lkvrz" value="Name"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Bank Key"/>
@@ -493,6 +510,8 @@
 													<core:CustomData key="table" value="BNKA"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Bank Name"/>
@@ -513,7 +532,7 @@
 										<form:content>
 											<core:Title text="Payment Transactions"/>
 											<Label text="DME Indicator"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
+											<Select id="payTransDMEIndicatorId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
 													<core:Item text="Use house bank default value" key=""/>
 													<core:Item text="Single data record can be forwarded to the Bundesbank" key="0"/>
@@ -528,6 +547,8 @@
 													<core:CustomData key="table" value="T015W"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="ISR No."/>
@@ -547,6 +568,8 @@
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 										</form:content>
@@ -588,6 +611,8 @@
 													<core:CustomData key="butxt" value="Company Name"></core:CustomData>
 													<core:CustomData key="land1" value="Country"></core:CustomData>
 													<core:CustomData key="waers" value="Currency"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
@@ -599,6 +624,8 @@
 													<core:CustomData key="table" value="SKA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Head Office"/>
@@ -609,17 +636,19 @@
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Authorization Group"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/BEGRU}"/>
 											<Label text="Minority Indicator"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/MINDK}">
-												<items>
+											<Select id="compCodesMinorIndicatorId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/MINDK}">
+												<!--<items>
 													<core:Item text="Indicator 1" key="1"/>
 													<core:Item text="Indicator 2" key="2"/>
 													<core:Item text="Indicator 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Sort Key"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -629,6 +658,8 @@
 													<core:CustomData key="table" value="TZUN"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Planning Group"/>
@@ -639,15 +670,17 @@
 													<core:CustomData key="table" value="T035"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Release Group"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/FRGRP}">
-												<items>
+											<Select id="compCodesReleaseGroupId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/FRGRP}">
+												<!--<items>
 													<core:Item text="Release group 1" key="1"/>
 													<core:Item text="Release group 2" key="2"/>
 													<core:Item text="Release group 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Certification Date"/>
 											<DatePicker value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/CERDT}"/>
@@ -660,10 +693,12 @@
 													<core:CustomData key="table" value="T056"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Intrest Calculation Frequency"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZINRT}">
+											<Select id = "compCodesIntrCalcuFequencyId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZINRT}">
 												<items>
 													<core:Item text="1 Month" key="01"/>
 													<core:Item text="2 Month" key="02"/>
@@ -692,6 +727,8 @@
 													<core:CustomData key="table" value="T059Z"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Withholding Tax Country"/>
@@ -701,6 +738,8 @@
 													<core:CustomData key="table" value="T005"></core:CustomData>
 													<core:CustomData key="land1" value="Country Code"></core:CustomData>
 													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Recipient Type"/>
@@ -711,6 +750,8 @@
 													<core:CustomData key="table" value="T059C"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Main Economic activity per CIIU Code"/>
@@ -720,7 +761,7 @@
 											<Label text="Valid Unit"/>
 											<DatePicker/>
 											<Label text="Exemption Authority"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/QSBGR}">
+											<Select id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/QSBGR}">
 												<items>
 													<core:Item text="No Exemption Reason Reported" key="0"/>
 													<core:Item text="Income Connected with a Company in the USA" key="1"/>
@@ -744,6 +785,8 @@
 													<core:CustomData key="table" value="T059P"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Recipient Type"/>
@@ -754,6 +797,8 @@
 													<core:CustomData key="table" value="T059C"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Withholding Tax Identification No."/>
@@ -771,6 +816,8 @@
 													<core:CustomData key="table" value="T059Z"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Sub. To Withholding Tax"/>
@@ -789,6 +836,8 @@
 													<core:CustomData key="table" value="T059V"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Date on which Exemption Ends"/>
@@ -807,6 +856,8 @@
 													<core:CustomData key="table" value="LFB1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Check Cashing Times"/>
@@ -819,6 +870,8 @@
 													<core:CustomData key="table" value="LFB1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Tolerance Group"/>
@@ -829,6 +882,8 @@
 													<core:CustomData key="table" value="T043G"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Check Double Invoice"/>
@@ -846,6 +901,8 @@
 													<core:CustomData key="table" value="LFB1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Alternative Payee"/>
@@ -856,34 +913,36 @@
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Grouping Key"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZGRUP}">
-												<items>
+											<Select id="compCodesGroupKeyId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZGRUP}">
+												<!--<items>
 													<core:Item text="Key 1" key="1"/>
 													<core:Item text="Key 2" key="2"/>
 													<core:Item text="Key 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="Bill of Exchange limit"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/WEBTR}"/>
 											<Label text="Payment Method Suppliement"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/UZAWE}">
-												<items>
+											<Select  id="compCodesPayMethodSuppliementId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/UZAWE}">
+												<!--<items>
 													<core:Item text="Payment 1" key="1"/>
 													<core:Item text="Payment 2" key="2"/>
 													<core:Item text="Payment 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<core:Title/>
 											<Label text="Payment Block"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZAHLS}">
-												<items>
+											<Select id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZAHLS}">
+												<!--<items>
 													<core:Item text="Block 1" key="1"/>
 													<core:Item text="Block 2" key="2"/>
 													<core:Item text="Block 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="House Bank"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/HBKID}" showValueHelp="true"
@@ -893,6 +952,8 @@
 													<core:CustomData key="table" value="T012"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Individual Payment"/>
@@ -920,8 +981,11 @@
 												<customData>
 													<core:CustomData key="title" value="Delivery Tolerance Group"></core:CustomData>
 													<core:CustomData key="table" value="T043G"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="txt30" value="Name"></core:CustomData>
+													<core:CustomData key="togru" value="Key"></core:CustomData>
+													<core:CustomData key="bukrs" value="BUKRS"></core:CustomData>
+													<core:CustomData key="inputKey" value="togru"></core:CustomData>
+													<core:CustomData key="inputText" value="txt30"></core:CustomData>
 												</customData>
 											</Input>
 											<core:Title text="ERP Vendor Company Code : Correspondance"/>
@@ -933,6 +997,8 @@
 													<core:CustomData key="table" value="LFB1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Account With Vendor"/>
@@ -956,12 +1022,12 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/TLFXS}"/>
 											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
 											<Label text="Grouping Key"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZGRUP}">
-												<items>
+											<Select id="compCodesGroupingKeyId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZGRUP}">
+											<!--	<items>
 													<core:Item text="Key 1" key="1"/>
 													<core:Item text="Key 2" key="2"/>
 													<core:Item text="Key 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<Label text="ESTMA (CAN)"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/ZZESTMA}"/>
@@ -977,12 +1043,12 @@
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/EKORG}">
-												<items>
+											<Select id="purOrgPurOrgId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/EKORG}">
+												<!--<items>
 													<core:Item text="Org 1" key="1"/>
 													<core:Item text="Org 2" key="2"/>
 													<core:Item text="Org 3" key="3"/>
-												</items>
+												</items>-->
 											</Select>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
@@ -991,8 +1057,10 @@
 												<customData>
 													<core:CustomData key="title" value="Order Currency"></core:CustomData>
 													<core:CustomData key="table" value="TCURC"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="ltext" value="Text"></core:CustomData>
+													<core:CustomData key="waers" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="waers"></core:CustomData>
+													<core:CustomData key="inputText" value="ltext"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Minimum Order Value"/>
@@ -1003,8 +1071,10 @@
 												<customData>
 													<core:CustomData key="title" value="Schema Group (Vendor)"></core:CustomData>
 													<core:CustomData key="table" value="TMKK"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="kalsb" value="Name"></core:CustomData>
+													<core:CustomData key="kalsk" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="kalsk"></core:CustomData>
+													<core:CustomData key="inputText" value="kalsb"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="LB Restriction Profile"/>
@@ -1017,6 +1087,8 @@
 													<core:CustomData key="table" value="LFM1"></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Incoterms"/>
@@ -1025,14 +1097,16 @@
 												<customData>
 													<core:CustomData key="title" value="Incoterms"></core:CustomData>
 													<core:CustomData key="table" value="TINC"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="bezei" value="Name"></core:CustomData>
+													<core:CustomData key="inco1" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="inco1"></core:CustomData>
+													<core:CustomData key="inputText" value="bezei"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Incoterms"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/INCO2}"/>
 											<Label text="Pricing date Control"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/MEPRF}">
+											<Select id="purOrgPricingDateContrId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/MEPRF}">
 												<items>
 													<core:Item text="No Control" key=""/>
 													<core:Item text="Purchase Order Date" key="1"/>
@@ -1057,8 +1131,10 @@
 												<customData>
 													<core:CustomData key="title" value="Mode of Transport Border"></core:CustomData>
 													<core:CustomData key="table" value="T618"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="bezei" value="Name"></core:CustomData>
+													<core:CustomData key="expvz" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="expvz"></core:CustomData>
+													<core:CustomData key="inputText" value="bezei"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Customs Office"/>
@@ -1067,12 +1143,15 @@
 												<customData>
 													<core:CustomData key="title" value="Customs Office"></core:CustomData>
 													<core:CustomData key="table" value="T615"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="land1" value="Country"></core:CustomData>
+													<core:CustomData key="zolla" value="Key"></core:CustomData>
+													<core:CustomData key="text2" value="Name"></core:CustomData>
+													<core:CustomData key="inputKey" value="zolla"></core:CustomData>
+													<core:CustomData key="inputText" value="zolla"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Sort Criterion"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/SKRIT}">
+											<Select id="purOrgSortCriterionId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/SKRIT}">
 												<items>
 													<core:Item text="By VSR sequence number" key=""/>
 													<core:Item text="By EAN" key="A"/>
@@ -1082,7 +1161,7 @@
 												</items>
 											</Select>
 											<Label text="Proact Control Profile"/>
-											<Select selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/PAPRF}">
+											<Select id="purOrgProactContrlProfileId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/PAPRF}">
 												<items>
 													<core:Item text="Control 1" key="1"/>
 													<core:Item text="Control 2" key="2"/>
@@ -1095,8 +1174,10 @@
 												<customData>
 													<core:CustomData key="title" value="Shipping Conditions"></core:CustomData>
 													<core:CustomData key="table" value="TVSB"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="vtext" value="Name"></core:CustomData>
+													<core:CustomData key="vsbed" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="vsbed"></core:CustomData>
+													<core:CustomData key="inputText" value="vtext"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Revaluation Allowed"/>
@@ -1198,8 +1279,10 @@
 												<customData>
 													<core:CustomData key="title" value="Purchasing Group"></core:CustomData>
 													<core:CustomData key="table" value="T024"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value="eknam"></core:CustomData>
+													<core:CustomData key="inputText" value="ekgrp"></core:CustomData>
+													<core:CustomData key="ekgrp" value="Code"></core:CustomData>
+													<core:CustomData key="eknam" value="Description"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Confirmation Control"/>
@@ -1208,8 +1291,10 @@
 												<customData>
 													<core:CustomData key="title" value="Confirmation Control"></core:CustomData>
 													<core:CustomData key="table" value="T163L"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value="bsbez"></core:CustomData>
+													<core:CustomData key="inputText" value="bstae"></core:CustomData>
+													<core:CustomData key="bsbez" value="Text"></core:CustomData>
+													<core:CustomData key="bstae" value="Key"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Rounding profile"/>
@@ -1267,6 +1352,46 @@
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Address">
 								<content>
+									<Table items="{CreateERPVendorAddrTableModel>/rows}">
+										<headerToolbar>
+											<Toolbar>
+												<ToolbarSpacer></ToolbarSpacer>
+												<Button text="Add" press="handleCreateERPAddrAddTable"></Button>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column>
+												<header>
+													<Label text="Address" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column>
+												<header>
+													<Label text="Company Postal Address" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column>
+												<header>
+													<Label text="Country" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column>
+												<header>
+													<Label text="Postal Address" design="Bold"></Label>
+												</header>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Link text="{CreateERPVendorAddrTableModel>AddressHeader}"></Link>
+													<Text text="{CreateERPVendorAddrTableModel>companyPostCode}"></Text>
+													<Text text="{CreateERPVendorAddrTableModel>teleCountry}"></Text>
+													<Text text="{CreateERPVendorAddrTableModel>PSTLZ}"></Text>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 										singleContainerFullSize="false">
@@ -1292,6 +1417,8 @@
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="inputKey" value="lkvrz"></core:CustomData>
+													<core:CustomData key="inputText" value="land1"></core:CustomData>
 													<core:CustomData key="land1" value="Country Code"></core:CustomData>
 													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
 												</customData>
@@ -1302,8 +1429,10 @@
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value="bezei"></core:CustomData>
+													<core:CustomData key="inputText" value="land1"></core:CustomData>
+													<core:CustomData key="land1" value="Code"></core:CustomData>
+													<core:CustomData key="bezei" value="Region"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Language"/>
@@ -1312,8 +1441,10 @@
 												<customData>
 													<core:CustomData key="title" value="Language"></core:CustomData>
 													<core:CustomData key="table" value="T002"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value="laiso"></core:CustomData>
+													<core:CustomData key="inputText" value="sptxt"></core:CustomData>
+													<core:CustomData key="laiso" value="Key"></core:CustomData>
+													<core:CustomData key="sptxt" value="Language"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Transportation Zone"/>
@@ -1321,9 +1452,11 @@
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Transportation Zone"></core:CustomData>
-													<core:CustomData key="table" value="TZONE"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+												<core:CustomData key="table" value="TZONE"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
+													<core:CustomData key="inputText" value="vtext"></core:CustomData>
+													<core:CustomData key="land1" value="Code"></core:CustomData>
+													<core:CustomData key="vtext" value="Transportation Zone"></core:CustomData>
 												</customData>
 											</Input>
 											<core:Title/>
@@ -1331,52 +1464,54 @@
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Timezone"></core:CustomData>
-													<core:CustomData key="table" value="TTZZ"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="table" value="TZONE"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
+													<core:CustomData key="inputText" value="vtext"></core:CustomData>
+													<core:CustomData key="land1" value="Code"></core:CustomData>
+													<core:CustomData key="vtext" value="Timezone"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="PO Box postal code / PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
 											<Label text="PO Box Without No."/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/postBoxWithoutNo}"/>
 											<Label text="Company Post code"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/companyPostCode}"/>
 											<Label text="Supplement"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/supplement}"/>
 											<core:Title text="Telephone No's."/>
 											<Label text="Country"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
 											<Label text="Telephone"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
 											<Label text="Extention"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension}"/>
 											<Label text="Standard"/>
 											<CheckBox/>
 											<core:Title text="Fax No."/>
 											<Label text="Country"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>
 											<Label text="Telephone"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
 											<Label text="Extention"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention}"/>
 											<Label text="Standard"/>
 											<CheckBox/>
 											<core:Title text="Email Address"/>
 											<Label text="Email Address"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
 											<Label text="Standard"/>
 											<CheckBox/>
 											<core:Title text="Website"/>
 											<Label text="URL"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website}"/>
 											<core:Title text="International Versions"/>
 											<Label text="Address Version"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internalVersionsAddressVersion}"/>
 											<Label text="Name"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsName}"/>
 											<Label text="Address"/>
-											<Input/>
+											<Input  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsAddress}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1440,6 +1575,8 @@
 													<core:CustomData key="table" value=""></core:CustomData>
 													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
 												</customData>
 											</Input>
 											<core:Title text="Contact Person Details"/>
@@ -1503,8 +1640,10 @@
 												<customData>
 													<core:CustomData key="title" value="Industry"></core:CustomData>
 													<core:CustomData key="table" value="T016"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value="brtxt"></core:CustomData>
+													<core:CustomData key="inputText" value="brsch"></core:CustomData>
+													<core:CustomData key="brsch" value="Code"></core:CustomData>
+													<core:CustomData key="brtxt" value="Type"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Description"/>
@@ -1558,9 +1697,10 @@
 														<Label text="Payment Type"/>
 														<Select selectedKey="{CreateVendorModel>/changeReq/genData/payType}">
 															<items>
-																<core:Item text="Payment 1" key="1"/>
-																<core:Item text="Payment 2" key="2"/>
-																<core:Item text="Payment 3" key="3"/>
+																<core:Item text="Check" key="C"/>
+																<core:Item text="EFT" key="E"/>
+																<core:Item text="Netout" key="N"/>
+																<core:Item text="Wire Transfer" key="W"/>
 															</items>
 														</Select>
 														<Label text="Owner Minimum Pay"/>
@@ -1588,6 +1728,8 @@
 																<core:CustomData key="table" value=""></core:CustomData>
 																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="inputKey" value=""></core:CustomData>
+																<core:CustomData key="inputText" value=""></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Comment"/>
@@ -1602,6 +1744,8 @@
 																<core:CustomData key="table" value=""></core:CustomData>
 																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="inputKey" value=""></core:CustomData>
+																<core:CustomData key="inputText" value=""></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Comment"/>
@@ -1616,6 +1760,8 @@
 																<core:CustomData key="table" value="/PRA/C_PP_WH"></core:CustomData>
 																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
 																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="inputKey" value=""></core:CustomData>
+																<core:CustomData key="inputText" value=""></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Comment"/>
@@ -1686,12 +1832,12 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Address Type"/>
-														<Select selectedKey="{CreateVendorModel>/changeReq/genData/addType}">
-															<items>
+														<Select id="praDataAddrTabAddressTypeId" selectedKey="{CreateVendorModel>/changeReq/genData/addType}">
+														<!--	<items>
 																<core:Item text="Add 1" key="1"/>
 																<core:Item text="Add 2" key="2"/>
 																<core:Item text="Add 3" key="3"/>
-															</items>
+															</items>-->
 														</Select>
 														<Label text="Title"/>
 														<Input/>
@@ -1714,6 +1860,8 @@
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
+																<core:CustomData key="inputKey" value="land1"></core:CustomData>
+																<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
 																<core:CustomData key="land1" value="Country Code"></core:CustomData>
 																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
 															</customData>
@@ -1725,9 +1873,11 @@
 														<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
-																<core:CustomData key="table" value=""></core:CustomData>
-																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="table" value="T005S"></core:CustomData>
+																<core:CustomData key="inputKey" value="land1"></core:CustomData>
+																<core:CustomData key="inputText" value="bezei"></core:CustomData>
+																<core:CustomData key="land1" value="Code"></core:CustomData>
+																<core:CustomData key="bezei" value="Region"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
@@ -1741,8 +1891,10 @@
 															<customData>
 																<core:CustomData key="title" value="Langauge Key"></core:CustomData>
 																<core:CustomData key="table" value="T002"></core:CustomData>
-																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="inputKey" value="laiso"></core:CustomData>
+																<core:CustomData key="inputText" value="sptxt"></core:CustomData>
+																<core:CustomData key="laiso" value="Key"></core:CustomData>
+																<core:CustomData key="sptxt" value="Language"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Telephone"/>
@@ -1760,8 +1912,10 @@
 															<customData>
 																<core:CustomData key="title" value="Communication Method"></core:CustomData>
 																<core:CustomData key="table" value="TSAC"></core:CustomData>
-																<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-																<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+																<core:CustomData key="inputKey" value="comm_TYPE"></core:CustomData>
+																<core:CustomData key="inputText" value="comm_TEXT"></core:CustomData>
+																<core:CustomData key="comm_TEXT" value="Code"></core:CustomData>
+																<core:CustomData key="comm_TYPE" value="Type"></core:CustomData>
 															</customData>
 														</Input>
 													</form:content>
@@ -1805,8 +1959,10 @@
 															<customData>
 																<core:CustomData key="title" value="Country"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
-																<core:CustomData key="land1" value="Country Code"></core:CustomData>
-																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+																<core:CustomData key="inputKey" value="lkvrz"></core:CustomData>
+																<core:CustomData key="inputText" value="land1"></core:CustomData>
+																<core:CustomData key="lkvrz" value="Country Code"></core:CustomData>
+																<core:CustomData key="land1" value="Country"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="County"/>
@@ -1854,7 +2010,7 @@
 										<Toolbar>
 											<!--<Button text="Add"/>-->
 											<ToolbarSpacer/>
-											<Button text="Upload"/>
+											<Button text="Upload" press="onCreateERPVendorUpload"/>
 										</Toolbar>
 									</IconTabFilter>
 									<IconTabFilter text="Comments" key="comments">
@@ -1862,17 +2018,17 @@
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
 											<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
-											<TextArea width="164%"></TextArea>
+											<TextArea id="createERPVendorCommentBoxId" width="164%" value="{CreateVendorModel>/createCRVendorData/newComment}"></TextArea>
 										</HBox>
 										<Toolbar>
 											<ToolbarSpacer/>
-											<Button text="Add"/>
+											<Button text="Add" press="onAddComment"/>
 										</Toolbar>
 										<!--</VBox>-->
-										<List headerText="Added Comments" items="{/Comments}">
-											<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
-												timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
-												<FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{createERPAddCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
+											<FeedListItem sender="{createERPAddCommentedModel>note_by}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
+												timestamp="{createERPAddCommentedModel>note_date}" text="{createERPAddCommentedModel>note_desc}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+												<FeedListItemAction text="{createERPAddCommentedModel>note_desc}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
 											</FeedListItem>
 										</List>
 									</IconTabFilter>
@@ -1886,7 +2042,7 @@
 		<footer>
 			<Toolbar><ToolbarSpacer/>
 				<Button text="Save" type="Transparent" press="onSaveClick"/>
-				<Button text="Submit" type="Transparent" press="onSubmitClick"/>
+				<!--<Button text="Submit" type="Transparent" press="onSubmitClick"/>-->
 				<Button text="Check" type="Transparent" press="onCheckClick"/>
 				<Button icon="sap-icon://undo" type="Transparent" press="onUndoClick"/>
 				<Button icon="sap-icon://redo" type="Transparent" press="onRedoClick"/>

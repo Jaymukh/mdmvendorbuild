@@ -2,152 +2,6 @@
 	"preview": false,
 	"vndDetails": false,
 	"approvalView": false,
-	"changeReq": {
-		"genData": {
-			"changeReqID": "",
-			"desc": "",
-			"priority": "",
-			"dueDate": "",
-			"reason": ""
-		},
-		"processData": {
-			"status": "",
-			"currWrkItem": "",
-			"createdBy": "",
-			"dateCreation": "",
-			"timeCreation": ""
-		}
-	},
-	"erpVndDetail": {
-		"administritativeData": {
-			"vnd": "",
-			"accountGrp": ""
-		},
-		"genData": {
-			"title": "",
-			"name1": "",
-			"name2": "",
-			"name3": "",
-			"lglName4": "",
-			"naturalPerson": "",
-			"srchTerms": ""
-		},
-		"commData": {
-			"tel": "",
-			"telPhn": "",
-			"telExt": "",
-			"mobile": "",
-			"mobilePhone": "",
-			"email": "",
-			"fax": "",
-			"faxPhone": "",
-			"faxExt": "",
-			"poBoxLobby": "",
-			"typDelSer": "",
-			"NumDelSer": "",
-			"poBox": "",
-			"unDelivery": ""
-		},
-		"address": {
-			"street": "",
-			"streetNo": "",
-			"dist": "",
-			"street2": "",
-			"street3": "",
-			"street4": "",
-			"street5": "",
-			"postCode": "",
-			"postCity": "",
-			"country": "",
-			"region": "",
-			"Lnguage": "",
-			"transportationZone": "",
-			"poBoxCode": "",
-			"poBoxWithoutCode": "",
-			"compPostCode": "",
-			"Suppliment": ""
-		}
-	},
-	"controlData": {
-		"acountControl": {
-			"authGrp": "",
-			"grpKey": "",
-			"tradePartner": "",
-			"customer": ""
-		},
-		"procureMonitoring": {
-			"factoryCal": ""
-		}
-	},
-	"referenceData": {
-		"trainStn": "",
-		"extManufact": "",
-		"relPOD": "",
-		"scac": "",
-		"actQMSystem": "",
-		"carFreightGrp": "",
-		"industry": "",
-		"serAgentProcGrp": "",
-		"creditInfoNo": "",
-		"lastExtRvw": "",
-		"statisticGrp": "",
-		"qmSysValidTo": ""
-	},
-	"taxNum": {
-		"taxNumTbl": {
-			"taxNumCat": "",
-			"taxNum": "",
-			"desc": ""
-		}
-	},
-	"taxInfo": {
-		"fiscalAdd": "",
-		"taxOfc": "",
-		"taxNo": "",
-		"taxBase": "",
-		"taxType": "",
-		"typBusiness": "",
-		"nameRepresentative": "",
-		"saleEqlTax": "",
-		"liableForVat": "",
-		"taxSplit": "",
-		"socialInsurance": "",
-		"socialInsuranceCode": "",
-		"typeofIndus": ""
-	},
-	"bankAccount": {
-		"bankDetID": "",
-		"bankAcc": "",
-		"accHolder": "",
-		"iban": "",
-		"ibanGenIBAN": "",
-		"ibamGenBankDet": "",
-		"accountNo": "",
-		"cntrolKey": "",
-		"refDet": "",
-		"collAuth": "",
-		"bankCountry": "",
-		"bankKey": "",
-		"bankName": "",
-		"street": "",
-		"city": ""
-	},
-	"paymentTransaction": {
-		"paymentTr": {
-			"dmeIndic": "",
-			"instructionKey": "",
-			"isrNo": ""
-		},
-		"altPayee": {
-			"payeeInDocument": "",
-			"altPayee": ""
-		}
-	},
-	"murphyData": {
-		"aribaSuppID": "",
-		"vaidFrom": "",
-		"validTo": ""
-	},
 	"companyCode": {
 		"companyCode": "",
 		"accountingInfo": {
@@ -254,7 +108,7 @@
 		"JobResponsibilities": "Process change request 31493 (Create New Vendor - 'Geomark Research LTD')",
 		"HireDate": "Date(1422777600000)"
 	}],
-	"createCRDD" : {},
+	"createCRDD": {},
 	"createCRVendorData": {
 		"entityId": "",
 		"formData": {
@@ -293,5 +147,74 @@
 			}
 		}
 
+	},
+	"createCRDDConfig": [{
+		"controlID": "accountGrpID",
+		"controlTable": "T077K",
+		"controlField": "ktokk",
+		"controlFieldName" :"txt30"
+	},
+	{
+		"controlID": "taxTypeId",
+		"controlTable": "J_1AFITPV",
+		"controlField": "j_1afitp",
+		"controlFieldName" :"text60"
+	},
+	{
+		"controlID": "taxInfoSocialInsuCodeId",
+		"controlTable": "J_1AACT",
+		"controlField": "actss",
+		"controlFieldName" : "actss"
+	},
+	{
+		"controlID": "compCodesMinorIndicatorId",
+		"controlTable": "T059M",
+		"controlField": "mindk",
+		"controlFieldName" : "mindk"
+	},
+	{
+		"controlID": "compCodesReleaseGroupId",
+		"controlTable": "VBWF08",
+		"controlField": "frgrp",
+		"controlFieldName" : "frgrt"
+	},
+	{
+		"controlID": "compCodesGroupKeyId",
+		"controlTable": "TZGR",
+		"controlField": "zgrup",
+		"controlFieldName" : "name1"
+	},
+	{
+		"controlID": "compCodesPayMethodSuppliementId",
+		"controlTable": "T042F",
+		"controlField": "uzawe",
+		"controlFieldName" : "txt30"
+	},
+	{
+		"controlID": "compCodesPaymentBlockId",
+		"controlTable": "T008",
+		"controlField": "zahls",
+		"controlFieldName" : "textl"
+	},
+	{
+		"controlID": "purOrgPurOrgId",
+		"controlTable": "T024E",
+		"controlField": "ekorg",
+		"controlFieldName" : "ekotx"
+	},
+	{
+		"controlID": "purOrgProactContrlProfileId",
+		"controlTable": "TWVMO",
+		"controlField": "paprf",
+		"controlFieldName" : "prtxt"
+	},
+	{
+		"controlID": "praDataAddrTabAddressTypeId",
+		"controlTable": "OIUCM_ADDR_TYPE",
+		"controlField": "addr_TYPE",
+		"controlFieldName" : "description"
 	}
+	
+	
+	]
 }

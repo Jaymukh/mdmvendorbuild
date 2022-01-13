@@ -35,9 +35,12 @@ sap.ui.define([
 			}
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				type: 'POST',
+				hasPayload: true,
 				data: {
-					"entitySearchType": "ENTITY_BY_ALL",
+					"entitySearchType": "GET_ALL_VENDOR",
 					"entityType": "VENDOR",
+					"currentPage": 1,
 					"parentDTO": {
 						"customData": oFilterParameters
 					}
@@ -65,7 +68,7 @@ sap.ui.define([
 					oItem.overDueDate = sResultDate;
 					oItem.pendingRequest = sPendingRequest;
 				})
-				
+
 				oSearchVendorModel.setData(oData.result);
 			});
 		},
@@ -137,7 +140,7 @@ sap.ui.define([
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
 			if (sKey === "createERPVendorView") {
-				this._createCREntityID();
+			//	this._createCREntityID();
 			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
@@ -147,8 +150,9 @@ sap.ui.define([
 		_createCREntityID: function () {
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+				hasPayload: true,
+				type:'POST',
 				data: {
-					"entitySearchType": "ENTITY_BY_ENITY_ID",
 					"entityType": "VENDOR",
 					"parentDTO": {
 						"customData": {
@@ -164,20 +168,20 @@ sap.ui.define([
 			}
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusEntity
-					.entityId);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
+					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_pra/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusEntity.entityId);
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").refresh();
 				// console.log(oData);
 			}.bind(this), function (oData) {
@@ -241,6 +245,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+		//	this._createCREntityID();
 		},
 
 		handleSelect: function (oEvent) {
@@ -266,14 +271,14 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", true);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 		},
-		
-		handleDescription : function(value1,value2,value3,value4){
+
+		handleDescription: function (value1, value2, value3, value4) {
 			var sText = '';
-				sText = value1 ? sText+value1 : sText;
-				sText = value2 ? sText+' '+value2 : sText;
-				sText = value3 ? sText+' '+value3 : sText;
-				sText = value4 ? sText+' '+value4 : sText;
-			return  sText;
+			sText = value1 ? sText + value1 : sText;
+			sText = value2 ? sText + ' ' + value2 : sText;
+			sText = value3 ? sText + ' ' + value3 : sText;
+			sText = value4 ? sText + ' ' + value4 : sText;
+			return sText;
 		}
 
 		// onSaveClick : function(oEvent){

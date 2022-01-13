@@ -26,7 +26,7 @@
 					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
 					<tnt:NavigationListItem text="Create Vendor" icon="sap-icon://create" key="createERPVendorView"/>
 					<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="myReq">
-						<tnt:NavigationListItem text="My Chnage Request" key="changeRequestId"/>
+						<tnt:NavigationListItem text="My Change Request" key="changeRequestId"/>
 						<tnt:NavigationListItem text="All Change Request" key="allReq"/>
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Mass Change" icon="sap-icon://copy" key="copy"/>
@@ -110,7 +110,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" >
+							<Table mode="SingleSelectLeft" growing="true" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" >
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
@@ -129,22 +129,22 @@
 								<items>
 									<ColumnListItem>
 										<cells>
-											<Link text="{SearchVendorModel>customVendorLFA1Entity/lifnr}"></Link>
+											<Link text="{SearchVendorModel>customVendorLFA1DTO/lifnr}"></Link>
 											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest',
 																	formatter : '.handlePendingRequest'}" 
 													      text="{SearchVendorModel>pendingRequest}"/>
 											<Text text="{SearchVendorModel>overDueDate}"></Text>
 											<Text text="{
 														parts:[
-															{path:'SearchVendorModel>customVendorLFA1Entity/name1'},
-															{path:'SearchVendorModel>customVendorLFA1Entity/name2'},
-															{path:'SearchVendorModel>customVendorLFA1Entity/name3'},
-															{path:'SearchVendorModel>customVendorLFA1Entity/name4'}
+															{path:'SearchVendorModel>customVendorLFA1DTO/name1'},
+															{path:'SearchVendorModel>customVendorLFA1DTO/name2'},
+															{path:'SearchVendorModel>customVendorLFA1DTO/name3'},
+															{path:'SearchVendorModel>customVendorLFA1DTO/name4'}
 													],
 													formatter:'.handleDescription'
 											}"></Text>
-											<Text text="{SearchVendorModel>customVendorLFA1Entity/vbund}"></Text>
-											<Text text="{SearchVendorModel>customVendorLFA1Entity/land1}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>

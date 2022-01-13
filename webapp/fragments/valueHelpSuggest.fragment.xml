@@ -6,7 +6,7 @@
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="{oViewModel>template}" label="{oViewModel>label}" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="{oViewModel>template}"/>
+							<m:Input name="{oViewModel>label}"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
