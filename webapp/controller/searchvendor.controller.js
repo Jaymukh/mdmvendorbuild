@@ -265,7 +265,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
-			//	this._createCREntityID();
+				this._createCREntityID();
 		},
 
 		handleSelect: function (oEvent) {

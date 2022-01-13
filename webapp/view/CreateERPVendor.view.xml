@@ -18,7 +18,7 @@
 										<form:content>
 											<core:Title text="General Data"/>
 											<Label text="Change Request ID"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"\   enabled="false"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"   enabled="false"/>
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
 											<Label text="Priority"/>
@@ -532,7 +532,7 @@
 										<form:content>
 											<core:Title text="Payment Transactions"/>
 											<Label text="DME Indicator"/>
-											<Select id="payTransDMEIndicatorId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
+											<Select required="true" id="payTransDMEIndicatorId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
 													<core:Item text="Use house bank default value" key=""/>
 													<core:Item text="Single data record can be forwarded to the Bundesbank" key="0"/>
@@ -651,7 +651,7 @@
 												</items>-->
 											</Select>
 											<Label text="Sort Key"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input showValueHelp="true"  required="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1/ZUAWA}">
 												<customData>
 													<core:CustomData key="title" value="Sort Key"></core:CustomData>
@@ -1397,7 +1397,7 @@
 										<form:content>
 											<core:Title text="Addresses"/>
 											<Label text="Street/House No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}"/>
+											<Input  required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}"/>
 											<!--<Input value="">-->
 											<!--	<layoutData>-->
 											<!--		<l:GridData span="XL2 L1 M3 S4"/>-->

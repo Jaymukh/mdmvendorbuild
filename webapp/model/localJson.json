@@ -117,62 +117,325 @@
 			"parentDTO": {
 				"customData": {
 					"vnd_lfa1": {
-						"entity_id": ""
+						"LFINR":"",
+						"entity_id": "",
+						"KTOKK" : "",
+						"ANRED":"",
+						"NAME1":"",
+						"NAME2":"",
+						"NAME3":"",
+						"NAME4":"",
+						"STKZN":"",
+						"SORTL":"",
+						"TELF1":"",
+						"TELF2":"",
+						"TELFX":"",
+						"PFACH":"",
+						"PSTLZ":"", 
+						"ORT01":"",
+						"LAND1":"",
+						"REGION" :"",
+						"REGIO":"",
+						"SPRAS":"",
+						"LZONE":"",
+						"PO_BOX":"",
+						"BEGRU":"",
+						"KONZS":"",
+						"VBUND":"",
+						"KUNNR":"",
+						"PLKAL":"",
+						"BAHNS":"",
+						"EMNFR":"",
+						"PODKZB":"",
+						"SCACD":"",
+						"QSSYS":"",
+						"SFRGR":"",
+						"BRSCH":"",
+						"DLGRP":"",
+						"KRAUS":"",
+						"REVDB":"",
+						"STGDL":"",
+						"QSSYSDAT":"",
+						"FISKN":"",
+						"FISKU":"",
+						"STENR":"",
+						"TAXBS":"",
+						"FITYP":"",
+						"J_1KFTBUS":"",
+						"J_1KFREPRE":"",
+						"STKZA":"",
+						"STKZU":"",
+						"IPISP":"",
+						"REGSS":"",
+						"ACTSS":"",
+						"J_1KFTIND":"",
+						"DTAWS":"",
+						"ESRNR":"",
+						"XZEMP":"",
+						"LNRZA":"",
+						"ZZARIBA_NET":"",
+						"ZZVAL_FM":"",
+						"ZZVAL_TO":""
 					},
 					"vnd_lfb1": {
-						"vnd_lfb1": {
-							"entity_id": ""
+						"vnd_lfb1_1": {
+							"entity_id": "",
+							"BUKRS": "",
+							"AKONT": "",
+							"LNRZE": "",
+							"BEGRU": "",
+							"MINDK": "",
+							"ZUAWA": "",
+							"FDGRV": "",
+							"FRGRP": "",
+							"CERDT": "",
+							"VZSKZ": "",
+							"ZINRT": "",
+							"ZINDT": "",
+							"DATLZ": "",
+							"CIIUCODE": "",
+							"QSBGR": "",
+							"ALTKN": "",
+							"PERNR": "",
+							"ZTERM": "",
+							"KULTG": "",
+							"GUZTE": "",
+							"REPRF": "",
+							"ZWELS": "",
+							"LNRZB": "",
+							"WEBTR": "",
+							"UZAWE": "",
+							"ZAHLS": "",
+							"HBKID": "",
+							"XPORE": "",
+							"XEDIP": "",
+							"XVERR": "",
+							"TOGRU": "",
+							"ZSABE": "",
+							"EIKTO": "",
+							"TLFNS": "",
+							"INTAD": "",
+							"XDEZV": "",
+							"XAUSZ": "",
+							"KVERM": "",
+							"TLFXS": "",
+							"MGRUP": "",
+							"ZGRUP": "",
+							"ZZESTMA": ""
 						}
 					},
 					"vnd_lfbk": {
-						"vnd_lfbk": {
-							"entity_id": ""
+						"vnd_lfbk_1": {
+							"entity_id": "",
+							"BVTYP": "",
+							"BKONT": "",
+							"KOINH": "",
+							"TIBAN": "",
+							"BANKN": "",
+							"BKREF": "",
+							"XEZER": "",
+							"BANKS": "",
+							"BANKL": ""
 						}
 					},
 					"vnd_lfbw": {
 						"vnd_lfbw": {
-							"entity_id": ""
+							"entity_id": "",
+							"WT_WITHCD": "",
+							"QSREC": "",
+							"QWT_EXNR": "",
+							"WITHT": "",
+							"WT_WTSTCD": "",
+							"WT_EXRT": "",
+							"WT_EXDF": "",
+							"WT_SUBJCT": "",
+							"WT_EXNR": "",
+							"WT_WTEXRS": "",
+							"WT_EXDT": ""
 						}
 					},
 					"vnd_lfm1": {
-						"vnd_lfm1": {
-							"entity_id": ""
+						"vnd_lfm1_1": {
+							"entity_id": "",
+							"EKORG": "",
+							"WAERS": "",
+							"MINBW": "",
+							"KALSK": "",
+							"BOPNR": "",
+							"ZTERM": "",
+							"INCO1": "",
+							"INCO2": "",
+							"MEPRF": "",
+							"VERKF": "",
+							"EIKTO": "",
+							"LFABC": "",
+							"EXPVZ": "",
+							"ZOLLA": "",
+							"SKRIT": "",
+							"PAPRF": "",
+							"VSBED": "",
+							"XNBWY": "",
+							"NRGEW": "",
+							"PRFRE": "",
+							"AGREL": "",
+							"WEBRE": "",
+							"XERSR": "",
+							"KZABS": "",
+							"KZAUT": "",
+							"BOLRE": "",
+							"BOIND": "",
+							"UMSAE": "",
+							"BLIND": "",
+							"LEBRE": "",
+							"ZZQUA_FLAG": "",
+							"EKGRP": "",
+							"BSTAE": "",
+							"RDPRF": "",
+							"PLIFZ": "",
+							"MEGRU": "",
+							"VENSL": "",
+							"LISER": "",
+							"LIBES": ""
+
 						}
 					},
 					"pra_bp_ad": {
-						"pra_bp_ad": {
-							"entity_id": ""
+						"pra_bp_ad_1": {
+							"entity_id": "",
+							"ADDR_TYPE":""
+						}
+					},
+					"pra_bp_vend_esc":{
+						"pra_bp_vend_esc_1":{
+						"entity_id": "",
+						"NAME_ID": "",
+						"OWNER_NM_TITLE": "",
+						"OWNER_NM_FIRST": "",
+						"OWNER_NM_PREFIX": "",
+						"OWNER_DOB": "",
+						"OWNER_TAXID": "",
+						"OWNER_ADDRESS1": "",
+						"OWNER_ADDRESS2": "",
+						"OWNER_ADDRESS3": "",
+						"OWNER_CITY": "",
+						"OWNER_COUNTRY": "",
+						"OWNER_COUNTY": "",
+						"OWNER_NM_LAST": "",
+						"OWNER_NM_MIDDLE": "",
+						"OWNER_NM_SUFFIX": "",
+						"OWNER_TAXID_EXT": "",
+						"OWNER_STATE": "",
+						"OWNER_ZIP"	: ""			
 						}
 					},
 					"pra_bp_cust_md": {
-						"pra_bp_cust_md": {
-							"entity_id": ""
+						"pra_bp_cust_md_1": {
+							"entity_id": "",
+							"INTERCOCD": "",
+							"KGLND": "",
+							"ENTY_CD": "",
+							"LEVY": "",
+							"CDEX_COMPANY": "",
+							"KGREG": "",
+							"TRIBE_NO": "",
+							"PAYMENT_TYPE": "",
+							"OWNER_MIN_PAY": "",
+							"DO_NOT_RECOUP": "",
+							"PAY_FREQUENCY": "",
+							"NO_CHECK_STMT": "",
+							"DIRECT_PAY_FL": "",
+							"TIN_MATCH_DATE": "",
+							"BN1_DATE": "",
+							"BN2_DATE": "",
+							"BACKUP_WITHHOLD": "",
+							"DO_NOT_RPT_ONRR": "",
+							"TAX_ID_TYPE": "",
+							"BN1_RESP_DATE": "",
+							"TIN_RESP_DATE": "",
+							"IRS_RESP_DATE": "",
+							"FLAG_NRA": "",
+							"FLAG_1099": "",
+							"BN1_W8": "",
+							"TIN_W8": "",
+							"BN1_W9": "",
+							"TIN_W9": "",
+							"TIN_OTHERS": "",
+							"BN1_OTHERS": "",
+							"REP_ENTITY_TYPE": ""
 						}
 					},
 					"gen_adrc": {
 						"gen_adrc_1": {
-							"entity_id": ""
+							"entity_id": "",
+							"PO_BOX_LOBBY": "",
+							"DELI_SERV_TYPE": "",
+							"DELI_SERV_NUMBER": "",
+							"DONT_USE_P": "",
+							"HOUSE_NUM1" : "",
+							"STREET": "",
+							"CITY2": "",
+							"STR_SUPPL1": "",
+							"STR_SUPPL2": "",
+							"STR_SUPPL3": "",
+							"LOCATION": "",
+							"PO_BOX_NUM": "",
+							"POST_CODE3": "",
+							"HOUSE_NUM2": "",
+							"TIME_ZONE": "",
+							"PO_BOX_NUM + PO_BOX": "",
+							"TITLE": "",
+							"NAME1": "",
+							"NAME2": "",
+							"SORT1": "",
+							"POST_CODE1": "",
+							"LAND1": "",
+							"CITY1": "",
+							"REGION": "",
+							"PO_BOX": "",
+							"POST_CODE2": "",
+							"LANGU": "",
+							"TEL_NUMBER": "",
+							"TEL_EXTENS": "",
+							"FAX_NUMBER": "",
+							"DEFLT_COMM": ""
 						}
 					},
-					"gen_adr": {
-						"gen_adr_1": {
-							"entity_id": ""
-						}
+					"gen_adr2": {
+						"entity_id": "",
+						"TEL_NUMBER":"",
+						"TELF1":"",
+						"TELF2":""
 					},
 					"gen_bnka": {
-						"gen_bnka": {
-							"entity_id": ""
+						"gen_bnka_1": {
+							"entity_id": "",
+							"BANKA": "",
+							"STRAS": "",
+							"ORT01": ""
 						}
 					},
 					"vnd_knvk": {
-						"vnd_knvk": {
-							"entity_id": ""
+						"vnd_knvk_1": {
+							"entity_id": "",
+							"PARNR": "",
+							"ANRED": "",
+							"TITEL_AP": "",
+							"PARGE": "",
+							"GBDAT": "",
+							"FAMST": "",
+							"NAME1": "",
+							"NAMEV": "",
+							"PARLA": "",
+							"ABTNR": "",
+							"PAFKT": "",
+							"PARAU": "",
+							"PARVO": "",
+							"PAVIP": ""
 						}
 					}
 				}
 			}
 		}
-
 	},
 	"createCRDDConfig": [{
 			"controlID": "accountGrpID",
@@ -231,5 +494,19 @@
 			"controlFieldName": "description"
 		}
 
+	],
+	"createMandtFields":[
+		{"Name":"Country","Key":"LAND1"},
+		{"Name":"Name 1","Key":"NAME1"},
+		{"Name":"City","Key":"ORT01"},
+		{"Name":"Postal Code","Key":"PSTLZ"},
+		{"Name":"Region","Key":"REGIO"},
+		{"Name":"Sort Key","Key":"SORTL"},
+		{"Name":"Street and House Number","Key":"STRAS"},
+		{"Name":"DME Indicator","Key":"DTAMS"},
+		{"Name":"Supplier Account Group","Key":"KTOKK"}
+		
 	]
+		
+	
 }
