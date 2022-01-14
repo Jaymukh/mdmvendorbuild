@@ -112,7 +112,6 @@
 	"createCRVendorData": {
 		"entityId": "",
 		"formData": {
-			
 			"entityType": "VENDOR",
 			"parentDTO": {
 				"customData": {
@@ -399,12 +398,6 @@
 							"FAX_NUMBER": "",
 							"DEFLT_COMM": ""
 						}
-					},
-					"gen_adr2": {
-						"entity_id": "",
-						"TEL_NUMBER":"",
-						"TELF1":"",
-						"TELF2":""
 					},
 					"gen_bnka": {
 						"gen_bnka_1": {
