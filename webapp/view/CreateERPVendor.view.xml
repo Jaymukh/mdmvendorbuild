@@ -909,7 +909,7 @@
 												</customData>
 											</Input>
 											<Label text="Check Double Invoice"/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" selected ="true">
 												<customData>
 													<core:CustomData key="/vnd_lfb1/vnd_lfb1_1/REPRF" value="X"></core:CustomData>
 												</customData>

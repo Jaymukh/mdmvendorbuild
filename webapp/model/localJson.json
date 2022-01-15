@@ -756,8 +756,17 @@
 		{"Name":"Sort Key","Key":"SORTL"},
 		{"Name":"Street and House Number","Key":"STRAS"},
 		{"Name":"DME Indicator","Key":"DTAMS"},
-		{"Name":"Supplier Account Group","Key":"KTOKK"}
-		
+		{"Name":"Supplier Account Group","Key":"KTOKK"},
+		{"Name":"Reconcilliation Account","Key":"AKONT"},
+		{"Name":"Payment method","Key":"ZWELS"},
+		{"Name":"Terms of Payment","Key":"ZTERM"},
+		{"Name":"Incoternms (Part 1)","Key":"INCO1"},
+		{"Name":"Incoternms (Part 1)","Key":"INCO2"},
+		{"Name":"Resident Country","Key":"KGLND"},
+		{"Name":"Entity Type","Key":"ENTY_CD"},
+		{"Name":"Region of Residence","Key":"KGREG"},
+		{"Name":"Payment Type","Key":"PAYMENT_TYPE"},
+		{"Name":"Pay Frequency","Key":"PAY_FREQUENCY"}
 	]
 		
 	
