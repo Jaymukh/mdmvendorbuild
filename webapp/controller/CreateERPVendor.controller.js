@@ -100,9 +100,11 @@ sap.ui.define([
 				if (oDataResp.result) {
 					var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
 					oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.lifnr = sLifnr;
+					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
 					oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
 					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
+					oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
 					var objParamCreate = {
 						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 						hasPayload: true,
@@ -145,7 +147,7 @@ sap.ui.define([
 					oData.title = aCustomData[i].getValue();
 				} else if (aCustomData[i].getKey() === "table") {
 					oData.table = aCustomData[i].getValue();
-				} else if (aCustomData[i].getKey() === "inputText") {
+				} else if (aCustomData[i].getKey() === "inputKey") {
 					this._sKey = aCustomData[i].getValue();
 				}
 			}
