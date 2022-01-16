@@ -10,9 +10,14 @@ sap.ui.define([
 	'sap/ui/model/FilterOperator',
 	'sap/ui/core/Fragment',
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
-	"sap/m/MessageToast"
+	"sap/m/StandardListItem",
+	"sap/m/Dialog",
+	"sap/m/MessageToast",
+	"sap/m/List",
+	"sap/m/Button",
+	"sap/m/ButtonType",
 ], function (Controller, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment, ServiceCall,
-	MessageToast) {
+	StandardListItem, Dialog, MessageToast, List, Button, ButtonType) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
@@ -77,55 +82,51 @@ sap.ui.define([
 		},
 
 		onSaveClick: function (oEvent) {
-			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
-			var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
-			var objParamFirstCall = {
-				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-				hasPayload: true,
-				type: 'POST',
-				data: {
-					"entityType": "VENDOR",
-					"parentDTO": {
-						"customData": {
-							"vnd_lfa1": {
-								"entity_id": sEntityId,
-								"KTOKK": "EMPL"
+			if (this.onCheckClick()) {
+				var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
+				var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
+				var objParamFirstCall = {
+					url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+					hasPayload: true,
+					type: 'POST',
+					data: {
+						"entityType": "VENDOR",
+						"parentDTO": {
+							"customData": {
+								"vnd_lfa1": {
+									"entity_id": sEntityId,
+									"KTOKK": "EMPL"
+								}
 							}
 						}
 					}
-				}
 
-			};
-			this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
-				if (oDataResp.result) {
-					var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
-					oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
-					oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
-					var objParamCreate = {
-						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-						hasPayload: true,
-						data: oData,
-						type: 'POST'
-					};
-					this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-						if (oDataResp.result) {
-							this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-							this.getView().byId("idCreateVendorSubmit").setVisible(true);
-						}
-					}.bind(this));
-				}
-			}.bind(this));
-			// var sID = this.getView().getParent().getPages().find(function (e) {
-			// 	return e.getId().indexOf("erpVendorPreview") !== -1;
-			// }).getId();
-			// this.getView().getParent().to(sID);
-			// this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
-			// this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-			// this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+				};
+				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+					if (oDataResp.result) {
+						var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
+						oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
+						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
+						oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
+						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
+						oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+						var objParamCreate = {
+							url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+							hasPayload: true,
+							data: oData,
+							type: 'POST'
+						};
+						this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+							if (oDataResp.result) {
+								this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+								this.getView().byId("idCreateVendorSubmit").setVisible(true);
+							}
+						}.bind(this));
+					}
+				}.bind(this));
+			}
+
 		},
 
 		onValueHelpRequested: function (oEvent) {
@@ -406,22 +407,45 @@ sap.ui.define([
 		},
 
 		onCheckClick: function () {
-			var aMandFields = [{
-				name: "",
-				key: ""
-			}];
+			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
-			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
+			var oData = this.getView().getModel("CreateVendorModel");
+
 			aMandFields.forEach(function (oItem) {
-				if (oData[oItem.key] === '') {
-					oEmptyFields.push(oItem);
+				if (oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(oItem.fieldMapping) === null) {
+					aEmptyFields.push(oItem);
 				}
 			});
+			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
-
+				if (!this.oDefaultDialog) {
+					this.oDefaultDialog = new Dialog({
+						title: "Missing Fields",
+						content: new List({
+							items: {
+								path: "CreateVendorModel>/missingFields",
+								template: new StandardListItem({
+									title: "{CreateVendorModel>Name}" + " field is missing in " + "{CreateVendorModel>panelMapping}" + " Section"
+								})
+							}
+						}),
+						endButton: new Button({
+							text: "Close",
+							press: function () {
+								this.oDefaultDialog.close();
+							}.bind(this)
+						})
+					});
+					// to get access to the controller's model
+					this.getView().addDependent(this.oDefaultDialog);
+				}
+				this.oDefaultDialog.open();
+				return false;
+			} else {
+				MessageToast.show("Validation Successful'");
+				return true;
 			}
 		},
-
 		onSubmitClick: function (oEvent) {
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
