@@ -644,6 +644,13 @@
 		}
 	},
 	"createCRDDConfig": [
+		
+		{
+			"controlID": "generalDataTitleId",
+			"controlTable": "TSAD3",
+			"controlField": "title",
+			"controlFieldName": "title_MEDI"
+		},
 		{
 			"controlID": "accountGrpID",
 			"controlTable": "T077K",
@@ -699,6 +706,12 @@
 			"controlTable": "OIUCM_ADDR_TYPE",
 			"controlField": "addr_TYPE",
 			"controlFieldName": "description"
+		},
+		{
+			"controlID": "praDataAddrTabTitleId",
+			"controlTable": "TSAD3",
+			"controlField": "title",
+			"controlFieldName": "title_MEDI"
 		}
 
 	],
