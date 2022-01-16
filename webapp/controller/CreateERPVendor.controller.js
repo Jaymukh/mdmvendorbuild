@@ -68,7 +68,7 @@ sap.ui.define([
 
 				function searchCallback(data) {
 					var oJsonModel = new JSONModel(data.result);
-					console.log(data.result);
+					// console.log(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
 					var oItemSelectTemplate1 = new sap.ui.core.Item({
