@@ -413,7 +413,7 @@ sap.ui.define([
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
-			var sValueState ="";
+			var sValueState ="None";
 			var oController =this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
