@@ -140,7 +140,7 @@ sap.ui.define([
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
 			if (sKey === "createERPVendorView") {
-			this._createCREntityID();
+				this._createCREntityID();
 			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
@@ -165,7 +165,7 @@ sap.ui.define([
 						}
 					}
 				}
-			}
+			};
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
@@ -189,7 +189,7 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);			
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
