@@ -62,10 +62,10 @@
 										<form:content>
 											<core:Title text="Administritative Data"/>
 											<Label text="Vendor"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}"/>
+											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}"/>
 											<core:Title/>
 											<Label text="Account Group"/>
-											<Select required="true" id="accountGrpID" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
+											<Select required="true" forceSelection="false" id="accountGrpID" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
 												<!--<items>-->
 												<!--	<core:Item text="Group1" key="1"/>-->
 												<!--	<core:Item text="Group2" key="2"/>-->
@@ -141,9 +141,9 @@
 											<Input value=""/>
 											<core:Title/>
 											<Label text="PO Box Lobby"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/PO_BOX_LOBBY}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
 											<Label text="Type of Delivery Service"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DELI_SERV_TYPE}" showValueHelp="true"
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_type}" showValueHelp="true"
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
@@ -155,29 +155,29 @@
 												</customData>
 											</Input>
 											<Label text="Number of Delivery Service"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DELI_SERV_NUMBER}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
 											<Label text="PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
 											<core:Title text="Address"/>
 											<Label text="House No. / Steet"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/HOUSE_NUM1}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STREET}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="District"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/CITY2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city2}"/>
 											<Label text="Strret 2"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STR_SUPPL1}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl1}"/>
 											<Label text="Strret 3"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STR_SUPPL2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
 											<Label text="Strret 4"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STR_SUPPL2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
 											<Label text="Strret 5"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/LOCATION}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
 												<layoutData>
@@ -223,13 +223,13 @@
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
-													<core:CustomData key="/gen_adrc/gen_adrc_1/PO_BOX_NUM" value="X"></core:CustomData>
+													<core:CustomData key="/gen_adrc/gen_adrc_1/po_box_num" value="X"></core:CustomData>
 												</customData>
 											</CheckBox>
 											<Label text="Company POstal Code"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/POST_CODE3}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
 											<Label text="Supplement"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/HOUSE_NUM2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1558,7 +1558,7 @@
 											</Input>
 											<core:Title/>
 											<Label text="Timezone"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/TIME_ZONE}" showValueHelp="true"
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/time_zone}" showValueHelp="true"
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Timezone"></core:CustomData>
@@ -1572,11 +1572,11 @@
 											<Label text="PO Box postal code / PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
 											<Label text="PO Box Without No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/PO_BOX_NUM}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>
 											<Label text="Company Post code"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/POST_3}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
 											<Label text="Supplement"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/HOUSE_NUM2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<core:Title text="Telephone No's."/>
 											<Label text="Country"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
@@ -2009,23 +2009,23 @@
 															</items>-->
 														</Select>
 														<Label text="Title"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/TITLE}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>
 														<Label text="Name"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/NAME1}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
 														<Label text="Name2"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/NAME2}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 														<Label text="Search Term 1"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/SORT1}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
 														<Label text="Street"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STREET}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}"/>
 														<Label text="House No."/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/HOUSE_NUM1}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
 														<Label text="Supplement"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/HOUSE_NUM2}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 														<Label text="Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/POST_CODE1}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 														<Label text="Country Key"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/LAND1}" showValueHelp="true"
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
@@ -2037,10 +2037,10 @@
 															</customData>
 														</Input>
 														<Label text="City"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/CITY1}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
 														<core:Title/>
 														<Label text="Region"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/REGION}" showValueHelp="true"
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/region}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
@@ -2052,13 +2052,13 @@
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/PO_BOX}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box}"/>
 														<Label text="PO Box Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/POST_CODE2}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code2}"/>
 														<Label text="Company Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/POST_CODE3}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
 														<Label text="Language Key"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/LANGU}" showValueHelp="true"
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Langauge Key"></core:CustomData>
@@ -2070,17 +2070,17 @@
 															</customData>
 														</Input>
 														<Label text="Telephone"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/TEL_NUMBER}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/tel_number}"/>
 														<Label text="Ext."/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/TEL_EXTENS}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/tel_extens}"/>
 														<Label text="Mobile Phone"/>
 														<Input/>
 														<Label text="Fax"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/FAX_NUMBER}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/fax_number}"/>
 														<Label text="Email"/>
 														<Input/>
 														<Label text="Comm Method"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DEFLT_COMM}" showValueHelp="true"
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deflt_comm}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Communication Method"></core:CustomData>

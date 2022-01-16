@@ -197,7 +197,7 @@ sap.ui.define([
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/ADDRNUMBER",
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
