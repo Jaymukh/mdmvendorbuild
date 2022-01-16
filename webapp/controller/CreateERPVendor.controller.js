@@ -11,7 +11,8 @@ sap.ui.define([
 	'sap/ui/core/Fragment',
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
 	"sap/m/MessageToast"
-], function (Controller, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment, ServiceCall,MessageToast) {
+], function (Controller, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment, ServiceCall,
+	MessageToast) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
@@ -33,7 +34,7 @@ sap.ui.define([
 				url: "/murphyCustom/config-service/configurations/configuration",
 				type: 'POST',
 				hasPayload: true,
-			//	contentType: 'application/json',
+				//	contentType: 'application/json',
 				data: {
 					configType: "TAXONOMY"
 				}
@@ -83,37 +84,39 @@ sap.ui.define([
 				hasPayload: true,
 				type: 'POST',
 				data: {
-					  "entityType": "VENDOR",
-					  "parentDTO": {
-						  "customData": {
-						    "vnd_lfa1": {
-						      "entity_id":sEntityId ,
-						        "KTOKK": "EMPL"
-						    }
-						  }
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"vnd_lfa1": {
+								"entity_id": sEntityId,
+								"KTOKK": "EMPL"
+							}
+						}
 					}
 				}
-			
+
 			};
 			this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
 				if (oDataResp.result) {
 					var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
 					oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
-					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.lifnr = sLifnr;
+					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
 					oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
 					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
-						var objParamCreate = {
-							url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-							hasPayload: true,
-							data: oData,
-							type: 'POST'
-						};
-						this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-							if (oDataResp.result) {
-								this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
-								this.getView().byId("idCreateVendorSubmit").setVisible(true);
-							}
-						}.bind(this));
+					oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+					var objParamCreate = {
+						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+						hasPayload: true,
+						data: oData,
+						type: 'POST'
+					};
+					this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+						if (oDataResp.result) {
+							this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+							this.getView().byId("idCreateVendorSubmit").setVisible(true);
+						}
+					}.bind(this));
 				}
 			}.bind(this));
 			// var sID = this.getView().getParent().getPages().find(function (e) {
@@ -133,7 +136,8 @@ sap.ui.define([
 				cols: []
 			};
 			for (var i = 0; i < aCustomData.length; i++) {
-				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table" && aCustomData[i].getKey() !== "inputKey" &&  aCustomData[i].getKey() !== "inputText") {
+				if (aCustomData[i].getKey() !== "title" && aCustomData[i].getKey() !== "table" && aCustomData[i].getKey() !== "inputKey" &&
+					aCustomData[i].getKey() !== "inputText") {
 					var col = {
 						"label": aCustomData[i].getValue(),
 						"template": aCustomData[i].getKey()
@@ -143,7 +147,7 @@ sap.ui.define([
 					oData.title = aCustomData[i].getValue();
 				} else if (aCustomData[i].getKey() === "table") {
 					oData.table = aCustomData[i].getValue();
-				} else if(aCustomData[i].getKey() ==="inputText"){
+				} else if (aCustomData[i].getKey() === "inputKey") {
 					this._sKey = aCustomData[i].getValue();
 				}
 			}
@@ -166,27 +170,56 @@ sap.ui.define([
 				if (oDataResp.result) {
 					this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
 					this.oTableDataModel.refresh();
-				}else if(oData.table === 'SKA1'){
-					var oLocalData = [
-						{Key :"30000100", Name:"USOC	AP - TRADE"},
-						{Key:"30000110", Name:"USOC	AP - JOINT VENTURE"},
-						{Key :"30000111", Name:"USOC	CASH CALL DUE(NP)"},
-						{Key:"30000112", Name:"USOC	CASH CALL OFFSET(NP)"},
-						{Key :"30000113", Name:"USOC	Working Capital Cutback"},
-						{Key:"30000114", Name:"USOC	Vendor 1099 Reconciliation Account"},
-						{Key :"30000115", Name:"USOC	1099 Offset Account)"},
-						{Key:"30000120", Name:"USOC	AP - EMPLOYEES"},
-						{Key :"30000125", Name:"USOC	Employee Miscellaneous"},
-						{Key:"30000130", Name:"USOC	AP - LAND"},
-						{Key :"30000140", Name:"USOC	AP - GR/IR"},
-						{Key:"30000145", Name:"	USOC	AP - GR - NON PO"},
-						{Key:"30000149", Name:"USOC	AP - GR/IR Consignment"},
-						{Key :"30000150", Name:"USOC	Redetermination Liability"},
-						{Key:"30000160", Name:"USOC	AP - marketing"}
-					];
+				} else if (oData.table === 'SKA1') {
+					var oLocalData = [{
+						Key: "30000100",
+						Name: "USOC	AP - TRADE"
+					}, {
+						Key: "30000110",
+						Name: "USOC	AP - JOINT VENTURE"
+					}, {
+						Key: "30000111",
+						Name: "USOC	CASH CALL DUE(NP)"
+					}, {
+						Key: "30000112",
+						Name: "USOC	CASH CALL OFFSET(NP)"
+					}, {
+						Key: "30000113",
+						Name: "USOC	Working Capital Cutback"
+					}, {
+						Key: "30000114",
+						Name: "USOC	Vendor 1099 Reconciliation Account"
+					}, {
+						Key: "30000115",
+						Name: "USOC	1099 Offset Account)"
+					}, {
+						Key: "30000120",
+						Name: "USOC	AP - EMPLOYEES"
+					}, {
+						Key: "30000125",
+						Name: "USOC	Employee Miscellaneous"
+					}, {
+						Key: "30000130",
+						Name: "USOC	AP - LAND"
+					}, {
+						Key: "30000140",
+						Name: "USOC	AP - GR/IR"
+					}, {
+						Key: "30000145",
+						Name: "	USOC	AP - GR - NON PO"
+					}, {
+						Key: "30000149",
+						Name: "USOC	AP - GR/IR Consignment"
+					}, {
+						Key: "30000150",
+						Name: "USOC	Redetermination Liability"
+					}, {
+						Key: "30000160",
+						Name: "USOC	AP - marketing"
+					}];
 					this.oTableDataModel.setProperty("/item", oLocalData);
-					this.oTableDataModel.refresh();	
-					
+					this.oTableDataModel.refresh();
+
 				}
 			}.bind(this));
 
@@ -333,64 +366,71 @@ sap.ui.define([
 		},
 
 		onCreateERPVendorUpload: function (oEvent) {
-			var file = this.getView().byId('UploadCollection');      
-		/*	this.getBase64(file);
-			var objParamCreate = {
-				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"parentCrDTOs": [{
-						"crCommentDTOs": [{
-							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
-							"note_by": 1
+			var file = this.getView().byId('UploadCollection');
+			/*	this.getBase64(file);
+				var objParamCreate = {
+					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+					type: 'POST',
+					hasPayload: true,
+					data: {
+						"parentCrDTOs": [{
+							"crCommentDTOs": [{
+								"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+								"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
+								"note_by": 1
+							}]
 						}]
-					}]
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				this.getView().byId("createERPVendorCommentBoxId").setValue('');
-				if (oDataResp.result) {
-					var oModel = new JSONModel(oDataResp.result);
-					this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
-					debugger;
-				}
-			}.bind(this));*/
+					}
+				};
+				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().byId("createERPVendorCommentBoxId").setValue('');
+					if (oDataResp.result) {
+						var oModel = new JSONModel(oDataResp.result);
+						this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
+						debugger;
+					}
+				}.bind(this));*/
 		},
 
 		getBase64: function (file) {
-			return new Promise(function(resolve, reject){
+			return new Promise(function (resolve, reject) {
 				var reader = new FileReader();
 				reader.readAsDataURL(file);
-				reader.onload = function(){ resolve(reader.result);};
-				reader.onerror = function(error){ reject(error);};
+				reader.onload = function () {
+					resolve(reader.result);
+				};
+				reader.onerror = function (error) {
+					reject(error);
+				};
 			});
 		},
-		
-		onCheckClick : function(){
-			var aMandFields =[{name:"",key:""}];
-			var aEmptyFields =[];
+
+		onCheckClick: function () {
+			var aMandFields = [{
+				name: "",
+				key: ""
+			}];
+			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
-			aMandFields.forEach(function(oItem){
-				if(oData[oItem.key] === ''){
+			aMandFields.forEach(function (oItem) {
+				if (oData[oItem.key] === '') {
 					oEmptyFields.push(oItem);
 				}
 			});
-			if(aEmptyFields.length){
-				
+			if (aEmptyFields.length) {
+
 			}
 		},
-		
-		onSubmitClick : function(oEvent){
+
+		onSubmitClick: function (oEvent) {
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
 				type: 'POST',
 				hasPayload: true,
 				data: {
-					 "changeRequestDTO": {
-    				   "entity_id":  this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-    				}
+					"changeRequestDTO": {
+						"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
+					}
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
