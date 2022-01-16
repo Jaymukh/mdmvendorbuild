@@ -111,6 +111,7 @@ sap.ui.define([
 						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
 						oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 						var objParamCreate = {
 							url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 							hasPayload: true,
@@ -412,12 +413,23 @@ sap.ui.define([
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
-
+			var sValueState ="";
+			var oController =this;
 			aMandFields.forEach(function (oItem) {
+				var oControl = oController.getView().byId(oItem.id);
 				if (oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(oItem.fieldMapping) === null) {
 					aEmptyFields.push(oItem);
+					sValueState="Error";
+				}else{
+					if(oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error" ){
+						sValueState="Success";
+					}
+					
 				}
+				oControl.setValueState(sValueState);
 			});
+			
+			
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
 				if (!this.oDefaultDialog) {
