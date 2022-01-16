@@ -68,7 +68,7 @@ sap.ui.define([
 
 				function searchCallback(data) {
 					var oJsonModel = new JSONModel(data.result);
-					console.log(data.result);
+					// console.log(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
 					var oItemSelectTemplate1 = new sap.ui.core.Item({
@@ -285,7 +285,9 @@ sap.ui.define([
 			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
 				if (oControl.getValue()) {
 					aResult.push(new Filter({
-						path: oControl.getName(),
+						// path: oControl.getName(),
+						path: oControl.getModel("oViewModel").getProperty("/cols/" + oControl.getId().split("-")[oControl.getId().split("-").length -
+							1] + "/template"),
 						operator: FilterOperator.Contains,
 						value1: oControl.getValue()
 					}));

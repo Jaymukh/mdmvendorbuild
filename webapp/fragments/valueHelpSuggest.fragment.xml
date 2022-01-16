@@ -2,11 +2,11 @@
 	<ValueHelpDialog title="{oViewModel>/title}" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		supportMultiselect="false">
 		<filterBar>
-			<fb:FilterBar advancedMode="true" search=".onFilterBarSearch" filterGroupItems="{oViewModel>/cols}">
+			<fb:FilterBar advancedMode="true" search="onFilterBarSearch" filterGroupItems="{oViewModel>/cols}">
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="{oViewModel>template}" label="{oViewModel>label}" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="{oViewModel>label}"/>
+							<m:Input name="{oViewModel>template}"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
