@@ -728,7 +728,7 @@
 		{"Name":"Pay Frequency","Key":"PAY_FREQUENCY", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY", "panelMapping":"PRA DATA/Accounting"},
 		{"Name":"Check Double Invoice","Key":"REPRF", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/REPRF", "panelMapping":"Company Codes"},
 		{"Name":"Order Currency","Key":"WAERS", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS", "panelMapping":"Purchasing Organization"},
-		{"Name":"Order Currency","Key":"EKORG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg", "panelMapping":"Purchasing Organization"}
+		{"Name":"Purchasing Organization","Key":"EKORG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg", "panelMapping":"Purchasing Organization"}
 	],
 	"missingFields":[]
 																																					
