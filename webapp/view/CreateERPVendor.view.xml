@@ -62,7 +62,7 @@
 										<form:content>
 											<core:Title text="Administritative Data"/>
 											<Label text="Vendor"/>
-											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}"/>
+											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}" maxLength="10"/>
 											<core:Title/>
 											<Label text="Account Group"/>
 											<Select required="true" forceSelection="false" id="accountGrpID"
@@ -77,21 +77,22 @@
 											<Label text="Title"/>
 											<Select forceSelection="false" id="generalDataTitleId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
-											<!--	<items>
+												<!--	<items>
 													<core:Item text="Title1" key="1"/>
 													<core:Item text="Title2" key="2"/>
 													<core:Item text="Title3" key="3"/>
 												</items>-->
 											</Select>
 											<Label text="Name1"/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}" maxLength="35"/>
+											<Input id="idERPVendorName1" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"
+												maxLength="35"/>
 											<Label text="Name2"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}" maxLength="35"/>
 											<Label text="Name3"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/Name3}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/Name3}" maxLength="35"/>
 											<core:Title/>
 											<Label text="Legal Name (Name4)"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME4}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME4}" maxLength="35"/>
 											<Label text="Natural person"/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -99,7 +100,8 @@
 												</customData>
 											</CheckBox>
 											<Label text="Search Terms"/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="10"/>
+											<Input id="idERPVendorSearchTerms" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="10"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
 											<Input value="">
@@ -158,7 +160,7 @@
 											<Label text="Number of Delivery Service"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
 											<Label text="PO Box"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
 											<core:Title text="Address"/>
@@ -180,15 +182,17 @@
 											<Label text="Strret 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
+											<Input id="idERPVendorPostalCode" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35"/>
+											<Input id="idERPVendorCity" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"
+												maxLength="35"/>
 											<Label text="Country"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" maxLength="3"/>-->
-											<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}">
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
@@ -204,7 +208,7 @@
 											<!--<Label text="Region"/>-->
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" maxLength="3"/>-->
 											<Label text="Region"/>
-											<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idERPVendorRegion" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
@@ -217,8 +221,8 @@
 											</Input>
 											<Label text="Language"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"/>-->
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}" showValueHelp="true"
-												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+											<Input id="idERPVendorLanguage" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"
+												showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Language"></core:CustomData>
 													<core:CustomData key="table" value="T002"></core:CustomData>
@@ -229,7 +233,7 @@
 												</customData>
 											</Input>
 											<Label text="Transportation Zone"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
 											<Input value=""/>
 											<Label text="PO Box Without No."/>
@@ -254,9 +258,9 @@
 										<form:content>
 											<core:Title text="Account Control"/>
 											<Label text="Authorization Group"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BEGRU}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BEGRU}" maxLength="4"/>
 											<Label text="Group Key"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KONZS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KONZS}" maxLength="10"/>
 											<Label text="Trading Partner"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/VBUND}">
@@ -310,9 +314,9 @@
 										<form:content>
 											<core:Title text="Reference Data"/>
 											<Label text="Train Station"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BAHNS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BAHNS}" maxLength="25"/>
 											<Label text="External Manufaturer"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}" maxLength="10"/>
 											<Label text="Relevant for POD"/>
 											<Select id="refDataRelevantPODId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
 												<items>
@@ -322,7 +326,7 @@
 												</items>
 											</Select>
 											<Label text="SCAC"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}" maxLength="4"/>
 											<Label text="Actual QM System"/>
 											<Select id="refDataActualQMSystemId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
 												<items>
@@ -344,10 +348,10 @@
 												</items>
 											</Select>
 											<Label text="Carrier Freight Group"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}" maxLength="4"/>
 											<core:Title text=""/>
 											<Label text="Industry"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}" maxLength="4"/>
 											<Label text="Service agent procedure group"/>
 											<Select id="refDataServiceAgentPGId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
 												<items>
@@ -360,9 +364,10 @@
 												</items>
 											</Select>
 											<Label text="Credit information No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}" maxLength="11"/>
 											<Label text="Last External Review"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
 											<Label text="Statistics Group, Service agent"/>
 											<Select id="refDataStatGrpServiceAgntId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
 												<!--	<items>
@@ -372,7 +377,8 @@
 												</items>-->
 											</Select>
 											<Label text="QM System Valid to"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -438,7 +444,7 @@
 												</customData>
 											</Input>
 											<Label text="Tax No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}" maxLength="18"/>
 											<Label text="Tax Base"/>
 											<Select id="taxInfoTaxBaseId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
 												<items>
@@ -454,9 +460,9 @@
 												<!--</items>-->
 											</Select>
 											<Label text="Type of Business"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}" maxLength="30"/>
 											<Label text="Name of Representative"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFREPRE}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFREPRE}" maxLength="10"/>
 											<core:Title text=""/>
 											<Label text="Sales Equalization Tax"/>
 											<CheckBox select="onSelectCheckBox">
@@ -491,7 +497,7 @@
 												</items>-->
 											</Select>
 											<Label text="Type of Industry"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}" maxLength="30"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -602,7 +608,7 @@
 												</customData>
 											</Input>
 											<Label text="ISR No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ESRNR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ESRNR}" maxLength="11"/>
 											<core:Title text="Alternate Payee"/>
 											<Label text="Payee in Document"/>
 											<CheckBox select="onSelectCheckBox">
@@ -636,10 +642,12 @@
 											<Label text="Ariba Supplier Network ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZARIBA_NET}" maxLength="30"/>
 											<Label text="Validate From Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_FM}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_FM}"/>
 											<core:Title/>
 											<Label text="Validate To Date"/>
-											<DatePickerdisplayFormat="YYYYMMdd" valueFormat="YYYYMMdd"  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_TO}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_TO}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -652,7 +660,7 @@
 										<form:content>
 											<core:Title text="ERP Vendor Company Code"/>
 											<Label text="Company Code"/>
-											<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idComCodesCompanyCode" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/bukrs}">
 												<customData>
 													<core:CustomData key="title" value="Company Code"></core:CustomData>
@@ -667,7 +675,7 @@
 											</Input>
 											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 											<Label text="Reconcillation Account"/>
-											<Select required="true" forceSelection="false"
+											<Select id="idCompCodesReconcillationAccunt" required="true" forceSelection="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/AKONT}">
 												<items>
 													<core:Item text="11100" key="11100"/>
@@ -706,7 +714,7 @@
 												</customData>
 											</Input>
 											<Label text="Authorization Group"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/BEGRU}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/BEGRU}" maxLength="4"/>
 											<Label text="Minority Indicator"/>
 											<Select forceSelection="false" id="compCodesMinorIndicatorId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MINDK}">
@@ -717,7 +725,7 @@
 												</items>-->
 											</Select>
 											<Label text="Sort Key"/>
-											<Input showValueHelp="true" required="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idComCodesSortKey" showValueHelp="true" required="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZUAWA}">
 												<customData>
 													<core:CustomData key="title" value="Sort Key"></core:CustomData>
@@ -750,7 +758,8 @@
 												</items>-->
 											</Select>
 											<Label text="Certification Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CERDT}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CERDT}"/>
 											<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
 											<Label text="Intrest Indicator"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -783,9 +792,11 @@
 												</items>
 											</Select>
 											<Label text="Last Key Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZINDT}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZINDT}"/>
 											<Label text="Last Key Run"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/DATLZ}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/DATLZ}"/>
 											<core:Title text="Withholding Tax"/>
 											<Label text="Withholding Tax Code"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -823,9 +834,9 @@
 												</customData>
 											</Input>
 											<Label text="Main Economic activity per CIIU Code"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CIIUCODE}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CIIUCODE}" maxLength="4"/>
 											<Label text="Exemption No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXNR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXNR}" maxLength="25"/>
 											<Label text="Valid Unit"/>
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"/>
 											<Label text="Exemption Authority"/>
@@ -875,7 +886,8 @@
 											<Label text="Exemption Rate in %"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXRT}" maxLength="5"/>
 											<Label text="Date on which exemption starts"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDF}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDF}"/>
 											<core:Title/>
 											<Label text="Withholding Tax Code"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -910,15 +922,16 @@
 												</customData>
 											</Input>
 											<Label text="Date on which Exemption Ends"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDT}"/>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDT}"/>
 											<core:Title text="ERP Vendor Company Code : Reference data"/>
 											<Label text="Previous Account No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ALTKN}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ALTKN}" maxLength="10"/>
 											<Label text="Personnel No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/PERNR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/PERNR}" maxLength="8"/>
 											<core:Title text="ERP Vendor Company Code : Payment data"/>
 											<Label text="Terms of Payment"/>
-											<Select forceSelection="false" required="true"
+											<Select id="idCompCodesTermsOfPayment" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<items>
 													<core:Item text="0030" key="0030"/>
@@ -939,7 +952,7 @@
 												</customData>
 											</Input>-->
 											<Label text="Check Cashing Times"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/KULTG}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/KULTG}" maxLength="3"/>
 											<Label text="Credit Memo Payment Term"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/GUZTE}">
@@ -965,15 +978,15 @@
 													<core:CustomData key="inputText" value="text30"></core:CustomData>
 												</customData>
 											</Input>
-											<Label text="Check Double Invoice"/>
-											<CheckBox select="onSelectCheckBox" selected="true">
+											<Label required="true" text="Check Double Invoice"/>
+											<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox" selected="true">
 												<customData>
 													<core:CustomData key="/vnd_lfb1/vnd_lfb1_1/REPRF" value="X"></core:CustomData>
 												</customData>
 											</CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
-											<Select forceSelection="false" required="true"
+											<Select id="idCompCodePaymentMethod" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}">
 												<items>
 													<core:Item text="CDFW" key="CDFW"/>
@@ -1018,7 +1031,7 @@
 												</items>-->
 											</Select>
 											<Label text="Bill of Exchange limit"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/WEBTR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/WEBTR}" maxLength="13"/>
 											<Label text="Payment Method Suppliement"/>
 											<Select forceSelection="false" id="compCodesPayMethodSuppliementId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/UZAWE}">
@@ -1096,11 +1109,11 @@
 												</customData>
 											</Input>
 											<Label text="Account With Vendor"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/EIKTO}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/EIKTO}" maxLength="12"/>
 											<Label text="Clerk's Telephone No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFNS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFNS}" maxLength="30"/>
 											<Label text="Clerk's Internet Addredd"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/INTAD}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/INTAD}" maxLength="130"/>
 											<!--<core:Title/>-->
 											<Label text="Local Processing"/>
 											<CheckBox select="onSelectCheckBox">
@@ -1109,11 +1122,11 @@
 												</customData>
 											</CheckBox>
 											<Label text="Account Statement"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XAUSZ}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XAUSZ}" maxLength="1"/>
 											<Label text="Account Memo"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XVERM}"/>
 											<Label text="Clerk's Fax no."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}" maxLength="13"/>
 											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
 											<Label text="Grouping Key"/>
 											<Select forceSelection="false" id="compCodesGroupingKeyId"
@@ -1148,7 +1161,7 @@
 											</Select>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
-											<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idPurOrgOrderCurrency" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS}">
 												<customData>
 													<core:CustomData key="title" value="Order Currency"></core:CustomData>
@@ -1160,7 +1173,7 @@
 												</customData>
 											</Input>
 											<Label text="Minimum Order Value"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MINBW}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MINBW}" maxLength="13"/>
 											<Label text="Schema Group (Vendor)"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KALSK}">
@@ -1174,9 +1187,9 @@
 												</customData>
 											</Input>
 											<Label text="LB Restriction Profile"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}" maxLength="4"/>
 											<Label text="Terms of Payment"/>
-											<Select forceSelection="false" required="true"
+											<Select id="idPurOrgTermsOfPayment" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<items>
 													<core:Item text="0030" key="0030"/>
@@ -1197,7 +1210,7 @@
 												</customData>
 											</Input>-->
 											<Label text="Incoterms"/>
-											<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idPurOrgIncoPart1" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}">
 												<customData>
 													<core:CustomData key="title" value="Incoterms"></core:CustomData>
@@ -1209,8 +1222,8 @@
 												</customData>
 											</Input>
 											<Label text="Incoterms"/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}"
-												maxLength="28"/>
+											<Input id="idPurOrgIncoPart2" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}" maxLength="28"/>
 											<Label text="Pricing date Control"/>
 											<Select forceSelection="false" id="purOrgPricingDateContrId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEPRF}">
@@ -1225,13 +1238,13 @@
 											</Select>
 											<core:Title text="ERP Vendor Company Code : Sales Data"/>
 											<Label text="Sales Person"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VERKF}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VERKF}" maxLength="30"/>
 											<core:Title/>
 											<Label text="Account with Vendor"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EIKTO}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EIKTO}" maxLength="12"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
 											<Label text="ABC Indicator"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LFABC}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LFABC}" maxLength="1"/>
 											<Label text="Mode of Transport-Border"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EXPVZ}">
@@ -1407,16 +1420,16 @@
 												</customData>
 											</Input>
 											<Label text="Rounding profile"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/RDPRF}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/RDPRF}" maxLength="4"/>
 											<Label text="Planned delivery time in Days"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PLIFZ}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PLIFZ}" maxLength="3"/>
 											<Label text="Unit of Measure Group"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEGRU}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEGRU}" maxLength="4"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
 											<Label text="Price Marketing Agreed"/>
 											<Input/>
 											<Label text="Vendor Service Level"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VENSL}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VENSL}" maxLength="4"/>
 											<Label text="Rack Jobbing Agreement with Vendor Exists"/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -1447,7 +1460,7 @@
 												</customData>
 											</CheckBox>
 											<Label text="plant"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/WERKS}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/WERKS}" maxLength="4"/>
 											<core:Title/>
 											<Label text="Vendor Sub-Range Relevant"/>
 											<CheckBox select="onSelectCheckBox">
@@ -1461,53 +1474,54 @@
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Address">
 								<content>
-									<Table items="{CreateERPVendorAddrTableModel>/rows}">
-										<headerToolbar>
-											<Toolbar>
-												<ToolbarSpacer></ToolbarSpacer>
-												<Button text="Add" press="handleCreateERPAddrAddTable"></Button>
-											</Toolbar>
-										</headerToolbar>
-										<columns>
-											<Column>
-												<header>
-													<Label text="Address" design="Bold"></Label>
-												</header>
-											</Column>
-											<Column>
-												<header>
-													<Label text="Company Postal Address" design="Bold"></Label>
-												</header>
-											</Column>
-											<Column>
-												<header>
-													<Label text="Country" design="Bold"></Label>
-												</header>
-											</Column>
-											<Column>
-												<header>
-													<Label text="Postal Address" design="Bold"></Label>
-												</header>
-											</Column>
-										</columns>
-										<items>
-											<ColumnListItem>
-												<cells>
-													<Link text="{CreateERPVendorAddrTableModel>AddressHeader}"></Link>
-													<Text text="{CreateERPVendorAddrTableModel>companyPostCode}"></Text>
-													<Text text="{CreateERPVendorAddrTableModel>teleCountry}"></Text>
-													<Text text="{CreateERPVendorAddrTableModel>PSTLZ}"></Text>
-												</cells>
-											</ColumnListItem>
-										</items>
-									</Table>
+									<!--<Table items="{CreateERPVendorAddrTableModel>/rows}">-->
+									<!--	<headerToolbar>-->
+									<!--		<Toolbar>-->
+									<!--			<ToolbarSpacer></ToolbarSpacer>-->
+									<!--			<Button text="Add" press="handleCreateERPAddrAddTable"></Button>-->
+									<!--		</Toolbar>-->
+									<!--	</headerToolbar>-->
+									<!--	<columns>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Company Postal Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Country" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Postal Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--	</columns>-->
+									<!--	<items>-->
+									<!--		<ColumnListItem>-->
+									<!--			<cells>-->
+									<!--				<Link text="{CreateERPVendorAddrTableModel>AddressHeader}"></Link>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>companyPostCode}"></Text>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>teleCountry}"></Text>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>PSTLZ}"></Text>-->
+									<!--			</cells>-->
+									<!--		</ColumnListItem>-->
+									<!--	</items>-->
+									<!--</Table>-->
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 										singleContainerFullSize="false">
 										<form:content>
 											<core:Title text="Addresses"/>
 											<Label text="Street/House No."/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}" maxLength="35"/>
+											<Input id="idAddrStreetHouseNumber" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}" maxLength="35"/>
 											<!--<Input value="">-->
 											<!--	<layoutData>-->
 											<!--		<l:GridData span="XL2 L1 M3 S4"/>-->
@@ -1515,7 +1529,7 @@
 											<!--</Input>-->
 											<Label text="Postal Code / City"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
@@ -1568,7 +1582,7 @@
 													<core:CustomData key="vtext" value="Transportation Zone"></core:CustomData>
 												</customData>
 											</Input>
-											<core:Title/>
+											
 											<Label text="Timezone"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/time_zone}" showValueHelp="true"
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
@@ -1582,13 +1596,58 @@
 												</customData>
 											</Input>
 											<Label text="PO Box postal code / PO Box"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}" maxLength="10"/>
 											<Label text="PO Box Without No."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>
 											<Label text="Company Post code"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+											<core:Title/>
 											<Label text="Supplement"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+											<Label text="Title"/>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
+											<Select forceSelection="false" id="idAddressTitle"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
+												<!--<items>
+																<core:Item text="Title1" key="1"/>
+																<core:Item text="Title2" key="2"/>
+																<core:Item text="Title3" key="3"/>
+															</items>-->
+											</Select>
+											<Label text="Name"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
+											<Label text="Name2"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
+											<Label text="Search Term 1"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
+											<Label text="Postal Code"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+											<Label text="Country Key"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Country Key"></core:CustomData>
+													<core:CustomData key="table" value="T005"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
+													<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
+													<core:CustomData key="land1" value="Country Code"></core:CustomData>
+													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="City"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
+											<Label text="Language Key"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Langauge Key"></core:CustomData>
+													<core:CustomData key="table" value="T002"></core:CustomData>
+													<core:CustomData key="inputKey" value="spras"></core:CustomData>
+													<core:CustomData key="inputText" value="sptxt"></core:CustomData>
+													<core:CustomData key="spras" value="Key"></core:CustomData>
+													<core:CustomData key="sptxt" value="Language"></core:CustomData>
+												</customData>
+											</Input>
 											<core:Title text="Telephone No's."/>
 											<Label text="Country"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
@@ -1648,7 +1707,7 @@
 												</items>
 											</Select>
 											<Label text="Last Name"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAME1}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAME1}" maxLength="35"/>
 											<Label text="First Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAMEV}"/>
 											<Label text="Academic Title"/>
@@ -1780,10 +1839,10 @@
 														<Label text="Intercompany Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BUKRS}" maxLength="4"/>
 														<Label text="Resident Country"/>
-														<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND}"
-															maxLength="3"/>
+														<Input id="idPRAAccResidentCountry" required="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND}" maxLength="3"/>
 														<Label text="Entity Type"/>
-														<Select forceSelection="false" required="true"
+														<Select id="idPRAAccEntityType" forceSelection="false" required="true"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD}">
 															<items>
 																<core:Item text="Charitable" key="01"/>
@@ -1800,17 +1859,18 @@
 															</items>
 														</Select>
 														<Label text="Levy"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/LEVY}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/LEVY}" maxLength="1"/>
 														<Label text="CDEX Company"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/CDEX_COMPANY}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/CDEX_COMPANY}"
+															maxLength="2"/>
 														<Label text="Region"/>
-														<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG}"
-															maxLength="3"/>
+														<Input id="idPRAAccRegionResidence" required="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG}" maxLength="3"/>
 														<Label text="Tribe No."/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TRIBE_NO}"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TRIBE_NO}" maxLength="2"/>
 														<core:Title text="Payment Information"/>
 														<Label text="Payment Type"/>
-														<Select forceSelection="false" required="true"
+														<Select id="idPRAAccPaymentType" forceSelection="false" required="true"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAYMENT_TYPE}">
 															<items>
 																<core:Item text="Check" key="C"/>
@@ -1820,7 +1880,7 @@
 															</items>
 														</Select>
 														<Label text="Owner Minimum Pay"/>
-														<Input required="true"
+														<Input id="idPRAAccOwnerMinPay" required="true" maxLength="13"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/OWNER_MIN_PAY}"/>
 														<Label text="Do Not Recoup"/>
 														<CheckBox select="onSelectCheckBox">
@@ -1829,7 +1889,7 @@
 															</customData>
 														</CheckBox>
 														<Label text="Pay Frequency"/>
-														<Select required="true" forceSelection="false"
+														<Select id="idPRAAccPayFreq" required="true" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY}">
 															<items>
 																<core:Item text="Normal" key="1"/>
@@ -1903,11 +1963,14 @@
 														<Label text="Tax ID"/>
 														<Input/>
 														<Label text="Tin match Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_MATCH_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_MATCH_DATE}"/>
 														<Label text="B Notice 1 Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_DATE}"/>
 														<Label text="B Notice 2 Date"/>
-														<DatePicker  displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN2_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN2_DATE}"/>
 														<Label text="Backup Withholding"/>
 														<CheckBox select="onSelectCheckBox">
 															<customData>
@@ -1931,12 +1994,15 @@
 															</items>
 														</Select>
 														<Label text="Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_RESP_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_RESP_DATE}"/>
 														<Label text="TIN Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_RESP_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_RESP_DATE}"/>
 														<core:Title/>
 														<Label text="IRS Form Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/IRS_RESP_DATE}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/IRS_RESP_DATE}"/>
 														<Label text="NRA"/>
 														<CheckBox select="onSelectCheckBox">
 															<customData>
@@ -2139,7 +2205,8 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_PREFIX}"
 															maxLength="10"/>
 														<Label text="Date Of Birth"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_DOB}"/>
+														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_DOB}"/>
 														<Label text="Tax ID"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_TAXID}"
 															maxLength="9"/>
