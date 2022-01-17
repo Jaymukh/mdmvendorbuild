@@ -678,16 +678,17 @@
 											<Select id="idCompCodesReconcillationAccunt" required="true" forceSelection="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/AKONT}">
 												<items>
-													<core:Item text="11100" key="11100"/>
-													<core:Item text="12000" key="12000"/>
-													<core:Item text="13000" key="13000"/>
-													<core:Item text="20000" key="20000"/>
-													<core:Item text="21000" key="21000"/>
-													<core:Item text="22000" key="22000"/>
-													<core:Item text="23000" key="23000"/>
-													<core:Item text="30000" key="30000"/>
-													<core:Item text="31000" key="31000"/>
-													<core:Item text="32000" key="32000"/>
+													<core:Item text="AR IC JV VENDOR" key="11590120"/>
+													<core:Item text="AP-TRADE" key="30000100"/>
+													<core:Item text="AP-JOINT VENTURE" key="30000110"/>
+													<core:Item text="CASH CALL DUE(NP)" key="30000111"/>
+													<core:Item text="CASH CALL OFFSET(NP)" key="30000112"/>
+													<core:Item text="Vendor 1099 Reconciliation Account" key="30000114"/>
+													<core:Item text="AP - EMPLOYEES" key="30000120"/>
+													<core:Item text="AP- LAND" key="30000130"/>
+													<core:Item text="AP IC auto postings" key="30400100"/>
+													<core:Item text="N_INACTIVE-Production/royalty payable(recon)" key="31000105"/>
+													<core:Item text="NGL MKTG PURCH PAY" key="31000170"/>
 												</items>
 											</Select>
 											<!--	<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
