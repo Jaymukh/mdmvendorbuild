@@ -202,13 +202,24 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth()+1)) : oDate.getMonth()+1) + "-" + oDate.getDate());
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate.getDate()
+				);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").refresh();
 				// console.log(oData);
 			}.bind(this), function (oData) {

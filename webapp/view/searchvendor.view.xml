@@ -62,12 +62,12 @@
 								<f:content>
 									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" >
 										<filterbar:filterGroupItems >
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name1">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name 1">
 												<filterbar:control>
 													<Input id="fbName1"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name2" label="Name2">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name2" label="Name 2">
 												<filterbar:control>
 													<Input  id="fbName2"></Input>
 												</filterbar:control>

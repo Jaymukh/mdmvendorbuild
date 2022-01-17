@@ -486,6 +486,7 @@ sap.ui.define([
 			}
 		},
 		onSubmitClick: function (oEvent) {
+			this.getView().setBusy(true);
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
 				type: 'POST',
@@ -497,7 +498,10 @@ sap.ui.define([
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
+				this.getView().setBusy(false);
 				MessageToast.show("Submission Successful");
+			}.bind(this), function(oError) {
+				this.getView().setBusy(false);
 			}.bind(this));
 
 		}
