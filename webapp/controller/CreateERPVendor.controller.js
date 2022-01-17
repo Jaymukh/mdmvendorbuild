@@ -83,49 +83,75 @@ sap.ui.define([
 
 		onSaveClick: function (oEvent) {
 			if (this.onCheckClick()) {
+				this.getView().setBusy(true);
+				debugger;
 				var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
 				var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
-				var objParamFirstCall = {
-					url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-					hasPayload: true,
-					type: 'POST',
-					data: {
-						"entityType": "VENDOR",
-						"parentDTO": {
-							"customData": {
-								"vnd_lfa1": {
-									"entity_id": sEntityId,
-									"KTOKK": "EMPL"
+				if (!oData.parentDTO.customData.vnd_lfa1.lifnr) {
+					var objParamFirstCall = {
+						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+						hasPayload: true,
+						type: 'POST',
+						data: {
+							"entityType": "VENDOR",
+							"parentDTO": {
+								"customData": {
+									"vnd_lfa1": {
+										"entity_id": sEntityId,
+										"KTOKK": "EMPL"
+									}
 								}
 							}
 						}
-					}
 
-				};
-				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
-					if (oDataResp.result) {
-						var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
-						oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
-						oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
-						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-						var objParamCreate = {
-							url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-							hasPayload: true,
-							data: oData,
-							type: 'POST'
-						};
-						this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-							if (oDataResp.result) {
-								this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-								this.getView().byId("idCreateVendorSubmit").setVisible(true);
-							}
-						}.bind(this));
-					}
-				}.bind(this));
+					};
+					this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+						if (oDataResp.result) {
+							var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
+							oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
+							oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							var objParamCreate = {
+								url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+								hasPayload: true,
+								data: oData,
+								type: 'POST'
+							};
+							this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+								this.getView().setBusy(false);
+								if (oDataResp.result) {
+									this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+									this.getView().byId("idCreateVendorSubmit").setVisible(true);
+								}
+							}.bind(this), function (oError) {
+								this.getView().setBusy(false);
+							}.bind(this));
+						}
+					}.bind(this), function (oError) {
+						this.getView().setBusy(false);
+					}.bind(this));
+				} else {
+					var objParamCreate = {
+						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+						hasPayload: true,
+						data: oData,
+						type: 'POST'
+					};
+					this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+						if (oDataResp.result) {
+							this.getView().setBusy(false);
+							this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+							this.getView().byId("idCreateVendorSubmit").setVisible(true);
+						}
+					}.bind(this), function (oError) {
+						this.getView().setBusy(false);
+					}.bind(this));
+				}
+
 			}
 
 		},
@@ -413,23 +439,22 @@ sap.ui.define([
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
-			var sValueState ="None";
-			var oController =this;
+			var sValueState = "None";
+			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				if (oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(oItem.fieldMapping) === null) {
 					aEmptyFields.push(oItem);
-					sValueState="Error";
-				}else{
-					if(oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error" ){
-						sValueState="Success";
+					sValueState = "Error";
+				} else {
+					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
+						sValueState = "Success";
 					}
-					
+
 				}
 				oControl.setValueState(sValueState);
 			});
-			
-			
+
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
 				if (!this.oDefaultDialog) {
