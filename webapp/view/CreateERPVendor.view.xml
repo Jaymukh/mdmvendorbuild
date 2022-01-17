@@ -980,7 +980,7 @@
 												</customData>
 											</Input>
 											<Label required="true" text="Check Double Invoice"/>
-											<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox" selected="true">
+											<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox">
 												<customData>
 													<core:CustomData key="/vnd_lfb1/vnd_lfb1_1/REPRF" value="X"></core:CustomData>
 												</customData>
