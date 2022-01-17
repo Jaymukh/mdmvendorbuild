@@ -62,7 +62,7 @@
 										<form:content>
 											<core:Title text="Administritative Data"/>
 											<Label text="Vendor"/>
-											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LIFNR}" maxLength="10"/>
+											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}" maxLength="10"/>
 											<core:Title/>
 											<Label text="Account Group"/>
 											<Select required="true" forceSelection="false" id="accountGrpID"
@@ -318,7 +318,7 @@
 											<Label text="External Manufaturer"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}" maxLength="10"/>
 											<Label text="Relevant for POD"/>
-											<Select id="refDataRelevantPODId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
+											<Select forceSelection="false" id="refDataRelevantPODId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
 												<items>
 													<core:Item text="Do Not send POD" key="1"/>
 													<core:Item text="Always Send POD" key="A"/>
@@ -328,7 +328,7 @@
 											<Label text="SCAC"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}" maxLength="4"/>
 											<Label text="Actual QM System"/>
-											<Select id="refDataActualQMSystemId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
+											<Select forceSelection="false" id="refDataActualQMSystemId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
 												<items>
 													<core:Item text="ISO 9001,w/out cert.,audit score >80" key="1080"/>
 													<core:Item text="ISO 9001,w/out cert.,audit score >99" key="1099"/>
@@ -353,7 +353,7 @@
 											<Label text="Industry"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}" maxLength="4"/>
 											<Label text="Service agent procedure group"/>
-											<Select id="refDataServiceAgentPGId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
+											<Select forceSelection="false" id="refDataServiceAgentPGId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
 												<items>
 													<core:Item text="Street" key="0001"/>
 													<core:Item text="Post and Package services" key="0002"/>
@@ -1541,7 +1541,7 @@
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
-													<core:CustomData key="inputKey" value="lkvrz"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
 													<core:CustomData key="inputText" value="land1"></core:CustomData>
 													<core:CustomData key="land1" value="Country Code"></core:CustomData>
 													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
