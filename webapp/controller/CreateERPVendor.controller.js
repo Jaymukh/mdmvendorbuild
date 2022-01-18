@@ -84,7 +84,6 @@ sap.ui.define([
 		onSaveClick: function (oEvent) {
 			if (this.onCheckClick()) {
 				this.getView().setBusy(true);
-				debugger;
 				var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
 				var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
 				if (!oData.parentDTO.customData.vnd_lfa1.lifnr) {
@@ -98,7 +97,7 @@ sap.ui.define([
 								"customData": {
 									"vnd_lfa1": {
 										"entity_id": sEntityId,
-										"KTOKK": "EMPL"
+										"KTOKK": oData.parentDTO.customData.vnd_lfa1.KTOKK
 									}
 								}
 							}
