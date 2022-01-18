@@ -22,7 +22,7 @@
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
 											<Label text="Priority"/>
-											<Select selectedKey="{CreateVendorModel>/changeReq/genData/priority}" items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
+											<Select  forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
 													<core:Item text="{CreateVendorModel>taxonomy_name}" key="{CreateVendorModel>taxonomy_code}"/>
 												</items>
@@ -31,7 +31,7 @@
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label text="Reason"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Select selectedKey="{CreateVendorModel>/changeReq/genData/reason}">
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}">
 												<items>
 													<core:Item text="Create New Vendor" key="01"/>
 												</items>
@@ -383,7 +383,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Tax Numbers">
+							<Panel expandable="true" visible="false" expanded="false" headerText="Tax Numbers">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -446,13 +446,13 @@
 											<Label text="Tax No."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}" maxLength="18"/>
 											<Label text="Tax Base"/>
-											<Select id="taxInfoTaxBaseId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
+											<Select forceSelection="false" id="taxInfoTaxBaseId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
 												<items>
 													<core:Item text="80%" key="1"/>
 												</items>
 											</Select>
 											<Label text="Tax Type"/>
-											<Select id="taxTypeId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
+											<Select id="taxTypeId" forceSelection="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
 												<!--<items>-->
 												<!--	<core:Item text="TaxType 1" key="1"/>-->
 												<!--	<core:Item text="TaxType 2" key="2"/>-->
@@ -520,7 +520,7 @@
 											<Label text="IBAN"/>
 											<Input value=""/>
 											<Label text="IBAN-Generate IBAN"/>
-											<Select selectedKey="">
+											<Select forceSelection="false" selectedKey="">
 												<items>
 													<core:Item text="IBAN 1" key="1"/>
 													<core:Item text="IBAN 2" key="2"/>
@@ -528,7 +528,7 @@
 												</items>
 											</Select>
 											<Label text="IBAN-Generate Bank Details"/>
-											<Select selectedKey="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}">
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}">
 												<items>
 													<core:Item text="IBAN 1" key="1"/>
 													<core:Item text="IBAN 2" key="2"/>
@@ -1620,7 +1620,7 @@
 											<Label text="Name2"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 											<Label text="Search Term 1"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
 											<Label text="Postal Code"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
