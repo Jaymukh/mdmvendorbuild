@@ -468,8 +468,8 @@ sap.ui.define([
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
-				if (oData.getProperty(oItem.fieldMapping) === 'undefined' || oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(
-						oItem.fieldMapping) === null) {
+				if (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" || 
+						oData.getProperty(oItem.fieldMapping) === null) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
 				} else {
