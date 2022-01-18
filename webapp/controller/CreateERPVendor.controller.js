@@ -159,7 +159,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === "undefined" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 ===
+			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 			}
