@@ -744,7 +744,8 @@
 		{"id":"idPurOrgOrderCurrency","Name":"Order Currency","Key":"WAERS", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS", "panelMapping":"Purchasing Organization"},
 		{"id":"purOrgPurOrgId","Name":"Purchasing Organization","Key":"EKORG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg", "panelMapping":"Purchasing Organization"},
 		{"id":"idAddrSearTerm1","Name":"Search Term 1","Key":"sort1", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", "panelMapping":"Address"},
-		{"id":"idAddrLangKey","Name":"Language Key","Key":"langu", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu", "panelMapping":"Address"}
+		{"id":"idAddrLangKey","Name":"Language Key","Key":"langu", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu", "panelMapping":"Address"},
+		{"id":"idAddrCountryKey","Name":"Country Key","Key":"land1", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1", "panelMapping":"Address"}
 	],
 	"missingFields":[]
 																																					
