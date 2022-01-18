@@ -115,7 +115,8 @@ sap.ui.define([
 							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-							var objParamCreate = {
+							this._handleSaveWithLifnr(oData);
+						/*	var objParamCreate = {
 								url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 								hasPayload: true,
 								data: oData,
@@ -129,13 +130,14 @@ sap.ui.define([
 								}
 							}.bind(this), function (oError) {
 								this.getView().setBusy(false);
-							}.bind(this));
+							}.bind(this));*/
 						}
 					}.bind(this), function (oError) {
 						this.getView().setBusy(false);
 					}.bind(this));
 				} else {
-					var objParamCreate = {
+						this._handleSaveWithLifnr(oData);
+					/*var objParamCreate = {
 						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 						hasPayload: true,
 						data: oData,
@@ -149,11 +151,33 @@ sap.ui.define([
 						}
 					}.bind(this), function (oError) {
 						this.getView().setBusy(false);
-					}.bind(this));
+					}.bind(this));*/
 				}
 
 			}
 
+		},
+
+		_handleSaveWithLifnr : function(oData){
+			if(oData.parentDTO.customData.gen_adrc.gen_adrc1.Name1 === "undefined" || oData.parentDTO.customData.gen_adrc.gen_adrc1.Name1 === ""|| oData.parentDTO.customData.gen_adrc.gen_adrc1.Name1 === null){
+				oData.parentDTO.customData.gen_adrc.gen_adrc1.Name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+			}                        
+			var objParamCreate = {
+							url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+							hasPayload: true,
+							data: oData,
+							type: 'POST'
+						};
+		
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				this.getView().setBusy(false);
+				if (oDataResp.result) {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+					this.getView().byId("idCreateVendorSubmit").setVisible(true);
+				}
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+			}.bind(this));
 		},
 
 		onValueHelpRequested: function (oEvent) {
@@ -443,7 +467,7 @@ sap.ui.define([
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
-				if (oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(oItem.fieldMapping) === null) {
+				if (oData.getProperty(oItem.fieldMapping) === 'undefined' || oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(oItem.fieldMapping) === null) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
 				} else {
