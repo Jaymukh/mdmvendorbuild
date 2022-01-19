@@ -17,6 +17,7 @@ sap.ui.define([
 		onInit: function () {
 			this.handleGetAllChangeRequests();
 			this.handleChangeRequestStatistics();
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -48,19 +49,44 @@ sap.ui.define([
 			oDynamicSideContent.setShowSideContent(bPressed);
 		},
 
-		onChangeReqLinkPress: function () {
-			var sID = this.getView().getParent().getPages().find(function (e) {
-				return e.getId().indexOf("createERPVendorView") !== -1;
-			}).getId();
-			this.getView().getParent().to(sID);
-			//	this.getView().getParent().to(sID);
-			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
-			// debugger;
-			// sap.ui.getCore().byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-			// var titleID = sap.ui.getCore().byId("idTitle");
-			// titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+		onChangeReqLinkPress: function (oEvent) {
+			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_BY_ENTITY_ID",
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_id": "348"
+							}
+						}
+					}
+				}
+
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result && oDataResp.result.vendorDTOs[0]) {
+					debugger;
+					var sID = this.getView().getParent().getPages().find(function (e) {
+						return e.getId().indexOf("erpVendorPreview") !== -1;
+					}).getId();
+					this.getView().getParent().to(sID);
+					//	this.getView().getParent().to(sID);
+					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
+					this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent()
+						.getItem()
+						.getItems()[1]);
+					var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+				}
+			}.bind(this));
+
 		},
 
 		onPressAddComment: function () {

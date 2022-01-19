@@ -16,7 +16,7 @@ sap.ui.define([
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview
 		 */
 		onInit: function () {
-
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		onEditClick: function () {
