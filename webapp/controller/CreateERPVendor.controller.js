@@ -160,9 +160,9 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 ===
-				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === null) {
-				oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
+				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
+				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 			}
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
@@ -528,7 +528,10 @@ sap.ui.define([
 				return true;
 			}
 		},
-
+		handleName1 : function(oEvent){
+			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
+			
+		}
 		// onSubmitClick: function (oEvent) {
 		// 	this.getView().setBusy(true);
 		// 	var objParamSubmit = {

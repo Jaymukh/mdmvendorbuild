@@ -44,7 +44,16 @@ sap.ui.define([
 				this._CreateCRID();
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
-				MessageToast.show("Error in Action Call");
+				var sError = "";
+				if(oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item && 
+					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length>0){
+						oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function(oItem){
+						sError = sError + oItem.MESSAGE + "\n" ;
+					});
+				}
+				
+				//oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item
+				MessageToast.show(sError,{ duration: 6000,width: "100%"});
 			}.bind(this));
 
 		},
