@@ -329,6 +329,10 @@ sap.ui.define([
 			var aToken = oEvent.getParameter("tokens");
 			var oVal = aToken[0].getCustomData()[0].getValue();
 			this._oInput.setValue(oVal[this._sKey]);
+			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
+			}
 			this._oValueHelpDialog.close();
 		},
 

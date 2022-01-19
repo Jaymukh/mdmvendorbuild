@@ -105,7 +105,7 @@
 														<items>
 															<ColumnListItem>
 																<cells>
-																	<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity_id}:
+																	<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity/entity_id}:
 																	${changeRequestGetAllModel>crDTO/change_request_id}}" 
 																	press="onChangeReqLinkPress"></Link>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
