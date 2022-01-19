@@ -5,717 +5,1233 @@
 			<Toolbar>
 				<Title text="Organization: BP9422, (no description available)" level="H2"></Title>
 			</Toolbar>
-			<Page id="sideContentContainer" showHeader="false" showNavButton="false" showFooter="true">
+			<Page showHeader="false" showNavButton="false" showFooter="true">
 				<content>
-					<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
-						sideContentFallDown="BelowM" breakpointChanged="handleBreakpointChangeEvent">
+					<l:DynamicSideContent class="sapUiDSCExplored sapUiContentPadding" containerQuery="true" sideContentFallDown="BelowM"
+						breakpointChanged="handleBreakpointChangeEvent">
 						<VBox>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Change Requests" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="General Data"/>
-									<Label text="Change Request ID"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/changeReqID}"/>
-									<Label text="Description" required="true"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/desc}"/>
-									<Label text="Priority"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/priority}"/>
-									<Label text="Due Date"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/dueDate}"></Text>
-									<Label text="Reason"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>
-									<core:Title text="Process Data"/>
-									<Label text="Status"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/status}"/>
-									<Label text="Current Work Item"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
-									<Label text="Created By"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/createdBy}"/>
-									<Label text="Date/Time of Creation"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/dateCreation}"/>
-									<Text text="{CreateVendorModel>/changeReq/genData/timeCreation}">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="ERP Vendor Details" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Administritative Data"/>
-									<Label text="Vendor"/>
-									<Text/>
-									<Label text="Account Group"/>
-									<Text/>
-									<core:Title text="General Data"/>
-									<Label text="Title"/>
-									<Text text=""/>
-									<Label text="Name1" required="true"/>
-									<Text text=""/>
-									<Label text="Name2"/>
-									<Text text=""/>
-									<Label text="Name3"/>
-									<Text text=""/>
-									<Label text="Legal Name (Name4)"/>
-									<Text text=""/>
-									<Label text="Natural person"/>
-									<Text/>
-									<Label text="Search Terms"/>
-									<Text text=""/>
-									<core:Title text="Communication Data"/>
-									<Label text="Telephone"/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text=""/>
-									<Label text="Mobile" required="true"/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Label text="E-mail Address"/>
-									<Text text=""/>
-									<Label text="Fax"/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text=""/>
-									<Label text="Web site"/>
-									<Text text=""/>
-									<Label text="PO Box Lobby"/>
-									<Text text=""/>
-									<Label text="Type of Delivery Service" required="true"/>
-									<Text text=""/>
-									<Label text="Number of Delivery Service"/>
-									<Text text=""/>
-									<Label text="PO Box"/>
-									<Text text=""/>
-									<Label text="Undeliverable"/>
-									<Text text=""/>
-									<core:Title text="Address"/>
-									<Label text="Street / No." required="true"/>
-									<Text text=""/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Label text="District"/>
-									<Text text=""/>
-									<Label text="Strret 2" required="true"/>
-									<Text text=""/>
-									<Label text="Strret 3"/>
-									<Text text=""/>
-									<Label text="Strret 4"/>
-									<Text text=""/>
-									<Label text="Strret 5"/>
-									<Text text=""/>
-									<Label text="Postal Code / City"/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Text text=""/>
-									<Label text="Country" required="true"/>
-									<Text text=""/>
-									<Label text="Region"/>
-									<Text text=""/>
-									<Label text="Language" required="true"/>
-									<Text text=""/>
-									<Label text="Transportation Zone"/>
-									<Text text=""/>
-									<Label text="PO Box Postal Code/ PO Box"/>
-									<Text text=""/>
-									<Label text="PO Box Without No."/>
-									<Text/>
-									<Label text="Company POstal Code"/>
-									<Text text=""/>
-									<Label text="Supplement"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Control Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Account Control"/>
-									<Label text="Authorization Group"/>
-									<Text/>
-									<Label text="Group Key"/>
-									<Text/>
-									<Label text="Trading Partner"/>
-									<Text/>
-									<Label text="Customer"/>
-									<Text/>
-									<core:Title text="Procurement Monitoring"/>
-									<Label text="factory Calendar"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Reference Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Reference Data"/>
-									<Label text="Train Station"/>
-									<Text/>
-									<Label text="External Manufaturer"/>
-									<Text/>
-									<Label text="Relevant for POD"/>
-									<Text/>
-									<Label text="SCAC"/>
-									<Text/>
-									<Label text="Actual QM System"/>
-									<Text text=""/>
-									<Label text="Carrier Freight Group"/>
-									<Text/>
-									<core:Title text=""/>
-									<Label text="Industry"/>
-									<Text/>
-									<Label text="Service agent procedure group"/>
-									<Text/>
-									<Label text="Credit information No."/>
-									<Text/>
-									<Label text="Last External Review"/>
-									<Text/>
-									<Label text="Statistics Group, Service agent"/>
-									<Text/>
-									<Label text="QM System Valid to"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Tax Numbers" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Tax Numbers - Table"/>
-									<!--<Label text="Edit or Create New"/>-->
-									<!--<Text/>-->
-									<Label text="Tax Numbers Category"/>
-									<Text text=""/>
-									<Label text="Description"/>
-									<Text text=""/>
-									<core:Title text=""/>
-									<Label text="Tax Number"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Tax Information" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Tax Information"/>
-									<Label text="Fiscal Address"/>
-									<Text/>
-									<Label text="Tax Office"/>
-									<Text text=""/>
-									<Label text="Tax No."/>
-									<Text text=""/>
-									<Label text="Tax Base"/>
-									<Text text=""/>
-									<Label text="Tax Type"/>
-									<Text text=""/>
-									<Label text="Type of Business"/>
-									<Text text=""/>
-									<Label text="Name of Representative"/>
-									<Text text=""/>
-									<core:Title text=""/>
-									<Label text="Sales Equalization Tax"/>
-									<Text/>
-									<Label text="Liable for VAT"/>
-									<Text/>
-									<Label text="Tax Split"/>
-									<Text/>
-									<Label text="Social Insurance"/>
-									<Text/>
-									<Label text="Social Insurance Code"/>
-									<Text text=""/>
-									<Label text="Type of Industry"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Bank Accounts" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Bank Accounts - Table"/>
-									<!--<Label text="Edit or Create New"/>-->
-									<!--<Text/>-->
-									<Label text="Bank Detail ID"/>
-									<Text text=""/>
-									<Label text="Bank Account"/>
-									<Text text=""/>
-									<Label text="Account Holder"/>
-									<Text text=""/>
-									<Label text="IBAN"/>
-									<Text text=""/>
-									<Label text="IBAN-Generate IBAN"/>
-									<Text text=""/>
-									<Label text="IBAN-Generate Bank Details"/>
-									<Text text=""/>
-									<Label text="Account No."/>
-									<Text text=""/>
-									<Label text="Control key"/>
-									<Text text=""/>
-									<core:Title text=""/>
-									<Label text="Reference Details"/>
-									<Text text=""/>
-									<Label text="Collection Authorization"/>
-									<Text text=""/>
-									<Label text="Bank Country / Desc."/>
-									<Text text=""/>
-									<Label text="Bank Key"/>
-									<Text text=""/>
-									<Label text="Bank Name"/>
-									<Text text=""/>
-									<Label text="Street"/>
-									<Text text=""/>
-									<Label text="City"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Payment Transactions" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Payment Transactions"/>
-									<Label text="DME Indicator"/>
-									<Text/>
-									<Label text="Instruction Key"/>
-									<Text text=""/>
-									<Label text="ISR No."/>
-									<Text text=""/>
-									<core:Title text="Alternate Payee"/>
-									<Label text="Payee in Document"/>
-									<Text/>
-									<Label text="Alternative Payee"/>
-									<Text text=""/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Murphy Data" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<!--<core:Title text="Payment Transactions"/>-->
-									<Label text="Ariba Supplier Network ID"/>
-									<Text/>
-									<Label text="Validate From Date"/>
-									<Text/>
-									<core:Title/>
-									<Label text="Validate To Date"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Company Codes" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="ERP Vendor Company Code"/>
-									<Label text="Company Code"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Accounting Information"/>
-									<Label text="Reconcillation Account"/>
-									<Text/>
-									<Label text="Head Office"/>
-									<Text/>
-									<Label text="Authorization Group"/>
-									<Text/>
-									<Label text="Minority Indicator"/>
-									<Text/>
-									<Label text="Sort Key"/>
-									<Text/>
-									<Label text="Planning Group"/>
-									<Text/>
-									<Label text="Release Group"/>
-									<Text/>
-									<Label text="Certification Date"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
-									<Label text="Intrest Indicator"/>
-									<Text/>
-									<Label text="Intrest Calculation Frequency"/>
-									<Text/>
-									<Label text="Last Key Date"/>
-									<Text/>
-									<Label text="Last Key Run"/>
-									<Text/>
-									<core:Title text="Withholding Tax"/>
-									<Label text="Withholding Tax Code"/>
-									<Text/>
-									<Label text="Withholding Tax Country"/>
-									<Text/>
-									<Label text="Recipient Type"/>
-									<Text/>
-									<Label text="Main Economic activity per CIIU Code"/>
-									<Text/>
-									<Label text="Exemption No."/>
-									<Text/>
-									<Label text="Valid Unit"/>
-									<Text/>
-									<Label text="Exemption Authority"/>
-									<Text/>
-									<core:Title text="Extended Withholding Tax"/>
-									<Label text="Withholding Tax Type"/>
-									<Text/>
-									<Label text="Recipient Type"/>
-									<Text/>
-									<Label text="Withholding Tax Identification No."/>
-									<Text/>
-									<Label text="Exemption Rate in %"/>
-									<Text/>
-									<Label text="Date on which exemption starts"/>
-									<Text/>
-									<Label text="Withholding Tax Code"/>
-									<Text/>
-									<Label text="Sub. To Withholding Tax"/>
-									<Text/>
-									<Label text="Exemption Cert. no."/>
-									<Text/>
-									<Label text="Exemption Reason"/>
-									<Text/>
-									<Label text="Date on which Exemption Ends"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Reference data"/>
-									<Label text="Previous Account No."/>
-									<Text/>
-									<Label text="Personnel No."/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Payment data"/>
-									<Label text="Terms of Payment"/>
-									<Text/>
-									<Label text="Check Cashing Times"/>
-									<Text/>
-									<Label text="Credit Memo Payment Term"/>
-									<Text/>
-									<Label text="Tolerance Group"/>
-									<Text/>
-									<Label text="Check Double Invoice"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
-									<Label text="Payment Method"/>
-									<Text/>
-									<Label text="Alternative Payee"/>
-									<Text/>
-									<Label text="Grouping Key"/>
-									<Text/>
-									<Label text="Bill of Exchange limit"/>
-									<Text/>
-									<Label text="Payment Method Suppliement"/>
-									<Text/>
-									<Label text="Payment Block"/>
-									<Text/>
-									<Label text="House Bank"/>
-									<Text/>
-									<Label text="Individual Payment"/>
-									<Text/>
-									<Label text="Payment Advice by EDI"/>
-									<Text/>
-									<Label text="Clearing with Cust."/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
-									<Label text="Delivery Tolerance Group"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Correspondance"/>
-									<Label text="Account Clerk"/>
-									<Text/>
-									<Label text="Account With Vendor"/>
-									<Text/>
-									<Label text="Clerk's Telephone No."/>
-									<Text/>
-									<Label text="Clerk's Internet Addredd"/>
-									<Text/>
-									<Label text="Local Processing"/>
-									<Text/>
-									<Label text="Account Statement"/>
-									<Text/>
-									<Label text="Account Memo"/>
-									<Text/>
-									<Label text="Clerk's Fax no."/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Dunning Data"/>
-									<Label text="Grouping Key"/>
-									<Text/>
-									<Label text="ESTMA (CAN)"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Purchasing Organization" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="ERP Vendor Parchasing Organization"/>
-									<Label text="Purchasing Organization"/>
-									<Text/>
-									<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
-									<Label text="Order Currency"/>
-									<Text/>
-									<Label text="Minimum Order text"/>
-									<Text/>
-									<Label text="Schema Group (Vendor)"/>
-									<Text/>
-									<Label text="LB Restriction Profile"/>
-									<Text/>
-									<Label text="Terms of Payment"/>
-									<Text/>
-									<Label text="Incoterms"/>
-									<Text/>
-									<Label text="Incoterms"/>
-									<Text/>
-									<Label text="Pricing date Control"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Sales Data"/>
-									<Label text="Sales Person"/>
-									<Text/>
-									<Label text="Account with Vendor"/>
-									<Text/>
-									<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
-									<Label text="ABC Indicator"/>
-									<Text/>
-									<Label text="Mode of Transport-Border"/>
-									<Text/>
-									<Label text="Customs Office"/>
-									<Text/>
-									<Label text="Sort Criterion"/>
-									<Text/>
-									<Label text="Proact Control Profile"/>
-									<Text/>
-									<Label text="Shipping Conditions"/>
-									<Text/>
-									<Label text="Revaluation Allowed"/>
-									<Text/>
-									<Label text="Qualifying for Discount in kind"/>
-									<Text/>
-									<Label text="Relevant for price determination"/>
-									<Text/>
-									<Label text="Relevant for Agency Business"/>
-									<Text/>
-									<Label text="Goods Receipt-Based Invoice Verification"/>
-									<Text/>
-									<Label text="Automatic Evaluated Receipt Settlement for Deliveries"/>
-									<Text/>
-									<Label text="Automatic Evaluated Receipt Settlement for Return Items"/>
-									<Text/>
-									<Label text="Acknowledgment Required"/>
-									<Text/>
-									<Label text="Automatic Purchase Order Generation Allowed"/>
-									<Text/>
-									<Label text="Subject to subsequent Settlement Accounting"/>
-									<Text/>
-									<Label text="Index Compilation for Subsequent Settlement Active"/>
-									<Text/>
-									<Label text="Comparision/Agreement of Business Volume Required"/>
-									<Text/>
-									<Label text="Document Index Active"/>
-									<Text/>
-									<Label text="Goods Receipt-Based Invoice Verification"/>
-									<Text/>
-									<Label text="Service-Based Invoice Verification"/>
-									<Text/>
-									<core:Title text="Murphy Data"/>
-									<Label text="Qualified Supplier List Flag"/>
-									<Text/>
-									<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
-									<Label text="Purchasing Group"/>
-									<Text/>
-									<Label text="Confirmation Control"/>
-									<Text/>
-									<Label text="Rounding profile"/>
-									<Text/>
-									<Label text="Planned delivery time in Days"/>
-									<Text/>
-									<Label text="Unit of Measure Group"/>
-									<Text/>
-									<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
-									<Label text="Price Marketing Agreed"/>
-									<Text/>
-									<Label text="Vendor Service Level"/>
-									<Text/>
-									<Label text="Rack Jobbing Agreement with Vendor Exists"/>
-									<Text/>
-									<Label text="Order Entry by Vendor"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
-									<Label text="Delivery Tolerance Group"/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Correspondance"/>
-									<Label text="Account Clerk"/>
-									<Text/>
-									<Label text="Account With Vendor"/>
-									<Text/>
-									<Label text="Clerk's Telephone No."/>
-									<Text/>
-									<Label text="Clerk's Internet Addredd"/>
-									<Text/>
-									<Label text="Local Processing"/>
-									<Text/>
-									<Label text="Account Statement"/>
-									<Text/>
-									<Label text="Account Memo"/>
-									<Text/>
-									<Label text="Clerk's Fax no."/>
-									<Text/>
-									<core:Title text="ERP Vendor Company Code : Dunning Data"/>
-									<Label text="Grouping Key"/>
-									<Text/>
-									<Label text="ESTMA (CAN)"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Additional Purchasing Data" labelSpanXL="4" labelSpanL="4"
-								labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
-								columnsL="2" columnsM="2" singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Data Maintenance Levels"/>
-									<Label text="plant level relevant"/>
-									<Text/>
-									<Label text="plant"/>
-									<Text/>
-									<Label text="Vendor Sub-Range Relevant"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-								adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Addresses"/>
-									<Label text="Street/House No."/>
-									<Text/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Label text="Postal Code / City"/>
-									<Text/>
-									<Text text="">
-										<layoutData>
-											<l:GridData span="XL2 L1 M3 S4"/>
-										</layoutData>
-									</Text>
-									<Label text="Country"/>
-									<Text/>
-									<Label text="Region"/>
-									<Text/>
-									<Label text="Language"/>
-									<Text/>
-									<Label text="Transportation Zone"/>
-									<Text/>
-									<Label text="Timezone"/>
-									<Text/>
-									<Label text="PO Box postal code / PO Box"/>
-									<Text/>
-									<Label text="PO Box Without No."/>
-									<Text/>
-									<Label text="Company Post code"/>
-									<Text/>
-									<Label text="Supplement"/>
-									<Text/>
-									<core:Title text="Telephone No's."/>
-									<Label text="Country"/>
-									<Text/>
-									<Label text="Telephone"/>
-									<Text/>
-									<Label text="Extention"/>
-									<Text/>
-									<Label text="Standard"/>
-									<Text/>
-									<core:Title text="Fax No."/>
-									<Label text="Country"/>
-									<Text/>
-									<Label text="Telephone"/>
-									<Text/>
-									<Label text="Extention"/>
-									<Text/>
-									<Label text="Standard"/>
-									<Text/>
-									<core:Title text="Email Address"/>
-									<Label text="Email Address"/>
-									<Text/>
-									<Label text="Standard"/>
-									<Text/>
-									<core:Title text="Website"/>
-									<Label text="URL"/>
-									<Text/>
-									<core:Title text="International Versions"/>
-									<Label text="Address Version"/>
-									<Text/>
-									<Label text="Name"/>
-									<Text/>
-									<Label text="Address"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Contact Persons" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<core:Title text="Relationship"/>
-									<Label text="Partner ID"/>
-									<Text/>
-									<Label text="Partner Description"/>
-									<Text/>
-									<core:Title text="General Data"/>
-									<Label text="Title"/>
-									<Text/>
-									<Label text="Last Name"/>
-									<Text/>
-									<Label text="First Name"/>
-									<Text/>
-									<Label text="Academic Title"/>
-									<Text/>
-									<Label text="Gender/Sex"/>
-									<Text/>
-									<Label text="Date of Birth"/>
-									<Text/>
-									<Label text="Marital Status"/>
-									<Text/>
-									<Label text="Correspondance Language"/>
-									<Text/>
-									<core:Title text="Contact Person Details"/>
-									<Label text="Department"/>
-									<Text/>
-									<Label text="Function"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
-							<form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Industry" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-								singleContainerFullSize="false">
-								<form:content>
-									<!--<core:Title text="Relationship"/>-->
-									<Label text="Industry"/>
-									<Text/>
-									<Label text="Description"/>
-									<Text/>
-									<Label text="Standard Industry"/>
-									<Text/>
-								</form:content>
-							</form:SimpleForm>
+							<Panel expandable="true" expanded="true" headerText="Change Requests">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="General Data"/>
+											<Label text="Change Request ID"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"/>
+											<Label text="Description"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/desc}"></Text>
+											<Label text="Priority"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/priority}"></Text>
+											<Label text="Due Date"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/dueDate}"></Text>
+											<Label text="Reason"/>
+											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
+											<Text text="{CreateVendorModel>/changeReq/genData/reason}"></Text>
+											<core:Title text="Process Data"/>
+											<Label text="Status"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/status}"/>
+											<Label text="Current Work Item"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
+											<Label text="Created By"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+											<Label text="Date/Time of Creation"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/dateCreation}"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/timeCreation}">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="true" headerText="ERP Vendor Details">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Administritative Data"/>
+											<Label text="Vendor"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}"/>
+											<core:Title/>
+											<Label text="Account Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
+												<!--<items>-->
+												<!--	<core:Item text="Group1" key="1"/>-->
+												<!--	<core:Item text="Group2" key="2"/>-->
+												<!--	<core:Item text="Group3" key="3"/>-->
+												<!--</items>-->
+											</Text>
+											<core:Title text="General Data"/>
+											<Label text="Title"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
+												<!--	<items>
+													<core:Item text="Title1" key="1"/>
+													<core:Item text="Title2" key="2"/>
+													<core:Item text="Title3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="Name1"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"/>
+											<Label text="Name2"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}"/>
+											<Label text="Name3"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/Name3}"/>
+											<core:Title/>
+											<Label text="Legal Name (Name4)"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME4}"/>
+											<Label text="Natural person"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STKZN} === 'X'}"></CheckBox>
+											<Label text="Search Terms"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}"/>
+											<core:Title text="Communication Data"/>
+											<Label text="Telephone"/>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text=""/>
+											<Label text="Mobile"/>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Label text="E-mail Address"/>
+											<Text text=""/>
+											<Label text="Fax"/>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text="">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text=""/>
+											<Label text="Web site"/>
+											<Text text=""/>
+											<core:Title/>
+											<Label text="PO Box Lobby"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
+											<Label text="Type of Delivery Service"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_type}"></Text>
+											<Label text="Number of Delivery Service"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
+											<Label text="PO Box"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
+											<Label text="Undeliverable"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
+											<core:Title text="Address"/>
+											<Label text="House No. / Steet"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STREET}">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Label text="District"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city2}"/>
+											<Label text="Strret 2"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl1}"/>
+											<Label text="Strret 3"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
+											<Label text="Strret 4"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
+											<Label text="Strret 5"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
+											<Label text="Postal Code / City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
+											<Label text="Country"/>
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
+											<core:Title/>
+											<!--<Label text="Region"/>-->
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"  />-->
+											<Label text="Region"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"></Text>
+											<Label text="Language"/>
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"/>-->
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"></Text>
+											<Label text="Transportation Zone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
+											<Label text="PO Box Postal Code/ PO Box"/>
+											<Text text=""/>
+											<Label text="PO Box Without No."/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}==='X'}"></CheckBox>
+											<Label text="Company POstal Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+											<Label text="Supplement"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Control Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Account Control"/>
+											<Label text="Authorization Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BEGRU}"/>
+											<Label text="Group Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KONZS}"/>
+											<Label text="Trading Partner"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/VBUND}"></Text>
+											<Label text="Customer"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KUNNR}"></Text>
+											<core:Title text="Procurement Monitoring"/>
+											<Label text="factory Calendar"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PLKAL}"></Text>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Reference Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Reference Data"/>
+											<Label text="Train Station"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BAHNS}"/>
+											<Label text="External Manufaturer"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}"/>
+											<Label text="Relevant for POD"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}"></Text>
+											<Label text="SCAC"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}"/>
+											<Label text="Actual QM System"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}"></Text>
+											<Label text="Carrier Freight Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}"/>
+											<core:Title text=""/>
+											<Label text="Industry"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>
+											<Label text="Service agent procedure group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}"></Text>
+											<Label text="Credit information No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}"/>
+											<Label text="Last External Review"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
+											<Label text="Statistics Group, Service agent"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
+												<!--	<items>
+													<core:Item text="Agent 1" key="1"/>
+													<core:Item text="Agent 2" key="2"/>
+													<core:Item text="Agent 3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="QM System Valid to"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" visible="false" expanded="false" headerText="Tax Numbers">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Tax Numbers"/>
+											<!--<Label text="Edit or Create New"/>-->
+											<!--<Text/>-->
+											<!--	<Label text="Tax Numbers Category"/>
+											<Text text="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" text="Tax Numbers Category"></core:CustomData>
+													<core:CustomData key="table" text=""></core:CustomData>
+													<core:CustomData key="Key1" text="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" text="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" text=""></core:CustomData>
+													<core:CustomData key="inputText" text=""></core:CustomData>
+												</customData>
+											</Text>-->
+											<Label text="Description"/>
+											<Text/>
+											<core:Title text=""/>
+											<Label text="Tax Number"/>
+											<Text/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Tax Information">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Tax Information"/>
+											<Label text="Fiscal Address"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKN}"></Text>
+											<Label text="Tax Office"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKU}"></Text>
+											<Label text="Tax No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}"/>
+											<Label text="Tax Base"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}"></Text>
+											<Label text="Tax Type"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
+												<!--<items>-->
+												<!--	<core:Item text="TaxType 1" key="1"/>-->
+												<!--	<core:Item text="TaxType 2" key="2"/>-->
+												<!--	<core:Item text="TaxType 3" key="3"/>-->
+												<!--</items>-->
+											</Text>
+											<Label text="Type of Business"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}"/>
+											<Label text="Name of Representative"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFREPRE}"/>
+											<core:Title text=""/>
+											<Label text="Sales Equalization Tax"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STKZA}==='X'}"></CheckBox>
+											<Label text="Liable for VAT"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STKZU}==='X'}"></CheckBox>
+											<Label text="Tax Split"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/IPISP}==='X'}"></CheckBox>
+											<Label text="Social Insurance"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGSS}==='X'}"></CheckBox>
+											<Label text="Social Insurance Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+												<!--<items>
+													<core:Item text="Code 1" key="1"/>
+													<core:Item text="Code 2" key="2"/>
+													<core:Item text="Code 3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="Type of Industry"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Bank Accounts">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Bank Accounts - Table"/>
+											<!--<Label text="Edit or Create New"/>-->
+											<!--<Text/>-->
+											<Label text="Bank Detail ID"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}"/>
+											<Label text="Bank Account"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}"/>
+											<Label text="Account Holder"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}"/>
+											<Label text="IBAN"/>
+											<Text text=""/>
+											<Label text="IBAN-Generate IBAN"/>
+											<Text text=""></Text>
+											<Label text="IBAN-Generate Bank Details"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}"></Text>
+											<Label text="Account No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"/>
+											<Label text="Control key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}"/>
+											<core:Title text=""/>
+											<Label text="Reference Details"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}"/>
+											<Label text="Collection Authorization"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>
+											<Label text="Bank Country / Desc."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS}"></Text>
+											<Label text="Bank Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
+											<Label text="Bank Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/BANKA}"/>
+											<Label text="Street"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STARS}"/>
+											<Label text="City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORTO1}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Payment Transactions">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Payment Transactions"/>
+											<Label text="DME Indicator"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}"></Text>
+											<Label text="Instruction Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAWS}"></Text>
+											<Label text="ISR No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ESRNR}"/>
+											<core:Title text="Alternate Payee"/>
+											<Label text="Payee in Document"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/XZEMP} === 'X'}"></CheckBox>
+											<Label text="Alternative Payee"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LNRZA}"></Text>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Murphy Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<!--<core:Title text="Payment Transactions"/>-->
+											<Label text="Ariba Supplier Network ID"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZARIBA_NET}"/>
+											<Label text="Validate From Date"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_FM}"/>
+											<core:Title/>
+											<Label text="Validate To Date"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_TO}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Company Codes">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="ERP Vendor Company Code"/>
+											<Label text="Company Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/bukrs}"></Text>
+											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
+											<Label text="Reconcillation Account"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/AKONT}"></Text>
+											<!--	<Text   showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+												text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/AKONT}">
+												<customData>
+													<core:CustomData key="title" text="Reconcillation Account"></core:CustomData>
+													<core:CustomData key="table" text="SKA1"></core:CustomData>
+													<core:CustomData key="Name" text="Name"></core:CustomData>
+													<core:CustomData key="Key" text="Key"></core:CustomData>
+													<core:CustomData key="inputKey" text="Key"></core:CustomData>
+													<core:CustomData key="inputText" text="Name"></core:CustomData>
+												</customData>
+											</Text>-->
+											<Label text="Head Office"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/LNRZE}"></Text>
+											<Label text="Authorization Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/BEGRU}"/>
+											<Label text="Minority Indicator"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MINDK}"></Text>
+											<Label text="Sort Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZUAWA}"></Text>
+											<Label text="Planning Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/FDGRV}"></Text>
+											<Label text="Release Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/FRGRP}"></Text>
+											<Label text="Certification Date"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CERDT}"/>
+											<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
+											<Label text="Intrest Indicator"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/VZSKZ}"></Text>
+											<Label text="Intrest Calculation Frequency"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZINRT}"></Text>
+											<Label text="Last Key Date"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZINDT}"/>
+											<Label text="Last Key Run"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/DATLZ}"/>
+											<core:Title text="Withholding Tax"/>
+											<Label text="Withholding Tax Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_WITHCD}"></Text>
+											<Label text="Withholding Tax Country"/>
+											<Text></Text>
+											<Label text="Recipient Type"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/QSREC}"></Text>
+											<Label text="Main Economic activity per CIIU Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/CIIUCODE}"/>
+											<Label text="Exemption No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXNR}"/>
+											<Label text="Valid Unit"/>
+											<Text/>
+											<Label text="Exemption Authority"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/QSBGR}"></Text>
+											<core:Title text="Extended Withholding Tax"/>
+											<Label text="Withholding Tax Type"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/witht}"></Text>
+											<Label text="Recipient Type"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/QSREC}"></Text>
+											<Label text="Withholding Tax Identification No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_WTSTCD}"/>
+											<Label text="Exemption Rate in %"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXRT}"/>
+											<Label text="Date on which exemption starts"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDF}"/>
+											<core:Title/>
+											<Label text="Withholding Tax Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_WITHCD}"></Text>
+											<Label text="Sub. To Withholding Tax"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_SUBJECT} === 'X'}"></CheckBox>
+											<Label text="Exemption Cert. no."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXNR}"/>
+											<Label text="Exemption Reason"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_WTEXRS}"></Text>
+											<Label text="Date on which Exemption Ends"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/WT_EXDT}"/>
+											<core:Title text="ERP Vendor Company Code : Reference data"/>
+											<Label text="Previous Account No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ALTKN}"/>
+											<Label text="Personnel No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/PERNR}"/>
+											<core:Title text="ERP Vendor Company Code : Payment data"/>
+											<Label text="Payment terms"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}"></Text>
+											<!--<Text   showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+												text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZTERM}">
+												<customData>
+													<core:CustomData key="title" text="Terms of Payment"></core:CustomData>
+													<core:CustomData key="table" text="LFB1"></core:CustomData>
+													<core:CustomData key="" text="Name"></core:CustomData>
+													<core:CustomData key="" text="Key"></core:CustomData>
+													<core:CustomData key="inputKey" text=""></core:CustomData>
+													<core:CustomData key="inputText" text=""></core:CustomData>
+												</customData>
+											</Text>-->
+											<Label text="Check Cashing Times"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/KULTG}"/>
+											<Label text="Credit Memo Payment Term"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/GUZTE}"></Text>
+											<Label text="Tolerance Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TOGRU}"></Text>
+											<Label text="Check Double Invoice"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/REPRF} === 'X'}"></CheckBox>
+											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
+											<Label text="Payment Method"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}"></Text>
+											<!--	<Text   showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+												text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}">
+												<customData>
+													<core:CustomData key="title" text="Payment Method"></core:CustomData>
+													<core:CustomData key="table" text="LFB1"></core:CustomData>
+													<core:CustomData key="key" text="Key"></core:CustomData>
+													<core:CustomData key="inputKey" text="key"></core:CustomData>
+													<core:CustomData key="inputText" text="key"></core:CustomData>
+												</customData>
+											</Text>-->
+											<Label text="Alternative Payee"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/LNRZB}"></Text>
+											<Label text="Grouping Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZGRUP}">
+												<!--<items>
+													<core:Item text="Key 1" key="1"/>
+													<core:Item text="Key 2" key="2"/>
+													<core:Item text="Key 3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="Bill of Exchange limit"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/WEBTR}"/>
+											<Label text="Payment Method Suppliement"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/UZAWE}">
+												<!--<items>
+													<core:Item text="Payment 1" key="1"/>
+													<core:Item text="Payment 2" key="2"/>
+													<core:Item text="Payment 3" key="3"/>
+												</items>-->
+											</Text>
+											<core:Title/>
+											<Label text="Payment Block"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZAHLS}">
+												<!--<items>
+													<core:Item text="Block 1" key="1"/>
+													<core:Item text="Block 2" key="2"/>
+													<core:Item text="Block 3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="House Bank"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/HBKID}"></Text>
+											<Label text="Individual Payment"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XPORE} === 'X'}"></CheckBox>
+											<Label text="Payment Advice by EDI"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XEDIP} === 'X'}"></CheckBox>
+											<Label text="Clearing with Cust."/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XVERR} === 'X'}"></CheckBox>
+											<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+											<Label text="Delivery Tolerance Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TOGRU}"></Text>
+											<core:Title text="ERP Vendor Company Code : Correspondance"/>
+											<Label text="Account Clerk"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZSABE}"></Text>
+											<Label text="Account With Vendor"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/EIKTO}"/>
+											<Label text="Clerk's Telephone No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFNS}"/>
+											<Label text="Clerk's Internet Addredd"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/INTAD}"/>
+											<!--<core:Title/>-->
+											<Label text="Local Processing"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XDEZV} === 'X'}"></CheckBox>
+											<Label text="Account Statement"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XAUSZ}"/>
+											<Label text="Account Memo"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/XVERM}"/>
+											<Label text="Clerk's Fax no."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}"/>
+											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+											<Label text="Grouping Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZGRUP}">
+												<!--	<items>
+													<core:Item text="Key 1" key="1"/>
+													<core:Item text="Key 2" key="2"/>
+													<core:Item text="Key 3" key="3"/>
+												</items>-->
+											</Text>
+											<Label text="ESTMA (CAN)"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZZESTMA}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="ERP Vendor Parchasing Organization"/>
+											<Label text="Purchasing Organization"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
+												<!--<items>
+													<core:Item text="Org 1" key="1"/>
+													<core:Item text="Org 2" key="2"/>
+													<core:Item text="Org 3" key="3"/>
+												</items>-->
+											</Text>
+											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
+											<Label text="Order Currency"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS}"></Text>
+											<Label text="Minimum Order Value"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MINBW}"/>
+											<Label text="Schema Group (Vendor)"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KALSK}"></Text>
+											<Label text="LB Restriction Profile"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}"/>
+											<Label text="Terms of Payment"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}"></Text>
+											<!--<Text    showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+												text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
+												<customData>
+													<core:CustomData key="title" text="Terms of Payment"></core:CustomData>
+													<core:CustomData key="table" text="LFM1"></core:CustomData>
+													<core:CustomData key="" text="Name"></core:CustomData>
+													<core:CustomData key="" text="Key"></core:CustomData>
+													<core:CustomData key="inputKey" text=""></core:CustomData>
+													<core:CustomData key="inputText" text=""></core:CustomData>
+												</customData>
+											</Text>-->
+											<Label text="Incoterms"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}"></Text>
+											<Label text="Incoterms"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}"/>
+											<Label text="Pricing date Control"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEPRF}"></Text>
+											<core:Title text="ERP Vendor Company Code : Sales Data"/>
+											<Label text="Sales Person"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VERKF}"/>
+											<core:Title/>
+											<Label text="Account with Vendor"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EIKTO}"/>
+											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
+											<Label text="ABC Indicator"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LFABC}"/>
+											<Label text="Mode of Transport-Border"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EXPVZ}"></Text>
+											<Label text="Customs Office"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZOLLA}"></Text>
+											<Label text="Sort Criterion"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/SKRIT}"></Text>
+											<Label text="Proact Control Profile"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PAPRF}"></Text>
+											<Label text="Shipping Conditions"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VSBED}"></Text>
+											<Label text="Revaluation Allowed"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/XNBWY} === 'X'}"></CheckBox>
+											<Label text="Qualifying for Discount in kind"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/NRGEW} === 'X'}"></CheckBox>
+											<Label text="Relevant for price determination"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PRFRE} === 'X'}"></CheckBox>
+											<Label text="Relevant for Agency Business"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/AGREL} === 'X'}"></CheckBox>
+											<Label text="Goods Receipt-Based Invoice Verification"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WEBRE} === 'X'}"></CheckBox>
+											<Label text="Automatic Evaluated Receipt Settlement for Deliveries"/>
+											<CheckBox enabled="false"></CheckBox>
+											<core:Title/>
+											<Label text="Automatic Evaluated Receipt Settlement for Return Items"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/XERSR} === 'X'}"></CheckBox>
+											<Label text="Acknowledgment Required"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZABS} === 'X'}"></CheckBox>
+											<Label text="Automatic Purchase Order Generation Allowed"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT} === 'X'}"></CheckBox>
+											<Label text="Subject to subsequent Settlement Accounting"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOLRE} === 'X'}"></CheckBox>
+											<Label text="Index Compilation for Subsequent Settlement Active"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOIND} === 'X'}"></CheckBox>
+											<Label text="Comparision/Agreement of Business Volume Required"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/UMSAE} === 'X'}"></CheckBox>
+											<Label text="Document Index Active"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BLIND} === 'X'}"></CheckBox>
+											<Label text="Service-Based Invoice Verification"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE} === 'X'}"></CheckBox>
+											<core:Title text="Murphy Data"/>
+											<Label text="Qualified Supplier List Flag"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZZQUA_FLAG} === 'X'}"></CheckBox>
+											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
+											<Label text="Purchasing Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EKGRP}"></Text>
+											<Label text="Confirmation Control"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BSTAE}"></Text>
+											<Label text="Rounding profile"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/RDPRF}"/>
+											<Label text="Planned delivery time in Days"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PLIFZ}"/>
+											<Label text="Unit of Measure Group"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEGRU}"/>
+											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
+											<Label text="Price Marketing Agreed"/>
+											<Text/>
+											<Label text="Vendor Service Level"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VENSL}"/>
+											<Label text="Rack Jobbing Agreement with Vendor Exists"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LISER} === 'X'}"></CheckBox>
+											<Label text="Order Entry by Vendor"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LIBES} === 'X'}"></CheckBox>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Additional Purchasing Data">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Data Maintenance Levels"/>
+											<Label text="plant level relevant"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/WERKR} === 'X'}"></CheckBox>
+											<Label text="plant"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/WERKS}"/>
+											<core:Title/>
+											<Label text="Vendor Sub-Range Relevant"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LTSNA} === 'X'}"></CheckBox>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Address">
+								<content>
+									<!--<Table items="{CreateERPVendorAddrTableModel>/rows}">-->
+									<!--	<headerToolbar>-->
+									<!--		<Toolbar>-->
+									<!--			<ToolbarSpacer></ToolbarSpacer>-->
+									<!--			<Button text="Add" press="handleCreateERPAddrAddTable"></Button>-->
+									<!--		</Toolbar>-->
+									<!--	</headerToolbar>-->
+									<!--	<columns>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Company Postal Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Country" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--		<Column>-->
+									<!--			<header>-->
+									<!--				<Label text="Postal Address" design="Bold"></Label>-->
+									<!--			</header>-->
+									<!--		</Column>-->
+									<!--	</columns>-->
+									<!--	<items>-->
+									<!--		<ColumnListItem>-->
+									<!--			<cells>-->
+									<!--				<Link text="{CreateERPVendorAddrTableModel>AddressHeader}"></Link>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>companyPostCode}"></Text>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>teleCountry}"></Text>-->
+									<!--				<Text text="{CreateERPVendorAddrTableModel>PSTLZ}"></Text>-->
+									<!--			</cells>-->
+									<!--		</ColumnListItem>-->
+									<!--	</items>-->
+									<!--</Table>-->
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Addresses"/>
+											<Label text="Street/House No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}"/>
+											<!--<Text text="">-->
+											<!--	<layoutData>-->
+											<!--		<l:GridData span="XL2 L1 M3 S4"/>-->
+											<!--	</layoutData>-->
+											<!--</Text>-->
+											<Label text="Postal Code / City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}">
+												<layoutData>
+													<l:GridData span="XL2 L1 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Label text="Country"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
+											<Label text="Region"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"></Text>
+											<Label text="Language"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LANGU}"></Text>
+											<Label text="Transportation Zone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"></Text>
+											<Label text="Timezone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/time_zone}"></Text>
+											<Label text="PO Box postal code / PO Box"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
+											<Label text="PO Box Without No."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>
+											<Label text="Company Post code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+											<core:Title/>
+											<Label text="Supplement"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+											<Label text="Title"/>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
+												<!--<items>
+																<core:Item text="Title1" key="1"/>
+																<core:Item text="Title2" key="2"/>
+																<core:Item text="Title3" key="3"/>
+															</items>-->
+											</Text>
+											<Label text="Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
+											<Label text="Name2"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
+											<Label text="Search Term 1"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
+											<Label text="Postal Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+											<Label text="Country Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}"></Text>
+											<Label text="City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
+											<Label text="Language Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}"></Text>
+											<core:Title text="Telephone No's."/>
+											<Label text="Country"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
+											<Label text="Telephone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
+											<Label text="Extention"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension}"/>
+											<Label text="Standard"/>
+											<CheckBox enabled="false"/>
+											<core:Title text="Fax No."/>
+											<Label text="Country"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>
+											<Label text="Telephone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
+											<Label text="Extention"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention}"/>
+											<Label text="Standard"/>
+											<CheckBox enabled="false"/>
+											<core:Title text="Email Address"/>
+											<Label text="Email Address"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
+											<Label text="Standard"/>
+											<CheckBox enabled="false"/>
+											<core:Title text="Website"/>
+											<Label text="URL"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website}"/>
+											<core:Title text="International Versions"/>
+											<Label text="Address Version"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internalVersionsAddressVersion}"/>
+											<Label text="Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsName}"/>
+											<Label text="Address"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsAddress}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Contact Persons">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Relationship"/>
+											<Label text="Partner ID"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/parnr}"/>
+											<core:Title/>
+											<Label text="Partner Description"/>
+											<Text text=""/>
+											<core:Title text="General Data"/>
+											<Label text="Title"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}"></Text>
+											<Label text="Last Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAME1}"/>
+											<Label text="First Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAMEV}"/>
+											<Label text="Academic Title"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/TITEL_AP}"></Text>
+											<core:Title/>
+											<Label text="Gender/Sex"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PARGE}"></Text>
+											<Label text="Date of Birth"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/GBDAT}"/>
+											<Label text="Marital Status"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/FAMST}"></Text>
+											<Label text="Correspondance Language"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PARLA}"></Text>
+											<core:Title text="Contact Person Details"/>
+											<Label text="Department"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ABTNR}"/>
+											<Label text="Function"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PAFKT}"/>
+											<Label text="Note"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PARAU}"/>
+											<core:Title/>
+											<Label text="Authority"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PARVO}"/>
+											<Label text="VIP"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/PAVIP}"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Workplace Address">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Company"/>
+											<Label text="Address"/>
+											<Text/>
+											<core:Title text="Workplace"/>
+											<Label text="Function"/>
+											<Text/>
+											<Label text="Department"/>
+											<Text/>
+											<Label text="Room No"/>
+											<Text/>
+											<Label text="Floor"/>
+											<Text/>
+											<Label text="Building"/>
+											<Text/>
+											<core:Title text="Communication"/>
+											<Label text="Communication Method"/>
+											<Text text="{CreateVendorModel>/changeReq/genData/commMethod}"></Text>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="Industry">
+								<content>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<!--<core:Title text="Relationship"/>-->
+											<Label text="Industry"/>
+											<Text></Text>
+											<Label text="Description"/>
+											<Text/>
+											<core:Title/>
+											<Label text="Standard Industry"/>
+											<CheckBox enabled="false"/>
+										</form:content>
+									</form:SimpleForm>
+								</content>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="PRA Data">
+								<content>
+									<IconTabBar expanded="true">
+										<items>
+											<IconTabFilter text="Accounting" key="accounting">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<core:Title text="General Information"/>
+														<Label text="Intercompany Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BUKRS}"/>
+														<Label text="Resident Country"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND}"/>
+														<Label text="Entity Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD}"></Text>
+														<Label text="Levy"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/LEVY}"/>
+														<Label text="CDEX Company"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/CDEX_COMPANY}"/>
+														<Label text="Region"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG}"/>
+														<Label text="Tribe No."/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TRIBE_NO}"/>
+														<core:Title text="Payment Information"/>
+														<Label text="Payment Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAYMENT_TYPE}"></Text>
+														<Label text="Owner Minimum Pay"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/OWNER_MIN_PAY}"/>
+														<Label text="Do Not Recoup"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DO_NOT_RECOUP} === 'X'}"></CheckBox>
+														<Label text="Pay Frequency"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY}"></Text>
+														<Label text="No Check Statement"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/NO_CHECK_STMT} === 'X'}"></CheckBox>
+														<Label text="Direct pay"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DIRECT_PAY_FL} === 'X'}"></CheckBox>
+														<core:Title text="Special Handling Codes"/>
+														<Label text="Special Handling CD"/>
+														<Text ></Text>
+														<Label text="Comment"/>
+														<Text/>
+														<Label text="Description"/>
+														<Text/>
+														<core:Title text="Recoupment Groups"/>
+														<Label text="Recoupment Grp"/>
+														<Text ></Text>
+														<Label text="Comment"/>
+														<Text/>
+														<Label text="Description"/>
+														<Text/>
+														<core:Title text="Exempt withholdings"/>
+														<Label text="Withholding Type CD"/>
+														<Text></Text>
+														<Label text="Comment"/>
+														<Text/>
+														<core:Title/>
+														<Label text="Description"/>
+														<Text/>
+														<core:Title text="Tax Information"/>
+														<Label text="Tax ID"/>
+														<Text/>
+														<Label text="Tin match Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_MATCH_DATE}"/>
+														<Label text="B Notice 1 Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_DATE}"/>
+														<Label text="B Notice 2 Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN2_DATE}"/>
+														<Label text="Backup Withholding"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BACKUP_WITHHOLD} === 'X'}"></CheckBox>
+														<Label text="Don't Report to ONRR"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DO_NOT_RPT_ONRR} === 'X'}"></CheckBox>
+														<Label text="Tax ID Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TAX_ID_TYPE}"></Text>
+														<Label text="Response Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_RESP_DATE}"/>
+														<Label text="TIN Response Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_RESP_DATE}"/>
+														<core:Title/>
+														<Label text="IRS Form Response Date"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/IRS_RESP_DATE}"/>
+														<Label text="NRA"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/FLAG_NRA} === 'X'}"></CheckBox>
+														<Label text="1099"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/FLAG_1099} === 'X'}"></CheckBox>
+														<Label text="W8"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_W8} === 'X'}"></CheckBox>
+														<Label text="TIN W8"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_W8} === 'X'}"></CheckBox>
+														<Label text="W9"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_W9} === 'X'}"></CheckBox>
+														<Label text="TIN W9"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_W9} === 'X'}"></CheckBox>
+														<Label text="Others"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_OTHERS} === 'X'}"></CheckBox>
+														<Label text="TIN Others"/>
+														<CheckBox enabled="false"
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_OTEHRS} === 'X'}"></CheckBox>
+														<Label text="Reporting Entity Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/REP_ENTITY_TYPE}"></Text>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+											<IconTabFilter text="Address" key="address">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<!--<core:Title text="General Information"/>-->
+														<Label text="Address Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/ADDR_TYPE}">
+															<!--	<items>
+																<core:Item text="Add 1" key="1"/>
+																<core:Item text="Add 2" key="2"/>
+																<core:Item text="Add 3" key="3"/>
+															</items>-->
+														</Text>
+														<Label text="Title"/>
+														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
+															<!--<items>
+																<core:Item text="Title1" key="1"/>
+																<core:Item text="Title2" key="2"/>
+																<core:Item text="Title3" key="3"/>
+															</items>-->
+														</Text>
+														<Label text="Name"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
+														<Label text="Name2"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
+														<Label text="Search Term 1"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
+														<Label text="Street"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}"/>
+														<Label text="House No."/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
+														<Label text="Supplement"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+														<Label text="Postal Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+														<Label text="Country Key"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}"></Text>
+														<Label text="City"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
+														<core:Title/>
+														<Label text="Region"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/region}"></Text>
+														<Label text="PO Box"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box}"/>
+														<Label text="PO Box Postal Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code2}"/>
+														<Label text="Company Postal Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+														<Label text="Language Key"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}"></Text>
+														<Label text="Telephone"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/tel_number}"/>
+														<Label text="Ext."/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/tel_extens}"/>
+														<Label text="Mobile Phone"/>
+														<Text/>
+														<Label text="Fax"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/fax_number}"/>
+														<Label text="Email"/>
+														<Text/>
+														<Label text="Comm Method"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deflt_comm}"></Text>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+											<IconTabFilter text="Escheat" key="escheat">
+												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+													singleContainerFullSize="false">
+													<form:content>
+														<!--<core:Title text="General Information"/>-->
+														<Label text="Owner Type"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/NAME_ID}"></Text>
+														<Label text="Title"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_TITLE}"/>
+														<Label text="First Name"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_FIRST}"/>
+														<Label text="Name Prefix"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_PREFIX}"/>
+														<Label text="Date Of Birth"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_DOB}"/>
+														<Label text="Tax ID"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_TAXID}"/>
+														<Label text="Address Line 1"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS1}"/>
+														<Label text="Address Line 2"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS2}"/>
+														<Label text="Address Line 3"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS3}"/>
+														<core:Title/>
+														<Label text="City"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_CITY}"/>
+														<Label text="Country"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_COUNTRY}"></Text>
+														<Label text="County"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_COUNTY}"/>
+														<Label text="Name"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_LAST}"/>
+														<Label text="Middle Name"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_MIDDLE}"/>
+														<Label text="Name suffix"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_SUFFIX}"/>
+														<Label text="Tax ID Extension"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_TAXID_EXT}"/>
+														<Label text="State Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_STATE}"/>
+														<Label text="Zip Code"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ZIP}"/>
+													</form:content>
+												</form:SimpleForm>
+											</IconTabFilter>
+										</items>
+									</IconTabBar>
+								</content>
+							</Panel>
 						</VBox>
 						<l:sideContent>
 							<IconTabBar expanded="true">
