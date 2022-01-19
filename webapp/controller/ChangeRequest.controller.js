@@ -1,12 +1,13 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
-], function (Controller,ServiceCall) {
+], function (BaseController, ServiceCall) {
 	"use strict";
 
-	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
-		 constructor: function () {
+	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
+		constructor: function () {
 			this.serviceCall = new ServiceCall();
+			this.oController = this;
 		},
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -14,34 +15,9 @@ sap.ui.define([
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest
 		 */
 		onInit: function () {
-
 			this.handleGetAllChangeRequests();
 			this.handleChangeRequestStatistics();
-			
-		},
-		
-		handleChangeRequestStatistics : function(){
-				var objParam= {
-					url:'/murphyCustom/mdm/change-request-service/changerequests/changerequest/statistics/get',
-					type:'GET',
-					hasPayload: false
-				};
-			
-			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				this.getOwnerComponent().getModel('changeRequestStatisticsModel').setData(oData.result);
-			}.bind(this)); 
-		},
-		
-		handleGetAllChangeRequests : function(){
-				var objParam= {
-					url:'/murphyCustom/mdm/change-request-service/changerequests/changerequest/get',
-					type:'GET',
-					hasPayload: false
-				};
-			
-			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				this.getOwnerComponent().getModel('changeRequestGetAllModel').setData(oData.result);
-			}.bind(this));                         
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -65,7 +41,7 @@ sap.ui.define([
 			oDynamicSideContent.setShowSideContent(bPressed);
 
 		},
-		
+
 		handleMassCRSideMenu: function (oEvent) {
 			var bPressed = oEvent.getParameter('pressed');
 			var oDynamicSideContent = this.getView().byId('changeReqSideContentId2');
@@ -73,48 +49,73 @@ sap.ui.define([
 			oDynamicSideContent.setShowSideContent(bPressed);
 		},
 
-		onChangeReqLinkPress: function () {
-			var sID = this.getView().getParent().getPages().find(function (e) {
-				return e.getId().indexOf("createERPVendorView") !== -1;
-			}).getId();
-			this.getView().getParent().to(sID);
-		//	this.getView().getParent().to(sID);
-			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
-			// debugger;
-			// sap.ui.getCore().byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-			// var titleID = sap.ui.getCore().byId("idTitle");
-			// titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+		onChangeReqLinkPress: function (oEvent) {
+			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_BY_ENTITY_ID",
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_id": "348"
+							}
+						}
+					}
+				}
+
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result && oDataResp.result.vendorDTOs[0]) {
+					debugger;
+					var sID = this.getView().getParent().getPages().find(function (e) {
+						return e.getId().indexOf("erpVendorPreview") !== -1;
+					}).getId();
+					this.getView().getParent().to(sID);
+					//	this.getView().getParent().to(sID);
+					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
+					this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent()
+						.getItem()
+						.getItems()[1]);
+					var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+				}
+			}.bind(this));
+
 		},
-		
-		onPressAddComment: function(){
+
+		onPressAddComment: function () {
 			this.getView().byId("commentVBoxID").setVisible(true);
 		},
-		
-		onPressCancelComment: function(){
+
+		onPressCancelComment: function () {
 			this.getView().byId("commentVBoxID").setVisible(false);
 		},
-		
-		handleChangeStatus : function(sValue){
+
+		handleChangeStatus: function (sValue) {
 			var sText = "Unknown";
-			if(sValue){
-				sText = "Closed";	
-			}else if(sValue === false){
+			if (sValue) {
+				sText = "Closed";
+			} else if (sValue === false) {
 				sText = "Open";
 			}
 			return sText;
 		},
-		
-		handleChangeReqDate : function(sDateText){
-			var sResultDate ="" ;
+
+		handleChangeReqDate: function (sDateText) {
+			var sResultDate = "";
 			if (sDateText) {
-						sResultDate = new Date(sDateText.split('T')[0]);
-						var sDate = (sResultDate.getDate()).toString();
-						sDate = sDate.length === 2 ? sDate : ('0'+ sDate);
-						var sMonth =((sResultDate.getMonth()) + 1).toString();
-						sMonth = sMonth.length  === 2 ? sMonth: ('0'+sMonth);
-						sResultDate =  sDate+ '-' + sMonth+ '-' + sResultDate.getFullYear();
+				sResultDate = new Date(sDateText.split('T')[0]);
+				var sDate = (sResultDate.getDate()).toString();
+				sDate = sDate.length === 2 ? sDate : ('0' + sDate);
+				var sMonth = ((sResultDate.getMonth()) + 1).toString();
+				sMonth = sMonth.length === 2 ? sMonth : ('0' + sMonth);
+				sResultDate = sDate + '-' + sMonth + '-' + sResultDate.getFullYear();
 			}
 			return sResultDate;
 		}

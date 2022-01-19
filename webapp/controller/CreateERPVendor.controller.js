@@ -32,6 +32,7 @@ sap.ui.define([
 		onInit: function () {
 			this._getTaxonomyData();
 			this._getDropDownData();
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		_getTaxonomyData: function () {
@@ -46,7 +47,7 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
+					this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
 				}
 			}.bind(this));
 		},
@@ -133,6 +134,7 @@ sap.ui.define([
 						}
 					}.bind(this), function (oError) {
 						this.getView().setBusy(false);
+						MessageToast.show("Error In Generating Lifnr");
 					}.bind(this));
 				} else {
 					this._handleSaveWithLifnr(oData);
@@ -173,10 +175,19 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				if (oDataResp.result) {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-					this.getView().byId("idCreateVendorSubmit").setVisible(true);
+					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
+
+					var sID = this.getView().getParent().getPages().find(function (e) {
+						return e.getId().indexOf("erpVendorPreview") !== -1;
+					}).getId();
+					this.getView().getParent().to(sID);
+					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
+				MessageToast.show("Error In Creating Draft Version");
 			}.bind(this));
 		},
 
@@ -209,7 +220,6 @@ sap.ui.define([
 			});
 			var aCols = oData.cols;
 			this._oBasicSearchField = new SearchField();
-			// debugger;
 			var objParamCreate = {
 				url: "/murphyCustom/config-service/configurations/configuration",
 				type: 'POST',
@@ -319,6 +329,10 @@ sap.ui.define([
 			var aToken = oEvent.getParameter("tokens");
 			var oVal = aToken[0].getCustomData()[0].getValue();
 			this._oInput.setValue(oVal[this._sKey]);
+			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
+			}
 			this._oValueHelpDialog.close();
 		},
 
@@ -441,7 +455,6 @@ sap.ui.define([
 					if (oDataResp.result) {
 						var oModel = new JSONModel(oDataResp.result);
 						this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
-						debugger;
 					}
 				}.bind(this));*/
 		},
@@ -467,15 +480,20 @@ sap.ui.define([
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
-				if (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" || 
-						oData.getProperty(oItem.fieldMapping) === null) {
+				if (!oItem.isPRAData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
+					aEmptyFields.push(oItem);
+					sValueState = "Error";
+				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "VEND" &&
+						oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "EMPL")) && (oData.getProperty(oItem
+							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
 				} else {
 					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
 						sValueState = "Success";
 					}
-
 				}
 				oControl.setValueState(sValueState);
 			});
@@ -511,78 +529,78 @@ sap.ui.define([
 			}
 		},
 
-		onSubmitClick: function (oEvent) {
-			this.getView().setBusy(true);
-			var objParamSubmit = {
-				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"changeRequestDTO": {
-						"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-					}
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-				this.getView().setBusy(false);
-				MessageToast.show("Submission Successful");
-				// this._CreateCRID();
-			}.bind(this), function (oError) {
-				this.getView().setBusy(false);
-				MessageToast.show("Error in Action Call");
-			}.bind(this));
+		// onSubmitClick: function (oEvent) {
+		// 	this.getView().setBusy(true);
+		// 	var objParamSubmit = {
+		// 		url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
+		// 		type: 'POST',
+		// 		hasPayload: true,
+		// 		data: {
+		// 			"changeRequestDTO": {
+		// 				"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
+		// 			}
+		// 		}
+		// 	};
+		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
+		// 		// this.getView().setBusy(false);
+		// 		// MessageToast.show("Submission Successful");
+		// 		this._CreateCRID();
+		// 	}.bind(this), function (oError) {
+		// 		this.getView().setBusy(false);
+		// 		MessageToast.show("Error in Action Call");
+		// 	}.bind(this));
 
-		},
+		// },
 
-		_CreateCRID: function () {
-			var objParamSubmit = {
-				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/create",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"parentCrDTOs": [{
-						"crDTO": {
-							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-						}
-					}]
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-				// this.getView().setBusy(false);
-				MessageToast.show("Change Request ID - " + oDataResp.result.parentCrDTOs[0].crDTO.change_request_id + " Generated.");
-				this._EntityIDDraftFalse();
-			}.bind(this), function (oError) {
-				this.getView().setBusy(false);
-				MessageToast.show("Error in CR Create Call");
-			}.bind(this));
-		},
+		// _CreateCRID: function () {
+		// 	var objParamSubmit = {
+		// 		url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/create",
+		// 		type: 'POST',
+		// 		hasPayload: true,
+		// 		data: {
+		// 			"parentCrDTOs": [{
+		// 				"crDTO": {
+		// 					"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
+		// 				}
+		// 			}]
+		// 		}
+		// 	};
+		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
+		// 		// this.getView().setBusy(false);
+		// 		MessageToast.show("Change Request ID - " + oDataResp.result.parentCrDTOs[0].crDTO.change_request_id + " Generated.");
+		// 		this._EntityIDDraftFalse();
+		// 	}.bind(this), function (oError) {
+		// 		this.getView().setBusy(false);
+		// 		MessageToast.show("Error in CR Create Call");
+		// 	}.bind(this));
+		// },
 
-		_EntityIDDraftFalse: function () {
-			var objParamSubmit = {
-				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"entityType": "VENDOR",
-					"parentDTO": {
-						"customData": {
-							"business_entity": {
-								"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-								"is_draft": "false"
-							}
-						}
-					}
-				}
+		// _EntityIDDraftFalse: function () {
+		// 	var objParamSubmit = {
+		// 		url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+		// 		type: 'POST',
+		// 		hasPayload: true,
+		// 		data: {
+		// 			"entityType": "VENDOR",
+		// 			"parentDTO": {
+		// 				"customData": {
+		// 					"business_entity": {
+		// 						"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+		// 						"is_draft": "false"
+		// 					}
+		// 				}
+		// 			}
+		// 		}
 
-			};
-			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-				this.getView().setBusy(false);
-				MessageToast.show("Submission Successful");
-			}.bind(this), function (oError) {
-				this.getView().setBusy(false);
-				MessageToast.show("Error in Make draft false Call");
-			}.bind(this));
-		}
+		// 	};
+		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
+		// 		this.getView().setBusy(false);
+		// 		MessageToast.show("Submission Successful");
+		// 	}.bind(this), function (oError) {
+		// 		this.getView().setBusy(false);
+		// 		MessageToast.show("Error in Make draft false Call");
+		// 	}.bind(this));
+		// }
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

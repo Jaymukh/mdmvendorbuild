@@ -168,7 +168,17 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				var oDate = new Date();
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
+				// var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData_Copy"));
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
+
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
@@ -320,7 +330,6 @@ sap.ui.define([
 		}
 
 		// onSaveClick : function(oEvent){
-		// 	debugger;
 		// 	this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 		// },
 		/**
