@@ -85,7 +85,7 @@
 											</Select>
 											<Label text="Name1"/>
 											<Input id="idERPVendorName1" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"
-												maxLength="35"/>
+												maxLength="35" liveChange="handleName1"/>
 											<Label text="Name2"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}" maxLength="35"/>
 											<Label text="Name3"/>
@@ -933,7 +933,7 @@
 											<core:Title text="ERP Vendor Company Code : Payment data"/>
 											<Label text="Payment terms"/>
 											<Select id="idCompCodesTermsOfPayment" forceSelection="false" required="true"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZTERM}">
 												<items>
 													<core:Item text="0030" key="0030"/>
 													<core:Item text="0001" key="0001"/>
@@ -1838,13 +1838,13 @@
 													<form:content>
 														<core:Title text="General Information"/>
 														<Label text="Intercompany Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BUKRS}" maxLength="4"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bukrs}" maxLength="4"/>
 														<Label text="Resident Country"/>
 														<Input id="idPRAAccResidentCountry" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND}" maxLength="3"/>
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/kglnd}" maxLength="3"/>
 														<Label text="Entity Type"/>
 														<Select id="idPRAAccEntityType" forceSelection="false" required="true"
-															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD}">
+															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/enty_cd}">
 															<items>
 																<core:Item text="Charitable" key="01"/>
 																<core:Item text="Federal" key="02"/>
@@ -2098,7 +2098,7 @@
 															</items>-->
 														</Select>
 														<Label text="Name"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
+														<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
 														<Label text="Name2"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 														<Label text="Search Term 1"/>
