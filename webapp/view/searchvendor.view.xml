@@ -49,7 +49,7 @@
 								<f:heading>
 									<!--	<sv:SmartVariantManagement id="__SVM01" persistencyKey="fiori.test.application2.view.S4.FilterBar" showShare="true"
 										showExecuteOnSelection="true"/> -->
-									<vm:VariantManagement  id="searchVendorVM" select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+									<vm:VariantManagement id="searchVendorVM" select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 										<vm:variantItems>
 											<vm:VariantItem text="Bank Details" key="bankDetails"></vm:VariantItem>
 										</vm:variantItems>
@@ -60,7 +60,7 @@
 						<f:header>
 							<f:DynamicPageHeader>
 								<f:content>
-									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" >
+									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true">
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name 1">
 												<filterbar:control>
@@ -69,39 +69,39 @@
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name2" label="Name 2">
 												<filterbar:control>
-													<Input  id="fbName2"></Input>
+													<Input id="fbName2"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="city" label="City">
 												<filterbar:control>
-													<Input  id="fbCity"></Input>
+													<Input id="fbCity"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
 												<filterbar:control>
-													<Input  id="fbStreet"></Input>
+													<Input id="fbStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
 										<filterbar:filterGroupItems>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="businessPartnerID" label="Business Partner ID">
 												<filterbar:control>
-													<Input  id="fbBPId"></Input>
+													<Input id="fbBPId"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankAccount" label="Bank Account">
 												<filterbar:control>
-													<Input  id="fbBankAcc"></Input>
+													<Input id="fbBankAcc"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankKey" label="Bank Key">
 												<filterbar:control>
-													<Input  id="fbBankKey"></Input>
+													<Input id="fbBankKey"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="street" label="Street">
 												<filterbar:control>
-													<Input  id="fbBankStreet"></Input>
+													<Input id="fbBankStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -110,7 +110,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" growing="true" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}" >
+							<Table mode="SingleSelectLeft" growing="true" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}">
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
@@ -130,19 +130,11 @@
 									<ColumnListItem>
 										<cells>
 											<Link text="{SearchVendorModel>customVendorLFA1DTO/lifnr}"></Link>
-											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest',
-																	formatter : '.handlePendingRequest'}" 
-													      text="{SearchVendorModel>pendingRequest}"/>
+											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest', formatter : '.handlePendingRequest'}"
+												text="{SearchVendorModel>pendingRequest}"/>
 											<Text text="{SearchVendorModel>overDueDate}"></Text>
-											<Text text="{
-														parts:[
-															{path:'SearchVendorModel>customVendorLFA1DTO/name1'},
-															{path:'SearchVendorModel>customVendorLFA1DTO/name2'},
-															{path:'SearchVendorModel>customVendorLFA1DTO/name3'},
-															{path:'SearchVendorModel>customVendorLFA1DTO/name4'}
-													],
-													formatter:'.handleDescription'
-											}"></Text>
+											<Text
+												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/name1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
@@ -153,6 +145,7 @@
 						</f:content>
 					</f:DynamicPage>
 					<mvc:XMLView id="createERPVendorView" viewName="murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor"/>
+					<mvc:XMLView id="erpVendorPreview" viewName="murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview"/>
 					<mvc:XMLView id="changeRequestId" viewName="murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest"/>
 					<!--<ScrollContainer id="myReq" horizontal="false" vertical="true" height="100%">-->
 					<!--	<Text text="This is the My Request Page"/>-->
