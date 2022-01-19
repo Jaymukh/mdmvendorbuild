@@ -1529,7 +1529,7 @@
 											<!--	</layoutData>-->
 											<!--</Input>-->
 											<Label text="Postal Code / City"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
+											<Input required ="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
@@ -1624,7 +1624,7 @@
 											<Label text="Postal Code"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
+											<Input id= "idAddrCountryKey" required ="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Country Key"></core:CustomData>
@@ -2112,7 +2112,7 @@
 														<Label text="Postal Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 														<Label text="Country Key"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
+														<Input required ="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>

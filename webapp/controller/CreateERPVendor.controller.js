@@ -97,7 +97,7 @@ sap.ui.define([
 								"customData": {
 									"vnd_lfa1": {
 										"entity_id": sEntityId,
-										"KTOKK": "EMPL"
+										"KTOKK": oData.parentDTO.customData.vnd_lfa1.KTOKK
 									}
 								}
 							}
@@ -159,7 +159,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === "undefined" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 ===
+			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.Name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 			}
@@ -475,8 +475,8 @@ sap.ui.define([
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
-				if (oData.getProperty(oItem.fieldMapping) === 'undefined' || oData.getProperty(oItem.fieldMapping) === "" || oData.getProperty(
-						oItem.fieldMapping) === null) {
+				if (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" || 
+						oData.getProperty(oItem.fieldMapping) === null) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
 				} else {
