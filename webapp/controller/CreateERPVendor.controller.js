@@ -32,6 +32,7 @@ sap.ui.define([
 		onInit: function () {
 			this._getTaxonomyData();
 			this._getDropDownData();
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		_getTaxonomyData: function () {
@@ -475,15 +476,20 @@ sap.ui.define([
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
-				if (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" || 
-						oData.getProperty(oItem.fieldMapping) === null) {
+				if (!oItem.isPRAData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
+					aEmptyFields.push(oItem);
+					sValueState = "Error";
+				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "VEND" &&
+						oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "EMPL")) && (oData.getProperty(oItem
+							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
 				} else {
 					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
 						sValueState = "Success";
 					}
-
 				}
 				oControl.setValueState(sValueState);
 			});
