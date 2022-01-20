@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
-], function (Controller, ServiceCall) {
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
+	'sap/ui/core/Fragment'
+], function (Controller, ServiceCall,Fragment) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.BaseController", {
@@ -43,6 +44,25 @@ sap.ui.define([
 					this.getView().getModel("changeRequestGetAllModel").setData(oData.result);
 				}
 			}.bind(this));
+		},
+		handleErrorLogs : function(){
+				var oButton = sap.ui.getCore().byId('idCreateVendorSubmitErrors');
+				var oView = this.getView();
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+				name: "murphy.mdm.vendor.murphymdmvendor.fragments.ErrorPopover",
+					controller: this
+				}).then(function(oPopover){
+					oView.addDependent(oPopover);
+					return oPopover;
+				});
+			}
+
+			this._pPopover.then(function(oPopover){
+				oPopover.openBy(oButton);
+			});
 		}
 
 	});
