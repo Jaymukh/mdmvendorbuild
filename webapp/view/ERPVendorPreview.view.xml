@@ -1282,7 +1282,7 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<Button  id="idCreateVendorSubmitErrors" visible="false" text="Error Log" type="Transparent" press="onErrorLog"/>
+				<Button  id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button text="Edit" type="Transparent" press="onEditClick"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
