@@ -1,131 +1,23 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
+], function (BaseController, ServiceCall) {
 	"use strict";
 
-	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
-
+	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
+		constructor: function () {
+			this.serviceCall = new ServiceCall();
+			this.oController = this;
+		},
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest
 		 */
 		onInit: function () {
-			var oData = {
-				columns: [{
-					header: "Change Request",
-					key: 'changeRequest'
-				}, {
-					header: "Change Status",
-					key: 'changeStatus'
-				}, {
-					header: "Last Update",
-					key: 'lastUpdate'
-				}, {
-					header: "Changed By",
-					key: 'changedBy'
-				}, {
-					header: "Business Partner ID",
-					key: 'bpID'
-				}, {
-					header: "Category",
-					key: 'category'
-				}, {
-					header: " ",
-					key: 'overflowIcon'
-				}],
-				rows: [{
-						changeRequest: "31900",
-						changeStatus: "Changes to Be Executed",
-						lastUpdate: "20-04-2020",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "31907",
-						changeStatus: "Changes to Be Executed",
-						lastUpdate: "23-11-2020",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "09084",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39083",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39082",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39081",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39080",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39079",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39078",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39077",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39076",
-						changeStatus: "To Revise: Perform Changes",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}, {
-						changeRequest: "39075",
-						changeStatus: "Final Check Be Performed",
-						lastUpdate: "dd-mm-yyyy",
-						changedBy: "Klaus Cole",
-						bpID: "3190099",
-						category: "28A"
-					}
-
-				]
-
-			};
-			var oJSONModel = new sap.ui.model.json.JSONModel(oData);
-			this.getView().setModel(oJSONModel);
-
+			this.handleGetAllChangeRequests();
+			this.handleChangeRequestStatistics();
+			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -149,7 +41,7 @@ sap.ui.define([
 			oDynamicSideContent.setShowSideContent(bPressed);
 
 		},
-		
+
 		handleMassCRSideMenu: function (oEvent) {
 			var bPressed = oEvent.getParameter('pressed');
 			var oDynamicSideContent = this.getView().byId('changeReqSideContentId2');
@@ -157,27 +49,85 @@ sap.ui.define([
 			oDynamicSideContent.setShowSideContent(bPressed);
 		},
 
-		onChangeReqLinkPress: function () {
-			var sID = this.getView().getParent().getPages().find(function (e) {
-				return e.getId().indexOf("erpVendorPreview") !== -1;
-			}).getId();
-			this.getView().getParent().to(sID);
-			this.getView().getParent().to(sID);
-			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
-			// debugger;
-			// sap.ui.getCore().byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-			// var titleID = sap.ui.getCore().byId("idTitle");
-			// titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+		onChangeReqLinkPress: function (oEvent) {
+			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_BY_ENTITY_ID",
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_id": sEntityID
+							}
+						}
+					}
+				}
+
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result && oDataResp.result.vendorDTOs[0]) {
+					debugger;
+					var sID = this.getView().getParent().getPages().find(function (e) {
+						return e.getId().indexOf("erpVendorPreview") !== -1;
+					}).getId();
+					this.getView().getParent().to(sID);
+					//	this.getView().getParent().to(sID);
+					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
+					this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent()
+						.getItem()
+						.getItems()[1]);
+					var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+				}
+			}.bind(this));
+
 		},
-		
-		onPressAddComment: function(){
+
+		onPressAddComment: function () {
 			this.getView().byId("commentVBoxID").setVisible(true);
 		},
-		
-		onPressCancelComment: function(){
+
+		onPressCancelComment: function () {
 			this.getView().byId("commentVBoxID").setVisible(false);
+		},
+
+		handleChangeStatus: function (sValue) {
+			var sText = "Unknown";
+			if (sValue) {
+				sText = "Closed";
+			} else if (sValue === false) {
+				sText = "Open";
+			}
+			return sText;
+		},
+
+		handleChangeReqDate: function (sDateText) {
+			var sResultDate = "";
+			if (sDateText) {
+				sResultDate = new Date(sDateText.split('T')[0]);
+				var sDate = (sResultDate.getDate()).toString();
+				sDate = sDate.length === 2 ? sDate : ('0' + sDate);
+				var sMonth = ((sResultDate.getMonth()) + 1).toString();
+				sMonth = sMonth.length === 2 ? sMonth : ('0' + sMonth);
+				sResultDate = sDate + '-' + sMonth + '-' + sResultDate.getFullYear();
+			}
+			return sResultDate;
+		},
+
+		formatCR_Entiry_ID: function (sCRId, sEntityID) {
+			var sID = "";
+			if (sCRId) {
+				sID = sCRId;
+			} else {
+				sID = "T-" + sEntityID;
+			}
+			return sID;
 		}
 
 		/**

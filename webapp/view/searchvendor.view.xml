@@ -25,11 +25,11 @@
 				<tnt:NavigationList>
 					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
 					<tnt:NavigationListItem text="Create Vendor" icon="sap-icon://create" key="createERPVendorView"/>
-					<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="myReq">
-						<tnt:NavigationListItem text="My Chnage Request" key="changeRequestId"/>
-						<tnt:NavigationListItem text="All Change Request" key="allReq"/>
+					<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="changeRequestId">
+						<tnt:NavigationListItem text="All Change Request" key="changeRequestId"/>
+						<tnt:NavigationListItem text="Mass Change Request" key="changeRequestId-Mass"/>
 					</tnt:NavigationListItem>
-					<tnt:NavigationListItem text="Mass Change" icon="sap-icon://copy" key="copy"/>
+					<tnt:NavigationListItem text="Text1" icon="sap-icon://copy" key="copy"/>
 				</tnt:NavigationList>
 				<tnt:fixedItem>
 					<tnt:NavigationList>
@@ -49,7 +49,7 @@
 								<f:heading>
 									<!--	<sv:SmartVariantManagement id="__SVM01" persistencyKey="fiori.test.application2.view.S4.FilterBar" showShare="true"
 										showExecuteOnSelection="true"/> -->
-									<vm:VariantManagement select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+									<vm:VariantManagement id="searchVendorVM" select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 										<vm:variantItems>
 											<vm:VariantItem text="Bank Details" key="bankDetails"></vm:VariantItem>
 										</vm:variantItems>
@@ -60,48 +60,48 @@
 						<f:header>
 							<f:DynamicPageHeader>
 								<f:content>
-									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true">
 										<filterbar:filterGroupItems >
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name1">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name 1">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbName1"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name12" label="Name2">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name2" label="Name 2">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbName2"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="city" label="City">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbCity"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
 										<filterbar:filterGroupItems>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="businessPartnerID" label="Business Partner ID">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbBPId"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankAccount" label="Bank Account">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbBankAcc"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="bankKey" label="Bank Key">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbBankKey"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="bankDetails" name="street" label="Street">
 												<filterbar:control>
-													<Input></Input>
+													<Input id="fbBankStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -110,10 +110,10 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" columns="{/columns}" items="{/rows}">
+							<Table mode="SingleSelectLeft" growing="true" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}">
 								<headerToolbar>
 									<Toolbar>
-										<Label id="idTableTitle" text="Business Partner Master List(23458)" design="Bold"></Label>
+										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
 										<Button text="Replicate"></Button>
@@ -122,19 +122,21 @@
 								<columns>
 									<Column>
 										<header>
-											<Label text="{header}" design="Bold"></Label>
+											<Label text="{SearchVendorMetadataModel>header}" design="Bold"></Label>
 										</header>
 									</Column>
 								</columns>
 								<items>
 									<ColumnListItem>
 										<cells>
-											<Link text="{businessPartnerId}"></Link>
-											<ObjectStatus state="{path:'pendigRequest', formatter : '.handlePendingRequest'}" text="{pendigRequest}"/>
-											<Text text="{description}"></Text>
-											<Text text="{customerContact}"></Text>
-											<Text text="{category}"></Text>
-											<Text text="{rank}"></Text>
+											<Link text="{SearchVendorModel>customVendorLFA1DTO/lifnr}"></Link>
+											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest', formatter : '.handlePendingRequest'}"
+												text="{SearchVendorModel>pendingRequest}"/>
+											<Text text="{SearchVendorModel>overDueDate}"></Text>
+											<Text
+												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/name1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>
@@ -143,6 +145,7 @@
 						</f:content>
 					</f:DynamicPage>
 					<mvc:XMLView id="createERPVendorView" viewName="murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor"/>
+					<mvc:XMLView id="erpVendorPreview" viewName="murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview"/>
 					<mvc:XMLView id="changeRequestId" viewName="murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest"/>
 					<!--<ScrollContainer id="myReq" horizontal="false" vertical="true" height="100%">-->
 					<!--	<Text text="This is the My Request Page"/>-->

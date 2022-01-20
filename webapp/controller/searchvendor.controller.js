@@ -1,11 +1,15 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/Fragment"
-], function (Controller, Fragment) {
+	"sap/ui/core/Fragment",
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
+	"sap/m/MessageToast"
+], function (Controller, Fragment, ServiceCall, MessageToast) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.searchvendor", {
-
+		constructor: function () {
+			this.serviceCall = new ServiceCall();
+		},
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -16,142 +20,104 @@ sap.ui.define([
 			var oToolPage = this.byId("toolPage");
 			this._setToggleButtonTooltip(true);
 			oToolPage.setSideExpanded(false);
-			var oData = {
-				columns: [{
-					header: "Business Partner ID",
-					key: "bpID"
-				}, {
-					header: "Pending Request",
-					key: "pendingRequest"
-				}, {
-					header: "Description",
-					key: "description"
-				}, {
-					header: "Customer Contact",
-					key: "customerContact"
-				}, {
-					header: "Category",
-					key: "category"
-				}, {
-					header: "Rank",
-					key: "rank"
-				}, {
-					header: " ",
-					key: "overflowIcon"
-				}],
-				rows: [{
-						businessPartnerId: "500009086",
-						pendigRequest: "Pending",
-						description: "Danish Fishing Trading Company(100000043)",
-						customerContact: "Danish",
-						category: "12 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009085",
-						pendigRequest: " ",
-						description: "Sorali(100000044)",
-						customerContact: "Klaus ",
-						category: "6 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009084",
-						pendigRequest: " ",
-						description: "Sorali(100000044)",
-						customerContact: "Dinesh",
-						category: "12 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009083",
-						pendigRequest: "Overdue",
-						description: "Anav Ideon(100000054)",
-						customerContact: "John Miller",
-						category: "2 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009082",
-						pendigRequest: "Pending",
-						description: "Anav Ideon(100000054)",
-						customerContact: "John Miller",
-						category: "8 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009081",
-						pendigRequest: " ",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "7 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009080",
-						pendigRequest: " ",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "12 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009079",
-						pendigRequest: "Pending",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "9 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009078",
-						pendigRequest: "Overdue",
-						description: "Anav Ideon(100000054)",
-						customerContact: "John Miller",
-						category: "12 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009077",
-						pendigRequest: "Pending",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "6 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009076",
-						pendigRequest: "Pending",
-						description: "Sorali(100000044)",
-						customerContact: "Dinesh",
-						category: "2 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009075",
-						pendigRequest: "Overdue",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "1 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009074",
-						pendigRequest: " ",
-						description: "Anav Ideon(100000054)",
-						customerContact: "John Miller",
-						category: "12 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009073",
-						pendigRequest: " ",
-						description: "Anav Ideon(100000054)",
-						customerContact: "John Miller",
-						category: "5 EA",
-						rank: "100,00"
-					}, {
-						businessPartnerId: "500009072",
-						pendigRequest: "Pending",
-						description: "PicoBit(100000037)",
-						customerContact: "Will Shi",
-						category: "8 EA",
-						rank: "100,00"
+			this.handleGo();
+
+			// create a blank object to refill in model to make it blank
+			var p2 = Object.assign({}, this.getOwnerComponent().getModel("CreateVendorModel").getData().createCRVendorData);
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRVendorData_Copy", Object.assign({}, p2));
+		},
+
+		handleGo: function (oParameters = {}) {
+			var oSearchVendorModel = this.getOwnerComponent().getModel("SearchVendorModel");
+			var oFilterParameters = {};
+			if (Object.keys(oParameters).length === 0) {
+				oFilterParameters = {
+					"vnd_lfa1": {}
+				};
+			} else {
+				oFilterParameters = oParameters;
+			}
+			var objParam = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_ALL_VENDOR",
+					"entityType": "VENDOR",
+					"currentPage": 1,
+					"parentDTO": {
+						"customData": oFilterParameters
 					}
-
-				]
-
+				}
 			};
-			var oJSONModel = new sap.ui.model.json.JSONModel(oData);
-			this.getView().setModel(oJSONModel);
 
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				var aResultDataArr = oData.result.vendorDTOs;
+				oData.result.totalRecords = aResultDataArr.length;
+				aResultDataArr.forEach(oItem => {
+					var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
+					var sResultDate = '';
+					var sDate = '';
+					var sPendingRequest = '';
+					if (sValue) {
+						sDate = sValue.split('T')[0];
+						sResultDate = new Date(sDate);
+						sResultDate = sResultDate.getDate() + '-' + (sResultDate.getMonth() + 1) + '-' + sResultDate.getFullYear();
+						if (new Date(sDate).getTime() > new Date().getTime()) {
+							sPendingRequest = "Pending";
+						} else {
+							sPendingRequest = "OverDue"
+						}
+					}
+					oItem.overDueDate = sResultDate;
+					oItem.pendingRequest = sPendingRequest;
+				})
+
+				oSearchVendorModel.setData(oData.result);
+			});
+		},
+
+		onSearch: function () {
+			var sVMSelectedKey = this.getView().byId('searchVendorVM').getSelectionKey();
+			var sName1 = this.getView().byId('fbName1').getValue();
+			var sName2 = this.getView().byId('fbName2').getValue();
+			var sCity = this.getView().byId('fbCity').getValue();
+			var sStreet = this.getView().byId('fbStreet').getValue();
+			var sBPId = this.getView().byId('fbBPId').getValue();
+			var sBankAcc = this.getView().byId('fbBankAcc').getValue();
+			var sBankKey = this.getView().byId('fbBankKey').getValue();
+			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
+			var oFilterBarParam = {};
+			if (sVMSelectedKey === "*standard*") {
+				oFilterBarParam.vnd_lfa1 = {};
+				if (sName1) {
+					oFilterBarParam['vnd_lfa1']['NAME1'] = sName1;
+				}
+				if (sName2) {
+					oFilterBarParam['vnd_lfa1']['NAME2'] = sName2;
+				}
+				if (sCity) {
+					oFilterBarParam['vnd_lfa1']['ORT01'] = sCity;
+				}
+				if (sStreet) {
+					oFilterBarParam['vnd_lfa1']['STREET'] = sStreet;
+				}
+			} else if (sVMSelectedKey === "bankDetails") {
+				oFilterBarParam.vnd_lfbk = {};
+				if (sBPId) {
+					oFilterBarParam['vnd_lfbk']['LIFNR'] = sBPId;
+				}
+				if (sBankAcc) {
+					oFilterBarParam['vnd_lfbk']['BKONT'] = sBankAcc;
+				}
+				if (sBankKey) {
+					oFilterBarParam['vnd_lfbk']['BANKL'] = sBankKey;
+				}
+				if (sBankStreet) {
+					oFilterBarParam['vnd_lfbk']['STRAS'] = sBankStreet;
+				}
+			}
+			this.handleGo(oFilterBarParam);
 		},
 
 		onSideNavButtonPress: function () {
@@ -173,13 +139,113 @@ sap.ui.define([
 		},
 
 		onSideItemSelect: function (oEvent) {
+			debugger;
 			var sKey = oEvent.getParameter("item").getKey();
 			var titleID = this.getView().byId("idTitle");
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
+			if (sKey === "createERPVendorView") {
+				this._createCREntityID();
+			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
 			// }
+		},
+
+		_createCREntityID: function () {
+			var objParam = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+				hasPayload: true,
+				type: 'POST',
+				data: {
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_type_id": "1",
+								"created_by": "1",
+								"modified_by": "1",
+								"is_draft": "1"
+							}
+						}
+					}
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				var oDate = new Date();
+				var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getData().createCRVendorData_Copy);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
+				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
+
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
+					.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate.getDate()
+				);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").refresh();
+				// console.log(oData);
+			}.bind(this), function (oData) {
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
+				MessageToast.show("Entity ID not created. Please try after some time");
+			}.bind(this));
+		},
+
+		onSearchVendorTableUpdated: function (oEvent) {
+
 		},
 
 		onPressChngReqTile: function (oEvent) {
@@ -187,7 +253,7 @@ sap.ui.define([
 		},
 
 		handlePendingRequest: function (sValue) {
-			var sStatus = "None";
+			var sStatus = '';
 			switch (sValue.toLowerCase()) {
 			case "pending":
 				sStatus = "Warning";
@@ -195,12 +261,15 @@ sap.ui.define([
 			case "overdue":
 				sStatus = "Error";
 				break;
-
+			default:
+				sStatus = "None";
 			}
 			return sStatus;
 		},
 
 		handleOverFlowButton: function (oEvent) {
+			var oBindingObj = oEvent.getSource().getBindingContext('SearchVendorModel').getObject();
+			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oBindingObj);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
 
@@ -229,6 +298,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this._createCREntityID();
 		},
 
 		handleSelect: function (oEvent) {
@@ -253,10 +323,18 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", true);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+		},
+
+		handleDescription: function (value1, value2, value3, value4) {
+			var sText = '';
+			sText = value1 ? sText + value1 : sText;
+			sText = value2 ? sText + ' ' + value2 : sText;
+			sText = value3 ? sText + ' ' + value3 : sText;
+			sText = value4 ? sText + ' ' + value4 : sText;
+			return sText;
 		}
 
 		// onSaveClick : function(oEvent){
-		// 	debugger;
 		// 	this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 		// },
 		/**
