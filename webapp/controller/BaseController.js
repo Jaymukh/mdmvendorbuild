@@ -28,7 +28,7 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		handleGetAllChangeRequests: function () {
+			handleGetAllChangeRequests: function () {
 			// var that = this;
 			var objParam = {
 				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/page',
@@ -41,7 +41,6 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				debugger;
 				if (this.getOwnerComponent().getModel("changeRequestStatisticsModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setData(oData.result);
 				} else {
