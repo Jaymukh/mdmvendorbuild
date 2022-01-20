@@ -21,6 +21,10 @@ sap.ui.define([
 			this._setToggleButtonTooltip(true);
 			oToolPage.setSideExpanded(false);
 			this.handleGo();
+
+			// create a blank object to refill in model to make it blank
+			var p2 = Object.assign({}, this.getOwnerComponent().getModel("CreateVendorModel").getData().createCRVendorData);
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRVendorData_Copy", Object.assign({}, p2));
 		},
 
 		handleGo: function (oParameters = {}) {
@@ -135,6 +139,7 @@ sap.ui.define([
 		},
 
 		onSideItemSelect: function (oEvent) {
+			debugger;
 			var sKey = oEvent.getParameter("item").getKey();
 			var titleID = this.getView().byId("idTitle");
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
@@ -168,8 +173,8 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				var oDate = new Date();
-				// var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData_Copy"));
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
+				var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getData().createCRVendorData_Copy);
+				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1", {});
