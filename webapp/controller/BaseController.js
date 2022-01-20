@@ -29,15 +29,20 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		handleGetAllChangeRequests: function () {
+			handleGetAllChangeRequests: function () {
 			// var that = this;
 			var objParam = {
-				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/get',
-				type: 'GET',
-				hasPayload: false
+				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/page',
+				hasPayload: true,
+				type: 'POST',
+				data: {
+					"crSearchType": "GET_ALL_CR",
+					"currentPage": 1
+				}
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				debugger;
 				if (this.getOwnerComponent().getModel("changeRequestStatisticsModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setData(oData.result);
 				} else {

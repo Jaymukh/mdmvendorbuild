@@ -139,7 +139,6 @@ sap.ui.define([
 		},
 
 		onSideItemSelect: function (oEvent) {
-			debugger;
 			var sKey = oEvent.getParameter("item").getKey();
 			var titleID = this.getView().byId("idTitle");
 			titleID.setText(this.oBundle.getText(sKey + "-title"));

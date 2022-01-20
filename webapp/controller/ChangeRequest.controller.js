@@ -70,7 +70,6 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result && oDataResp.result.vendorDTOs[0]) {
-					debugger;
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
