@@ -414,7 +414,6 @@
 							"FSH_VAS_DETC":null
 						}
 					},
-				
 					"gen_adrc": {
 						"gen_adrc_1": {
 							"entity_id":null,
@@ -682,7 +681,55 @@
 							"change_user": "",
 							"change_timestamp": ""
 						}
+					},
+					"pra_bp_vend_md" : {
+						"pra_bp_vend_md_1": {
+							"entity_id":"",  
+							 "vendid":"",
+							 "intercocd":"",
+							 "enty_cd":"",
+							 "direct_pay_fl":"",
+							 "do_not_rpt_onrr":"",
+							 "owner_min_pay":"",
+							 "pay_frequency":"",
+							 "do_not_recoup":"",
+							 "b_notice":"",
+							 "payment_type":"",
+							 "no_check_stmt":"",
+							 "levy":"",
+							 "kglnd":"",
+							 "cdex_company":"",
+							 "tribe_no":"",
+							 "backup_withhold":"",
+							 "kgreg":"",
+							 "tax_id_type":"",
+							 "oiu_cruser":"",
+							 "oiu_timestamp":"",
+							 "change_user":"",
+							 "change_timestamp":"",
+							 "tin_match_date":"",
+							 "tin_resp_date":"",
+							 "tin_w8":"",
+							 "tin_w9":"",
+							 "tin_others":"",
+							 "bn1_date":"",
+							 "bn1_resp_date":"",
+							 "bn1_w8":"",
+							 "bn1_w9":"",
+							 "bn1_others":"",
+							 "bn2_date":"",
+							 "irs_resp_date":"",
+							 "flag_1099":"",
+							 "flag_nra":"",
+							 "rep_entity_type":"",
+							 "tin_comment_no":"",
+							 "b1n_comment_no":"",
+							 "b2n_comment_no":"",
+							 "recoup_pc":"",
+							 "recip_code_1042s":""
+						}
 					}
+					
 				}
 			}
 		
@@ -785,26 +832,13 @@
 		{"id":"idAddrSearTerm1","Name":"Search Term 1","Key":"sort1", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", "panelMapping":"Address", "isPRAData": false},
 		{"id":"idAddrLangKey","Name":"Language Key","Key":"langu", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu", "panelMapping":"Address", "isPRAData": false},
 		{"id":"idAddrCountryKey","Name":"Country Key","Key":"land1", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1", "panelMapping":"Address", "isPRAData": false},
-		
-			{"id":"idPRAAccResidentCountry","Name":"Resident Country","Key":"KGLND", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
-			{"id":"idPRAAccEntityType","Name":"Entity Type","Key":"ENTY_CD", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
-			{"id":"idPRAAccRegionResidence","Name":"Region of Residence","Key":"KGREG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
+		{"id":"idPRAAccResidentCountry","Name":"Resident Country","Key":"KGLND", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
+		{"id":"idPRAAccEntityType","Name":"Entity Type","Key":"ENTY_CD", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
+		{"id":"idPRAAccRegionResidence","Name":"Region of Residence","Key":"KGREG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccPaymentType","Name":"Payment Type","Key":"PAYMENT_TYPE", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAYMENT_TYPE", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccOwnerMinPay","Name":"Owner Minimum Pay","Key":"OWNER_MIN_PAY", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/OWNER_MIN_PAY", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccPayFreq","Name":"Pay Frequency","Key":"PAY_FREQUENCY", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY", "panelMapping":"PRA DATA/Accounting", "isPRAData": true}
-		
 	],
-	"missingFields":[],
-	"pra":[
-			{"id":"idPRAAccResidentCountry","Name":"Resident Country","Key":"KGLND", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND", "panelMapping":"PRA DATA/Accounting"},
-			{"id":"idPRAAccEntityType","Name":"Entity Type","Key":"ENTY_CD", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD", "panelMapping":"PRA DATA/Accounting"},
-			{"id":"idPRAAccRegionResidence","Name":"Region of Residence","Key":"KGREG", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG", "panelMapping":"PRA DATA/Accounting"},
-		{"id":"idPRAAccPaymentType","Name":"Payment Type","Key":"PAYMENT_TYPE", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAYMENT_TYPE", "panelMapping":"PRA DATA/Accounting"},
-		{"id":"idPRAAccOwnerMinPay","Name":"Owner Minimum Pay","Key":"OWNER_MIN_PAY", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/OWNER_MIN_PAY", "panelMapping":"PRA DATA/Accounting"},
-		{"id":"idPRAAccPayFreq","Name":"Pay Frequency","Key":"PAY_FREQUENCY", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY", "panelMapping":"PRA DATA/Accounting"}
-		
-		]
-																																					
-		
+	"missingFields":[]
 	
 }

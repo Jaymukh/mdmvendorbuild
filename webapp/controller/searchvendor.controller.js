@@ -235,6 +235,10 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);	
+					
 				this.getView().getModel("CreateVendorModel").refresh();
 				// console.log(oData);
 			}.bind(this), function (oData) {
