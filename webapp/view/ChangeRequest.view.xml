@@ -105,9 +105,10 @@
 														<items>
 															<ColumnListItem>
 																<cells>
-																	<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity/entity_id}:
-																	${changeRequestGetAllModel>crDTO/change_request_id}}" 
-																	press="onChangeReqLinkPress"></Link>
+																	<!--<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity_id}:-->
+																	<!--${changeRequestGetAllModel>crDTO/change_request_id}}" -->
+																	<!--press="onChangeReqLinkPress"></Link>-->
+																	<Link text="{ parts: [ 'changeRequestGetAllModel>crDTO/change_request_id', 'changeRequestGetAllModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }" press="onChangeReqLinkPress"></Link>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
 																	<ObjectStatus  text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
 																	
