@@ -689,6 +689,7 @@
 													<core:Item text="30400100-AP IC auto postings" key="30400100"/>
 													<core:Item text="31000105-N_INACTIVE-Production/royalty payable(recon)" key="31000105"/>
 													<core:Item text="31000170-NGL MKTG PURCH PAY" key="31000170"/>
+													<core:Item text="30300000-Other ACCOUNTS PAY" key="30300000"/>
 												</items>
 											</Select>
 											<!--	<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -2319,7 +2320,8 @@
 			</Page>
 		</content>
 		<footer>
-			<Toolbar><ToolbarSpacer/>
+			<Toolbar>
+				<ToolbarSpacer/>
 				<Button text="Save" type="Transparent" press="onSaveClick"/>
 				<Button id="idCreateVendorSubmit" text="Submit" visible="false" type="Transparent" press="onSubmitClick"/>
 				<Button text="Check" type="Transparent" press="onCheckClick"/>

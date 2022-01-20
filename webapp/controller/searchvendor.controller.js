@@ -153,6 +153,7 @@ sap.ui.define([
 		},
 
 		_createCREntityID: function () {
+			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
 				hasPayload: true,

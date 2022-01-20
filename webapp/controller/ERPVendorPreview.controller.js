@@ -42,16 +42,24 @@ sap.ui.define([
 				// this.getView().setBusy(false);
 				// MessageToast.show("Submission Successful");
 				this._CreateCRID();
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields" , []);
+				this.getView().getModel("CreateVendorModel").refresh(true);
+				this.getView().byId("idCreateVendorSubmitErrors").setVisible(false);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
-				var sError = "";
+			//	var sError = "";
+				var aError =[];
 				if(oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item && 
 					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length>0){
 						oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function(oItem){
-						sError = sError + oItem.MESSAGE + "\n" ;
+					//	sError = sError + oItem.MESSAGE + "\n" ;
+						aError.push({ErrorMessage :oItem.MESSAGE});
 					});
 				}
-				
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields" , aError);
+				this.getView().getModel("CreateVendorModel").refresh(true);
+				this.getView().byId("idCreateVendorSubmitErrors").setVisible(true);
+				this.handleErrorLogs();        
 				//oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item
 				MessageToast.show(sError,{ duration: 6000,width: "100%"});
 			}.bind(this));
@@ -122,6 +130,10 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				MessageToast.show("Error in Make draft false Call");
 			}.bind(this));
+		},
+		
+		onErrorLog : function(oEvent){
+			this.handleErrorLogs();
 		}
 
 		/**

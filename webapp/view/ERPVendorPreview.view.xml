@@ -1281,7 +1281,9 @@
 			</Page>
 		</content>
 		<footer>
-			<Toolbar><ToolbarSpacer/>
+			<Toolbar>
+				<Button  id="idCreateVendorSubmitErrors" visible="false" text="Error Log" type="Transparent" press="onErrorLog"/>
+				<ToolbarSpacer/>
 				<Button text="Edit" type="Transparent" press="onEditClick"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
 				<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>
