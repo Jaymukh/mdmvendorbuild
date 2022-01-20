@@ -16,7 +16,7 @@
 					id="list"
 					items="{CreateVendorModel>/missingFields}" >
 					<StandardListItem
-						title="{ErrorMessage}" />
+						title="{CreateVendorModel>ErrorMessage}" />
 				</List>
 			</Page>
 		

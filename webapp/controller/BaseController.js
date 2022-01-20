@@ -51,7 +51,7 @@ sap.ui.define([
 			}.bind(this));
 		},
 		handleErrorLogs : function(){
-				var oButton = sap.ui.getCore().byId('idCreateVendorSubmitErrors');
+				var oButton = this.getView().byId('idCreateVendorSubmitErrors');
 				var oView = this.getView();
 
 			// create popover

@@ -61,7 +61,7 @@ sap.ui.define([
 				this.getView().byId("idCreateVendorSubmitErrors").setVisible(true);
 				this.handleErrorLogs();        
 				//oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item
-				MessageToast.show(sError,{ duration: 6000,width: "100%"});
+			//	MessageToast.show(sError,{ duration: 6000,width: "100%"});
 			}.bind(this));
 
 		},
