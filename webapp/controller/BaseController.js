@@ -41,6 +41,7 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				debugger;
 				if (this.getOwnerComponent().getModel("changeRequestStatisticsModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setData(oData.result);
 				} else {
