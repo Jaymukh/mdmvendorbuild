@@ -476,10 +476,10 @@ sap.ui.define([
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
-			var sValueState = "None";
 			var oController = this;
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
+				var sValueState = "None";
 				if (!oItem.isPRAData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
