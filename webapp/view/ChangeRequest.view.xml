@@ -86,13 +86,19 @@
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table mode="SingleSelectLeft" growing="true" updateStarted="onChnageRequestUpdateStart" growingThreshold="30" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/parentCrDTOs}">
+													<Table mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}">
 														<headerToolbar>
 															<Toolbar>
-																<Label id="idAllChangeRequest" text="All Change Request({=${changeRequestGetAllModel>/parentCrDTOs}.length})" design="Bold"></Label>
+																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
 																<ToolbarSpacer></ToolbarSpacer>
 																<Button icon="sap-icon://sort"></Button>
 																<Button text="My Request"></Button>
+																<Label text="Page No."/>
+																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}" change="onSelectChnageReqPage">
+																	<core:Item text="{changeRequestGetAllModel>text}" key="{changeRequestGetAllModel>key}" />
+																</Select>
+																<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/leftEnabled}" press="onSelectChnageReqPageLeft"></Button>
+																<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/rightEnabled}" press="onSelectChnageReqPageRight"></Button>
 															</Toolbar>
 														</headerToolbar>
 														<columns>
