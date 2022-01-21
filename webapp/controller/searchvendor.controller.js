@@ -189,7 +189,7 @@ sap.ui.define([
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
 			if(	this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") === undefined){
-					var oPRA_bp_ad =  {
+					var oPRAbpad =  {
 						"pra_bp_ad_1": {
 							"entity_id": "",
 							"addr_type":"",
@@ -200,7 +200,7 @@ sap.ui.define([
 							"oiu_timestamp":""
 						}
 					};	
-				    var	pra_bp_vend_esc ={
+				    var	oPrabpvendesc = {
 						"pra_bp_vend_esc_1":{
 						"entity_id": "",
 						"name_id": "",
@@ -222,8 +222,8 @@ sap.ui.define([
 						"change_timestamp": "",
 						"vendid": ""			
 						}
-					},
-					var pra_bp_cust_md = {
+					};
+					var oPrabpcustmd = {
 						"pra_bp_cust_md_1": {
 							"entity_id": "",
 							"custid": "",
@@ -233,8 +233,8 @@ sap.ui.define([
 							"change_user": "",
 							"change_timestamp": ""
 						}
-					},
-					var pra_bp_vend_md = {
+					};
+					var oPrabpvendmd = {
 						"pra_bp_vend_md_1": {
 							"entity_id":"",  
 							 "vendid":"",
@@ -280,12 +280,12 @@ sap.ui.define([
 							 "recoup_pc":"",
 							 "recip_code_1042s":""
 						}
-					}
+					};
 					
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad", oPRA_bp_ad);
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc", pra_bp_vend_esc);
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md", pra_bp_cust_md);
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md", pra_bp_vend_md);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad", oPRAbpad);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc", oPrabpvendesc);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md", oPrabpcustmd);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md", oPrabpvendmd);
 				}
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
