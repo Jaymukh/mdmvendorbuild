@@ -86,7 +86,7 @@
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/parentCrDTOs}">
+													<Table mode="SingleSelectLeft" growing="true" updateStarted="onChnageRequestUpdateStart" growingThreshold="30" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/parentCrDTOs}">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({=${changeRequestGetAllModel>/parentCrDTOs}.length})" design="Bold"></Label>

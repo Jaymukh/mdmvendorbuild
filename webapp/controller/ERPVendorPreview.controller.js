@@ -110,8 +110,8 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				MessageToast.show("Draft - false Successful");
-
-				this.handleGetAllChangeRequests();
+this.nPageNo = 1;
+				this.handleGetAllChangeRequests(this.nPageNo);
 				this.handleChangeRequestStatistics();
 				var sID = this.getView().getParent().getPages().find(function (e) {
 					return e.getId().indexOf("changeRequestId") !== -1;
