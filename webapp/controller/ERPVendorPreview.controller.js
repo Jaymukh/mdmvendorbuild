@@ -74,7 +74,14 @@ sap.ui.define([
 				data: {
 					"parentCrDTOs": [{
 						"crDTO": {
-							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
+							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+							"change_request_by": 1,
+			                 "entity_type_id": 1,
+			                "change_request_type_id": 1,
+			                "change_request_priority_id": 1,
+			                "change_request_due_date":this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
+			                "change_request_desc":this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/desc") , 
+			                "change_request_reason_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/reason")  
 						}
 					}]
 				}
@@ -109,8 +116,8 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
 				this.getView().setBusy(false);
-				MessageToast.show("Draft - false Successful");
-this.nPageNo = 1;
+			//	MessageToast.show("Draft - false Successful");
+				this.nPageNo = 1;
 				this.handleGetAllChangeRequests(this.nPageNo);
 				this.handleChangeRequestStatistics();
 				var sID = this.getView().getParent().getPages().find(function (e) {

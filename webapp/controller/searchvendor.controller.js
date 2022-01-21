@@ -188,7 +188,105 @@ sap.ui.define([
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
-
+			if(	this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") === undefined){
+					var oPRA_bp_ad =  {
+						"pra_bp_ad_1": {
+							"entity_id": "",
+							"addr_type":"",
+							"adrnr":"",
+							"custid":"",
+							"vendid":"",
+							"oiu_cruser":"",
+							"oiu_timestamp":""
+						}
+					};	
+				    var	pra_bp_vend_esc ={
+						"pra_bp_vend_esc_1":{
+						"entity_id": "",
+						"name_id": "",
+						"owner_nm_last": "",
+						"owner_nm_first": "",
+						"owner_nm_middle": "",
+						"owner_nm_prefix": "",
+						"owner_nm_suffix": "",
+						"owner_nm_title": "",
+						"owner_address1": "",
+						"owner_address2": "",
+						"owner_address3": "",
+						"owner_country": "",
+						"owner_taxid": "",
+						"owner_taxid_ext": "",
+						"onwer_dob": "",
+						"oiu_timestamp": "",
+						"change_user": "",
+						"change_timestamp": "",
+						"vendid": ""			
+						}
+					},
+					var pra_bp_cust_md = {
+						"pra_bp_cust_md_1": {
+							"entity_id": "",
+							"custid": "",
+							"intercocd": "",
+							"oiu_timestamp": "",
+							"oiu_cruser": "",
+							"change_user": "",
+							"change_timestamp": ""
+						}
+					},
+					var pra_bp_vend_md = {
+						"pra_bp_vend_md_1": {
+							"entity_id":"",  
+							 "vendid":"",
+							 "intercocd":"",
+							 "enty_cd":"",
+							 "direct_pay_fl":"",
+							 "do_not_rpt_onrr":"",
+							 "owner_min_pay":"",
+							 "pay_frequency":"",
+							 "do_not_recoup":"",
+							 "b_notice":"",
+							 "payment_type":"",
+							 "no_check_stmt":"",
+							 "levy":"",
+							 "kglnd":"",
+							 "cdex_company":"",
+							 "tribe_no":"",
+							 "backup_withhold":"",
+							 "kgreg":"",
+							 "tax_id_type":"",
+							 "oiu_cruser":"",
+							 "oiu_timestamp":"",
+							 "change_user":"",
+							 "change_timestamp":"",
+							 "tin_match_date":"",
+							 "tin_resp_date":"",
+							 "tin_w8":"",
+							 "tin_w9":"",
+							 "tin_others":"",
+							 "bn1_date":"",
+							 "bn1_resp_date":"",
+							 "bn1_w8":"",
+							 "bn1_w9":"",
+							 "bn1_others":"",
+							 "bn2_date":"",
+							 "irs_resp_date":"",
+							 "flag_1099":"",
+							 "flag_nra":"",
+							 "rep_entity_type":"",
+							 "tin_comment_no":"",
+							 "b1n_comment_no":"",
+							 "b2n_comment_no":"",
+							 "recoup_pc":"",
+							 "recip_code_1042s":""
+						}
+					}
+					
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad", oPRA_bp_ad);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc", pra_bp_vend_esc);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md", pra_bp_cust_md);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md", pra_bp_vend_md);
+				}
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",

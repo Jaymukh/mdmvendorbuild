@@ -164,6 +164,12 @@ sap.ui.define([
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 			}
+			if(oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR"){
+				delete oData.parentDTO.customData.pra_bp_ad;
+				delete oData.parentDTO.customData.pra_bp_vend_esc;
+				delete oData.parentDTO.customData.pra_bp_cust_md;
+				delete oData.parentDTO.customData.pra_bp_vend_md;
+			}
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -484,8 +490,7 @@ sap.ui.define([
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "VEND" &&
-						oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "EMPL")) && (oData.getProperty(oItem
+				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR"))&& (oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);

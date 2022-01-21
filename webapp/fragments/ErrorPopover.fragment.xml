@@ -15,7 +15,7 @@
 				<List
 					id="list"
 					items="{CreateVendorModel>/missingFields}" >
-					<StandardListItem
+					<StandardListItem wrapping = "true"
 						title="{CreateVendorModel>ErrorMessage}" />
 				</List>
 			</Page>

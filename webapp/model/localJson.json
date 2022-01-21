@@ -839,6 +839,243 @@
 		{"id":"idPRAAccOwnerMinPay","Name":"Owner Minimum Pay","Key":"owner_min_pay", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccPayFreq","Name":"Pay Frequency","Key":"pay_frequency", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency", "panelMapping":"PRA DATA/Accounting", "isPRAData": true}
 	],
-	"missingFields":[]
-	
+	"missingFields":[],
+	"changeReq" :{
+		"genData" :{
+			"desc" :"",
+			"priority" :"",
+			"dueDate":"",
+			"reason":"",
+			"status":"",
+			"createdBy":"",
+			"currWrkItem":"",
+			"timeCreation":"",
+			"dateCreation":""
+		}
+	},
+	"paymentMethod": [{
+		"compCode": "0110",
+		"payMethod": [{
+			"key": "C",
+			"text": "Check"
+		}, {
+			"key": "D",
+			"text": "Bank transfer (ACH CTX)"
+		}, {
+			"key": "P",
+			"text": "Bank transfer (Payroll)"
+		}, {
+			"key": "T",
+			"text": "Bank transfer (ACH CTX)"
+		}]
+	}, {
+		"compCode": "0101",
+		"payMethod": [{
+			"key": "C",
+			"text": "Check"
+		}, {
+			"key": "D",
+			"text": "Bank transfer (ACH CTX)"
+		}, {
+			"key": "E",
+			"text": "EDI"
+		}, {
+			"key": "F",
+			"text": "Foreign Wire"
+		}, {
+			"key": "I",
+			"text": "EFT - Scotia bank"
+		}, {
+			"key": "T",
+			"text": "Bank transfer (ACH CTX)"
+		}, {
+			"key": "W",
+			"text": "Domestic wire"
+		}, {
+			"key": "Y",
+			"text": "Domestic wire-Other than CA/US"
+		}, {
+			"key": "Z",
+			"text": "Foreign Wire-Other than CA/US"
+		}, {
+			"compCode": "0168",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0171",
+			"payMethod": [{
+				"key": "7",
+				"text": "BAML-Foreign Wire"
+			}, {
+				"key": "8",
+				"text": "BAML-Domestic wire"
+			}, {
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0190",
+			"payMethod": [{
+				"key": "1",
+				"text": "Check"
+			}, {
+				"key": "6",
+				"text": "BAML-ACH"
+			}, {
+				"key": "7",
+				"text": "BAML-Foreign Wire"
+			}, {
+				"key": "8",
+				"text": "BAML-Domestic wire"
+			}, {
+				"key": "9",
+				"text": "BAML-Check"
+			}, {
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "K",
+				"text": "Book Transfer"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "Q",
+				"text": "Wells Fargo PCard"
+			}, {
+				"key": "R",
+				"text": "Bank transfer (RETIREES)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "X",
+				"text": "BAML-Retirees"
+			}]
+		}, {
+			"compCode": "0195",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0198",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0199",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0200",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "P",
+				"text": "Bank transfer (Payroll)"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}]
+		}, {
+			"compCode": "0201",
+			"payMethod": [{
+				"key": "7",
+				"text": "BAML-Wire Payment"
+			}]
+		}, {
+			"compCode": "0202",
+			"payMethod": [{
+				"key": "5",
+				"text": "BAML-MX Book Transfer"
+			}, {
+				"key": "6",
+				"text": "BAML-ACH/TEF"
+			}, {
+				"key": "7",
+				"text": "BAML-SPID/USD wires"
+			}, {
+				"key": "8",
+				"text": "BAML-SPEI/Domestic wire (MXN)"
+			}, {
+				"key": "C",
+				"text": "Cheque"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "W",
+				"text": "Domestic wires"
+			}, {
+				"key": "Y",
+				"text": "BAML-FEDWIRE/USD wires"
+			}]
+		}]
+
+	}]
+	 
 }
