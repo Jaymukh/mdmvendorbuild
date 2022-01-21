@@ -189,96 +189,96 @@ sap.ui.define([
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
 			if(	this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") === undefined){
-					var oPRAbpad =  {
+					var oPRAbpad =   {
 						"pra_bp_ad_1": {
-							"entity_id": "",
-							"addr_type":"",
+							"entity_id": null,
+							"addr_type":null,
 							"adrnr":"",
-							"custid":"",
-							"vendid":"",
-							"oiu_cruser":"",
-							"oiu_timestamp":""
+							"custid":null,
+							"vendid":null,
+							"oiu_cruser":null,
+							"oiu_timestamp":null
 						}
 					};	
 				    var	oPrabpvendesc = {
 						"pra_bp_vend_esc_1":{
-						"entity_id": "",
-						"name_id": "",
-						"owner_nm_last": "",
-						"owner_nm_first": "",
-						"owner_nm_middle": "",
-						"owner_nm_prefix": "",
-						"owner_nm_suffix": "",
-						"owner_nm_title": "",
-						"owner_address1": "",
-						"owner_address2": "",
-						"owner_address3": "",
-						"owner_country": "",
-						"owner_taxid": "",
-						"owner_taxid_ext": "",
-						"onwer_dob": "",
-						"oiu_timestamp": "",
-						"change_user": "",
-						"change_timestamp": "",
-						"vendid": ""			
+						"entity_id": null,
+						"name_id": null,
+						"owner_nm_last": null,
+						"owner_nm_first": null,
+						"owner_nm_middle": null,
+						"owner_nm_prefix": null,
+						"owner_nm_suffix": null,
+						"owner_nm_title": null,
+						"owner_address1": null,
+						"owner_address2": null,
+						"owner_address3": null,
+						"owner_country": null,
+						"owner_taxid": null,
+						"owner_taxid_ext": null,
+						"onwer_dob": null,
+						"oiu_timestamp": null,
+						"change_user": null,
+						"change_timestamp": null,
+						"vendid": null			
 						}
 					};
 					var oPrabpcustmd = {
 						"pra_bp_cust_md_1": {
-							"entity_id": "",
+							"entity_id": null,
 							"custid": "",
-							"intercocd": "",
-							"oiu_timestamp": "",
-							"oiu_cruser": "",
-							"change_user": "",
-							"change_timestamp": ""
+							"intercocd": null,
+							"oiu_timestamp": null,
+							"oiu_cruser": null,
+							"change_user": null,
+							"change_timestamp": null
 						}
 					};
 					var oPrabpvendmd = {
 						"pra_bp_vend_md_1": {
-							"entity_id":"",  
-							 "vendid":"",
-							 "intercocd":"",
+							"entity_id":null,  
+							 "vendid":null,
+							 "intercocd":null,
 							 "enty_cd":"",
-							 "direct_pay_fl":"",
-							 "do_not_rpt_onrr":"",
+							 "direct_pay_fl":null,
+							 "do_not_rpt_onrr":null,
 							 "owner_min_pay":"",
 							 "pay_frequency":"",
-							 "do_not_recoup":"",
-							 "b_notice":"",
+							 "do_not_recoup":null,
+							 "b_notice":null,
 							 "payment_type":"",
-							 "no_check_stmt":"",
-							 "levy":"",
+							 "no_check_stmt":null,
+							 "levy":null,
 							 "kglnd":"",
-							 "cdex_company":"",
-							 "tribe_no":"",
-							 "backup_withhold":"",
+							 "cdex_company":null,
+							 "tribe_no":null,
+							 "backup_withhold":null,
 							 "kgreg":"",
-							 "tax_id_type":"",
-							 "oiu_cruser":"",
-							 "oiu_timestamp":"",
-							 "change_user":"",
-							 "change_timestamp":"",
-							 "tin_match_date":"",
-							 "tin_resp_date":"",
-							 "tin_w8":"",
-							 "tin_w9":"",
-							 "tin_others":"",
-							 "bn1_date":"",
-							 "bn1_resp_date":"",
-							 "bn1_w8":"",
-							 "bn1_w9":"",
-							 "bn1_others":"",
-							 "bn2_date":"",
-							 "irs_resp_date":"",
-							 "flag_1099":"",
-							 "flag_nra":"",
-							 "rep_entity_type":"",
-							 "tin_comment_no":"",
-							 "b1n_comment_no":"",
-							 "b2n_comment_no":"",
-							 "recoup_pc":"",
-							 "recip_code_1042s":""
+							 "tax_id_type":null,
+							 "oiu_cruser":null,
+							 "oiu_timestamp":null,
+							 "change_user":null,
+							 "change_timestamp":null,
+							 "tin_match_date":null,
+							 "tin_resp_date":null,
+							 "tin_w8":null,
+							 "tin_w9":null,
+							 "tin_others":null,
+							 "bn1_date":null,
+							 "bn1_resp_date":null,
+							 "bn1_w8":null,
+							 "bn1_w9":null,
+							 "bn1_others":null,
+							 "bn2_date":null,
+							 "irs_resp_date":null,
+							 "flag_1099":null,
+							 "flag_nra":null,
+							 "rep_entity_type":null,
+							 "tin_comment_no":null,
+							 "b1n_comment_no":null,
+							 "b2n_comment_no":null,
+							 "recoup_pc":null,
+							 "recip_code_1042s":null
 						}
 					};
 					
@@ -314,6 +314,9 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",

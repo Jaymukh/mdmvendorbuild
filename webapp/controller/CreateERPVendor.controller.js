@@ -114,6 +114,10 @@ sap.ui.define([
 							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;                             
 							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 							this._handleSaveWithLifnr(oData);
 							/*	var objParamCreate = {
