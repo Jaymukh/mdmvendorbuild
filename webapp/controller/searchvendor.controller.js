@@ -1,12 +1,12 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"sap/ui/core/Fragment",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
 	"sap/m/MessageToast"
-], function (Controller, Fragment, ServiceCall, MessageToast) {
+], function (BaseController, Fragment, ServiceCall, MessageToast) {
 	"use strict";
 
-	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.searchvendor", {
+	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.searchvendor", {
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
 		},
@@ -146,6 +146,11 @@ sap.ui.define([
 			if (sKey === "createERPVendorView") {
 				this._createCREntityID();
 			}
+			if (sKey === "changeRequestId" || sKey === "changeRequestId-Mass") {
+				this.nPageNo = 1;
+				this.handleGetAllChangeRequests(this.nPageNo);
+				this.handleChangeRequestStatistics();
+			}
 			// if (sKey === "changeRequestMassId" || sKey === "changeRequestAllId") {
 			// 	sap.ui.getCore().byId("changeRequestPage").setSelectedKey(sKey + "Icon");
 			// }
@@ -237,8 +242,8 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);	
-					
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
 				this.getView().getModel("CreateVendorModel").refresh();
 				// console.log(oData);
 			}.bind(this), function (oData) {

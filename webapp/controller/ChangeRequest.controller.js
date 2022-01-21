@@ -1,7 +1,8 @@
 sap.ui.define([
 	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
-	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
-], function (BaseController, ServiceCall) {
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
+	"sap/m/MessageToast"
+], function (BaseController, ServiceCall, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
@@ -15,8 +16,8 @@ sap.ui.define([
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest
 		 */
 		onInit: function () {
-			this.handleGetAllChangeRequests();
-			this.handleChangeRequestStatistics();
+			// this.handleGetAllChangeRequests();
+			// this.handleChangeRequestStatistics();
 			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
@@ -50,6 +51,7 @@ sap.ui.define([
 		},
 
 		onChangeReqLinkPress: function (oEvent) {
+			this.getView().setBusy(true);
 			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
@@ -69,6 +71,7 @@ sap.ui.define([
 
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				this.getView().setBusy(false);
 				if (oDataResp.result && oDataResp.result.vendorDTOs[0]) {
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
@@ -84,7 +87,10 @@ sap.ui.define([
 					var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
 					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
 				}
-			}.bind(this));
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+				MessageToast.show("Not able to fetch the data, Please try after some time");
+			});
 
 		},
 
@@ -127,6 +133,11 @@ sap.ui.define([
 				sID = "T-" + sEntityID;
 			}
 			return sID;
+		},
+
+		onChnageRequestUpdateStart: function (oEvent) {
+			this.nPageNo++;
+			this.handleGetAllChangeRequests(this.nPageNo);
 		}
 
 		/**
