@@ -114,6 +114,10 @@ sap.ui.define([
 							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;                             
 							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 							this._handleSaveWithLifnr(oData);
 							/*	var objParamCreate = {
@@ -163,6 +167,12 @@ sap.ui.define([
 			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+			}
+			if(oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR"){
+				delete oData.parentDTO.customData.pra_bp_ad;
+				delete oData.parentDTO.customData.pra_bp_vend_esc;
+				delete oData.parentDTO.customData.pra_bp_cust_md;
+				delete oData.parentDTO.customData.pra_bp_vend_md;
 			}
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
@@ -484,8 +494,7 @@ sap.ui.define([
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "VEND" &&
-						oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "EMPL")) && (oData.getProperty(oItem
+				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR"))&& (oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);

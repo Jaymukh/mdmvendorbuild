@@ -188,7 +188,105 @@ sap.ui.define([
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
 				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
-
+			if(	this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") === undefined){
+					var oPRAbpad =   {
+						"pra_bp_ad_1": {
+							"entity_id": null,
+							"addr_type":null,
+							"adrnr":"",
+							"custid":null,
+							"vendid":null,
+							"oiu_cruser":null,
+							"oiu_timestamp":null
+						}
+					};	
+				    var	oPrabpvendesc = {
+						"pra_bp_vend_esc_1":{
+						"entity_id": null,
+						"name_id": null,
+						"owner_nm_last": null,
+						"owner_nm_first": null,
+						"owner_nm_middle": null,
+						"owner_nm_prefix": null,
+						"owner_nm_suffix": null,
+						"owner_nm_title": null,
+						"owner_address1": null,
+						"owner_address2": null,
+						"owner_address3": null,
+						"owner_country": null,
+						"owner_taxid": null,
+						"owner_taxid_ext": null,
+						"onwer_dob": null,
+						"oiu_timestamp": null,
+						"change_user": null,
+						"change_timestamp": null,
+						"vendid": null			
+						}
+					};
+					var oPrabpcustmd = {
+						"pra_bp_cust_md_1": {
+							"entity_id": null,
+							"custid": "",
+							"intercocd": null,
+							"oiu_timestamp": null,
+							"oiu_cruser": null,
+							"change_user": null,
+							"change_timestamp": null
+						}
+					};
+					var oPrabpvendmd = {
+						"pra_bp_vend_md_1": {
+							"entity_id":null,  
+							 "vendid":null,
+							 "intercocd":null,
+							 "enty_cd":"",
+							 "direct_pay_fl":null,
+							 "do_not_rpt_onrr":null,
+							 "owner_min_pay":"",
+							 "pay_frequency":"",
+							 "do_not_recoup":null,
+							 "b_notice":null,
+							 "payment_type":"",
+							 "no_check_stmt":null,
+							 "levy":null,
+							 "kglnd":"",
+							 "cdex_company":null,
+							 "tribe_no":null,
+							 "backup_withhold":null,
+							 "kgreg":"",
+							 "tax_id_type":null,
+							 "oiu_cruser":null,
+							 "oiu_timestamp":null,
+							 "change_user":null,
+							 "change_timestamp":null,
+							 "tin_match_date":null,
+							 "tin_resp_date":null,
+							 "tin_w8":null,
+							 "tin_w9":null,
+							 "tin_others":null,
+							 "bn1_date":null,
+							 "bn1_resp_date":null,
+							 "bn1_w8":null,
+							 "bn1_w9":null,
+							 "bn1_others":null,
+							 "bn2_date":null,
+							 "irs_resp_date":null,
+							 "flag_1099":null,
+							 "flag_nra":null,
+							 "rep_entity_type":null,
+							 "tin_comment_no":null,
+							 "b1n_comment_no":null,
+							 "b2n_comment_no":null,
+							 "recoup_pc":null,
+							 "recip_code_1042s":null
+						}
+					};
+					
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad", oPRAbpad);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc", oPrabpvendesc);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md", oPrabpcustmd);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md", oPrabpvendmd);
+				}
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
@@ -216,6 +314,9 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/entity_id",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
