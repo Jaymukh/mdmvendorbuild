@@ -1050,7 +1050,21 @@
 						{"key": "7","text": "BAML-Wire Payment"},
 						{"key": "D","text": "Buitl.bet.via bankoverboeking"}, 
 						{"key": "B","text": "Bankbetaling"},
-						{"key": "I","text": "Bankincasso"}
+						{"key": "I","text": "Bankincasso"},
+						{"key": "J","text": "Postgiroincasso"},
+						{"key": "P","text": "Postgiro-betaling"}
+						]
+		},
+		{
+		"compCode": "0204",
+		"payMethod": [	
+						{"key": "6","text": "BAML-Wire Payment"},
+						{"key": "7","text": "Buitl.bet.via bankoverboeking"}, 
+						{"key": "8","text": "Bankbetaling"},
+						{"key": "C","text": "Bankincasso"},
+						{"key": "F","text": "Postgiroincasso"},
+						{"key": "W","text": "Postgiro-betaling"},
+						{"key": "Y","text": "Postgiro-betaling"}
 						]
 		}
 		]
