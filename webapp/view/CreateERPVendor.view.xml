@@ -1200,10 +1200,14 @@
 											<Select id="idPurOrgTermsOfPayment" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<items>
-													<core:Item text="0030" key="0030"/>
-													<core:Item text="0001" key="0001"/>
-													<core:Item text="N030" key="N030"/>
-													<core:Item text="CO30" key="CO30"/>
+													<core:Item key="0001" text="Payable immediately Due net"/>
+													<core:Item key="0002" text="within 14 days 2 % cash discount;; within 30 days Due net"/>
+													<core:Item key="0003" text="within 14 days 3 % cash discount;;within 20 days 2 % cash discount;;within 30 days Due net"/>
+													<core:Item key="0004" text="Payable immediately Due net;;Baseline date on End of the month"/>
+													<core:Item key="0005" text="Payable immediately Due net;;Baseline date on 10 of next month"/>
+													<core:Item key="0006" text="Before End of the month 4 % cash discount;;	Before 15 of the next month ;; 2 % cash discount;;Before 15 in 2 months Due net"/>
+													<core:Item key="0007" text="For incoming invoices until 15 of the month;;Before 15 of the next month;; 2 % cash discount Before End of the next month Due net
+														For incoming invoices until End  of the month Before End of the next month ;; 2 % cash discoun	Before 15 in 2 months Due net"/>
 												</items>
 											</Select>
 											<!--<Input required="true"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
