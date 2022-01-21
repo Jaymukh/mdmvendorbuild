@@ -1,5 +1,5 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	'sap/ui/model/json/JSONModel',
 	'sap/ui/model/type/String',
 	'sap/m/ColumnListItem',
@@ -16,11 +16,11 @@ sap.ui.define([
 	"sap/m/List",
 	"sap/m/Button",
 	"sap/m/ButtonType",
-], function (Controller, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment, ServiceCall,
+], function (BaseController, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment, ServiceCall,
 	StandardListItem, Dialog, MessageToast, List, Button, ButtonType) {
 	"use strict";
 
-	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
+	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
 		},
