@@ -188,6 +188,8 @@ sap.ui.define([
 				sText = "Closed";
 			} else if (sValue === false) {
 				sText = "Open";
+			} else {
+				sText = "Open";
 			}
 			return sText;
 		},
@@ -203,16 +205,6 @@ sap.ui.define([
 				sResultDate = sDate + '-' + sMonth + '-' + sResultDate.getFullYear();
 			}
 			return sResultDate;
-		},
-
-		formatCR_Entiry_ID: function (sCRId, sEntityID) {
-			var sID = "";
-			if (sCRId) {
-				sID = sCRId;
-			} else {
-				sID = "T-" + sEntityID;
-			}
-			return sID;
 		},
 
 		// onChnageRequestUpdateStart: function (oEvent) {

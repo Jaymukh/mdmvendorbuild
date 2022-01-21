@@ -1,5 +1,5 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form"
-	xmlns:commons="sap.suite.ui.commons" xmlns:filterbar="sap.ui.comp.filterbar"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form" xmlns:commons="sap.suite.ui.commons" xmlns:filterbar="sap.ui.comp.filterbar"
 	controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="myReq" showHeader="false" showNavButton="false">
 		<content>
@@ -29,12 +29,14 @@
 										</TileContent>
 										<TileContent footer="Pending">
 											<content>
-												<NumericContent value="{changeRequestStatisticsModel>/pendingCount}" valueColor="Critical" press="onPressChngReqTile" icon="sap-icon://pending"/>
+												<NumericContent value="{changeRequestStatisticsModel>/pendingCount}" valueColor="Critical" press="onPressChngReqTile"
+													icon="sap-icon://pending"/>
 											</content>
 										</TileContent>
 										<TileContent footer="Rejected">
 											<content>
-												<NumericContent value="{changeRequestStatisticsModel>/rejectedCount}" valueColor="Error" press="onPressChngReqTile" icon="sap-icon://decline"/>
+												<NumericContent value="{changeRequestStatisticsModel>/rejectedCount}" valueColor="Error" press="onPressChngReqTile"
+													icon="sap-icon://decline"/>
 											</content>
 										</TileContent>
 										<TileContent footer="Approved">
@@ -81,7 +83,7 @@
 							</uxap:headerContent>
 							<uxap:sections>
 								<uxap:ObjectPageSection showTitle="false">
-									<uxap:ObjectPageSubSection showTitle="false" >
+									<uxap:ObjectPageSubSection showTitle="false">
 										<uxap:blocks>
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
@@ -94,11 +96,14 @@
 																<Button icon="sap-icon://sort"></Button>
 																<Button text="My Request"></Button>
 																<Label text="Page No."/>
-																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}" change="onSelectChnageReqPage">
-																	<core:Item text="{changeRequestGetAllModel>text}" key="{changeRequestGetAllModel>key}" />
+																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}"
+																	change="onSelectChnageReqPage">
+																	<core:Item text="{changeRequestGetAllModel>text}" key="{changeRequestGetAllModel>key}"/>
 																</Select>
-																<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/leftEnabled}" press="onSelectChnageReqPageLeft"></Button>
-																<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/rightEnabled}" press="onSelectChnageReqPageRight"></Button>
+																<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/leftEnabled}"
+																	press="onSelectChnageReqPageLeft"></Button>
+																<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{changeRequestGetAllModel>/rightEnabled}"
+																	press="onSelectChnageReqPageRight"></Button>
 															</Toolbar>
 														</headerToolbar>
 														<columns>
@@ -114,11 +119,12 @@
 																	<!--<Link text="{=${changeRequestGetAllModel>crDTO/change_request_id} === null? ${changeRequestGetAllModel>crDTO/entity_id}:-->
 																	<!--${changeRequestGetAllModel>crDTO/change_request_id}}" -->
 																	<!--press="onChangeReqLinkPress"></Link>-->
-																	<Link text="{ parts: [ 'changeRequestGetAllModel>crDTO/change_request_id', 'changeRequestGetAllModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }" press="onChangeReqLinkPress"></Link>
+																	<Link
+																		text="{ parts: [ 'changeRequestGetAllModel>crDTO/change_request_id', 'changeRequestGetAllModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }"
+																		press="onChangeReqLinkPress"></Link>
+																	<Text text="{changeRequestGetAllModel>crDTO/change_request_desc}"></Text>
+																	<ObjectStatus text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
-																	<ObjectStatus  text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
-																	
-																	
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by}"></Text>
 																	<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 																</cells>

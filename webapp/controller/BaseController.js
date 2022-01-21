@@ -114,6 +114,26 @@ sap.ui.define([
 			this._pPopover.then(function (oPopover) {
 				oPopover.openBy(oButton);
 			});
+		},
+
+		formatCR_Entiry_ID: function (sCRId, sEntityID) {
+			var sID = "";
+			if (sCRId) {
+				sID = sCRId;
+			} else {
+				sID = "T-" + sEntityID;
+			}
+			return sID;
+		},
+
+		formatCR_Org_Name: function (sOrgNo) {
+			var sText = "";
+			if (sOrgNo) {
+				sText = "Organization: " + sOrgNo + ", (no description available)";
+			} else {
+				sText = "Organization: (no description available)";
+			}
+			return sText;
 		}
 
 	});

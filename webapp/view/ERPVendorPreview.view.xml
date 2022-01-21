@@ -3,7 +3,9 @@
 	<Page id="VendorPreview" showHeader="false" showNavButton="false">
 		<content>
 			<Toolbar>
-				<Title text="Organization: BP9422, (no description available)" level="H2"></Title>
+				<Title
+					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr'], formatter: '.formatCR_Org_Name' }"
+					level="H2"></Title>
 			</Toolbar>
 			<Page showHeader="false" showNavButton="false" showFooter="true">
 				<content>
@@ -18,7 +20,9 @@
 										<form:content>
 											<core:Title text="General Data"/>
 											<Label text="Change Request ID"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"/>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"/>-->
+											<Text
+												text="{ parts: [ 'CreateVendorModel>/createCRVendorData/crID', 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id'], formatter: '.formatCR_Entiry_ID' }"/>
 											<Label text="Description"/>
 											<Text text="{CreateVendorModel>/changeReq/genData/desc}"></Text>
 											<Label text="Priority"/>
@@ -36,7 +40,7 @@
 											<Label text="Created By"/>
 											<Text text="{CreateVendorModel>/changeReq/genData/createdBy}"/>
 											<Label text="Date/Time of Creation"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/dateCreation}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Text text="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
@@ -1074,7 +1078,7 @@
 														<Label text="Backup Withholding"/>
 														<CheckBox enabled="false"
 															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/backup_withhold} === 'X'}"></CheckBox>
-													<Label text="Don't Report to ONRR"/>
+														<Label text="Don't Report to ONRR"/>
 														<CheckBox enabled="false"
 															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/do_not_rpt_onrr} === 'X'}"></CheckBox>
 														<Label text="Tax ID Type"/>
@@ -1282,7 +1286,7 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<Button  id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
+				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button text="Edit" type="Transparent" press="onEditClick"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>

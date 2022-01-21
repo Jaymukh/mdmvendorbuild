@@ -947,6 +947,10 @@ sap.ui.define([
 					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate.getDate()
 				);
 				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/crTime",
+					oDate.getHours() + ":" + oDate.getMinutes()
+				);
+				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
