@@ -837,7 +837,8 @@
 		{"id":"idPRAAccRegionResidence","Name":"Region of Residence","Key":"kgreg", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccPaymentType","Name":"Payment Type","Key":"payment_type", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
 		{"id":"idPRAAccOwnerMinPay","Name":"Owner Minimum Pay","Key":"owner_min_pay", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
-		{"id":"idPRAAccPayFreq","Name":"Pay Frequency","Key":"pay_frequency", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency", "panelMapping":"PRA DATA/Accounting", "isPRAData": true}
+		{"id":"idPRAAccPayFreq","Name":"Pay Frequency","Key":"pay_frequency", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency", "panelMapping":"PRA DATA/Accounting", "isPRAData": true},
+		{"id":"praDataAddrTabAddressTypeId","Name":"Address Type","Key":"addr_type", "fieldMapping" :"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type", "panelMapping":"PRA DATA/Address", "isPRAData": true}
 	],
 	"missingFields":[],
 	"changeReq" :{

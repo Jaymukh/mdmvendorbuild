@@ -1011,35 +1011,35 @@
 													<form:content>
 														<core:Title text="General Information"/>
 														<Label text="Intercompany Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BUKRS}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bukrs}"/>
 														<Label text="Resident Country"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGLND}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/kglnd}"/>
 														<Label text="Entity Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/ENTY_CD}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/enty_cd}"></Text>
 														<Label text="Levy"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/LEVY}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/levy}"/>
 														<Label text="CDEX Company"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/CDEX_COMPANY}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/cdex_company}"/>
 														<Label text="Region"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/KGREG}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/kgreg}"/>
 														<Label text="Tribe No."/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TRIBE_NO}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tribe_no}"/>
 														<core:Title text="Payment Information"/>
 														<Label text="Payment Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAYMENT_TYPE}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/payment_type}"></Text>
 														<Label text="Owner Minimum Pay"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/OWNER_MIN_PAY}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/owner_min_pay}"/>
 														<Label text="Do Not Recoup"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DO_NOT_RECOUP} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/do_not_recoup} === 'X'}"></CheckBox>
 														<Label text="Pay Frequency"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/PAY_FREQUENCY}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/pay_frequency}"></Text>
 														<Label text="No Check Statement"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/NO_CHECK_STMT} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/no_check_stmt} === 'X'}"></CheckBox>
 														<Label text="Direct pay"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DIRECT_PAY_FL} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/direct_pay_fl} === 'X'}"></CheckBox>
 														<core:Title text="Special Handling Codes"/>
 														<Label text="Special Handling CD"/>
 														<Text ></Text>
@@ -1066,52 +1066,52 @@
 														<Label text="Tax ID"/>
 														<Text/>
 														<Label text="Tin match Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_MATCH_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_match_date}"/>
 														<Label text="B Notice 1 Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn1_date}"/>
 														<Label text="B Notice 2 Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN2_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn2_date}"/>
 														<Label text="Backup Withholding"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BACKUP_WITHHOLD} === 'X'}"></CheckBox>
-														<Label text="Don't Report to ONRR"/>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/backup_withhold} === 'X'}"></CheckBox>
+													<Label text="Don't Report to ONRR"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/DO_NOT_RPT_ONRR} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/do_not_rpt_onrr} === 'X'}"></CheckBox>
 														<Label text="Tax ID Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TAX_ID_TYPE}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tax_id_type}"></Text>
 														<Label text="Response Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_RESP_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn1_resp_date}"/>
 														<Label text="TIN Response Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_RESP_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_resp_date}"/>
 														<core:Title/>
 														<Label text="IRS Form Response Date"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/IRS_RESP_DATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/irs_resp_date}"/>
 														<Label text="NRA"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/FLAG_NRA} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/flag_nra} === 'X'}"></CheckBox>
 														<Label text="1099"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/FLAG_1099} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/flag_1099} === 'X'}"></CheckBox>
 														<Label text="W8"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_W8} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn1_w8} === 'X'}"></CheckBox>
 														<Label text="TIN W8"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_W8} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_w8} === 'X'}"></CheckBox>
 														<Label text="W9"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_W9} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn1_w9} === 'X'}"></CheckBox>
 														<Label text="TIN W9"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_W9} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_w9} === 'X'}"></CheckBox>
 														<Label text="Others"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/BN1_OTHERS} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/bn1_others} === 'X'}"></CheckBox>
 														<Label text="TIN Others"/>
 														<CheckBox enabled="false"
-															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/TIN_OTEHRS} === 'X'}"></CheckBox>
+															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_others} === 'X'}"></CheckBox>
 														<Label text="Reporting Entity Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/REP_ENTITY_TYPE}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/rep_entity_type}"></Text>
 													</form:content>
 												</form:SimpleForm>
 											</IconTabFilter>
@@ -1122,7 +1122,7 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Address Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/ADDR_TYPE}">
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
 															<!--	<items>
 																<core:Item text="Add 1" key="1"/>
 																<core:Item text="Add 2" key="2"/>
@@ -1189,42 +1189,42 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Owner Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/NAME_ID}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/name_id}"></Text>
 														<Label text="Title"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_TITLE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_title}"/>
 														<Label text="First Name"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_FIRST}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_first}"/>
 														<Label text="Name Prefix"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_PREFIX}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_prefix}"/>
 														<Label text="Date Of Birth"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_DOB}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_dob}"/>
 														<Label text="Tax ID"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_TAXID}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_taxid}"/>
 														<Label text="Address Line 1"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS1}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_address1}"/>
 														<Label text="Address Line 2"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS2}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_address2}"/>
 														<Label text="Address Line 3"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ADDRESS3}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_address3}"/>
 														<core:Title/>
 														<Label text="City"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_CITY}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_city}"/>
 														<Label text="Country"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_COUNTRY}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_country}"></Text>
 														<Label text="County"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_COUNTY}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_county}"/>
 														<Label text="Name"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_LAST}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_last}"/>
 														<Label text="Middle Name"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_MIDDLE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_middle}"/>
 														<Label text="Name suffix"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_NM_SUFFIX}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_suffix}"/>
 														<Label text="Tax ID Extension"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_TAXID_EXT}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_taxid_ext}"/>
 														<Label text="State Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_STATE}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_state}"/>
 														<Label text="Zip Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/OWNER_ZIP}"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_zip}"/>
 													</form:content>
 												</form:SimpleForm>
 											</IconTabFilter>
