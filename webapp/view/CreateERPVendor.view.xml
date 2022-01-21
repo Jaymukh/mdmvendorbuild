@@ -2086,7 +2086,7 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Address Type"/>
-														<Select forceSelection="false" id="praDataAddrTabAddressTypeId"
+														<Select forceSelection="false" id="praDataAddrTabAddressTypeId" required="true"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
 															<!--	<items>
 																<core:Item text="Add 1" key="1"/>
