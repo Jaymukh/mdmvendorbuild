@@ -1003,17 +1003,18 @@
 											</CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
-											<Select id="idCompCodePaymentMethod" forceSelection="false" required="true"
+											<Select id="idCompCodePaymentMethod" wrapItemsText="true" showSecondaryValues="true" forceSelection="false" required="true" items="{CreateVendorModel>/paymentMehtodBinding}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}">
 												<items>
-													<core:Item text="CDFW" key="CDFW"/>
+													<core:ListItem text="{CreateVendorModel>text}" key="{CreateVendorModel>key}" additionalText="{CreateVendorModel>key}"/>
+												<!--	<core:Item text="CDFW" key="CDFW"/>
 													<core:Item text="C" key="C"/>
 													<core:Item text="Y" key="Y"/>
 													<core:Item text="9" key="9"/>
 													<core:Item text="7" key="7"/>
 													<core:Item text="W" key="W"/>
 													<core:Item text="E" key="E"/>
-													<core:Item text="Q" key="Q"/>
+													<core:Item text="Q" key="Q"/>-->
 												</items>
 											</Select>
 											<!--	<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
