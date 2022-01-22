@@ -342,6 +342,12 @@ sap.ui.define([
 			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
+			
+			var sSelectedKey = oVal[this._sKey];
+			var aPaymentMethodData= this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+			var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
+			this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding',obj.payMethod );
+			this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 			this._oValueHelpDialog.close();
 		},

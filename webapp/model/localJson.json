@@ -855,7 +855,7 @@
 			"dateCreation":""
 		}
 	},
-	"paymentMethod": [
+	"paymentMethodData": [
 		{
 		"compCode": "0110",
 		"payMethod": [	
@@ -1059,15 +1059,570 @@
 		{
 		"compCode": "0204",
 		"payMethod": [	
-						{"key": "6","text": "BAML-Wire Payment"},
-						{"key": "7","text": "Buitl.bet.via bankoverboeking"}, 
-						{"key": "8","text": "Bankbetaling"},
-						{"key": "C","text": "Bankincasso"},
-						{"key": "F","text": "Postgiroincasso"},
-						{"key": "W","text": "Postgiro-betaling"},
-						{"key": "Y","text": "Postgiro-betaling"}
+						{"key": "6","text": "BAML-ACH/TEF"},
+						{"key": "7","text": "BAML-SPID/USD wires"}, 
+						{"key": "8","text": "BAML-SPEI/Domestic wire (MXN)"},
+						{"key": "C","text": "Cheque"},
+						{"key": "F","text": "Foreign Wire"},
+						{"key": "W","text": "Domestic wire"},
+						{"key": "Y","text": "BAML-FEDWIRE/USD wires"}
+						]
+		},
+		{
+		"compCode": "0302",
+		"payMethod": [	
+						{"key": "C","text": "Cheque"},
+						{"key": "D","text": "Bank transfer (ACH CTX)"}, 
+						{"key": "F","text": "Foreign Wire"},
+						{"key": "K","text": "Book Transfer"},
+						{"key": "P","text": "Bank transfer (Payroll)"},
+						{"key": "Q","text": "Wells Fargo PCard"},
+						{"key": "T","text": "Bank transfer (ACH CTX)"},
+						{"key": "W","text": "Domestic wire"}
+						]
+		},
+		{
+		"compCode": "0302",
+		"payMethod": [	
+						{"key": "C","text": "Cheque"},
+						{"key": "D","text": "Bank transfer (ACH CTX)"}, 
+						{"key": "F","text": "Foreign Wire"},
+						{"key": "K","text": "Book Transfer"},
+						{"key": "P","text": "Bank transfer (Payroll)"},
+						{"key": "Q","text": "Wells Fargo PCard"},
+						{"key": "T","text": "Bank transfer (ACH CTX)"},
+						{"key": "W","text": "Domestic wire"}
+						]
+		},
+		{
+		"compCode": "0309",
+		"payMethod": [	
+						{"key": "C","text": "Cheque"},
+						{"key": "D","text": "Bank transfer (ACH CTX)"}, 
+						{"key": "P","text": "Bank transfer (Payroll)"},
+						{"key": "T","text": "Bank transfer (ACH CTX)"}
+						]
+		},
+		{
+		"compCode": "0311",
+		"payMethod": [	
+						{"key": "C","text": "Cheque"},
+						{"key": "D","text": "Bank transfer (ACH CTX)"}, 
+						{"key": "F","text": "Foreign Wire"},
+						{"key": "K","text": "Book Transfer"},
+						{"key": "P","text": "Bank transfer (Payroll)"},
+						{"key": "Q","text": "Wells Fargo PCard"},
+						{"key": "T","text": "Bank transfer (ACH CTX)"},
+						{"key": "W","text": "Domestic wire"}
+						]
+		},
+		{
+		"compCode": "0312",
+		"payMethod": [	
+						{"key": "C","text": "Cheque"},
+						{"key": "D","text": "Bank transfer (ACH CTX)"}, 
+						{"key": "F","text": "Foreign Wire"},
+						{"key": "K","text": "Book Transfer"},
+						{"key": "P","text": "Bank transfer (Payroll)"},
+						{"key": "Q","text": "Wells Fargo PCard"},
+						{"key": "T","text": "Bank transfer (ACH CTX)"},
+						{"key": "W","text": "Domestic wire"}
+						]
+		},{
+		"compCode":"0328",
+		"payMethod":	[
+						{"key":	"6", "text":"BAML-ACH"},
+						{"key":	"7", "text":	"BAML-Foreign Wire"},
+						{"key":	"8", "text":	"BAML-Domestic wire"},
+						{"key":	"9", "text":	"BAML-Check"},
+						{"key":	"C",	"text":"Check"},
+						{"key":	"D",	"text":"Bank transfer (ACH CTX)"},
+						{"key":	"F",   "text":	"Foreign Wire"},
+						{"key":	"P",	"text":"Bank transfer (Payroll)"},
+						{"key":	"R",	"text":"Bank transfer (RETIREES)"},
+						{"key":	"T",	"text":"Bank transfer (ACH CTX)"},
+						{"key":	"W",	"text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0329",
+		"payMethod":	[
+						{"key":"6", "text":	"BAML-ACH"},
+						{"key":"7", "text":	"BAML-Foreign Wire"},
+						{"key":"8", "text":	"BAML-Domestic wire"},
+						{"key":"9", "text":	"BAML-Check"},
+						{"key":"C", "text":	"Check"},
+						{"key":	"D", "text": "Bank transfer (ACH CTX)"},
+						{"key":	"F", "text":"Foreign Wire"},
+						{"key":	"P", "text":"Bank transfer (Payroll)"},
+						{"key":	"R", "text":"Bank transfer (RETIREES)"},
+						{"key":	"T", "text":"Bank transfer (ACH CTX)"},
+						{"key":	"W", "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0330",
+		"payMethod":	[
+					{"key":	"C", "text":"Check"},
+					{"key":	"D", "text":"Bank transfer (ACH CTX)"},
+					{"key":	"P", "text":"Bank transfer (Payroll)"},
+					{"key":	"T", "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0331",
+		"payMethod":	[
+					{"key":	"C", "text":"Check"},
+					{"key":	"D", "text":"Bank transfer (ACH CTX)"},
+					{"key":	"P", "text":"Bank transfer (Payroll)"},
+					{"key":	"T", "text":	"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0334",
+		 "payMethod":	[
+					{"key":	"1"	, "text":"BOA-Bank Draft (MYR)"},
+					{"key":	"2", "text":"BOA-Bank Draft (USD)"},
+					{"key":	"3"	, "text":"BOA-ACH"},
+					{"key":	"4"	, "text":"BOA-Foreign Wire"},
+					{"key":	"5"	, "text":"BOA-Domestic wire"},
+					{"key":	"7"	, "text":"BAML-Foreign Wire"},
+					{"key":	"8"	, "text":"BAML-Domestic wire"},
+					{"key":	"B"	, "text":"Bank Draft"},
+					{"key":	"C"	, "text":"Check"},
+					{"key":	"D"	, "text":"ACH"},
+					{"key":	"F"	, "text":"Foreign Wire"},
+					{"key":	"K"	, "text":"Book Transfer"},
+					{"key":"W"	, "text":"Domestic wire"}]
+		},
+		{
+		"compCode":"0335",
+		"payMethod":	[
+						{"key":	"1",  "text":"BOA-Bank Draft (MYR)"},
+						{"key":	"2", "text":"BOA-Bank Draft (USD)"},
+						{"key":	"3"	, "text":"BOA-ACH"},
+						{"key":	"4"	, "text":"BOA-Foreign Wire"},
+						{"key":	"5"	, "text":"BOA-Domestic wire"},
+						{"key":	"7"	, "text":"BAML-Foreign Wire"},
+						{"key":	"8"	, "text":"BAML-Domestic wire"},
+						{"key":	"B", "text":"Bank Draft"},
+						{"key":	"C", "text":"Check"},
+						{"key":	"D"	, "text":"ACH"},
+						{"key":	"F"	, "text":"Foreign Wire"},
+						{"key":	"K"	, "text":"Book Transfer"},
+						{"key":	"W"	, "text":"Domestic wire"},
+						{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+						{"key":	"Z"	, "text":"ACH - Manual Upload"}]
+		},
+		{
+		"compCode":"0337",
+		"payMethod":	[
+						{"key":	"Z"	, "text":"ACH - Manual Upload"},
+						{"key":	"3", "text":"BAML- DARF payments"},
+						{"key":	"5", "text":"BAML- Boleto payments"},
+						{"key":	"8", "text":"BAML-TED payments"},
+						{"key":	"C"	, "text":"Cheque"},
+						{"key":	"D"	, "text":"Boleto/Duplicata"},
+						{"key":	"P"	, "text":  ""              },              
+						{"key":	"T"	 , "text":  ""              }  ]
+		},
+		{
+		"compCode": "0338",
+		 "payMethod":	[
+		 				{"key":	"1"	, "text":"BOA-Bank Draft (MYR)"},
+						{"key":	"2"	, "text":"BOA-Bank Draft (USD)"},
+						{"key":	"3"	, "text":"BOA-ACH"},
+						{"key":	"4"	, "text":"BOA-Foreign Wire"},
+						{"key":	"5"	, "text":"BOA-Domestic wire"}]
+		},
+		{
+		"compCode":"0343",
+		"payMethod":	[
+						{"key":	"C"	, "text":"Check"},
+						{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+						{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+						{"key":	"T", "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0344",
+		"payMethod":	[
+						{"key":"F"	, "text":"Foreign Wire"}
+						]
+		},
+		{
+		"compCode":"0348",
+		"payMethod":	[
+						{"key":	"7"	, "text":"BAML-Foreign Wire"},
+						{"key":	"8"	, "text":"BAML-Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0349",
+		"payMethod":	[
+						{"key":	"C", "text":"Check"},
+						{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+						{"key":	"F"	, "text":"Foreign Wire"},
+						{"key":	"W"	, "text":"Domestic wire"}]
+		},
+		{
+		"compCode":"0350",
+		"payMethod":	[
+						{"key":	"C"	, "text":"Check"},
+						{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+						{"key":	"F"	, "text":"Foreign Wire"},
+						{"key":	"K"	, "text":""   },                
+						{"key":	"P", "text":""   },                
+						{"key":	"Q", "text":""     },                
+						{"key":	"T", "text":""   },               
+						{"key":	"W", "text":"Domestic wire"}]
+		},
+		{
+		"compCode":"0356"	,
+		"payMethod":	[
+						{"key":"C"	, "text":"Check"},
+						{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+						{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+						{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0357",
+		"payMethod":	[
+							{"key":"C"	, "text":"Check"},
+							{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0358",
+		"payMethod":	[
+							{"key":"C"	, "text":"Check"},
+							{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0362",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0364",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}]
+		},
+		{
+		"compCode":"0365",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0367",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":"T"	, "text":"Bank transfer (ACH CTX)"}
+						]
+		},
+		{
+		"compCode":"0368",
+		"payMethod":	[
+							{"key":"A"	, "text":"ACB Payments"},
+							{"key":"C"	, "text":"Prenumbered Cheques"},
+							{"key":"D"	, "text":"ACB Collection"},
+							{"key":"E"	, "text":"EFT Payment"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0378",
+		"payMethod":	[
+							{"key":	"8"	, "text":"BAML-Wire Payment"},
+							{"key":	"C"	, "text":"Cheque papel"},
+							{"key":	"D"	, "text":"Débito Directo"},
+							{"key":	"P"	, "text":"Cheque prenumerado"},
+							{"key":	"T"	, "text":"Transferencia"}
+						]
+		},
+		{
+		"compCode":"0382",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0383",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CCD)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0387",
+		"payMethod":	[
+				{"key":	"C"	, "text":"Check"},
+				{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+			{"key":	"F"	, "text":"Foreign Wire"},
+			{"key":	"W"	, "text":"Domestic wire"}
+			]
+		},
+		{
+		"compCode":"0388",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}
+						]
+		},
+		{
+		"compCode":"0389"	,
+		"payMethod":	[
+							{"key":"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}]
+		},
+		{
+		"compCode":"0390",
+		"payMethod":	[
+							{"key":"6", "text":"BAML-ACH"},
+							{"key":"7"	, "text":"BAML-Foreign Wire"},
+							{"key":"8"	, "text":"BAML-Domestic wire"},
+							{"key":"9"	, "text":"BAML-Check"},
+							{"key":"C"	, "text":"Check"},
+							{"key":"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":"F"	, "text":"Foreign Wire"},
+							{"key":"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":"T"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"W"	, "text":"Domestic wire"}
+					  ]
+		},
+		{
+		"compCode":"0391",
+		"payMethod":	[
+							{"key":	"6"	, "text":"BAML-ACH"},
+							{"key":	"7"	, "text":"BAML-Foreign Wire"},
+							{"key":	"8"	, "text":"BAML-Domestic wire"},
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0399",
+		"payMethod":	[
+							{"key":"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"K"	, "text":"Book Transfer"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"Q"	, "text":"Wells Fargo PCard"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0401",
+		"payMethod":	[
+							{"key":	"1"	, "text":"JPMC - ACH"},
+							{"key":	"2"	, "text":"JPMC - BPay"},
+							{"key":	"3"	, "text":"JPMC - Foreign Wires"},
+							{"key":	"4"	, "text":"JPMC - Domestic Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0402",
+		"payMethod":	[
+							{"key":	"3"	, "text":"JPMC - Foreign Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0403",
+		"payMethod":	[
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0416",
+		"payMethod":	[
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0417",
+		"payMethod":	[
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0418",
+		"payMethod":	[
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0419",
+		"payMethod":	[
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0421",
+		"payMethod":	[
+							{"key":	"3"	, "text":"JPMC - Foreign Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0422",
+		"payMethod":	[
+							{"key":	"3", "text":"JPMC - Foreign Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0423",
+		"payMethod":	[
+							{"key":	"3"	, "text":"JPMC - Foreign Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0424"	,
+		"payMethod":	[
+							{"key":"3"	, "text":"JPMC - Foreign Wires"},
+							{"key":	"B"	, "text":"BPAY"},
+							{"key":	"C"	, "text":"Cheque"},
+							{"key":	"D"	, "text":"ABA (ACH)"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"W"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0447",
+		"payMethod":	[
+			{"key":	"C"	, "text":"Check"},
+			{"key":	"D"	, "text":"ACH"},
+			{"key":	"F" , "text":"Foreign Wire"},
+			{"key":	"K"	, "text":"Book Transfer"},
+			{"key":	"W"	, "text":"Domestic wire"},
+			{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+			{"key":	"Z"	, "text":"ACH - Manual Upload"}]
+		},
+		{
+		"compCode":"0480",
+		"payMethod":	[
+			{"key":	"C"	, "text":"Check"},
+			{"key":	"D"	, "text":"ACH"},
+			{"key":	"F"	, "text":"Foreign Wire"},
+			{"key":	"K"	, "text":"Book Transfer"},
+			{"key":	"W"	, "text":"Domestic wire"},
+			{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+			{"key":	"Z"	, "text":"ACH - Manual Upload"}]
+		},
+		{
+		"compCode":"0485",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"ACH"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"K"	, "text":"Book Transfer"},
+							{"key":	"W"	, "text":"Domestic wire"},
+							{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+							{"key":	"Z"	, "text":"ACH - Manual Upload"}]
+		},
+		{
+		"compCode":"0486",
+		"payMethod":	[
+							{"key":	"D"	, "text":"ACH"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"K"	, "text":"Book Transfer"},
+							{"key":	"W"	, "text":"Domestic wire"},
+							{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+							{"key":	"Z"	, "text":"Domestic wire"}
+						]
+		},
+		{
+		"compCode":"0487",
+		"payMethod":	[
+							{"key":	"D"	, "text":"ACH"},
+							{"key":	"F"	, "text":"Foreign Wire"},
+							{"key":	"K"	, "text":"Book Transfer"},
+							{"key":	"W"	, "text":"Domestic wire"},
+							{"key":	"Y"	, "text":"Foreign Wire - Manual Upload"},
+							{"key":	"Z"	, "text":"ACH - Manual Upload"}
+						]
+		},
+		{
+		"compCode":"0501",
+		"payMethod":	[
+							{"key":	"C"	, "text":"Check"},
+							{"key":	"D"	, "text":"Bank transfer (ACH CTX)"},
+							{"key":	"P"	, "text":"Bank transfer (Payroll)"},
+							{"key":	"T"	, "text":"Bank transfer (ACH CTX)"}
 						]
 		}
-		]
+
+		],
+	"paymentMehtodBinding":[]
 	 
 }
