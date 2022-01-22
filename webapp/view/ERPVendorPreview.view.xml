@@ -12,7 +12,7 @@
 					<l:DynamicSideContent class="sapUiDSCExplored sapUiContentPadding" containerQuery="true" sideContentFallDown="BelowM"
 						breakpointChanged="handleBreakpointChangeEvent">
 						<VBox>
-							<Panel expandable="true" expanded="true" headerText="Change Requests">
+							<Panel expandable="true" expanded="true" headerText="Change Requests" visible="{= ${CreateVendorModel>/vndDetails} === false}">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -1290,12 +1290,12 @@
 				<ToolbarSpacer/>
 				<Button text="Edit" type="Transparent" press="onEditClick"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
-				<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>
+				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="Reject" type="Reject" press="onRejectClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
 					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
-				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToListClick"
+				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToVendorListClick"
 					visible="{= ${CreateVendorModel>/vndDetails} === true}"/>
 			</Toolbar>
 		</footer>

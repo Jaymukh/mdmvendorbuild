@@ -110,13 +110,22 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" growing="true" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/vendorDTOs}">
+							<Table mode="SingleSelectLeft" columns="{SearchVendorMetadataModel>/columns}" items="{SearchVendorModel>/searchAllModelData/vendorDTOs}">
 								<headerToolbar>
 									<Toolbar>
-										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/totalRecords})" design="Bold"></Label>
+										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
 										<Button text="Replicate"></Button>
+										<Label text="Page No."/>
+										<Select id="searchAllVendorPageSelectID" items="{SearchVendorModel>/PageData}" selectedKey="{SearchVendorModel>/selectedPageKey}"
+											change="onSelectSearchAllVendorPage">
+											<core:Item text="{SearchVendorModel>text}" key="{SearchVendorModel>key}"/>
+										</Select>
+										<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{SearchVendorModel>/leftEnabled}"
+											press="onSelectSearchAllVendorPageLeft"></Button>
+										<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{SearchVendorModel>/rightEnabled}"
+											press="onSelectSearchAllVendorPageRight"></Button>
 									</Toolbar>
 								</headerToolbar>
 								<columns>
@@ -129,7 +138,7 @@
 								<items>
 									<ColumnListItem>
 										<cells>
-											<Link text="{SearchVendorModel>customVendorLFA1DTO/lifnr}"></Link>
+											<Link text="{SearchVendorModel>customVendorLFA1DTO/lifnr}" press="onClickVendor"></Link>
 											<ObjectStatus state="{path :'SearchVendorModel>pendingRequest', formatter : '.handlePendingRequest'}"
 												text="{SearchVendorModel>pendingRequest}"/>
 											<Text text="{SearchVendorModel>overDueDate}"></Text>

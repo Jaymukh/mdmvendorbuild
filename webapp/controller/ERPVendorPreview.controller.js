@@ -167,6 +167,22 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+		},
+
+		onBackToVendorListClick: function () {
+			var sID = this.getView().getParent().getPages().find(function (e) {
+				return e.getId().indexOf("srchVnd") !== -1;
+			}).getId();
+			this.getView().getParent().to(sID);
+
+			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
+				.getItems()[2]);
+			var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+			titleID.setText(this.oBundle.getText("srchVnd-title"));
+
+			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 		}
 
 		/**
