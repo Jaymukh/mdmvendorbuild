@@ -188,6 +188,8 @@ sap.ui.define([
 				sText = "Closed";
 			} else if (sValue === false) {
 				sText = "Open";
+			} else {
+				sText = "Open";
 			}
 			return sText;
 		},
@@ -205,19 +207,24 @@ sap.ui.define([
 			return sResultDate;
 		},
 
-		formatCR_Entiry_ID: function (sCRId, sEntityID) {
-			var sID = "";
-			if (sCRId) {
-				sID = sCRId;
-			} else {
-				sID = "T-" + sEntityID;
-			}
-			return sID;
+		// onChnageRequestUpdateStart: function (oEvent) {
+		// 	this.nPageNo++;
+		// 	this.handleGetAllChangeRequests(this.nPageNo);
+		// },
+
+		onSelectChnageReqPage: function () {
+			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
+			this.handleGetAllChangeRequests(oSelectedPage);
 		},
 
-		onChnageRequestUpdateStart: function (oEvent) {
-			this.nPageNo++;
-			this.handleGetAllChangeRequests(this.nPageNo);
+		onSelectChnageReqPageLeft: function () {
+			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
+			this.handleGetAllChangeRequests(oSelectedPage - 1);
+		},
+
+		onSelectChnageReqPageRight: function () {
+			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
+			this.handleGetAllChangeRequests(oSelectedPage + 1);
 		}
 
 		/**

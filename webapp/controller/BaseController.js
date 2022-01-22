@@ -30,7 +30,13 @@ sap.ui.define([
 		},
 
 		handleGetAllChangeRequests: function (nPageNo) {
-			// var that = this;
+			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+			} else {
+				this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+				this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+			}
 			if (!nPageNo) {
 				nPageNo = 1;
 			}
@@ -45,20 +51,46 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				if (nPageNo === 1) {
-					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setData(oData.result);
-					} else {
-						this.getView().getModel("changeRequestGetAllModel").setData(oData.result);
+				if (oData.result.currentPage === 1) {
+					var aPageJson = [];
+					for (var i = 0; i < oData.result.totalPageCount; i++) {
+						aPageJson.push({
+							key: i + 1,
+							text: i + 1
+						});
 					}
-				} else {
-					var oPrevData;
 					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
-						 oPrevData = this.getOwnerComponent().getModel("changeRequestGetAllModel").getData();
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setData(oPrevData.concat(oData.result));
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
 					} else {
-						 oPrevData = this.getView().getModel("changeRequestGetAllModel").getData();
-						this.getView().getModel("changeRequestGetAllModel").setData(oPrevData.concat(oData.result));
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+					}
+				}
+				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+					}
+
+				} else {
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 					}
 				}
 
@@ -82,6 +114,26 @@ sap.ui.define([
 			this._pPopover.then(function (oPopover) {
 				oPopover.openBy(oButton);
 			});
+		},
+
+		formatCR_Entiry_ID: function (sCRId, sEntityID) {
+			var sID = "";
+			if (sCRId) {
+				sID = sCRId;
+			} else {
+				sID = "T-" + sEntityID;
+			}
+			return sID;
+		},
+
+		formatCR_Org_Name: function (sOrgNo) {
+			var sText = "";
+			if (sOrgNo) {
+				sText = "Organization: " + sOrgNo + ", (no description available)";
+			} else {
+				sText = "Organization: (no description available)";
+			}
+			return sText;
 		}
 
 	});

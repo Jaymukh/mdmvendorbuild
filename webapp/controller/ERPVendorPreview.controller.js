@@ -42,26 +42,32 @@ sap.ui.define([
 				// this.getView().setBusy(false);
 				// MessageToast.show("Submission Successful");
 				this._CreateCRID();
-				this.getView().getModel("CreateVendorModel").setProperty("/missingFields" , []);
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields", []);
 				this.getView().getModel("CreateVendorModel").refresh(true);
 				this.getView().byId("idCreateVendorSubmitErrors").setVisible(false);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
-			//	var sError = "";
-				var aError =[];
-				if(oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item && 
-					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length>0){
-						oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function(oItem){
-					//	sError = sError + oItem.MESSAGE + "\n" ;
-						aError.push({ErrorMessage :oItem.MESSAGE});
+				//	var sError = "";
+				var aError = [];
+				if (oError.responseJSON.result && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
+					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length > 0) {
+					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function (oItem) {
+						//	sError = sError + oItem.MESSAGE + "\n" ;
+						aError.push({
+							ErrorMessage: oItem.MESSAGE
+						});
+					});
+				} else if (!oError.responseJSON.result) {
+					aError.push({
+						ErrorMessage: oError.responseJSON.error
 					});
 				}
-				this.getView().getModel("CreateVendorModel").setProperty("/missingFields" , aError);
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aError);
 				this.getView().getModel("CreateVendorModel").refresh(true);
 				this.getView().byId("idCreateVendorSubmitErrors").setVisible(true);
-				this.handleErrorLogs();        
+				this.handleErrorLogs();
 				//oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item
-			//	MessageToast.show(sError,{ duration: 6000,width: "100%"});
+				//	MessageToast.show(sError,{ duration: 6000,width: "100%"});
 			}.bind(this));
 
 		},
@@ -76,12 +82,12 @@ sap.ui.define([
 						"crDTO": {
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							"change_request_by": 1,
-			                 "entity_type_id": 1,
-			                "change_request_type_id": 1,
-			                "change_request_priority_id": 1,
-			                "change_request_due_date":this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
-			                "change_request_desc":this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/desc") , 
-			                "change_request_reason_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/reason")  
+							"entity_type_id": 1,
+							"change_request_type_id": 1,
+							"change_request_priority_id": 1,
+							"change_request_due_date": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
+							"change_request_desc": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/desc"),
+							"change_request_reason_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/reason")
 						}
 					}]
 				}
@@ -116,31 +122,51 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
 				this.getView().setBusy(false);
-			//	MessageToast.show("Draft - false Successful");
-				this.nPageNo = 1;
-				this.handleGetAllChangeRequests(this.nPageNo);
-				this.handleChangeRequestStatistics();
-				var sID = this.getView().getParent().getPages().find(function (e) {
-					return e.getId().indexOf("changeRequestId") !== -1;
-				}).getId();
-				this.getView().getParent().to(sID);
+				//	MessageToast.show("Draft - false Successful");
+				this.onAllChangeReqClick();
+				// this.nPageNo = 1;
+				// this.handleGetAllChangeRequests(this.nPageNo);
+				// this.handleChangeRequestStatistics();
+				// var sID = this.getView().getParent().getPages().find(function (e) {
+				// 	return e.getId().indexOf("changeRequestId") !== -1;
+				// }).getId();
+				// this.getView().getParent().to(sID);
 
-				this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
-					.getItems()[2]);
-				var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
-				titleID.setText(this.oBundle.getText("changeRequestId-title"));
+				// this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
+				// 	.getItems()[2]);
+				// var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+				// titleID.setText(this.oBundle.getText("changeRequestId-title"));
 
-				this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
-				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-				this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+				// this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+				// this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+				// this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Error in Make draft false Call");
 			}.bind(this));
 		},
-		
-		onErrorLog : function(oEvent){
+
+		onErrorLog: function (oEvent) {
 			this.handleErrorLogs();
+		},
+
+		onAllChangeReqClick: function () {
+			this.nPageNo = 1;
+			this.handleGetAllChangeRequests(this.nPageNo);
+			this.handleChangeRequestStatistics();
+			var sID = this.getView().getParent().getPages().find(function (e) {
+				return e.getId().indexOf("changeRequestId") !== -1;
+			}).getId();
+			this.getView().getParent().to(sID);
+
+			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
+				.getItems()[2]);
+			var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+			titleID.setText(this.oBundle.getText("changeRequestId-title"));
+
+			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 		}
 
 		/**
