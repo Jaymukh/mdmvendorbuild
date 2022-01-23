@@ -1163,7 +1163,6 @@ sap.ui.define([
 
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				debugger;
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
@@ -1259,7 +1258,7 @@ sap.ui.define([
 				MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
 			});
 
-		},
+		}
 
 		// onSaveClick : function(oEvent){
 		// 	this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
