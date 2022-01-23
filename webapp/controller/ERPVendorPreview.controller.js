@@ -151,9 +151,9 @@ sap.ui.define([
 		},
 
 		onAllChangeReqClick: function () {
-			this.nPageNo = 1;
-			this.handleGetAllChangeRequests(this.nPageNo);
-			this.handleChangeRequestStatistics();
+			// this.nPageNo = 1;
+			// this.handleGetAllChangeRequests(this.nPageNo);
+			// this.handleChangeRequestStatistics();
 			var sID = this.getView().getParent().getPages().find(function (e) {
 				return e.getId().indexOf("changeRequestId") !== -1;
 			}).getId();
@@ -177,7 +177,7 @@ sap.ui.define([
 
 			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
 				.getItems()[2]);
-			var titleID = this.getView().getParent().getParent().getHeader().getContent()[2];
+			var titleID = this.getView().getParent().getParent().getHeader().getContent()[0];
 			titleID.setText(this.oBundle.getText("srchVnd-title"));
 
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);

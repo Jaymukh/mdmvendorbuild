@@ -1258,6 +1258,9 @@ sap.ui.define([
 				MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
 			});
 
+		},
+		
+		onDeleteVendorPress: function(oEvent){
 		}
 
 		// onSaveClick : function(oEvent){
