@@ -222,6 +222,9 @@ sap.ui.define([
 					oData.table = aCustomData[i].getValue();
 				} else if (aCustomData[i].getKey() === "inputKey") {
 					this._sKey = aCustomData[i].getValue();
+					oData.key = aCustomData[i].getValue();
+				}else if (aCustomData[i].getKey() === "inputText") {
+					oData.text = aCustomData[i].getValue();
 				}
 			}
 			this.oColModel = new JSONModel(oData);
@@ -230,71 +233,92 @@ sap.ui.define([
 			});
 			var aCols = oData.cols;
 			this._oBasicSearchField = new SearchField();
-			var objParamCreate = {
-				url: "/murphyCustom/config-service/configurations/configuration",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"configType": oData.table
+			if(oData.table === "local"){
+				var oModel = this.getOwnerComponent().getModel("CreateVendorModel");
+				var aData ;
+				switch(oData.title){
+					case "Terms of Payment" : 
+					case "Payment terms":
+						aData = oModel.getProperty("/paymentTermsData");
+						break;
+					case "Bank Key" : 
+						aData = oModel.getProperty("/BankKeyData");
+						break;
 				}
-			};
-			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				if (oDataResp.result) {
-					this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
+				if(aData.length>0){
+					this.oTableDataModel.setProperty("/item", aData);
 					this.oTableDataModel.refresh();
-				} else if (oData.table === 'SKA1') {
-					var oLocalData = [{
-						Key: "30000100",
-						Name: "USOC	AP - TRADE"
-					}, {
-						Key: "30000110",
-						Name: "USOC	AP - JOINT VENTURE"
-					}, {
-						Key: "30000111",
-						Name: "USOC	CASH CALL DUE(NP)"
-					}, {
-						Key: "30000112",
-						Name: "USOC	CASH CALL OFFSET(NP)"
-					}, {
-						Key: "30000113",
-						Name: "USOC	Working Capital Cutback"
-					}, {
-						Key: "30000114",
-						Name: "USOC	Vendor 1099 Reconciliation Account"
-					}, {
-						Key: "30000115",
-						Name: "USOC	1099 Offset Account)"
-					}, {
-						Key: "30000120",
-						Name: "USOC	AP - EMPLOYEES"
-					}, {
-						Key: "30000125",
-						Name: "USOC	Employee Miscellaneous"
-					}, {
-						Key: "30000130",
-						Name: "USOC	AP - LAND"
-					}, {
-						Key: "30000140",
-						Name: "USOC	AP - GR/IR"
-					}, {
-						Key: "30000145",
-						Name: "	USOC	AP - GR - NON PO"
-					}, {
-						Key: "30000149",
-						Name: "USOC	AP - GR/IR Consignment"
-					}, {
-						Key: "30000150",
-						Name: "USOC	Redetermination Liability"
-					}, {
-						Key: "30000160",
-						Name: "USOC	AP - marketing"
-					}];
-					this.oTableDataModel.setProperty("/item", oLocalData);
-					this.oTableDataModel.refresh();
-
 				}
-			}.bind(this));
-
+			}else{
+				var objParamCreate = {
+					url: "/murphyCustom/config-service/configurations/configuration",
+					type: 'POST',
+					hasPayload: true,
+					data: {
+						"configType": oData.table
+					}
+				};
+				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					if (oDataResp.result) {
+						var obj ={};
+						obj[oData["key"]] = "";
+						obj[oData["text"]] = ""
+						oDataResp.result.modelMap.unshift(obj);
+						this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
+						this.oTableDataModel.refresh();
+					} else if (oData.table === 'SKA1') {
+						var oLocalData = [{
+							Key: "30000100",
+							Name: "USOC	AP - TRADE"
+						}, {
+							Key: "30000110",
+							Name: "USOC	AP - JOINT VENTURE"
+						}, {
+							Key: "30000111",
+							Name: "USOC	CASH CALL DUE(NP)"
+						}, {
+							Key: "30000112",
+							Name: "USOC	CASH CALL OFFSET(NP)"
+						}, {
+							Key: "30000113",
+							Name: "USOC	Working Capital Cutback"
+						}, {
+							Key: "30000114",
+							Name: "USOC	Vendor 1099 Reconciliation Account"
+						}, {
+							Key: "30000115",
+							Name: "USOC	1099 Offset Account)"
+						}, {
+							Key: "30000120",
+							Name: "USOC	AP - EMPLOYEES"
+						}, {
+							Key: "30000125",
+							Name: "USOC	Employee Miscellaneous"
+						}, {
+							Key: "30000130",
+							Name: "USOC	AP - LAND"
+						}, {
+							Key: "30000140",
+							Name: "USOC	AP - GR/IR"
+						}, {
+							Key: "30000145",
+							Name: "	USOC	AP - GR - NON PO"
+						}, {
+							Key: "30000149",
+							Name: "USOC	AP - GR/IR Consignment"
+						}, {
+							Key: "30000150",
+							Name: "USOC	Redetermination Liability"
+						}, {
+							Key: "30000160",
+							Name: "USOC	AP - marketing"
+						}];
+						this.oTableDataModel.setProperty("/item", oLocalData);
+						this.oTableDataModel.refresh();
+	
+					}
+				}.bind(this));
+			}
 			Fragment.load({
 				name: "murphy.mdm.vendor.murphymdmvendor.fragments.valueHelpSuggest",
 				controller: this
@@ -321,7 +345,7 @@ sap.ui.define([
 							return new ColumnListItem({
 								cells: aCols.map(function (column) {
 									return new Label({
-										text: "{" + column.colKey + "}"
+										text: "{" + column.colKey + "}", wrapping : true
 									});
 								})
 							});

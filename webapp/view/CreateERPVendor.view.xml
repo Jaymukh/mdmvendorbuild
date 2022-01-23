@@ -114,27 +114,27 @@
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input value="" placeholder="Phone">
+											<Input type ="Number"  value="" placeholder="Phone">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input value="" placeholder="Ext"/>
+											<Input type ="Number" value="" placeholder="Ext"/>
 											<Label text="Mobile"/>
-											<Input value="">
+											<Input type ="Number" value="">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input value="" placeholder="Phone">
+											<Input type ="Number" value="" placeholder="Phone">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="E-mail Address"/>
-											<Input value=""/>
+											<Input type="Email" value=""/>
 											<Label text="Fax"/>
-											<Input value="">
+											<Input type="Number" value="">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
@@ -164,7 +164,7 @@
 											</Input>
 											<Label text="Number of Delivery Service"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
-											<Label text="PO Box"/>
+											<Label  text="PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
@@ -202,7 +202,6 @@
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
-													<core:CustomData key="inputKey" value="land1"></core:CustomData>
 													<core:CustomData key="land1" value="Country code"></core:CustomData>
 													<core:CustomData key="landx" value="Name"></core:CustomData>
 													<core:CustomData key="inputKey" value="land1"></core:CustomData>
@@ -240,7 +239,7 @@
 											<Label text="Transportation Zone"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Input value=""/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -538,7 +537,7 @@
 												</items>
 											</Select>
 											<Label text="IBAN-Generate Bank Details"/>
-											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}">
+											<Select forceSelection="false" selectedKey="">
 												<items>
 													<core:Item text="IBAN 1" key="1"/>
 													<core:Item text="IBAN 2" key="2"/>
@@ -572,11 +571,11 @@
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Bank Key"></core:CustomData>
-													<core:CustomData key="table" value="BNKA"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="table" value="local"></core:CustomData>
+													<core:CustomData key="bankKey" value="Bank Key"></core:CustomData>
+													<core:CustomData key="bankName" value="Bank Name"></core:CustomData>
+													<core:CustomData key="inputKey" value="bankKey"></core:CustomData>
+													<core:CustomData key="inputText" value="bankKey"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Bank Name"/>
@@ -943,7 +942,7 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/PERNR}" maxLength="8"/>
 											<core:Title text="ERP Vendor Company Code : Payment data"/>
 											<Label text="Payment terms"/>
-											<Select id="idCompCodesTermsOfPayment" forceSelection="false" required="true"
+											<!--<Select id="idCompCodesTermsOfPayment" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZTERM}">
 												<items>
 													<core:Item key="0001" text="Payable immediately Due net"/>
@@ -956,18 +955,18 @@
 													<core:Item key="0007"
 														text="For incoming invoices until 15 of the month;;Before 15 of the next month;; 2 % cash discount Before End of the next month Due net For incoming invoices until End of the month Before End of the next month ;; 2 % cash discoun Before 15 in 2 months Due net"/>
 												</items>
-											</Select>
-											<!--<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											</Select>-->
+											<Input id="idCompCodesTermsOfPayment" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZTERM}">
 												<customData>
 													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>
-													<core:CustomData key="table" value="LFB1"></core:CustomData>
-													<core:CustomData key="" value="Name"></core:CustomData>
-													<core:CustomData key="" value="Key"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="table" value="local"></core:CustomData>
+													<core:CustomData key="text" value="Name"></core:CustomData>
+													<core:CustomData key="key" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="key"></core:CustomData>
+													<core:CustomData key="inputText" value="key"></core:CustomData>
 												</customData>
-											</Input>-->
+											</Input>
 											<Label text="Check Cashing Times"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/KULTG}" maxLength="3"/>
 											<Label text="Credit Memo Payment Term"/>
@@ -1207,7 +1206,7 @@
 											<Label text="LB Restriction Profile"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}" maxLength="4"/>
 											<Label text="Terms of Payment"/>
-											<Select id="idPurOrgTermsOfPayment" forceSelection="false" required="true"
+											<!--<Select id="idPurOrgTermsOfPayment" forceSelection="false" required="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<items>
 													<core:Item key="0001" text="Payable immediately Due net"/>
@@ -1220,18 +1219,18 @@
 													<core:Item key="0007"
 														text="For incoming invoices until 15 of the month;;Before 15 of the next month;; 2 % cash discount Before End of the next month Due net For incoming invoices until End of the month Before End of the next month ;; 2 % cash discoun Before 15 in 2 months Due net"/>
 												</items>
-											</Select>
-											<!--<Input required="true"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											</Select>-->
+											<Input id="idPurOrgTermsOfPayment" required="true"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<customData>
 													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>
-													<core:CustomData key="table" value="LFM1"></core:CustomData>
-													<core:CustomData key="" value="Name"></core:CustomData>
-													<core:CustomData key="" value="Key"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="table" value="local"></core:CustomData>
+													<core:CustomData key="text" value="Name"></core:CustomData>
+													<core:CustomData key="key" value="Key"></core:CustomData>
+													<core:CustomData key="inputKey" value="key"></core:CustomData>
+													<core:CustomData key="inputText" value="key"></core:CustomData>
 												</customData>
-											</Input>-->
+											</Input>
 											<Label text="Incoterms"/>
 											<Input id="idPurOrgIncoPart1" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}">
@@ -1676,23 +1675,31 @@
 											<Label text="Country"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
 											<Label text="Telephone"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
 											<Label text="Extention"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension}"/>
 											<Label text="Standard"/>
-											<CheckBox/>
+											<CheckBox select="onSelectCheckBox">
+												<customData>
+													<core:CustomData key="" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
 											<core:Title text="Fax No."/>
 											<Label text="Country"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>
 											<Label text="Telephone"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
 											<Label text="Extention"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention}"/>
 											<Label text="Standard"/>
-											<CheckBox/>
+											<CheckBox select="onSelectCheckBox">
+												<customData>
+													<core:CustomData key="" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
 											<core:Title text="Email Address"/>
 											<Label text="Email Address"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
+											<Input type="Email" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
 											<Label text="Standard"/>
 											<CheckBox/>
 											<core:Title text="Website"/>

@@ -11,7 +11,7 @@
 			<Page
 				id="master"
 				class="sapUiResponsivePadding--header"
-				title="Products">
+				title="Error Messages">
 				<List
 					id="list"
 					items="{CreateVendorModel>/missingFields}" >
