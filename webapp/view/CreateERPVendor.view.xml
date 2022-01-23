@@ -1145,14 +1145,21 @@
 											<Label text="Clerk's Fax no."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}" maxLength="13"/>
 											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+											<Label text="Dunning Areas"/>
+											<Select forceSelection="false" 
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MGRUP}">
+													<items>
+													<core:Item text="Contract Number/Contract Type" key="01"/>
+													
+												</items>
+											</Select>
 											<Label text="Grouping Key"/>
 											<Select forceSelection="false" id="compCodesGroupingKeyId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZGRUP}">
-												<!--	<items>
-													<core:Item text="Key 1" key="1"/>
-													<core:Item text="Key 2" key="2"/>
-													<core:Item text="Key 3" key="3"/>
-												</items>-->
+													<items>
+													<core:Item text="Document Types" key="01"/>
+													
+												</items>
 											</Select>
 											<Label text="ESTMA (CAN)"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZZESTMA}" maxLength="17"/>
