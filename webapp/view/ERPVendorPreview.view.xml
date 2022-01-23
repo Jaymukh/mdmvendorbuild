@@ -607,6 +607,8 @@
 											<Label text="Clerk's Fax no."/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}"/>
 											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+											<Label text="Dunning Areas"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MGRUP}"/>
 											<Label text="Grouping Key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZGRUP}">
 												<!--	<items>
