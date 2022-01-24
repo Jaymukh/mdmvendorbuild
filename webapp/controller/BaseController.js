@@ -35,7 +35,7 @@ sap.ui.define([
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				var oDate = new Date();
-				if (!oParam && !oParam.vndDetails) {
+				if (!oParam || (oParam && !oParam.vndDetails)) {
 					var oCustomData = {
 						"vnd_lfa1": {
 							"lifnr": null,
@@ -654,15 +654,6 @@ sap.ui.define([
 					};
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
 						oCustomData);
-					this.getView().getModel("CreateVendorModel").setProperty(
-						"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-						oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate
-						.getDate()
-					);
-					this.getView().getModel("CreateVendorModel").setProperty(
-						"/createCRVendorData/crTime",
-						oDate.getHours() + ":" + oDate.getMinutes()
-					);
 				}
 
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
@@ -718,6 +709,16 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+					
+					this.getView().getModel("CreateVendorModel").setProperty(
+						"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
+						oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate
+						.getDate()
+					);
+					this.getView().getModel("CreateVendorModel").setProperty(
+						"/createCRVendorData/crTime",
+						oDate.getHours() + ":" + oDate.getMinutes()
+					);
 				this.getView().getModel("CreateVendorModel").refresh();
 			}.bind(this), function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
