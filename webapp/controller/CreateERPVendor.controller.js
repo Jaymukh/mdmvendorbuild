@@ -164,6 +164,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
+			oData = Object.assign({},oData);
 			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
@@ -174,6 +175,9 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_cust_md;
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 			}
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka  = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01  = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars  = "";
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -366,12 +370,20 @@ sap.ui.define([
 			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
-			
-			var sSelectedKey = oVal[this._sKey];
-			var aPaymentMethodData= this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
-			var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
-			this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding',obj.payMethod );
-			this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+				var sSelectedKey = oVal[this._sKey];
+				var aPaymentMethodData= this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding',obj.payMethod );
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+			}else if(oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key"){
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.bankName);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.street);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.city);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.country);
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+			}else if(oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language"){
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 			this._oValueHelpDialog.close();
 		},
@@ -570,6 +582,9 @@ sap.ui.define([
 		handleName1 : function(oEvent){
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
 			
+		},
+		handleSearchTerms : function(oEvent){
+			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", oEvent.getSource().getValue());
 		}
 		// onSubmitClick: function (oEvent) {
 		// 	this.getView().setBusy(true);
