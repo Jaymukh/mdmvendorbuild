@@ -70,7 +70,7 @@
 											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}" maxLength="10"/>
 											<core:Title/>
 											<Label text="Account Group"/>
-											<Select required="true" forceSelection="false" id="accountGrpID"
+											<Select  forceSelection="false" id="accountGrpID"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
 												<!--<items>-->
 												<!--	<core:Item text="Group1" key="1"/>-->
@@ -608,7 +608,7 @@
 										<form:content>
 											<core:Title text="Payment Transactions"/>
 											<Label text="DME Indicator"/>
-											<Select required="true" id="payTransDMEIndicatorId" forceSelection="false"
+											<Select  id="payTransDMEIndicatorId" forceSelection="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
 													<core:Item text="Use house bank default value" key=""/>
@@ -697,7 +697,7 @@
 											</Input>
 											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 											<Label text="Reconcillation Account"/>
-											<Select id="idCompCodesReconcillationAccunt" required="true" forceSelection="false"
+											<Select id="idCompCodesReconcillationAccunt"  forceSelection="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/AKONT}">
 												<items>
 													<core:Item text="11590120-AR IC JV VENDOR" key="11590120"/>
@@ -956,7 +956,7 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/PERNR}" maxLength="8"/>
 											<core:Title text="ERP Vendor Company Code : Payment data"/>
 											<Label text="Payment terms"/>
-											<!--<Select id="idCompCodesTermsOfPayment" forceSelection="false" required="true"
+											<!--<Select id="idCompCodesTermsOfPayment" forceSelection="false" 
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZTERM}">
 												<items>
 													<core:Item key="0001" text="Payable immediately Due net"/>
@@ -1016,7 +1016,7 @@
 											</CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
-											<Select id="idCompCodePaymentMethod" wrapItemsText="true" showSecondaryValues="true" forceSelection="false" required="true"
+											<Select id="idCompCodePaymentMethod"  showSecondaryValues="true" forceSelection="false" 
 												items="{CreateVendorModel>/paymentMehtodBinding}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}">
 												<items>
@@ -1076,7 +1076,7 @@
 											</Select>
 											<core:Title/>
 											<Label text="Payment Block"/>
-											<Select forceSelection="false" required="true" id="compCodesPaymentBlockId"
+											<Select forceSelection="false"  id="compCodesPaymentBlockId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZAHLS}">
 												<!--<items>
 													<core:Item text="Block 1" key="1"/>
@@ -1188,7 +1188,7 @@
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization"/>
-											<Select required="true" forceSelection="false" id="purOrgPurOrgId"
+											<Select  forceSelection="false" id="purOrgPurOrgId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
 												<!--<items>
 													<core:Item text="Org 1" key="1"/>
@@ -1226,7 +1226,7 @@
 											<Label text="LB Restriction Profile"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}" maxLength="4"/>
 											<Label text="Terms of Payment"/>
-											<!--<Select id="idPurOrgTermsOfPayment" forceSelection="false" required="true"
+											<!--<Select id="idPurOrgTermsOfPayment" forceSelection="false" 
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<items>
 													<core:Item key="0001" text="Payable immediately Due net"/>
@@ -1893,7 +1893,7 @@
 														<Input id="idPRAAccResidentCountry" required="true"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"/>
 														<Label text="Entity Type"/>
-														<Select id="idPRAAccEntityType" forceSelection="false" required="true"
+														<Select id="idPRAAccEntityType" forceSelection="false" 
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}">
 															<items>
 																<core:Item text="Charitable" key="01"/>
@@ -1921,7 +1921,7 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}" maxLength="2"/>
 														<core:Title text="Payment Information"/>
 														<Label text="Payment Type"/>
-														<Select id="idPRAAccPaymentType" forceSelection="false" required="true"
+														<Select id="idPRAAccPaymentType" forceSelection="false" 
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}">
 															<items>
 																<core:Item text="Check" key="C"/>
@@ -1940,7 +1940,7 @@
 															</customData>
 														</CheckBox>
 														<Label text="Pay Frequency"/>
-														<Select id="idPRAAccPayFreq" required="true" forceSelection="false"
+														<Select id="idPRAAccPayFreq" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}">
 															<items>
 																<core:Item text="Normal" key="1"/>
@@ -2129,7 +2129,7 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Address Type"/>
-														<Select forceSelection="false" id="praDataAddrTabAddressTypeId" required="true"
+														<Select forceSelection="false" id="praDataAddrTabAddressTypeId" 
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
 															<!--	<items>
 																<core:Item text="Add 1" key="1"/>
@@ -2346,7 +2346,7 @@
 										<!--<VBox>-->
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
-											<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
+											<!--<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
 											<TextArea id="createERPVendorCommentBoxId" width="164%" value="{CreateVendorModel>/createCRVendorData/newComment}"></TextArea>
 										</HBox>
 										<Toolbar>
