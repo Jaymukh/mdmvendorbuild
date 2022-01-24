@@ -841,7 +841,7 @@
 											<Label text="Region"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"></Text>
 											<Label text="Language"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LANGU}"></Text>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}"></Text>
 											<Label text="Transportation Zone"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"></Text>
 											<Label text="Timezone"/>
