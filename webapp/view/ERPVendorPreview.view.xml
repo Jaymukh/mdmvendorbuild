@@ -1264,7 +1264,7 @@
 										<!--<VBox>-->
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
-											<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
+											<!--<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
 											<TextArea width="164%"></TextArea>
 										</HBox>
 										<Toolbar>
