@@ -114,19 +114,19 @@
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input type ="Number"  value="" placeholder="Phone">
+											<Input type="Number" value="" placeholder="Phone">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input type ="Number" value="" placeholder="Ext"/>
+											<Input type="Number" value="" placeholder="Ext"/>
 											<Label text="Mobile"/>
-											<Input type ="Number" value="">
+											<Input type="Number" value="">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input type ="Number" value="" placeholder="Phone">
+											<Input type="Number" value="" placeholder="Phone">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
@@ -164,7 +164,7 @@
 											</Input>
 											<Label text="Number of Delivery Service"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
-											<Label  text="PO Box"/>
+											<Label text="PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
@@ -441,10 +441,11 @@
 												<customData>
 													<core:CustomData key="title" value="Fiscal Address"></core:CustomData>
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+													<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Tax Office"/>
@@ -453,10 +454,11 @@
 												<customData>
 													<core:CustomData key="title" value="Tax Office"></core:CustomData>
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+													<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Tax No."/>
@@ -641,10 +643,11 @@
 												<customData>
 													<core:CustomData key="title" value="Alternative payee"></core:CustomData>
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
-													<core:CustomData key="dtzus" value="Name"></core:CustomData>
-													<core:CustomData key="lifnr" value="Key"></core:CustomData>
-													<core:CustomData key="inputKey" value="lifnr"></core:CustomData>
-													<core:CustomData key="inputText" value="lifnr"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+													<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
 												</customData>
 											</Input>
 										</form:content>
@@ -728,10 +731,11 @@
 												<customData>
 													<core:CustomData key="title" value="Head Office"></core:CustomData>
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
-													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
-													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+													<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Authorization Group"/>
@@ -1012,11 +1016,12 @@
 											</CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
-											<Select id="idCompCodePaymentMethod" wrapItemsText="true" showSecondaryValues="true" forceSelection="false" required="true" items="{CreateVendorModel>/paymentMehtodBinding}"
+											<Select id="idCompCodePaymentMethod" wrapItemsText="true" showSecondaryValues="true" forceSelection="false" required="true"
+												items="{CreateVendorModel>/paymentMehtodBinding}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZWELS}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>text}" key="{CreateVendorModel>key}" additionalText="{CreateVendorModel>key}"/>
-												<!--	<core:Item text="CDFW" key="CDFW"/>
+													<!--	<core:Item text="CDFW" key="CDFW"/>
 													<core:Item text="C" key="C"/>
 													<core:Item text="Y" key="Y"/>
 													<core:Item text="9" key="9"/>
@@ -1042,10 +1047,11 @@
 												<customData>
 													<core:CustomData key="title" value="Alternate Payee"></core:CustomData>
 													<core:CustomData key="table" value="LFA1"></core:CustomData>
-													<core:CustomData key="" value="Name"></core:CustomData>
-													<core:CustomData key="" value="Key"></core:CustomData>
-													<core:CustomData key="inputKey" value=""></core:CustomData>
-													<core:CustomData key="inputText" value=""></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+													<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+													<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+													<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Grouping Key"/>
@@ -1156,19 +1162,16 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/TLFXS}" maxLength="13"/>
 											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
 											<Label text="Dunning Areas"/>
-											<Select forceSelection="false" 
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MGRUP}">
-													<items>
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/MGRUP}">
+												<items>
 													<core:Item text="Contract Number/Contract Type" key="01"/>
-													
 												</items>
 											</Select>
 											<Label text="Grouping Key"/>
 											<Select forceSelection="false" id="compCodesGroupingKeyId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/ZGRUP}">
-													<items>
+												<items>
 													<core:Item text="Document Types" key="01"/>
-													
 												</items>
 											</Select>
 											<Label text="ESTMA (CAN)"/>
@@ -1237,7 +1240,7 @@
 														text="For incoming invoices until 15 of the month;;Before 15 of the next month;; 2 % cash discount Before End of the next month Due net For incoming invoices until End of the month Before End of the next month ;; 2 % cash discoun Before 15 in 2 months Due net"/>
 												</items>
 											</Select>-->
-											<Input id="idPurOrgTermsOfPayment" required="true"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idPurOrgTermsOfPayment" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
 												<customData>
 													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>

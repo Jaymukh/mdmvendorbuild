@@ -10,9 +10,9 @@
 					<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}" 
 					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
 					icon="sap-icon://cancel" press="onBlock" />
-					<StandardListItem title="Delete"
+					<StandardListItem title="Delete" type="Active" press="onDeleteVendorPress"
 					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
-					icon="sap-icon://delete" press="onDeleteVendor" />
+					icon="sap-icon://delete"/>
 		</List>
    	</content>
    </Popover>

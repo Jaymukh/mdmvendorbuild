@@ -2,8 +2,9 @@ sap.ui.define([
 	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"sap/ui/core/Fragment",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
-	"sap/m/MessageToast"
-], function (BaseController, Fragment, ServiceCall, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/MessageBox",
+], function (BaseController, Fragment, ServiceCall, MessageToast, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.searchvendor", {
@@ -91,25 +92,24 @@ sap.ui.define([
 				} else {
 					oSearchVendorModel.setProperty("/leftEnabled", false);
 				}
-
-				aResultDataArr.forEach(oItem => {
-					var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
-					var sResultDate = '';
-					var sDate = '';
-					var sPendingRequest = '';
-					if (sValue) {
-						sDate = sValue.split('T')[0];
-						sResultDate = new Date(sDate);
-						sResultDate = sResultDate.getDate() + '-' + (sResultDate.getMonth() + 1) + '-' + sResultDate.getFullYear();
-						if (new Date(sDate).getTime() > new Date().getTime()) {
-							sPendingRequest = "Pending";
-						} else {
-							sPendingRequest = "OverDue"
-						}
-					}
-					oItem.overDueDate = sResultDate;
-					oItem.pendingRequest = sPendingRequest;
-				})
+				// aResultDataArr.forEach(oItem => {
+				// 	var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
+				// 	var sResultDate = '';
+				// 	var sDate = '';
+				// 	var sPendingRequest = '';
+				// 	if (sValue) {
+				// 		sDate = sValue.split('T')[0];
+				// 		sResultDate = new Date(sDate);
+				// 		sResultDate = sResultDate.getDate() + '-' + (sResultDate.getMonth() + 1) + '-' + sResultDate.getFullYear();
+				// 		if (new Date(sDate).getTime() > new Date().getTime()) {
+				// 			sPendingRequest = "Pending";
+				// 		} else {
+				// 			sPendingRequest = "OverDue"
+				// 		}
+				// 	}
+				// 	oItem.overDueDate = sResultDate;
+				// 	oItem.pendingRequest = sPendingRequest;
+				// })
 
 				oSearchVendorModel.setProperty("/searchAllModelData", oData.result);
 			});
@@ -1039,16 +1039,18 @@ sap.ui.define([
 		},
 
 		handlePendingRequest: function (sValue) {
-			var sStatus = '';
-			switch (sValue.toLowerCase()) {
-			case "pending":
-				sStatus = "Warning";
-				break;
-			case "overdue":
-				sStatus = "Error";
-				break;
-			default:
-				sStatus = "None";
+			var sStatus = 'None';
+			if (sValue) {
+				switch (sValue.toLowerCase()) {
+				case "pending":
+					sStatus = "Warning";
+					break;
+				case "overdue":
+					sStatus = "Error";
+					break;
+				default:
+					sStatus = "None";
+				}
 			}
 			return sStatus;
 		},
@@ -1096,20 +1098,6 @@ sap.ui.define([
 			});
 
 		},
-
-		// onSearchVnderLinkPress: function (oEvent) {
-		// 	// var sID = this.getView().getParent().getPages().find(function (e) {
-		// 	// 	return e.getId().indexOf("erpVendorPreview") !== -1;
-		// 	// }).getId();
-		// 	// this.getView().getParent().to(sID);
-		// 	this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
-		// 	this.byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-		// 	var titleID = this.getView().byId("idTitle");
-		// 	titleID.setText(this.oBundle.getText("createERPVendorView-title"));
-		// 	this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
-		// 	this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", true);
-		// 	this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
-		// },
 
 		handleDescription: function (value1, value2, value3, value4) {
 			var sText = '';
@@ -1258,6 +1246,43 @@ sap.ui.define([
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
+			}.bind(this));
+
+		},
+
+		onDeleteVendorPress: function (oEvent) {
+			var oSelctedObj = oEvent.getSource().getParent().getParent()._oOpenBy.getBindingContext("SearchVendorModel").getObject().customVendorLFA1DTO;
+			var sEntityID = oSelctedObj.entity_id;
+			sEntityID = 513
+			MessageBox.confirm("Are you sure, you wan to delete Vendor " + oSelctedObj.lifnr + " - " + oSelctedObj.NAME1 + " ?", {
+				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+				onClose: function (oEvt) {
+					if (oEvt === "OK") {
+						this.getView().setBusy(true);
+						var objParam = {
+							url: "/murphyCustom/mdm/entity-service/entities/entity/delete",
+							type: 'POST',
+							hasPayload: true,
+							data: {
+								"entityType": "VENDOR",
+								"parentDTO": {
+									"customData": {
+										"business_entity": {
+											"entity_id": sEntityID
+										}
+									}
+								}
+							}
+						};
+						this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+							this.getView().setBusy(false);
+							MessageToast.show("Vendor got deleted successfully");
+						}.bind(this), function (oError) {
+							this.getView().setBusy(false);
+							MessageToast.show("Delete Action Failed, try after some time");
+						}.bind(this))
+					}
+				}.bind(this)
 			});
 
 		}
