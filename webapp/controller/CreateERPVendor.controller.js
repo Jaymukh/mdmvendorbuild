@@ -609,6 +609,7 @@ sap.ui.define([
 				return true;
 			}
 		},
+		
 		handleName1 : function(oEvent){
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
 			
