@@ -399,7 +399,6 @@ sap.ui.define([
 			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
-<<<<<<< HEAD
 				var sSelectedKey = oVal[this._sKey];
 				var aPaymentMethodData= this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
 				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
@@ -413,13 +412,6 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}else if(oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language"){
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
-=======
-
-				var sSelectedKey = oVal[this._sKey];
-				var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
-				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
->>>>>>> refs/heads/main
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 			this._oValueHelpDialog.close();
@@ -617,7 +609,6 @@ sap.ui.define([
 				return true;
 			}
 		},
-<<<<<<< HEAD
 		handleName1 : function(oEvent){
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
 			
@@ -645,33 +636,6 @@ sap.ui.define([
 		// 		this.getView().setBusy(false);
 		// 		MessageToast.show("Error in Action Call");
 		// 	}.bind(this));
-=======
-		handleName1: function (oEvent) {
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
-
-			}
-			// onSubmitClick: function (oEvent) {
-			// 	this.getView().setBusy(true);
-			// 	var objParamSubmit = {
-			// 		url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
-			// 		type: 'POST',
-			// 		hasPayload: true,
-			// 		data: {
-			// 			"changeRequestDTO": {
-			// 				"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-			// 			}
-			// 		}
-			// 	};
-			// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-			// 		// this.getView().setBusy(false);
-			// 		// MessageToast.show("Submission Successful");
-			// 		this._CreateCRID();
-			// 	}.bind(this), function (oError) {
-			// 		this.getView().setBusy(false);
-			// 		MessageToast.show("Error in Action Call");
-			// 	}.bind(this));
->>>>>>> refs/heads/main
 
 		// },
 
