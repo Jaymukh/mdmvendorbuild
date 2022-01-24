@@ -1256,12 +1256,36 @@ sap.ui.define([
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
-			});
+			}.bind(this));
 
 		},
-		
-		onDeleteVendorPress: function(oEvent){
-			debugger;
+
+		onDeleteVendorPress: function (oEvent) {
+			this.getView().setBusy(true);
+			var sEntityID = oEvent.getSource().getParent().getParent()._oOpenBy.getBindingContext("SearchVendorModel").getObject().customVendorLFA1DTO
+				.entity_id;
+			sEntityID = 513
+			var objParam = {
+				url: "/murphyCustom/mdm/entity-service/entities/entity/delete",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"entityType": "VENDOR",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_id": sEntityID
+							}
+						}
+					}
+				}
+			};
+
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+				this.getView().setBusy(false);
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+			}.bind(this))
 		}
 
 		// onSaveClick : function(oEvent){
