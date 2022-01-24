@@ -20,6 +20,12 @@ sap.ui.define([
 		},
 
 		onEditClick: function () {
+			if (this.getView().getModel("CreateVendorModel").getData().vndDetails) {
+				this._createCREntityID({
+					"vndDetails": true
+				});
+				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+			}
 			var sID = this.getView().getParent().getPages().find(function (e) {
 				return e.getId().indexOf("createERPVendorView") !== -1;
 			}).getId();
