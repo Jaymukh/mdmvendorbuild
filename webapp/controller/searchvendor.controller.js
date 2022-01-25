@@ -202,373 +202,373 @@ sap.ui.define([
 			// }
 		},
 
-		_createCREntityID: function () {
-			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
-			var objParam = {
-				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
-				hasPayload: true,
-				type: 'POST',
-				data: {
-					"entityType": "VENDOR",
-					"parentDTO": {
-						"customData": {
-							"business_entity": {
-								"entity_type_id": "1",
-								"created_by": "1",
-								"modified_by": "1",
-								"is_draft": "1"
-							}
-						}
-					}
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				var oDate = new Date();
-				// var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getData().createCRVendorData_Copy);
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
-				// if (this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") ===
-				// 	undefined) {
-				// var oPRAbpad = {
-				// 	"pra_bp_ad_1": {
-				// 		"entity_id": null,
-				// 		"addr_type": null,
-				// 		"adrnr": "",
-				// 		"custid": null,
-				// 		"vendid": null,
-				// 		"oiu_cruser": null,
-				// 		"oiu_timestamp": null
-				// 	}
-				// };
-				// var oPrabpvendesc = {
-				// 	"pra_bp_vend_esc_1": {
-				// 		"entity_id": null,
-				// 		"name_id": null,
-				// 		"owner_nm_last": null,
-				// 		"owner_nm_first": null,
-				// 		"owner_nm_middle": null,
-				// 		"owner_nm_prefix": null,
-				// 		"owner_nm_suffix": null,
-				// 		"owner_nm_title": null,
-				// 		"owner_address1": null,
-				// 		"owner_address2": null,
-				// 		"owner_address3": null,
-				// 		"owner_country": null,
-				// 		"owner_taxid": null,
-				// 		"owner_taxid_ext": null,
-				// 		"onwer_dob": null,
-				// 		"oiu_timestamp": null,
-				// 		"change_user": null,
-				// 		"change_timestamp": null,
-				// 		"vendid": null
-				// 	}
-				// };
-				// var oPrabpcustmd = {
-				// 	"pra_bp_cust_md_1": {
-				// 		"entity_id": null,
-				// 		"custid": "",
-				// 		"intercocd": null,
-				// 		"oiu_timestamp": null,
-				// 		"oiu_cruser": null,
-				// 		"change_user": null,
-				// 		"change_timestamp": null
-				// 	}
-				// };
-				// var oPrabpvendmd = {
-				// 	"pra_bp_vend_md_1": {
-				// 		"entity_id": null,
-				// 		"vendid": null,
-				// 		"intercocd": null,
-				// 		"enty_cd": "",
-				// 		"direct_pay_fl": null,
-				// 		"do_not_rpt_onrr": null,
-				// 		"owner_min_pay": "",
-				// 		"pay_frequency": "",
-				// 		"do_not_recoup": null,
-				// 		"b_notice": null,
-				// 		"payment_type": "",
-				// 		"no_check_stmt": null,
-				// 		"levy": null,
-				// 		"kglnd": "",
-				// 		"cdex_company": null,
-				// 		"tribe_no": null,
-				// 		"backup_withhold": null,
-				// 		"kgreg": "",
-				// 		"tax_id_type": null,
-				// 		"oiu_cruser": null,
-				// 		"oiu_timestamp": null,
-				// 		"change_user": null,
-				// 		"change_timestamp": null,
-				// 		"tin_match_date": null,
-				// 		"tin_resp_date": null,
-				// 		"tin_w8": null,
-				// 		"tin_w9": null,
-				// 		"tin_others": null,
-				// 		"bn1_date": null,
-				// 		"bn1_resp_date": null,
-				// 		"bn1_w8": null,
-				// 		"bn1_w9": null,
-				// 		"bn1_others": null,
-				// 		"bn2_date": null,
-				// 		"irs_resp_date": null,
-				// 		"flag_1099": null,
-				// 		"flag_nra": null,
-				// 		"rep_entity_type": null,
-				// 		"tin_comment_no": null,
-				// 		"b1n_comment_no": null,
-				// 		"b2n_comment_no": null,
-				// 		"recoup_pc": null,
-				// 		"recip_code_1042s": null
-				// 	}
-				// };
-				var oCustomData = {
-					"vnd_lfa1": {
-						"lifnr": null,
-						"entity_id": null,
-						"KTOKK": "",
-						"ANRED": null,
-						"NAME1": null,
-						"NAME2": null,
-						"NAME3": null,
-						"NAME4": null,
-						"STKZN": null,
-						"SORTL": null,
-						"TELF1": null,
-						"TELF2": null,
-						"TELFX": null,
-						"PFACH": null,
-						"PSTLZ": null,
-						"ORT01": null,
-						"LAND1": null,
-						"REGION": null,
-						"SPRAS": "E",
-						"PO_BOX": null,
-						"BEGRU": null,
-						"KONZS": null,
-						"VBUND": null,
-						"KUNNR": null,
-						"BAHNS": null,
-						"BRSCH": null,
-						"FISKN": null,
-						"STKZA": null,
-						"STKZU": null,
-						"DTAWS": null,
-						"ESRNR": null,
-						"XZEMP": null,
-						"LNRZA": null,
-						"ZZVAL_TO": null,
-						"SEXKZ": null,
-						"KRAUS": null,
-						"REVDB": null,
-						"QSSYS": null,
-						"KTOCK": null,
-						"PFORT": null,
-						"WERKS": null,
-						"LTSNA": null,
-						"WERKR": null,
-						"PLKAL": null,
-						"DUEFL": null,
-						"TXJCD": null,
-						"SPERZ": null,
-						"SCACD": null,
-						"SFRGR": null,
-						"LZONE": null,
-						"XLFZA": null,
-						"DLGRP": null,
-						"FITYP": null,
-						"STCDT": null,
-						"REGSS": null,
-						"ACTSS": null,
-						"STCD1": null,
-						"STCD2": null,
-						"STCD3": null,
-						"STCD4": null,
-						"STCD5": null,
-						"IPISP": null,
-						"TAXBS": null,
-						"PROFS": null,
-						"STGDL": null,
-						"EMNFR": null,
-						"LFURL": null,
-						"J_1KFREPRE": null,
-						"J_1KFTBUS": null,
-						"J_1KFTIND": null,
-						"CONFS": null,
-						"UPDAT": null,
-						"UPTIM": null,
-						"NODEL": null,
-						"QSSYSDAT": null,
-						"PODKZB": null,
-						"FISKU": null,
-						"STENR": null,
-						"CARRIER_CONF": null,
-						"MIN_COMP": null,
-						"TERM_LI": null,
-						"CRC_NUM": null,
-						"CVP_XBLCK": null,
-						"RG": null,
-						"EXP": null,
-						"UF": null,
-						"RGDATE": null,
-						"RIC": null,
-						"RNE": null,
-						"RNEDATE": null,
-						"CNAE": null,
-						"LEGALNAT": null,
-						"CRTN": null,
-						"ICMSTAXPAY": null,
-						"INDTYP": null,
-						"TDT": null,
-						"COMSIZE": null,
-						"J_SC_CAPITAL": null,
-						"J_SC_CURRENCY": null,
-						"ALC": null,
-						"PMT_OFFICE": null,
-						"PPA_RELEVANT": null,
-						"PSOFG": null,
-						"PSOIS": null,
-						"PSON1": null,
-						"PSON2": null,
-						"PSON3": null,
-						"PSOVN": null,
-						"PSOTL": null,
-						"PSOHS": null,
-						"PSOST": null,
-						"ENTY_CD": null,
-						"RES_CNTRY": null,
-						"RES_REGION": null,
-						"CCODE": null,
-						"TRANSPORT_CHAIN": null,
-						"STAGING_TIME": null,
-						"SCHEDULING_TYPE": null,
-						"SUBMI_RELEVANT": null,
-						"ZZARIBA_NET": null,
-						"ZZVAL_FM": null
-					},
-					"vnd_lfb1": {
-						"vnd_lfb1_1": {
-							"entity_id": null,
-							"bukrs": null,
-							"AKONT": null,
-							"LNRZE": null,
-							"BEGRU": null,
-							"MINDK": null,
-							"ZUAWA": null,
-							"FDGRV": null,
-							"VZSKZ": null,
-							"ZINRT": null,
-							"ZINDT": null,
-							"DATLZ": null,
-							"ALTKN": null,
-							"PERNR": null,
-							"ZTERM": null,
-							"KULTG": null,
-							"REPRF": null,
-							"ZWELS": null,
-							"LNRZB": null,
-							"WEBTR": null,
-							"UZAWE": null,
-							"ZAHLS": null,
-							"HBKID": null,
-							"XPORE": null,
-							"XVERR": null,
-							"TOGRU": null,
-							"ZSABE": null,
-							"EIKTO": null,
-							"XDEZV": null,
-							"KVERM": null,
-							"MGRUP": null,
-							"ZGRUP": null,
-							"QLAND": null,
-							"XEDIP": null,
-							"FRGRP": null,
-							"TOGRR": null,
-							"TLFXS": null,
-							"INTAD": null,
-							"XLFZB": null,
-							"GUZTE": null,
-							"GRICD": null,
-							"GRIDT": null,
-							"XAUSZ": null,
-							"CERDT": null,
-							"CONFS": null,
-							"UPDAT": null,
-							"UPTIM": null,
-							"NODEL": null,
-							"TLFNS": null,
-							"AVSND": null,
-							"AD_HASH": null,
-							"CVP_XBLCK_B": null,
-							"CIIUCODE": null,
-							"ZBOKD": null,
-							"ZQSSKZ": null,
-							"ZQSZDT": null,
-							"ZQSZNR": null,
-							"ZMINDAT": null,
-							"J_SC_SUBCONTYPE": null,
-							"J_SC_COMPDATE": null,
-							"J_SC_OFFSM": null,
-							"J_SC_OFFSR": null,
-							"BASIS_PNT": null,
-							"GMVKZK": null,
-							"INTERCOCD": null,
-							"RSTR_CHG_FL": null,
-							"CHECK_FLAG": null,
-							"OVRD_RCPMT": null,
-							"MIN_PAY": null,
-							"PAY_FRQ_CD": null,
-							"RECOUP_PC": null,
-							"ALLOT_MTH_CD": null,
-							"ESCH_CD": null,
-							"ESCHEAT_DT": null,
-							"PREPAY_RELEVANT": null,
-							"ASSIGN_TEST": null,
-							"ZZESTMA": null
+		// _createCREntityID: function () {
+		// 	//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
+		// 	var objParam = {
+		// 		url: "/murphyCustom/mdm/entity-service/entities/entity/create",
+		// 		hasPayload: true,
+		// 		type: 'POST',
+		// 		data: {
+		// 			"entityType": "VENDOR",
+		// 			"parentDTO": {
+		// 				"customData": {
+		// 					"business_entity": {
+		// 						"entity_type_id": "1",
+		// 						"created_by": "1",
+		// 						"modified_by": "1",
+		// 						"is_draft": "1"
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	};
+		// 	this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+		// 		var oDate = new Date();
+		// 		// var p2 = Object.assign({}, this.getView().getModel("CreateVendorModel").getData().createCRVendorData_Copy);
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData", Object.assign({}, p2));
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1", {});
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1", {});
+		// 		// if (this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad") ===
+		// 		// 	undefined) {
+		// 		// var oPRAbpad = {
+		// 		// 	"pra_bp_ad_1": {
+		// 		// 		"entity_id": null,
+		// 		// 		"addr_type": null,
+		// 		// 		"adrnr": "",
+		// 		// 		"custid": null,
+		// 		// 		"vendid": null,
+		// 		// 		"oiu_cruser": null,
+		// 		// 		"oiu_timestamp": null
+		// 		// 	}
+		// 		// };
+		// 		// var oPrabpvendesc = {
+		// 		// 	"pra_bp_vend_esc_1": {
+		// 		// 		"entity_id": null,
+		// 		// 		"name_id": null,
+		// 		// 		"owner_nm_last": null,
+		// 		// 		"owner_nm_first": null,
+		// 		// 		"owner_nm_middle": null,
+		// 		// 		"owner_nm_prefix": null,
+		// 		// 		"owner_nm_suffix": null,
+		// 		// 		"owner_nm_title": null,
+		// 		// 		"owner_address1": null,
+		// 		// 		"owner_address2": null,
+		// 		// 		"owner_address3": null,
+		// 		// 		"owner_country": null,
+		// 		// 		"owner_taxid": null,
+		// 		// 		"owner_taxid_ext": null,
+		// 		// 		"onwer_dob": null,
+		// 		// 		"oiu_timestamp": null,
+		// 		// 		"change_user": null,
+		// 		// 		"change_timestamp": null,
+		// 		// 		"vendid": null
+		// 		// 	}
+		// 		// };
+		// 		// var oPrabpcustmd = {
+		// 		// 	"pra_bp_cust_md_1": {
+		// 		// 		"entity_id": null,
+		// 		// 		"custid": "",
+		// 		// 		"intercocd": null,
+		// 		// 		"oiu_timestamp": null,
+		// 		// 		"oiu_cruser": null,
+		// 		// 		"change_user": null,
+		// 		// 		"change_timestamp": null
+		// 		// 	}
+		// 		// };
+		// 		// var oPrabpvendmd = {
+		// 		// 	"pra_bp_vend_md_1": {
+		// 		// 		"entity_id": null,
+		// 		// 		"vendid": null,
+		// 		// 		"intercocd": null,
+		// 		// 		"enty_cd": "",
+		// 		// 		"direct_pay_fl": null,
+		// 		// 		"do_not_rpt_onrr": null,
+		// 		// 		"owner_min_pay": "",
+		// 		// 		"pay_frequency": "",
+		// 		// 		"do_not_recoup": null,
+		// 		// 		"b_notice": null,
+		// 		// 		"payment_type": "",
+		// 		// 		"no_check_stmt": null,
+		// 		// 		"levy": null,
+		// 		// 		"kglnd": "",
+		// 		// 		"cdex_company": null,
+		// 		// 		"tribe_no": null,
+		// 		// 		"backup_withhold": null,
+		// 		// 		"kgreg": "",
+		// 		// 		"tax_id_type": null,
+		// 		// 		"oiu_cruser": null,
+		// 		// 		"oiu_timestamp": null,
+		// 		// 		"change_user": null,
+		// 		// 		"change_timestamp": null,
+		// 		// 		"tin_match_date": null,
+		// 		// 		"tin_resp_date": null,
+		// 		// 		"tin_w8": null,
+		// 		// 		"tin_w9": null,
+		// 		// 		"tin_others": null,
+		// 		// 		"bn1_date": null,
+		// 		// 		"bn1_resp_date": null,
+		// 		// 		"bn1_w8": null,
+		// 		// 		"bn1_w9": null,
+		// 		// 		"bn1_others": null,
+		// 		// 		"bn2_date": null,
+		// 		// 		"irs_resp_date": null,
+		// 		// 		"flag_1099": null,
+		// 		// 		"flag_nra": null,
+		// 		// 		"rep_entity_type": null,
+		// 		// 		"tin_comment_no": null,
+		// 		// 		"b1n_comment_no": null,
+		// 		// 		"b2n_comment_no": null,
+		// 		// 		"recoup_pc": null,
+		// 		// 		"recip_code_1042s": null
+		// 		// 	}
+		// 		// };
+		// 		var oCustomData = {
+		// 			"vnd_lfa1": {
+		// 				"lifnr": null,
+		// 				"entity_id": null,
+		// 				"KTOKK": "",
+		// 				"ANRED": null,
+		// 				"NAME1": null,
+		// 				"NAME2": null,
+		// 				"NAME3": null,
+		// 				"NAME4": null,
+		// 				"STKZN": null,
+		// 				"SORTL": null,
+		// 				"TELF1": null,
+		// 				"TELF2": null,
+		// 				"TELFX": null,
+		// 				"PFACH": null,
+		// 				"PSTLZ": null,
+		// 				"ORT01": null,
+		// 				"LAND1": null,
+		// 				"REGION": null,
+		// 				"SPRAS": "E",
+		// 				"PO_BOX": null,
+		// 				"BEGRU": null,
+		// 				"KONZS": null,
+		// 				"VBUND": null,
+		// 				"KUNNR": null,
+		// 				"BAHNS": null,
+		// 				"BRSCH": null,
+		// 				"FISKN": null,
+		// 				"STKZA": null,
+		// 				"STKZU": null,
+		// 				"DTAWS": null,
+		// 				"ESRNR": null,
+		// 				"XZEMP": null,
+		// 				"LNRZA": null,
+		// 				"ZZVAL_TO": null,
+		// 				"SEXKZ": null,
+		// 				"KRAUS": null,
+		// 				"REVDB": null,
+		// 				"QSSYS": null,
+		// 				"KTOCK": null,
+		// 				"PFORT": null,
+		// 				"WERKS": null,
+		// 				"LTSNA": null,
+		// 				"WERKR": null,
+		// 				"PLKAL": null,
+		// 				"DUEFL": null,
+		// 				"TXJCD": null,
+		// 				"SPERZ": null,
+		// 				"SCACD": null,
+		// 				"SFRGR": null,
+		// 				"LZONE": null,
+		// 				"XLFZA": null,
+		// 				"DLGRP": null,
+		// 				"FITYP": null,
+		// 				"STCDT": null,
+		// 				"REGSS": null,
+		// 				"ACTSS": null,
+		// 				"STCD1": null,
+		// 				"STCD2": null,
+		// 				"STCD3": null,
+		// 				"STCD4": null,
+		// 				"STCD5": null,
+		// 				"IPISP": null,
+		// 				"TAXBS": null,
+		// 				"PROFS": null,
+		// 				"STGDL": null,
+		// 				"EMNFR": null,
+		// 				"LFURL": null,
+		// 				"J_1KFREPRE": null,
+		// 				"J_1KFTBUS": null,
+		// 				"J_1KFTIND": null,
+		// 				"CONFS": null,
+		// 				"UPDAT": null,
+		// 				"UPTIM": null,
+		// 				"NODEL": null,
+		// 				"QSSYSDAT": null,
+		// 				"PODKZB": null,
+		// 				"FISKU": null,
+		// 				"STENR": null,
+		// 				"CARRIER_CONF": null,
+		// 				"MIN_COMP": null,
+		// 				"TERM_LI": null,
+		// 				"CRC_NUM": null,
+		// 				"CVP_XBLCK": null,
+		// 				"RG": null,
+		// 				"EXP": null,
+		// 				"UF": null,
+		// 				"RGDATE": null,
+		// 				"RIC": null,
+		// 				"RNE": null,
+		// 				"RNEDATE": null,
+		// 				"CNAE": null,
+		// 				"LEGALNAT": null,
+		// 				"CRTN": null,
+		// 				"ICMSTAXPAY": null,
+		// 				"INDTYP": null,
+		// 				"TDT": null,
+		// 				"COMSIZE": null,
+		// 				"J_SC_CAPITAL": null,
+		// 				"J_SC_CURRENCY": null,
+		// 				"ALC": null,
+		// 				"PMT_OFFICE": null,
+		// 				"PPA_RELEVANT": null,
+		// 				"PSOFG": null,
+		// 				"PSOIS": null,
+		// 				"PSON1": null,
+		// 				"PSON2": null,
+		// 				"PSON3": null,
+		// 				"PSOVN": null,
+		// 				"PSOTL": null,
+		// 				"PSOHS": null,
+		// 				"PSOST": null,
+		// 				"ENTY_CD": null,
+		// 				"RES_CNTRY": null,
+		// 				"RES_REGION": null,
+		// 				"CCODE": null,
+		// 				"TRANSPORT_CHAIN": null,
+		// 				"STAGING_TIME": null,
+		// 				"SCHEDULING_TYPE": null,
+		// 				"SUBMI_RELEVANT": null,
+		// 				"ZZARIBA_NET": null,
+		// 				"ZZVAL_FM": null
+		// 			},
+		// 			"vnd_lfb1": {
+		// 				"vnd_lfb1_1": {
+		// 					"entity_id": null,
+		// 					"bukrs": null,
+		// 					"AKONT": null,
+		// 					"LNRZE": null,
+		// 					"BEGRU": null,
+		// 					"MINDK": null,
+		// 					"ZUAWA": null,
+		// 					"FDGRV": null,
+		// 					"VZSKZ": null,
+		// 					"ZINRT": null,
+		// 					"ZINDT": null,
+		// 					"DATLZ": null,
+		// 					"ALTKN": null,
+		// 					"PERNR": null,
+		// 					"ZTERM": null,
+		// 					"KULTG": null,
+		// 					"REPRF": null,
+		// 					"ZWELS": null,
+		// 					"LNRZB": null,
+		// 					"WEBTR": null,
+		// 					"UZAWE": null,
+		// 					"ZAHLS": null,
+		// 					"HBKID": null,
+		// 					"XPORE": null,
+		// 					"XVERR": null,
+		// 					"TOGRU": null,
+		// 					"ZSABE": null,
+		// 					"EIKTO": null,
+		// 					"XDEZV": null,
+		// 					"KVERM": null,
+		// 					"MGRUP": null,
+		// 					"ZGRUP": null,
+		// 					"QLAND": null,
+		// 					"XEDIP": null,
+		// 					"FRGRP": null,
+		// 					"TOGRR": null,
+		// 					"TLFXS": null,
+		// 					"INTAD": null,
+		// 					"XLFZB": null,
+		// 					"GUZTE": null,
+		// 					"GRICD": null,
+		// 					"GRIDT": null,
+		// 					"XAUSZ": null,
+		// 					"CERDT": null,
+		// 					"CONFS": null,
+		// 					"UPDAT": null,
+		// 					"UPTIM": null,
+		// 					"NODEL": null,
+		// 					"TLFNS": null,
+		// 					"AVSND": null,
+		// 					"AD_HASH": null,
+		// 					"CVP_XBLCK_B": null,
+		// 					"CIIUCODE": null,
+		// 					"ZBOKD": null,
+		// 					"ZQSSKZ": null,
+		// 					"ZQSZDT": null,
+		// 					"ZQSZNR": null,
+		// 					"ZMINDAT": null,
+		// 					"J_SC_SUBCONTYPE": null,
+		// 					"J_SC_COMPDATE": null,
+		// 					"J_SC_OFFSM": null,
+		// 					"J_SC_OFFSR": null,
+		// 					"BASIS_PNT": null,
+		// 					"GMVKZK": null,
+		// 					"INTERCOCD": null,
+		// 					"RSTR_CHG_FL": null,
+		// 					"CHECK_FLAG": null,
+		// 					"OVRD_RCPMT": null,
+		// 					"MIN_PAY": null,
+		// 					"PAY_FRQ_CD": null,
+		// 					"RECOUP_PC": null,
+		// 					"ALLOT_MTH_CD": null,
+		// 					"ESCH_CD": null,
+		// 					"ESCHEAT_DT": null,
+		// 					"PREPAY_RELEVANT": null,
+		// 					"ASSIGN_TEST": null,
+		// 					"ZZESTMA": null
 
-						}
-					},
-					"vnd_lfbk": {
-						"vnd_lfbk_1": {
-							"entity_id": null,
-							"BVTYP": null,
-							"BKONT": null,
-							"KOINH": null,
-							"TIBAN": null,
-							"BANKN": "",
-							"BKREF": null,
-							"XEZER": null,
-							"BANKS": "",
-							"BANKL": "",
-							"LIFNR": null,
-							"MANDT": null,
-							"EBPP_ACCNAME": null,
-							"EBPP_BVSTATUS": null,
-							"KOVON": null,
-							"KOBIS": null
-						}
-					},
-					"vnd_lfbw": {
-						"vnd_lfbw_1": {
-							"entity_id": null,
-							"WT_WITHCD": null,
-							"QSREC": null,
-							"witht": "",
-							"WT_WTSTCD": null,
-							"WT_EXRT": null,
-							"WT_EXDF": null,
-							"WT_SUBJCT": null,
-							"WT_EXNR": null,
-							"WT_WTEXRS": null,
-							"WT_EXDT": null,
-							"lifnr": null,
-							"bukrs": ""
+		// 				}
+		// 			},
+		// 			"vnd_lfbk": {
+		// 				"vnd_lfbk_1": {
+		// 					"entity_id": null,
+		// 					"BVTYP": null,
+		// 					"BKONT": null,
+		// 					"KOINH": null,
+		// 					"TIBAN": null,
+		// 					"BANKN": "",
+		// 					"BKREF": null,
+		// 					"XEZER": null,
+		// 					"BANKS": "",
+		// 					"BANKL": "",
+		// 					"LIFNR": null,
+		// 					"MANDT": null,
+		// 					"EBPP_ACCNAME": null,
+		// 					"EBPP_BVSTATUS": null,
+		// 					"KOVON": null,
+		// 					"KOBIS": null
+		// 				}
+		// 			},
+		// 			"vnd_lfbw": {
+		// 				"vnd_lfbw_1": {
+		// 					"entity_id": null,
+		// 					"WT_WITHCD": null,
+		// 					"QSREC": null,
+		// 					"witht": "",
+		// 					"WT_WTSTCD": null,
+		// 					"WT_EXRT": null,
+		// 					"WT_EXDF": null,
+		// 					"WT_SUBJCT": null,
+		// 					"WT_EXNR": null,
+		// 					"WT_WTEXRS": null,
+		// 					"WT_EXDT": null,
+		// 					"lifnr": null,
+		// 					"bukrs": ""
 
 						}
 					},
@@ -1048,17 +1048,17 @@ sap.ui.define([
 					}
 				}
 
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad",
-				// 	oPRAbpad);
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc",
-				// 	oPrabpvendesc);
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md",
-				// 	oPrabpcustmd);
-				// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md",
-				// 	oPrabpvendmd);
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad",
+		// 		// 	oPRAbpad);
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc",
+		// 		// 	oPrabpvendesc);
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md",
+		// 		// 	oPrabpcustmd);
+		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md",
+		// 		// 	oPrabpvendmd);
 
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
-					oCustomData);
+		// 		this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
+		// 			oCustomData);
 
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
@@ -1115,27 +1115,27 @@ sap.ui.define([
 					"/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+		// 		this.getView().getModel("CreateVendorModel").setProperty(
+		// 			"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
+		// 			oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+		// 		this.getView().getModel("CreateVendorModel").setProperty(
+		// 			"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
+		// 			oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+		// 		this.getView().getModel("CreateVendorModel").setProperty(
+		// 			"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/entity_id",
+		// 			oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+		// 		this.getView().getModel("CreateVendorModel").setProperty(
+		// 			"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
+		// 			oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 
-				this.getView().getModel("CreateVendorModel").refresh();
-				// console.log(oData);
-			}.bind(this), function (oData) {
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
-				MessageToast.show("Entity ID not created. Please try after some time");
-			}.bind(this));
-		},
+		// 		this.getView().getModel("CreateVendorModel").refresh();
+		// 		// console.log(oData);
+		// 	}.bind(this), function (oData) {
+		// 		this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
+		// 		this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
+		// 		MessageToast.show("Entity ID not created. Please try after some time");
+		// 	}.bind(this));
+		// },
 
 		onSearchVendorTableUpdated: function (oEvent) {
 
