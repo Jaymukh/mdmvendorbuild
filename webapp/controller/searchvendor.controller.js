@@ -570,7 +570,7 @@ sap.ui.define([
 		// 					"lifnr": null,
 		// 					"bukrs": ""
 
-						}
+	/*					}
 					},
 					"vnd_lfm1": {
 						"vnd_lfm1_1": {
@@ -1047,7 +1047,7 @@ sap.ui.define([
 						}
 					}
 				}
-
+*/
 		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_ad",
 		// 		// 	oPRAbpad);
 		// 		// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc",
@@ -1060,7 +1060,7 @@ sap.ui.define([
 		// 		this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
 		// 			oCustomData);
 
-				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
+		/*		this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
@@ -1114,7 +1114,7 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-
+*/
 		// 		this.getView().getModel("CreateVendorModel").setProperty(
 		// 			"/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/entity_id",
 		// 			oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
