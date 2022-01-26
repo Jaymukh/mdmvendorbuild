@@ -84,9 +84,23 @@ sap.ui.define([
 		},
 
 		onSaveClick: function (oEvent) {
+			debugger;
 			if (this.onCheckClick()) {
 				this.getView().setBusy(true);
-				var oData = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData");
+				var oModel = this.getView().getModel("CreateVendorModel");
+				var oData = oModel.getProperty("/createCRVendorData/formData");
+
+				var objFormationLfb1 = {};
+				var objFormationLfbw = {};
+				for (var i = 1; i <= oModel.getProperty("/addCompanyCodeRows").length; i++) {
+					oModel.setProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/entity_id", oData.parentDTO.customData.vnd_lfa1.entity_id);
+					oModel.setProperty("/addCompanyCodeRows/" + (i - 1) + "/lfbw/entity_id", oData.parentDTO.customData.vnd_lfa1.entity_id);
+					objFormationLfb1["vnd_lfb1_" + i] = oModel.getProperty("/addCompanyCodeRows")[i - 1]["lfb1"];
+					objFormationLfbw["vnd_lfbw_" + i] = oModel.getProperty("/addCompanyCodeRows")[i - 1]["lfbw"];
+				}
+				oData.parentDTO.customData.vnd_lfb1 = objFormationLfb1;
+				oData.parentDTO.customData.vnd_lfbw = objFormationLfbw;
+
 				var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
 				if (!oData.parentDTO.customData.vnd_lfa1.lifnr) {
 					var objParamFirstCall = {
@@ -114,6 +128,11 @@ sap.ui.define([
 							oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+							var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+							for (var i = 0; i < sKeylfb1.length; i++) {
+								oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLifnr;
+							}
+
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
 							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
@@ -165,7 +184,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			oData = Object.assign({},oData);
+			oData = Object.assign({}, oData);
 			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
@@ -176,9 +195,9 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_cust_md;
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 			}
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka  = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01  = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars  = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -398,20 +417,27 @@ sap.ui.define([
 			}
 			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
 				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/bukrs", oVal[this._sKey]);
+					"/addCompanyCodeFormData/vnd_lfbw/bukrs", oVal[this._sKey]);
 				var sSelectedKey = oVal[this._sKey];
-				var aPaymentMethodData= this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+				var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
 				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding',obj.payMethod );
+				if (obj && obj.payMethod) {
+					this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
+					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+				}
+			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.bankName);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.street);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.city);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.country);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-			}else if(oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key"){
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.bankName);
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.street);
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.city);
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.country);
-				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-			}else if(oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language"){
-				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
+			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 			this._oValueHelpDialog.close();
@@ -480,11 +506,17 @@ sap.ui.define([
 
 		onSelectCheckBox: function (oEvent) {
 			var sKey = oEvent.getSource().getCustomData()[0].getKey();
-			if (sKey) {
+			if (sKey && sKey.split("/")[1] === "createCRVendorData") {
 				if (oEvent.getParameter("selected")) {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "X");
 				} else {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
+				}
+			} else if (sKey && sKey.split("/")[1] !== "createCRVendorData") {
+				if (oEvent.getParameter("selected")) {
+					this.getView().getModel("CreateVendorModel").setProperty(sKey, "X");
+				} else {
+					this.getView().getModel("CreateVendorModel").setProperty(sKey, "");
 				}
 			}
 		},
@@ -578,6 +610,11 @@ sap.ui.define([
 				}
 				oControl.setValueState(sValueState);
 			});
+			if (!oData.getProperty("/addCompanyCodeRows").length) {
+				aEmptyFields.push({
+					section: "Company Code"
+				})
+			}
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
@@ -588,10 +625,14 @@ sap.ui.define([
 							items: {
 								path: "CreateVendorModel>/missingFields",
 								template: new StandardListItem({
-									title: "{CreateVendorModel>Name}" + " field is missing in " + "{CreateVendorModel>panelMapping}" + " Section"
+									// title: "{ parts: [ 'CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'], formatter: 'formatCheckErrorMessage' }"
+									title: "{= ${CreateVendorModel>section} ? 'No ${CreateVendorModel>section} is maintained in ${CreateVendorModel>section} Section.'  : '${CreateVendorModel>Name} field is missing in ${CreateVendorModel>panelMapping} Section.'}"
+
 								})
 							}
 						}),
+						// title: "{CreateVendorModel>Name}" + " field is missing in " + "{CreateVendorModel>panelMapping}" + " Section"
+
 						endButton: new Button({
 							text: "Close",
 							press: function () {
@@ -609,86 +650,177 @@ sap.ui.define([
 				return true;
 			}
 		},
-		
-		handleName1 : function(oEvent){
-			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
-			
+
+		formatCheckErrorMessage: function (sName, sPanel, sSection) {
+			var sMsg = "";
+			if (!sSection) {
+				sMsg = sName + " field is missing in " + sPanel + " Section";
+			} else {
+				sMsg = "no " + sSection + " is maintained in " + sSection + " table"
+			}
+			return sMsg;
 		},
-		handleSearchTerms : function(oEvent){
-			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", oEvent.getSource().getValue());
+
+		handleName1: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1", oEvent.getSource().getValue());
+
+		},
+		handleSearchTerms: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", oEvent.getSource().getValue());
+		},
+
+		onAddCompanyCode: function (oEvent) {
+			var sPathForCompanyCodeMandatoryField = "/companyCodeMandateFields";
+			if (this._checkValidationforFields(sPathForCompanyCodeMandatoryField)) {
+				var aLFB1WFormData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData");
+				var aLFB1WTableData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeRows");
+				aLFB1WTableData.push(aLFB1WFormData);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/addCompanyCodeFormData", {
+						"lfb1": {
+							"entity_id": null,
+							"bukrs": null,
+							"AKONT": null,
+							"LNRZE": null,
+							"BEGRU": null,
+							"MINDK": null,
+							"ZUAWA": null,
+							"FDGRV": null,
+							"VZSKZ": null,
+							"ZINRT": null,
+							"ZINDT": null,
+							"DATLZ": null,
+							"ALTKN": null,
+							"PERNR": null,
+							"ZTERM": null,
+							"KULTG": null,
+							"REPRF": null,
+							"ZWELS": null,
+							"LNRZB": null,
+							"WEBTR": null,
+							"UZAWE": null,
+							"ZAHLS": null,
+							"HBKID": null,
+							"XPORE": null,
+							"XVERR": null,
+							"TOGRU": null,
+							"ZSABE": null,
+							"EIKTO": null,
+							"XDEZV": null,
+							"KVERM": null,
+							"MGRUP": null,
+							"ZGRUP": null,
+							"QLAND": null,
+							"XEDIP": null,
+							"FRGRP": null,
+							"TOGRR": null,
+							"TLFXS": null,
+							"INTAD": null,
+							"XLFZB": null,
+							"GUZTE": null,
+							"GRICD": null,
+							"GRIDT": null,
+							"XAUSZ": null,
+							"CERDT": null,
+							"CONFS": null,
+							"UPDAT": null,
+							"UPTIM": null,
+							"NODEL": null,
+							"TLFNS": null,
+							"AVSND": null,
+							"AD_HASH": null,
+							"CVP_XBLCK_B": null,
+							"CIIUCODE": null,
+							"ZBOKD": null,
+							"ZQSSKZ": null,
+							"ZQSZDT": null,
+							"ZQSZNR": null,
+							"ZMINDAT": null,
+							"J_SC_SUBCONTYPE": null,
+							"J_SC_COMPDATE": null,
+							"J_SC_OFFSM": null,
+							"J_SC_OFFSR": null,
+							"BASIS_PNT": null,
+							"GMVKZK": null,
+							"INTERCOCD": null,
+							"RSTR_CHG_FL": null,
+							"CHECK_FLAG": null,
+							"OVRD_RCPMT": null,
+							"MIN_PAY": null,
+							"PAY_FRQ_CD": null,
+							"RECOUP_PC": null,
+							"ALLOT_MTH_CD": null,
+							"ESCH_CD": null,
+							"ESCHEAT_DT": null,
+							"PREPAY_RELEVANT": null,
+							"ASSIGN_TEST": null,
+							"ZZESTMA": null
+
+						},
+						"lfbw": {
+							"entity_id": null,
+							"WT_WITHCD": null,
+							"QSREC": null,
+							"witht": "",
+							"WT_WTSTCD": null,
+							"WT_EXRT": null,
+							"WT_EXDF": null,
+							"WT_SUBJCT": null,
+							"WT_EXNR": null,
+							"WT_WTEXRS": null,
+							"WT_EXDT": null,
+							"lifnr": null,
+							"bukrs": ""
+
+						}
+					});
+			} else {
+				MessageToast.show("Please Enter all Mandatory Fields for Company Code");
+			}
+
+		},
+
+		onCompanYCodeEditPress: function (oEvent) {
+
+		},
+
+		onCompanYCodeDeletePress: function (oEvent) {
+
+		},
+
+		_checkValidationforFields: function (sPath) {
+			var bCheck = true;
+			var aMandateFieldJson = this.getView().getModel("CreateVendorModel").getProperty(sPath);
+			var oController = this;
+			var oView = this.getView();
+			var oModel = this.getView().getModel("CreateVendorModel");
+			aMandateFieldJson.forEach(function (oItem) {
+				var oControl = oView.byId(oItem.id);
+				var sValueState = "None";
+				if (!oItem.isPRAData && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
+						oModel.getProperty(oItem.fieldMapping) === null)) {
+					// aEmptyFields.push(oItem);
+					sValueState = "Error";
+					bCheck = false;
+				} else if ((oItem.isPRAData && (oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
+						"JVPR")) &&
+					(oModel.getProperty(oItem
+							.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
+						oModel.getProperty(oItem.fieldMapping) === null)) {
+					aEmptyFields.push(oItem);
+					sValueState = "Error";
+					bCheck = false;
+				} else {
+					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
+						sValueState = "Success";
+					}
+				}
+				oControl.setValueState(sValueState);
+			});
+			return bCheck;
 		}
-		// onSubmitClick: function (oEvent) {
-		// 	this.getView().setBusy(true);
-		// 	var objParamSubmit = {
-		// 		url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
-		// 		type: 'POST',
-		// 		hasPayload: true,
-		// 		data: {
-		// 			"changeRequestDTO": {
-		// 				"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-		// 			}
-		// 		}
-		// 	};
-		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-		// 		// this.getView().setBusy(false);
-		// 		// MessageToast.show("Submission Successful");
-		// 		this._CreateCRID();
-		// 	}.bind(this), function (oError) {
-		// 		this.getView().setBusy(false);
-		// 		MessageToast.show("Error in Action Call");
-		// 	}.bind(this));
-
-		// },
-
-		// _CreateCRID: function () {
-		// 	var objParamSubmit = {
-		// 		url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/create",
-		// 		type: 'POST',
-		// 		hasPayload: true,
-		// 		data: {
-		// 			"parentCrDTOs": [{
-		// 				"crDTO": {
-		// 					"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-		// 				}
-		// 			}]
-		// 		}
-		// 	};
-		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-		// 		// this.getView().setBusy(false);
-		// 		MessageToast.show("Change Request ID - " + oDataResp.result.parentCrDTOs[0].crDTO.change_request_id + " Generated.");
-		// 		this._EntityIDDraftFalse();
-		// 	}.bind(this), function (oError) {
-		// 		this.getView().setBusy(false);
-		// 		MessageToast.show("Error in CR Create Call");
-		// 	}.bind(this));
-		// },
-
-		// _EntityIDDraftFalse: function () {
-		// 	var objParamSubmit = {
-		// 		url: "/murphyCustom/mdm/entity-service/entities/entity/create",
-		// 		type: 'POST',
-		// 		hasPayload: true,
-		// 		data: {
-		// 			"entityType": "VENDOR",
-		// 			"parentDTO": {
-		// 				"customData": {
-		// 					"business_entity": {
-		// 						"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-		// 						"is_draft": "false"
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-
-		// 	};
-		// 	this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oDataResp) {
-		// 		this.getView().setBusy(false);
-		// 		MessageToast.show("Submission Successful");
-		// 	}.bind(this), function (oError) {
-		// 		this.getView().setBusy(false);
-		// 		MessageToast.show("Error in Make draft false Call");
-		// 	}.bind(this));
-		// }
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
