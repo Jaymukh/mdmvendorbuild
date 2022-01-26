@@ -71,7 +71,6 @@
 											<core:Title/>
 											<Label text="Account Group" required="true"/>
 											<Select forceSelection="false" id="accountGrpID"
-											<Select forceSelection="false" id="accountGrpID"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
 												<!--<items>-->
 												<!--	<core:Item text="Group1" key="1"/>-->
@@ -608,7 +607,6 @@
 										<form:content>
 											<core:Title text="Payment Transactions"/>
 											<Label text="DME Indicator" required="true"/>
-											<Select id="payTransDMEIndicatorId" forceSelection="false"
 											<Select id="payTransDMEIndicatorId" forceSelection="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
@@ -1525,7 +1523,6 @@
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
 											<Select forceSelection="false" id="purOrgPurOrgId"
-											<Select forceSelection="false" id="purOrgPurOrgId"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
 												<!--<items>
 													<core:Item text="Org 1" key="1"/>
@@ -2231,8 +2228,6 @@
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"/>
 														<Label text="Entity Type"/>
 														<Select id="idPRAAccEntityType" forceSelection="false"
-														<Label text="Entity Type"/>
-														<Select id="idPRAAccEntityType" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}">
 															<items>
 																<core:Item text="Charitable" key="01"/>
@@ -2259,8 +2254,6 @@
 														<Label text="Tribe No."/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}" maxLength="2"/>
 														<core:Title text="Payment Information"/>
-														<Label text="Payment Type"/>
-														<Select id="idPRAAccPaymentType" forceSelection="false"
 														<Label text="Payment Type"/>
 														<Select id="idPRAAccPaymentType" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}">
@@ -2469,8 +2462,6 @@
 													singleContainerFullSize="false">
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
-														<Label text="Address Type"/>
-														<Select forceSelection="false" id="praDataAddrTabAddressTypeId"
 														<Label text="Address Type"/>
 														<Select forceSelection="false" id="praDataAddrTabAddressTypeId"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
