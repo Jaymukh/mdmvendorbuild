@@ -917,7 +917,7 @@
 		"id": "idAddrSearTerm1",
 		"Name": "Search Term 1",
 		"Key": "sort1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1",
 		"panelMapping": "Address",
 		"isPRAData": false
 	}, {
@@ -932,6 +932,20 @@
 		"Name": "Country Key",
 		"Key": "land1",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1",
+		"panelMapping": "Address",
+		"isPRAData": false
+	}, {
+		"id": "idAddrRegion",
+		"Name": "Region",
+		"Key": "REGIO",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO",
+		"panelMapping": "Address",
+		"isPRAData": false
+	}, {
+		"id": "idAddrPostalCode",
+		"Name": "Postal Code",
+		"Key": "post_code1",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1",
 		"panelMapping": "Address",
 		"isPRAData": false
 	}, {
@@ -983,7 +997,51 @@
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type",
 		"panelMapping": "PRA DATA/Address",
 		"isPRAData": true
-	}],
+	},{
+		"id": "idPRAAddrName",
+		"Name": "Name",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1",
+		"key": "addr_type",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "idPRAAddrStreet",
+		"Name": "Street",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street",
+		"key": "street",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "idPRAAddrHouseNo",
+		"Name": "House No",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1",
+		"key": "house_num1",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "idPRAAddrCoutryKeyPart",
+		"Name": "Country Key",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1",
+		"key": "land1",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "idPRAAddrPostalCodepart",
+		"Name": "Postal Code",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1",
+		"key": "post_code1",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "PRAAddrRegionPartId",
+		"Name": "Region",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region",
+		"key": "region",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	}
+	
+	],
 	"missingFields": [],
 	"changeReq": {
 		"genData": {

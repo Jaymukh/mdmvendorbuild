@@ -180,8 +180,8 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
 											<core:Title text="Address"/>
 											<Label text="House No. / Street"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/STREET}">
+											<Input required = "ture" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
@@ -709,7 +709,7 @@
 												</Column>
 												<Column>
 													<header>
-														<Label text="Reconcillation" design="Bold"></Label>
+														<Label text="Reconcillation Account" design="Bold"></Label>
 													</header>
 												</Column>
 												<Column>
@@ -1078,7 +1078,7 @@
 												</items>-->
 												</Select>
 												<core:Title/>
-												<Label text="Payment Block"/>
+												<Label text="Payment Block" required ="true"/>
 												<Select forceSelection="false" id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Select>
 												<Label text="House Bank"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
@@ -1584,13 +1584,13 @@
 													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
 												</customData>
 											</Input>
-											<Label text="Region"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Label text="Region" required="true"/>
+											<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
-													<core:CustomData key="inputKey" value="bezei"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
 													<core:CustomData key="inputText" value="land1"></core:CustomData>
 													<core:CustomData key="land1" value="Code"></core:CustomData>
 													<core:CustomData key="bezei" value="Region"></core:CustomData>
@@ -1657,8 +1657,8 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 											<Label text="Search Term 1"/>
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
-											<Label text="Postal Code"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+											<Label text="Postal Code" required="true"/>
+											<Input id="idAddrPostalCode" required = "true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
 											<Input id="idAddrCountryKey" required="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
@@ -1888,7 +1888,7 @@
 														<Label text="Resident Country"/>
 														<Input id="idPRAAccResidentCountry" required="true"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"/>
-														<Label text="Entity Type"/>
+														<Label required="true" text="Entity Type"/>
 														<Select id="idPRAAccEntityType" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}">
 															<items>
@@ -2124,7 +2124,7 @@
 													singleContainerFullSize="false">
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
-														<Label text="Address Type"/>
+														<Label text="Address Type" required="true"/>
 														<Select forceSelection="false" id="praDataAddrTabAddressTypeId"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
 															<!--	<items>
@@ -2144,22 +2144,22 @@
 															</items>-->
 														</Select>
 														<Label text="Name"/>
-														<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
+														<Input id="idPRAAddrName" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
 														<Label text="Name2"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name2}"/>
 														<Label text="Search Term 1"/>
 														<Input required="true" id="idAddrSearTerm1"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1}"/>
-														<Label text="Street"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street}"/>
-														<Label text="House No."/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1}"/>
+														<Label text="Street" required="true"/>
+														<Input id="idPRAAddrStreet" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street}"/>
+														<Label text="House No." required="true"/>
+														<Input id = "idPRAAddrHouseNo" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1}"/>
 														<Label text="Supplement"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num2}"/>
 														<Label text="Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1}"/>
+														<Input id = "idPRAAddrPostalCodepart" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1}"/>
 														<Label text="Country Key"/>
-														<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1}"
+														<Input id = "idPRAAddrCoutryKeyPart" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1}"
 															showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
@@ -2174,12 +2174,12 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1}"/>
 														<core:Title/>
 														<Label text="Region"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region}" showValueHelp="true"
+														<Input id="PRAAddrRegionPartId" required = "true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
-																<core:CustomData key="inputKey" value="bezei"></core:CustomData>
+																<core:CustomData key="inputKey" value="land1"></core:CustomData>
 																<core:CustomData key="inputText" value="land1"></core:CustomData>
 																<core:CustomData key="bezei" value="Region"></core:CustomData>
 																<core:CustomData key="land1" value="Code"></core:CustomData>

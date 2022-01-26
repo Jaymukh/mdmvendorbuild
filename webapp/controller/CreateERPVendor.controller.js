@@ -84,7 +84,6 @@ sap.ui.define([
 		},
 
 		onSaveClick: function (oEvent) {
-			debugger;
 			if (this.onCheckClick()) {
 				this.getView().setBusy(true);
 				var oModel = this.getView().getModel("CreateVendorModel");
@@ -196,10 +195,18 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_esc;
 				delete oData.parentDTO.customData.pra_bp_cust_md;
 				delete oData.parentDTO.customData.pra_bp_vend_md;
+				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+						
 			}
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO ;
+			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+			aLFB1Objs.forEach(function(key,index){
+					var sProerty = 'vnd_lfbw_'+(index+1);
+				  oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs =oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+   			});
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -627,8 +634,9 @@ sap.ui.define([
 							items: {
 								path: "CreateVendorModel>/missingFields",
 								template: new StandardListItem({
-									// title: "{ parts: [ 'CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'], formatter: 'formatCheckErrorMessage' }"
-									title: "{= ${CreateVendorModel>section} ? 'No ${CreateVendorModel>section} is maintained in ${CreateVendorModel>section} Section.'  : '${CreateVendorModel>Name} field is missing in ${CreateVendorModel>panelMapping} Section.'}"
+									 title: { parts: [ 'CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'],
+											 formatter: this.formatCheckErrorMessage }
+									//title: "{= ${CreateVendorModel>section} ? 'No ${CreateVendorModel>section} is maintained in ${CreateVendorModel>section} Section.'  : '${CreateVendorModel>Name} field is missing in ${CreateVendorModel>panelMapping} Section.'}"
 
 								})
 							}
@@ -658,7 +666,7 @@ sap.ui.define([
 			if (!sSection) {
 				sMsg = sName + " field is missing in " + sPanel + " Section";
 			} else {
-				sMsg = "no " + sSection + " is maintained in " + sSection + " table"
+				sMsg = "No " + sSection + " is maintained in " + sSection + " table"
 			}
 			return sMsg;
 		},
