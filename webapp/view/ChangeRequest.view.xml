@@ -189,7 +189,7 @@
 																<VBox id="commentVBoxID" visible="false">
 																	<Label text="Write a Comment:"/>
 																	<HBox width="100%">
-																		<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>
+																	<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
 																		<TextArea width="150%"></TextArea>
 																	</HBox>
 																	<Toolbar>

@@ -21,7 +21,7 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
-			<tnt:SideNavigation id="sideNavigation" selectedKey="srchVnd" itemSelect=".onSideItemSelect">
+			<tnt:SideNavigation id="sideNavigation" selectedKey="srchVnd"  itemSelect=".onSideItemSelect">
 				<tnt:NavigationList>
 					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
 					<tnt:NavigationListItem text="Create Vendor" icon="sap-icon://create" key="createERPVendorView"/>
@@ -143,9 +143,9 @@
 												text="{SearchVendorModel>pendingRequest}"/>
 											<Text text="{SearchVendorModel>overDueDate}"></Text>
 											<Text
-												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/NAME1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
-											<Text text="{SearchVendorModel>customVendorLFA1DTO/VBUND}"></Text>
-											<Text text="{SearchVendorModel>customVendorLFA1DTO/LAND1}"></Text>
+												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/name1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
+											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>

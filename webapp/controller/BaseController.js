@@ -158,88 +158,7 @@ sap.ui.define([
 							"ZZARIBA_NET": null,
 							"ZZVAL_FM": null
 						},
-						"vnd_lfb1": {
-							"vnd_lfb1_1": {
-								"entity_id": null,
-								"bukrs": null,
-								"AKONT": null,
-								"LNRZE": null,
-								"BEGRU": null,
-								"MINDK": null,
-								"ZUAWA": null,
-								"FDGRV": null,
-								"VZSKZ": null,
-								"ZINRT": null,
-								"ZINDT": null,
-								"DATLZ": null,
-								"ALTKN": null,
-								"PERNR": null,
-								"ZTERM": null,
-								"KULTG": null,
-								"REPRF": null,
-								"ZWELS": null,
-								"LNRZB": null,
-								"WEBTR": null,
-								"UZAWE": null,
-								"ZAHLS": null,
-								"HBKID": null,
-								"XPORE": null,
-								"XVERR": null,
-								"TOGRU": null,
-								"ZSABE": null,
-								"EIKTO": null,
-								"XDEZV": null,
-								"KVERM": null,
-								"MGRUP": null,
-								"ZGRUP": null,
-								"QLAND": null,
-								"XEDIP": null,
-								"FRGRP": null,
-								"TOGRR": null,
-								"TLFXS": null,
-								"INTAD": null,
-								"XLFZB": null,
-								"GUZTE": null,
-								"GRICD": null,
-								"GRIDT": null,
-								"XAUSZ": null,
-								"CERDT": null,
-								"CONFS": null,
-								"UPDAT": null,
-								"UPTIM": null,
-								"NODEL": null,
-								"TLFNS": null,
-								"AVSND": null,
-								"AD_HASH": null,
-								"CVP_XBLCK_B": null,
-								"CIIUCODE": null,
-								"ZBOKD": null,
-								"ZQSSKZ": null,
-								"ZQSZDT": null,
-								"ZQSZNR": null,
-								"ZMINDAT": null,
-								"J_SC_SUBCONTYPE": null,
-								"J_SC_COMPDATE": null,
-								"J_SC_OFFSM": null,
-								"J_SC_OFFSR": null,
-								"BASIS_PNT": null,
-								"GMVKZK": null,
-								"INTERCOCD": null,
-								"RSTR_CHG_FL": null,
-								"CHECK_FLAG": null,
-								"OVRD_RCPMT": null,
-								"MIN_PAY": null,
-								"PAY_FRQ_CD": null,
-								"RECOUP_PC": null,
-								"ALLOT_MTH_CD": null,
-								"ESCH_CD": null,
-								"ESCHEAT_DT": null,
-								"PREPAY_RELEVANT": null,
-								"ASSIGN_TEST": null,
-								"ZZESTMA": null
-
-							}
-						},
+						"vnd_lfb1": {},
 						"vnd_lfbk": {
 							"vnd_lfbk_1": {
 								"entity_id": null,
@@ -261,22 +180,6 @@ sap.ui.define([
 							}
 						},
 						"vnd_lfbw": {
-							"vnd_lfbw_1": {
-								"entity_id": null,
-								"WT_WITHCD": null,
-								"QSREC": null,
-								"witht": "",
-								"WT_WTSTCD": null,
-								"WT_EXRT": null,
-								"WT_EXDF": null,
-								"WT_SUBJCT": null,
-								"WT_EXNR": null,
-								"WT_WTEXRS": null,
-								"WT_EXDT": null,
-								"lifnr": null,
-								"bukrs": ""
-
-							}
 						},
 						"vnd_lfm1": {
 							"vnd_lfm1_1": {
@@ -338,6 +241,107 @@ sap.ui.define([
 						},
 						"gen_adrc": {
 							"gen_adrc_1": {
+								"entity_id": null,
+								"addrnumber": null,
+								"date_from": "",
+								"nation": "",
+								"date_to": null,
+								"title": null,
+								"name1": null,
+								"name2": null,
+								"name3": null,
+								"name4": null,
+								"name_text": null,
+								"name_co": null,
+								"city1": null,
+								"city2": null,
+								"city_code": null,
+								"cityp_code": null,
+								"home_city": null,
+								"cityh_code": null,
+								"chckstatus": null,
+								"regiogroup": null,
+								"post_code1": null,
+								"post_code2": null,
+								"post_code3": null,
+								"pcode1_ext": null,
+								"pcode2_ext": null,
+								"pcode3_ext": null,
+								"po_box": null,
+								"dont_use_p": null,
+								"po_box_num": null,
+								"po_box_loc": null,
+								"city_code2": null,
+								"po_box_reg": null,
+								"po_box_cty": null,
+								"postalarea": null,
+								"transpzone": null,
+								"street": null,
+								"dont_use_s": null,
+								"streetcode": null,
+								"streetabbr": null,
+								"house_num1": null,
+								"house_num2": null,
+								"house_num3": null,
+								"str_suppl1": null,
+								"str_suppl2": null,
+								"str_suppl3": null,
+								"location": null,
+								"building": null,
+								"floor": null,
+								"roomnumber": null,
+								"country": "",
+								"langu": null,
+								"region": null,
+								"addr_group": null,
+								"flaggroups": null,
+								"pers_addr": null,
+								"sort1": null,
+								"sort2": null,
+								"sort_phn": null,
+								"deflt_comm": null,
+								"tel_number": null,
+								"tel_extens": null,
+								"fax_number": null,
+								"fax_extens": null,
+								"flagcomm2": null,
+								"flagcomm3": null,
+								"flagcomm4": null,
+								"flagcomm5": null,
+								"flagcomm6": null,
+								"flagcomm7": null,
+								"flagcomm8": null,
+								"flagcomm9": null,
+								"flagcomm10": null,
+								"flagcomm11": null,
+								"flagcomm12": null,
+								"flagcomm13": null,
+								"addrorigin": null,
+								"mc_name1": null,
+								"mc_city1": null,
+								"mc_street": null,
+								"extension1": null,
+								"extension2": null,
+								"time_zone": null,
+								"taxjurcode": null,
+								"address_id": null,
+								"langu_crea": null,
+								"adrc_uuid": null,
+								"uuid_belated": null,
+								"id_category": null,
+								"adrc_err_status": null,
+								"po_box_lobby": null,
+								"deli_serv_type": null,
+								"deli_serv_number": null,
+								"county_code": null,
+								"county": null,
+								"township_code": null,
+								"township": null,
+								"mc_county": null,
+								"mc_township": null,
+								"xpcpt": null
+							},
+							"gen_adrc_2": {
 								"entity_id": null,
 								"addrnumber": null,
 								"date_from": "",
@@ -660,15 +664,15 @@ sap.ui.define([
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/0/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/entity_id",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				// this.getView().getModel("CreateVendorModel").setProperty(
+				// 	"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1/entity_id",
+				// 	oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
@@ -686,9 +690,15 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
-					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id)+"_1");
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
+					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/addrnumber",
+					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id)+"_1");
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 
 				this.getView().getModel("CreateVendorModel").setProperty(
@@ -709,16 +719,16 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-					
-					this.getView().getModel("CreateVendorModel").setProperty(
-						"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-						oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate
-						.getDate()
-					);
-					this.getView().getModel("CreateVendorModel").setProperty(
-						"/createCRVendorData/crTime",
-						oDate.getHours() + ":" + oDate.getMinutes()
-					);
+
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate
+					.getDate()
+				);
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/crTime",
+					oDate.getHours() + ":" + oDate.getMinutes()
+				);
 				this.getView().getModel("CreateVendorModel").refresh();
 			}.bind(this), function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
