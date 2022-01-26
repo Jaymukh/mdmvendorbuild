@@ -343,6 +343,13 @@ sap.ui.define([
 							this.getView().getModel("CreateVendorModel").setProperty(
 								"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1",
 								oDataResp.result.parentDTO.customData.vnd_lfb1.vnd_lfb1_1);
+							var sSelectedKey = 	oDataResp.result.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.bukrs;
+							var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+							var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
+							if (obj && obj.payMethod) {
+								this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
+								this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+							}
 							break;
 						case "vnd_lfbk":
 							this.getView().getModel("CreateVendorModel").setProperty(
