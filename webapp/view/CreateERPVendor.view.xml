@@ -39,6 +39,9 @@
 											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}">
 												<items>
 													<core:Item text="Create New Vendor" key="01"/>
+													<core:Item text="Update Vendor" key="02"/>
+													<core:Item text="Delete Vendor" key="03"/>
+													<core:Item text="Block Vendor" key="04"/>
 												</items>
 											</Select>
 											<core:Title text="Process Data"/>
@@ -70,13 +73,20 @@
 											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}" maxLength="10"/>
 											<core:Title/>
 											<Label text="Account Group" required="true"/>
-											<Select forceSelection="false" id="accountGrpID"
+											<Select  forceSelection="false"  showSecondaryValues="true" id="accountGrpID"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
-												<!--<items>-->
-												<!--	<core:Item text="Group1" key="1"/>-->
-												<!--	<core:Item text="Group2" key="2"/>-->
-												<!--	<core:Item text="Group3" key="3"/>-->
-												<!--</items>-->
+												<items>
+													<core:ListItem text="Employee/HR Related" additionalText="EMPL" key="EMPL"/>
+													<core:ListItem text="Intercompany Vendors" additionalText="INCO"  key="INCO"/>
+													<core:ListItem text="Invoicing Party" additionalText="INVP" key="INVP"/>
+													<core:ListItem text="JV / PRA Vendors" additionalText="JVPR" key="JVPR"/>
+													<core:ListItem text="JV International" additionalText="JVIN" key="JVIN"/>
+													<core:ListItem text="Manufacturer (ext.no.assgnmnt)" additionalText="MNFR" key="MNFR"/>
+													<core:ListItem text="Oil and Gas Purchasers" additionalText="OGPR" key="OGPR"/>
+													<core:ListItem text="Ordering address" additionalText="OAO1" key="OAO1"/>
+													<core:ListItem text="Vendor / Supplier" additionalText="VEND" key="VEND"/>
+													<core:ListItem text="General Vendors (no PO)" additionalText="GENV" key="GENV"/>
+												</items>
 											</Select>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
@@ -854,11 +864,11 @@
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}">
 													<customData>
-														<core:CustomData key="0" value="Withholding Tax Code"></core:CustomData>
 														<core:CustomData key="table" value="T059Z"></core:CustomData>
 														<core:CustomData key="text40" value="Name"></core:CustomData>
 														<core:CustomData key="wt_WITHCD" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="wt_WITHCD"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
+                                                     	<core:CustomData key="inputKey" value="wt_WITHCD"></core:CustomData>
 														<core:CustomData key="inputText" value="text40"></core:CustomData>
 													</customData>
 												</Input>
@@ -881,7 +891,8 @@
 														<core:CustomData key="table" value="T059C"></core:CustomData>
 														<core:CustomData key="rctxt" value="Name"></core:CustomData>
 														<core:CustomData key="qsrec" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="qsrec"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
+                                                        <core:CustomData key="inputKey" value="qsrec"></core:CustomData>
 														<core:CustomData key="inputText" value="rctxt"></core:CustomData>
 													</customData>
 												</Input>
@@ -928,7 +939,8 @@
 														<core:CustomData key="table" value="T059C"></core:CustomData>
 														<core:CustomData key="rctxt" value="Name"></core:CustomData>
 														<core:CustomData key="qsrec" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="qsrec"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
+                                                        <core:CustomData key="inputKey" value="qsrec"></core:CustomData>
 														<core:CustomData key="inputText" value="rctxt"></core:CustomData>
 													</customData>
 												</Input>
@@ -947,7 +959,8 @@
 														<core:CustomData key="table" value="T059Z"></core:CustomData>
 														<core:CustomData key="text40" value="Name"></core:CustomData>
 														<core:CustomData key="wt_WITHCD" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="wt_WITHCD"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
+                                                        <core:CustomData key="inputKey" value="wt_WITHCD"></core:CustomData>
 														<core:CustomData key="inputText" value="wt_WITHCD"></core:CustomData>
 													</customData>
 												</Input>
@@ -967,7 +980,8 @@
 														<core:CustomData key="table" value="T059V"></core:CustomData>
 														<core:CustomData key="text30" value="Name"></core:CustomData>
 														<core:CustomData key="wt_WTEXRS" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="wt_WTEXRS"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
+                                                        <core:CustomData key="inputKey" value="wt_WTEXRS"></core:CustomData>
 														<core:CustomData key="inputText" value="text30"></core:CustomData>
 													</customData>
 												</Input>

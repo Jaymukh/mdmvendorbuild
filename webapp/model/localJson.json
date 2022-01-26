@@ -749,12 +749,8 @@
 			"controlTable": "TSAD3",
 			"controlField": "title",
 			"controlFieldName": "title_MEDI"
-		}, {
-			"controlID": "accountGrpID",
-			"controlTable": "T077K",
-			"controlField": "ktokk",
-			"controlFieldName": "txt30"
-		}, {
+		},
+         {
 			"controlID": "taxTypeId",
 			"controlTable": "J_1AFITPV",
 			"controlField": "j_1afitp",
