@@ -147,6 +147,7 @@
 						"FISKN": null,
 						"STKZA": null,
 						"STKZU": null,
+						"DTAMS" :" ",
 						"DTAWS": null,
 						"ESRNR": null,
 						"XZEMP": null,
@@ -809,6 +810,13 @@
 
 	],
 	"createMandtFields": [{
+		"id": "idERPPOBOXPOSTALCODE",
+		"Name": "PO Box Postal Code/ PO Box",
+		"Key": "PO_BOX",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX",
+		"panelMapping": "ERP Vendor Details",
+		"isPRAData": false
+	},{
 		"id": "idERPVendorCountry",
 		"Name": "Country",
 		"Key": "LAND1",
@@ -1051,6 +1059,13 @@
 		"Name": "Region",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region",
 		"key": "region",
+		"panelMapping": "PRA DATA/Address",
+		"isPRAData": true
+	},{
+		"id": "PRAADDRPOBOXId",
+		"Name": "PO BOX",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box",
+		"key": "po_box",
 		"panelMapping": "PRA DATA/Address",
 		"isPRAData": true
 	}
@@ -2899,7 +2914,7 @@
 			"LNRZE": null,
 			"BEGRU": null,
 			"MINDK": null,
-			"ZUAWA": null,
+			"ZUAWA": "001",
 			"FDGRV": null,
 			"VZSKZ": null,
 			"ZINRT": null,
@@ -2914,7 +2929,7 @@
 			"LNRZB": null,
 			"WEBTR": null,
 			"UZAWE": null,
-			"ZAHLS": null,
+			"ZAHLS": " ",
 			"HBKID": null,
 			"XPORE": null,
 			"XVERR": null,

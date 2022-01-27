@@ -179,11 +179,11 @@
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
 											<core:Title text="Address"/>
-											<Label text="House No. / Street"/>
-											<Input id="ERPAddrHouseNoId" required="ture"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
-											<Input id="ERPAddrStreetId" required="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
+											<Label text="Street /  House No."/>
+											<Input id="ERPAddrHouseNoId" required="ture" width = "100%" 
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}"/>
+											<Input id="ERPAddrStreetId" required="true" width = "100%"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
@@ -251,7 +251,7 @@
 											<Label text="Transportation Zone"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
+											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -619,10 +619,10 @@
 										<form:content>
 											<core:Title text="Payment Transactions"/>
 											<Label text="DME Indicator" required="true"/>
-											<Select id="payTransDMEIndicatorId" forceSelection="false"
+											<Select id="payTransDMEIndicatorId" forceSelection="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
-													<core:Item text="Use house bank default value" key=""/>
+													<core:Item text="Use house bank default value" key="  "/>
 													<core:Item text="Single data record can be forwarded to the Bundesbank" key="0"/>
 													<core:Item text="Single data record not to be forwarded to the Bundesbank" key="1"/>
 												</items>
@@ -1082,7 +1082,7 @@
 												</Select>
 												<core:Title/>
 												<Label text="Payment Block" required="true"/>
-												<Select forceSelection="false" id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Select>
+												<Select forceSelection="true" id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Select>
 												<Label text="House Bank"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
 													valueHelpOnly="true">
@@ -1560,7 +1560,7 @@
 										singleContainerFullSize="false">
 										<form:content>
 											<core:Title text="Addresses"/>
-											<Label text="Street/House No."/>
+											<Label text="House No.And Street"/>
 											<Input id="idAddrStreetHouseNumber" required="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}" maxLength="35"/>
 											<!--<Input value="">-->
@@ -2194,7 +2194,7 @@
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
+														<Input id="PRAADDRPOBOXId" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
 														<Label text="PO Box Postal Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code2}"/>
 														<Label text="Company Postal Code"/>
