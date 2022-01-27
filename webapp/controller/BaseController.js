@@ -179,8 +179,7 @@ sap.ui.define([
 								"KOBIS": null
 							}
 						},
-						"vnd_lfbw": {
-						},
+						"vnd_lfbw": {},
 						"vnd_lfm1": {
 							"vnd_lfm1_1": {
 								"entity_id": null,
@@ -658,6 +657,105 @@ sap.ui.define([
 					};
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
 						oCustomData);
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows", []);
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", {
+						"lfb1": {
+							"entity_id": null,
+							"bukrs": null,
+							"AKONT": null,
+							"LNRZE": null,
+							"BEGRU": null,
+							"MINDK": null,
+							"ZUAWA": null,
+							"FDGRV": null,
+							"VZSKZ": null,
+							"ZINRT": null,
+							"ZINDT": null,
+							"DATLZ": null,
+							"ALTKN": null,
+							"PERNR": null,
+							"ZTERM": null,
+							"KULTG": null,
+							"REPRF": null,
+							"ZWELS": null,
+							"LNRZB": null,
+							"WEBTR": null,
+							"UZAWE": null,
+							"ZAHLS": null,
+							"HBKID": null,
+							"XPORE": null,
+							"XVERR": null,
+							"TOGRU": null,
+							"ZSABE": null,
+							"EIKTO": null,
+							"XDEZV": null,
+							"KVERM": null,
+							"MGRUP": null,
+							"ZGRUP": null,
+							"QLAND": null,
+							"XEDIP": null,
+							"FRGRP": null,
+							"TOGRR": null,
+							"TLFXS": null,
+							"INTAD": null,
+							"XLFZB": null,
+							"GUZTE": null,
+							"GRICD": null,
+							"GRIDT": null,
+							"XAUSZ": null,
+							"CERDT": null,
+							"CONFS": null,
+							"UPDAT": null,
+							"UPTIM": null,
+							"NODEL": null,
+							"TLFNS": null,
+							"AVSND": null,
+							"AD_HASH": null,
+							"CVP_XBLCK_B": null,
+							"CIIUCODE": null,
+							"ZBOKD": null,
+							"ZQSSKZ": null,
+							"ZQSZDT": null,
+							"ZQSZNR": null,
+							"ZMINDAT": null,
+							"J_SC_SUBCONTYPE": null,
+							"J_SC_COMPDATE": null,
+							"J_SC_OFFSM": null,
+							"J_SC_OFFSR": null,
+							"BASIS_PNT": null,
+							"GMVKZK": null,
+							"INTERCOCD": null,
+							"RSTR_CHG_FL": null,
+							"CHECK_FLAG": null,
+							"OVRD_RCPMT": null,
+							"MIN_PAY": null,
+							"PAY_FRQ_CD": null,
+							"RECOUP_PC": null,
+							"ALLOT_MTH_CD": null,
+							"ESCH_CD": null,
+							"ESCHEAT_DT": null,
+							"PREPAY_RELEVANT": null,
+							"ASSIGN_TEST": null,
+							"ZZESTMA": null
+
+						},
+						"lfbw": {
+							"entity_id": null,
+							"WT_WITHCD": null,
+							"QSREC": null,
+							"witht": "",
+							"WT_WTSTCD": null,
+							"WT_EXRT": null,
+							"WT_EXDF": null,
+							"WT_SUBJCT": null,
+							"WT_EXNR": null,
+							"WT_WTEXRS": null,
+							"WT_EXDT": null,
+							"lifnr": null,
+							"bukrs": ""
+
+						}
+					});
 				}
 
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
@@ -690,13 +788,13 @@ sap.ui.define([
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
-					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id)+"_1");
+					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id) + "_1");
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/addrnumber",
-					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id)+"_1");
+					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id) + "_1");
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);

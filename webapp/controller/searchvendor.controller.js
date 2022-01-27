@@ -202,7 +202,6 @@ sap.ui.define([
 			// }
 		},
 
-
 		onSearchVendorTableUpdated: function (oEvent) {
 
 		},
@@ -329,6 +328,7 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
+					var addCompanyCodeRows = [];
 					for (var i = 0; i < respPayload.length; i++) {
 						switch (respPayload[i]) {
 						case "business_entity":
@@ -341,9 +341,24 @@ sap.ui.define([
 							break;
 						case "vnd_lfb1":
 							this.getView().getModel("CreateVendorModel").setProperty(
-								"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1/vnd_lfb1_1",
-								oDataResp.result.parentDTO.customData.vnd_lfb1.vnd_lfb1_1);
-							var sSelectedKey = 	oDataResp.result.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.bukrs;
+								"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1",
+								oDataResp.result.parentDTO.customData.vnd_lfb1);
+
+							var lfb1ObjKey = Object.keys(oDataResp.result.parentDTO.customData.vnd_lfb1);
+							for (var j = 0; j < lfb1ObjKey.length; j++) {
+								var sKey = lfb1ObjKey[j];
+								if (addCompanyCodeRows[j]) {
+									addCompanyCodeRows[j].lfb1 = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey];
+								} else {
+									addCompanyCodeRows.push({
+										"lfb1": oDataResp.result.parentDTO.customData.vnd_lfb1[sKey],
+										"lfbw": {}
+									});
+								}
+
+							}
+
+							var sSelectedKey = oDataResp.result.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.bukrs;
 							var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
 							var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
 							if (obj && obj.payMethod) {
@@ -363,8 +378,22 @@ sap.ui.define([
 							break;
 						case "vnd_lfbw":
 							this.getView().getModel("CreateVendorModel").setProperty(
-								"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw/vnd_lfbw_1",
-								oDataResp.result.parentDTO.customData.vnd_lfbw.vnd_lfbw_1);
+								"/createCRVendorData/formData/parentDTO/customData/vnd_lfbw",
+								oDataResp.result.parentDTO.customData.vnd_lfbw);
+
+							var lfbwObjKey = Object.keys(oDataResp.result.parentDTO.customData.vnd_lfbw);
+							for (var j = 0; j < lfbwObjKey.length; j++) {
+								var sKey = lfbwObjKey[j];
+								if (addCompanyCodeRows[j]) {
+									addCompanyCodeRows[j].lfbw = oDataResp.result.parentDTO.customData.vnd_lfbw[sKey];
+								} else {
+									addCompanyCodeRows.push({
+										"lfbw": oDataResp.result.parentDTO.customData.vnd_lfbw[sKey],
+										"lfb1": {}
+									});
+								}
+
+							}
 							break;
 						case "vnd_knvk":
 							this.getView().getModel("CreateVendorModel").setProperty(
