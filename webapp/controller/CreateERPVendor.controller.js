@@ -798,7 +798,7 @@ sap.ui.define([
 
 						}
 					});
-			} else if (typeof (sCheck) === "String") {
+			} else if (typeof (sCheck) === "object") {
 				MessageToast.show("Please Enter all Mandatory Fields for Company Code");
 			}
 
