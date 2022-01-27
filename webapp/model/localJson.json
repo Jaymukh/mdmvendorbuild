@@ -848,7 +848,21 @@
 		"Name": "Search Terms",
 		"Key": "SORTL",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL",
-		"panelMapping": "Company Codes",
+		"panelMapping": "ERP Vendor Details",
+		"isPRAData": false
+	}, {
+		"id": "ERPAddrHouseNoId",
+		"Name": "House No",
+		"Key": "house_num1",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1",
+		"panelMapping": "ERP Vendor Details/Address",
+		"isPRAData": false
+	},{
+		"id": "ERPAddrStreetId",
+		"Name": "Street",
+		"Key": "street",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street",
+		"panelMapping": "ERP Vendor Details/Address",
 		"isPRAData": false
 	}, {
 		"id": "idAddrStreetHouseNumber",
@@ -918,8 +932,8 @@
 		"Name": "Search Term 1",
 		"Key": "sort1",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1",
-		"panelMapping": "Address",
-		"isPRAData": false
+		"panelMapping": "PRA/Address",
+		"isPRAData": true
 	}, {
 		"id": "idAddrLangKey",
 		"Name": "Language Key",
@@ -3016,6 +3030,13 @@
 		"Name": "Check Double Invoice",
 		"Key": "REPRF",
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/REPRF",
+		"panelMapping": "Company Codes",
+		"isPRAData": false
+	}, {
+		"id": "compCodesPaymentBlockId",
+		"Name": "Payment Block",
+		"Key": "ZAHLS",
+		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZAHLS",
 		"panelMapping": "Company Codes",
 		"isPRAData": false
 	}]
