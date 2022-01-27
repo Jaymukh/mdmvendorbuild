@@ -629,11 +629,11 @@ sap.ui.define([
 				}
 				oControl.setValueState(sValueState);
 			});
-			// if (!oData.getProperty("/addCompanyCodeRows").length) {
-			// 	aEmptyFields.push({
-			// 		section: "Company Code"
-			// 	})
-			// }
+			if (!oData.getProperty("/addCompanyCodeRows").length) {
+				aEmptyFields.push({
+		 		section: "Company Code"
+			 	})
+			 }
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
@@ -708,7 +708,7 @@ sap.ui.define([
 							"LNRZE": null,
 							"BEGRU": null,
 							"MINDK": null,
-							"ZUAWA": null,
+							"ZUAWA": "001",
 							"FDGRV": null,
 							"VZSKZ": null,
 							"ZINRT": null,
@@ -723,7 +723,7 @@ sap.ui.define([
 							"LNRZB": null,
 							"WEBTR": null,
 							"UZAWE": null,
-							"ZAHLS": null,
+							"ZAHLS": " ",
 							"HBKID": null,
 							"XPORE": null,
 							"XVERR": null,
@@ -798,7 +798,7 @@ sap.ui.define([
 
 						}
 					});
-			} else if (typeof (sCheck) === "object") {
+			} else if (typeof (sCheck) === "String") {
 				MessageToast.show("Please Enter all Mandatory Fields for Company Code");
 			}
 
@@ -844,6 +844,11 @@ sap.ui.define([
 				oControl.setValueState(sValueState);
 			});
 			return bCheck;
+		},
+		
+		handleERPPOBOXPostalCode : function(oEvent){
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
 		}
 
 		/**
