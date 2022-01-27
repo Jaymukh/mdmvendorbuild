@@ -1,19 +1,16 @@
-<core:FragmentDefinition
-   xmlns="sap.m"
-   xmlns:core="sap.ui.core" >
-   <Popover placement="Bottom" showHeader="false">
-   	<content>
-   		<List id="list">
-					<StandardListItem title="Edit" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"
-					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
-					icon="sap-icon://edit" press="onEdit" />
-					<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}" 
-					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
-					icon="sap-icon://cancel" press="onBlock" />
-					<StandardListItem title="Delete" type="Active" press="onDeleteVendorPress"
-					info= "{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}"
-					icon="sap-icon://delete"/>
-		</List>
-   	</content>
-   </Popover>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover placement="Bottom" showHeader="false">
+		<content>
+			<List id="list">
+				<StandardListItem title="Edit" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"
+					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://edit"
+					press="onEditVendorPress"/>
+				<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"
+					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
+					press="onBlockVendorPress"/>
+				<StandardListItem title="Delete" type="Active" press="onDeleteVendorPress"
+					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+			</List>
+		</content>
+	</Popover>
 </core:FragmentDefinition>
