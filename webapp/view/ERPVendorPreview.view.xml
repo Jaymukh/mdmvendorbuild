@@ -421,13 +421,7 @@
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Company Codes">
 								<content>
-									<Table items="{CreateVendorModel>/addCompanyCodeRows}">
-										<!--<headerToolbar>-->
-										<!--	<Toolbar>-->
-										<!--		<ToolbarSpacer></ToolbarSpacer>-->
-										<!--		<Button text="Add" press="onAddCompanyCode"></Button>-->
-										<!--	</Toolbar>-->
-										<!--</headerToolbar>-->
+									<Table items="{CreateVendorModel>/addCompanyCodeRows}" mode="SingleSelectLeft" selectionChange="onSelectCompanyCodeItem">
 										<columns>
 											<Column>
 												<header>
@@ -458,6 +452,154 @@
 											</ColumnListItem>
 										</items>
 									</Table>
+									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="ERP Vendor Company Code"/>
+											<Label text="Company Code"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}"></Text>
+											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
+											<Label text="Reconcillation Account"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}"></Text>
+											<Label text="Head Office"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/LNRZE}"></Text>
+											<Label text="Authorization Group"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/BEGRU}"/>
+											<Label text="Minority Indicator"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/MINDK}"></Text>
+											<Label text="Sort Key"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZUAWA}"></Text>
+											<Label text="Planning Group"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/FDGRV}"></Text>
+											<Label text="Release Group"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/FRGRP}"></Text>
+											<Label text="Certification Date"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
+											<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
+											<Label text="Intrest Indicator"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/VZSKZ}"></Text>
+											<Label text="Intrest Calculation Frequency"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINRT}"></Text>
+											<Label text="Last Key Date"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINDT}"/>
+											<Label text="Last Key Run"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
+											<core:Title text="Withholding Tax"/>
+											<Label text="Withholding Tax Code"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}"></Text>
+											<Label text="Withholding Tax Country"/>
+											<Text></Text>
+											<Label text="Recipient Type"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/QSREC}"></Text>
+											<Label text="Main Economic activity per CIIU Code"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}"/>
+											<Label text="Exemption No."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}"/>
+											<Label text="Valid Unit"/>
+											<Text/>
+											<Label text="Exemption Authority"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}"></Text>
+											<core:Title text="Extended Withholding Tax"/>
+											<Label text="Withholding Tax Type"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/witht}"></Text>
+											<Label text="Recipient Type"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/QSREC}"></Text>
+											<Label text="Withholding Tax Identification No."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTSTCD}"/>
+											<Label text="Exemption Rate in %"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}"/>
+											<Label text="Date on which exemption starts"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"/>
+											<core:Title/>
+											<Label text="Withholding Tax Code"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}"></Text>
+											<Label text="Sub. To Withholding Tax"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_SUBJECT} === 'X'}"></CheckBox>
+											<Label text="Exemption Cert. no."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}"/>
+											<Label text="Exemption Reason"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTEXRS}"></Text>
+											<Label text="Date on which Exemption Ends"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"/>
+											<core:Title text="ERP Vendor Company Code : Reference data"/>
+											<Label text="Previous Account No."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ALTKN}"/>
+											<Label text="Personnel No."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/PERNR}"/>
+											<core:Title text="ERP Vendor Company Code : Payment data"/>
+											<Label text="Payment terms"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}"></Text>
+											<Label text="Check Cashing Times"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/KULTG}"/>
+											<Label text="Credit Memo Payment Term"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/GUZTE}"></Text>
+											<Label text="Tolerance Group"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}"></Text>
+											<Label text="Check Double Invoice"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}"></CheckBox>
+											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
+											<Label text="Payment Method"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZWELS}"></Text>
+											<Label text="Alternative Payee"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/LNRZB}"></Text>
+											<Label text="Grouping Key"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}">
+											</Text>
+											<Label text="Bill of Exchange limit"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/WEBTR}"/>
+											<Label text="Payment Method Suppliement"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/UZAWE}">
+											</Text>
+											<core:Title/>
+											<Label text="Payment Block"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}">
+											</Text>
+											<Label text="House Bank"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}"></Text>
+											<Label text="Individual Payment"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XPORE} === 'X'}"></CheckBox>
+											<Label text="Payment Advice by EDI"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XEDIP} === 'X'}"></CheckBox>
+											<Label text="Clearing with Cust."/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERR} === 'X'}"></CheckBox>
+											<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+											<Label text="Delivery Tolerance Group"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}"></Text>
+											<core:Title text="ERP Vendor Company Code : Correspondance"/>
+											<Label text="Account Clerk"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZSABE}"></Text>
+											<Label text="Account With Vendor"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/EIKTO}"/>
+											<Label text="Clerk's Telephone No."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TLFNS}"/>
+											<Label text="Clerk's Internet Addredd"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/INTAD}"/>
+											<!--<core:Title/>-->
+											<Label text="Local Processing"/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XDEZV} === 'X'}"></CheckBox>
+											<Label text="Account Statement"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>
+											<Label text="Account Memo"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERM}"/>
+											<Label text="Clerk's Fax no."/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TLFXS}"/>
+											<core:Title text="ERP Vendor Company Code : Dunning Data"/>
+											<Label text="Dunning Areas"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/MGRUP}"/>
+											<Label text="Grouping Key"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}">
+											</Text>
+											<Label text="ESTMA (CAN)"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZZESTMA}"/>
+										</form:content>
+									</form:SimpleForm>
 								</content>
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">

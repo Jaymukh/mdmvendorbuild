@@ -189,6 +189,12 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+		},
+		
+		onSelectCompanyCodeItem: function(oEvent){
+			var oData = oEvent.getParameter("listItem").getBindingContext("CreateVendorModel").getObject();
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", oData);
+			
 		}
 
 		/**
