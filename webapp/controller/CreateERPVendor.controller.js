@@ -124,13 +124,20 @@ sap.ui.define([
 							var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
 							oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
-							oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
+							
 							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
-							oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+							// oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 							var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
 							for (var i = 0; i < sKeylfb1.length; i++) {
 								oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLifnr;
 							}
+							
+							var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+							for (var i = 0; i < sKeylfbw.length; i++) {
+								oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLifnr;
+							}
+							
+							// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
 
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
 							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
@@ -196,17 +203,17 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_cust_md;
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
-						
+
 			}
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
-			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO ;
+			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
 			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-			aLFB1Objs.forEach(function(key,index){
-					var sProerty = 'vnd_lfbw_'+(index+1);
-				  oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs =oData.parentDTO.customData.vnd_lfb1[key].bukrs;
-   			});
+			aLFB1Objs.forEach(function (key, index) {
+				var sProerty = 'vnd_lfbw_' + (index + 1);
+				oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+			});
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -599,6 +606,9 @@ sap.ui.define([
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
 			var oController = this;
+			if (!oData.getProperty("/addCompanyCodeRows").length) {
+				this.onAddCompanyCode("onCheck");
+			}
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
@@ -619,11 +629,11 @@ sap.ui.define([
 				}
 				oControl.setValueState(sValueState);
 			});
-			if (!oData.getProperty("/addCompanyCodeRows").length) {
-				aEmptyFields.push({
-					section: "Company Code"
-				})
-			}
+			// if (!oData.getProperty("/addCompanyCodeRows").length) {
+			// 	aEmptyFields.push({
+			// 		section: "Company Code"
+			// 	})
+			// }
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
@@ -634,8 +644,10 @@ sap.ui.define([
 							items: {
 								path: "CreateVendorModel>/missingFields",
 								template: new StandardListItem({
-									 title: { parts: [ 'CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'],
-											 formatter: this.formatCheckErrorMessage }
+									title: {
+										parts: ['CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'],
+										formatter: this.formatCheckErrorMessage
+									}
 									//title: "{= ${CreateVendorModel>section} ? 'No ${CreateVendorModel>section} is maintained in ${CreateVendorModel>section} Section.'  : '${CreateVendorModel>Name} field is missing in ${CreateVendorModel>panelMapping} Section.'}"
 
 								})
@@ -681,7 +693,7 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", oEvent.getSource().getValue());
 		},
 
-		onAddCompanyCode: function (oEvent) {
+		onAddCompanyCode: function (sCheck) {
 			var sPathForCompanyCodeMandatoryField = "/companyCodeMandateFields";
 			if (this._checkValidationforFields(sPathForCompanyCodeMandatoryField)) {
 				var aLFB1WFormData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData");
@@ -786,7 +798,7 @@ sap.ui.define([
 
 						}
 					});
-			} else {
+			} else if (typeof (sCheck) === "object") {
 				MessageToast.show("Please Enter all Mandatory Fields for Company Code");
 			}
 
@@ -797,7 +809,9 @@ sap.ui.define([
 		},
 
 		onCompanYCodeDeletePress: function (oEvent) {
-
+			var nIndex = oEvent.getSource().getBindingContext("CreateVendorModel").getPath().split("/")[2];
+			this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeRows").splice(nIndex, 1)
+			this.getView().getModel("CreateVendorModel").refresh();
 		},
 
 		_checkValidationforFields: function (sPath) {
