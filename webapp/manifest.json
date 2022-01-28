@@ -126,6 +126,12 @@
 					"defaultBindingMode": "TwoWay",
 					"rows": []
 				}
+			},
+			"userManagementModel":{
+				"type" : "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
 			}
 		},
 		"resources": {
