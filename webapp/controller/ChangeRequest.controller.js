@@ -16,8 +16,8 @@ sap.ui.define([
 		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ChangeRequest
 		 */
 		onInit: function () {
-			// this.handleGetAllChangeRequests();
-			// this.handleChangeRequestStatistics();
+			this.handleGetAllChangeRequests();
+			this.handleChangeRequestStatistics();
 			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
