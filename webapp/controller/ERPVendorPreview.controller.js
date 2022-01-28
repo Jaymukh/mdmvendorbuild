@@ -39,6 +39,7 @@ sap.ui.define([
 				type: 'POST',
 				hasPayload: true,
 				data: {
+					"operationType": "CREATE",
 					"changeRequestDTO": {
 						"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
 					}
