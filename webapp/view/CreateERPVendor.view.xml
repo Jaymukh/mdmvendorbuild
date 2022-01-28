@@ -62,7 +62,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="true" headerText="ERP Vendor Details">
+							<Panel expandable="true" expanded="true" headerText="ERP Vendor Details*">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -611,7 +611,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Payment Transactions">
+							<Panel expandable="true" expanded="false" headerText="Payment Transactions*">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -685,7 +685,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Company Codes">
+							<Panel expandable="true" expanded="false" headerText="Company Codes*">
 								<!--<headerToolbar>-->
 								<!--	<Toolbar>-->
 								<!--		<Title text="Company Codes"/>-->
@@ -969,7 +969,7 @@
 												<Label text="Sub. To Withholding Tax"/>
 												<CheckBox select="onSelectCheckBox">
 													<customData>
-														<core:CustomData key="/vnd_lfbw/vnd_lfbw_1/WT_SUBJECT" value="X"></core:CustomData>
+														<core:CustomData key="/addCompanyCodeFormData/lfbw/WT_SUBJCT" value="X"></core:CustomData>
 													</customData>
 												</CheckBox>
 												<Label text="Exemption Cert. no."/>
@@ -1179,7 +1179,7 @@
 									</VBox>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">
+							<Panel expandable="true" expanded="false" headerText="Purchasing Organization*">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -1513,7 +1513,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Address">
+							<Panel expandable="true" expanded="false" headerText="Address*">
 								<content>
 									<!--<Table items="{CreateERPVendorAddrTableModel>/rows}">-->
 									<!--	<headerToolbar>-->
@@ -1877,7 +1877,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="PRA Data">
+							<Panel expandable="true" expanded="false" headerText="PRA Data*">
 								<content>
 									<IconTabBar expanded="true">
 										<items>

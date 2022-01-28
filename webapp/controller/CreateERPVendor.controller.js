@@ -169,6 +169,16 @@ sap.ui.define([
 						MessageToast.show("Error In Generating Lifnr");
 					}.bind(this));
 				} else {
+							var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
+							var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+							for (var i = 0; i < sKeylfb1.length; i++) {
+								oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLIFNR;
+							}
+							
+							var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+							for (var i = 0; i < sKeylfbw.length; i++) {
+								oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLIFNR;
+							}
 					this._handleSaveWithLifnr(oData);
 					/*var objParamCreate = {
 						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
