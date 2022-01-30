@@ -325,6 +325,7 @@ sap.ui.define([
 
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				debugger;
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
@@ -340,6 +341,7 @@ sap.ui.define([
 								oDataResp.result.parentDTO.customData.vnd_lfa1);
 							break;
 						case "vnd_lfb1":
+							debugger;
 							this.getView().getModel("CreateVendorModel").setProperty(
 								"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1",
 								oDataResp.result.parentDTO.customData.vnd_lfb1);
@@ -470,7 +472,7 @@ sap.ui.define([
 				onClose: function (oEvt) {
 					if (oEvt === "OK") {
 						this.getView().setBusy(true);
-						this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50005');
+					//	this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50005');
 						this.navigateTOVendorPages(sVendorNo,'DELETE');
 						/*var objParam = {
 							url: "/murphyCustom/mdm/entity-service/entities/entity/delete",
@@ -509,8 +511,7 @@ sap.ui.define([
 				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
 				onClose: function (oEvt) {
 					if (oEvt === "OK") {
-						this.getView().setBusy(true);
-						this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50004');
+						this.getView().setBusy(true); 
 						this.navigateTOVendorPages(sVendorNo,'BLOCK');
 						/*var objParam = {
 							url: "/murphyCustom/mdm/entity-service/entities/entity/block",
@@ -542,7 +543,6 @@ sap.ui.define([
 		onEditVendorPress: function (oEvent) {
 			var oSelctedObj = oEvent.getSource().getParent().getParent()._oOpenBy.getBindingContext("SearchVendorModel").getObject().customVendorLFA1DTO;
 			var sVendorNo = oSelctedObj.lifnr;
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50002');
 			this.navigateTOVendorPages(sVendorNo,'EDIT');		
 		/*	var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
@@ -689,7 +689,7 @@ sap.ui.define([
 		},
 		
 		navigateTOVendorPages : function(sVendorNo,operation){
-			
+			var sOperationKey = "";
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
 				type: 'POST',
@@ -819,6 +819,12 @@ sap.ui.define([
 					this._createCREntityID({
 						"vndDetails": true
 					});
+					switch(operation){
+						case 'EDIT' :  sOperationKey ='50002';   break;
+						case 'BLOCK' :sOperationKey ='50004'; break;
+						case 'DELETE' : sOperationKey ='50005'; break;
+					}
+					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason',sOperationKey);
 					if(operation === "DELETE" || operation === "BLOCK"){
 							this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 								/*var sID = this.getView().getParent().getPages().find(function (e) {
