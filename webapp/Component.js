@@ -42,7 +42,7 @@ sap.ui.define([
 							"firstname": oUserModelResources.name.givenName,
 							"lastname": oUserModelResources.name.familyName,
 							"display_name": oUserModelResources.displayName,
-							"external_id": "92",
+							"external_id": oUserModelResources.id,
 							"created_by": 1,
 							"modified_by": 1,
 							"roles": [{

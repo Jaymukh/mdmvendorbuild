@@ -14,6 +14,7 @@ sap.ui.define([
 
 		_createCREntityID: function (oParam) {
 			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50001');
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
 				hasPayload: true,
@@ -842,6 +843,7 @@ sap.ui.define([
 				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/statistics/get',
 				type: 'GET',
 				hasPayload: false
+			
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
