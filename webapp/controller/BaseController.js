@@ -873,7 +873,8 @@ sap.ui.define([
 				type: 'POST',
 				data: {
 					"crSearchType": "GET_ALL_CR",
-					"currentPage": nPageNo
+					"currentPage": nPageNo,
+					"user_id" :3
 				}
 			};
 

@@ -210,7 +210,7 @@ sap.ui.define([
 				}
 			}
 		},
-		onSaveClick : function(oEvent){
+		onERPSaveClick : function(oEvent){
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");
 			debugger;

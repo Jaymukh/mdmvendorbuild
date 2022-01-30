@@ -115,8 +115,8 @@
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
-										<Button text="Create ERP Vendor" type="Emphasized" press="handleCreateERPVendor"></Button>
-										<Button text="Replicate"></Button>
+										<Button text="Create ERP Vendor"  visible="{= ${userManagementModel>role}.indexOf('req')>1 ? 'true' : 'false'}" type="Emphasized" press="handleCreateERPVendor"></Button>
+										<Button text="Copy"  visible="{= ${userManagementModel>role}.indexOf('req')>1 ? 'true' : 'false'}"></Button>
 										<Label text="Page No."/>
 										<Select id="searchAllVendorPageSelectID" items="{SearchVendorModel>/PageData}" selectedKey="{SearchVendorModel>/selectedPageKey}"
 											change="onSelectSearchAllVendorPage">
@@ -146,7 +146,7 @@
 												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/name1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
-											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
+											<core:Icon src="sap-icon://overflow" visible="{= ${userManagementModel>role}.indexOf('req')>1 ? 'true' : 'false'}" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>
 								</items>

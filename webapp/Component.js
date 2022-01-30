@@ -28,37 +28,51 @@ sap.ui.define([
 				var sMailID = oData.getSource().getProperty("/email");
 				this.setModel(models.createUserInfoModel(sMailID), "userRoleModel");
 				// creating the user request
-			this.getModel("userRoleModel").attachRequestCompleted(function (oDataReq) {
-				debugger;
-				var oUserModelResources = this.getModel('userRoleModel').getData().Resources[0];
-				
-				var oObjParam = {
-					url: "/murphyCustom/mdm/usermgmt-service/users/user/create",
-					hasPayload: true,
-					type: 'POST',
-					data: {
-						"userDetails": [{
-							"email_id": oUserModelResources.emails[0].value,
-							"firstname": oUserModelResources.name.givenName,
-							"lastname": oUserModelResources.name.familyName,
-							"display_name": oUserModelResources.displayName,
-							"external_id": oUserModelResources.id,
-							"created_by": 1,
-							"modified_by": 1,
-							"roles": [{
-								"role_code_btp": "DA_MDM_ADMIN"
-							}],
-							"_active": true
-						}]
-					}
+				this.getModel("userRoleModel").attachRequestCompleted(function (oDataReq) {
+					debugger;
+					var oUserModelResources = this.getModel('userRoleModel').getData().Resources[0];
+					var aRoles =[];
+					var aAccountGrps=[];
+					oUserModelResources.groups.forEach(function (oItem) {
+						if(oItem.value.split("DA_MDM_VEND_")[1]) {
+							var aResultArr = oItem.value.split("DA_MDM_VEND_")[1].split('_');
+							if(aRoles.indexOf(aResultArr[0]) === -1){
+								aRoles.push(aResultArr[0].toLowerCase());
+							}
+							if(aAccountGrps.indexOf(aResultArr[1]) === -1){
+								aAccountGrps.push(aResultArr[1]);
+							}
+							
+						}
+					});
+					this.getModel("userManagementModel").setProperty('/roles', aRoles);
+					this.getModel("userManagementModel").refresh(true);
+					var oObjParam = {
+						url: "/murphyCustom/mdm/usermgmt-service/users/user/create",
+						hasPayload: true,
+						type: 'POST',
+						data: {
+							"userDetails": [{
+								"email_id": oUserModelResources.emails[0].value,
+								"firstname": oUserModelResources.name.givenName,
+								"lastname": oUserModelResources.name.familyName,
+								"display_name": oUserModelResources.displayName,
+								"external_id": oUserModelResources.id,
+								"created_by": 1,
+								"modified_by": 1,
+								"roles": [{
+									"role_code_btp": "DA_MDM_ADMIN"
+								}],
+								"_active": true
+							}]
+						}
 
-				};
-				this.serviceCall.handleServiceRequest(oObjParam).then(function (oDataResp) {
-					this.getModel("userManagementModel").setData(oDataResp.result.userDetails[0]);
+					};
+					this.serviceCall.handleServiceRequest(oObjParam).then(function (oDataResp) {
+						this.getModel("userManagementModel").setProperty('/data',oDataResp.result.userDetails[0]);
+					}.bind(this));
 				}.bind(this));
 			}.bind(this));
-			}.bind(this));
-			
 
 		}
 	});
