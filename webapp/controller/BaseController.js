@@ -34,7 +34,7 @@ sap.ui.define([
 				}
 			};
 
-		/*	this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				var oDate = new Date();
 				if (!oParam || (oParam && !oParam.vndDetails)) {
 					var oCustomData = {
@@ -834,7 +834,7 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData", {});
 				MessageToast.show("Entity ID not created. Please try after some time");
-			}.bind(this));*/
+			}.bind(this));
 		},
 
 		handleChangeRequestStatistics: function () {
