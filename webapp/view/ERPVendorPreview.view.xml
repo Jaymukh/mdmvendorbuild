@@ -21,36 +21,73 @@
 											<core:Title text="General Data"/>
 											<Label text="Change Request ID"/>
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id}"/>-->
-											<Text
-												text="{ parts: [ 'CreateVendorModel>/createCRVendorData/crID', 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id'], formatter: '.formatCR_Entiry_ID' }"/>
+											<Input editable="false"
+												value="{ parts: [ 'CreateVendorModel>/createCRVendorData/crID', 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id'], formatter: '.formatCR_Entiry_ID' }"/>
 											<Label text="Description"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/desc}"></Text>
+											<Input value="{CreateVendorModel>/changeReq/genData/desc}"></Input>
 											<Label text="Priority"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/priority}"></Text>
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}"
+												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
+												<items>
+													<core:Item text="{CreateVendorModel>taxonomy_name}" key="{CreateVendorModel>taxonomy_code}"/>
+												</items>
+											</Select>
 											<Label text="Due Date"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/dueDate}"></Text>
+											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Text text="{CreateVendorModel>/changeReq/genData/reason}"></Text>
+												<Select editable="false" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
+											items="{CreateVendorModel>/createCRDD/CR_CHANGE_REQ_TYPE}">
+												<items>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
+												</items>
+											</Select>
 											<core:Title text="Process Data"/>
 											<Label text="Status"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/status}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/status}"/>
 											<Label text="Current Work Item"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
 											<Label text="Created By"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/createdBy}"/>
 											<Label text="Date/Time of Creation"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
-											<Text text="{CreateVendorModel>/changeReq/genData/timeCreation}">
+											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>
-											</Text>
+											</Input>
 										</form:content>
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="true" headerText="ERP Vendor Details">
+							<Panel expandable="true" expanded="true" headerText="Deletion Flags"
+							visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004' || ${CreateVendorModel>/changeReq/genData/reason} === '50005'}">
+								<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+										singleContainerFullSize="false">
+										<form:content>
+											<core:Title text="Vendor Details"/>
+											<Label text="Vendor"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}"/>
+											<core:Title text="Deletion Flag"/>
+											<CheckBox useEntireWidth="true" width="100%" wrapping ="true" text="Central Deletion Flag"
+											select="onSelectERPCheckBox" visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50005'}">
+													<customData>
+													<core:CustomData key="/vnd_lfa1/LOEVM" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
+											<CheckBox width="100%" useEntireWidth="true" wrapping ="true"  text="Central Block Flag"
+											select="onSelectERPCheckBox" visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004'}">
+													<customData>
+													<core:CustomData key="/vnd_lfa1/SPERR" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
+											
+										<!--	</core:Title>-->
+										</form:content>
+								</form:SimpleForm>
+							</Panel>
+							<Panel expandable="true" expanded="false" headerText="ERP Vendor Details">
 								<content>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
@@ -433,17 +470,24 @@
 													<Label text="Reconcillation" design="Bold"></Label>
 												</header>
 											</Column>
-											<!--<Column>-->
-											<!--	<header>-->
-											<!--		<Label text=""></Label>-->
-											<!--	</header>-->
-											<!--</Column>-->
+											<Column visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50005'}">
+												<header>
+													<Label text="Deletion Flag"></Label>
+												</header>
+											</Column>
+											<Column visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004'}">
+												<header>
+													<Label text="Block Flag"></Label>
+												</header>
+											</Column>
 										</columns>
 										<items>
 											<ColumnListItem>
 												<cells>
 													<Text text="{CreateVendorModel>lfb1/bukrs}"></Text>
 													<Text text="{CreateVendorModel>lfb1/AKONT}"></Text>
+													<CheckBox select = "onSelectERPCheckBox" ></CheckBox>
+													<CheckBox select = "onSelectERPCheckBox"></CheckBox>
 													<!--<HBox>-->
 													<!--	<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanYCodeEditPress"/>-->
 													<!--	<core:Icon src="sap-icon://delete" class="sapUiSmallMarginEnd" press="onCompanYCodeDeletePress"/>-->
@@ -1269,11 +1313,14 @@
 			<Toolbar>
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
-				<Button text="Edit" type="Transparent" press="onEditClick"/>
+				<Button text="Save" type="Transparent" press="onERPSaveClick"
+			visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004' || ${CreateVendorModel>/changeReq/genData/reason} === '50005'}"/>
+				<Button text="Edit" type="Transparent" press="onEditClick"
+				visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50002' || ${CreateVendorModel>/changeReq/genData/reason} === '50001'}"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
-				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
-				<Button text="Reject" type="Reject" press="onRejectClick" visible="{= ${CreateVendorModel>/approvalView} === true}"/>
+				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= (${userManagementModel>role}.indexOf('stew')>1 || ${userManagementModel>role}.indexOf('approv')>1) ? 'true' : 'false'}"/>
+				<Button text="Reject" type="Reject" press="onRejectClick"  visible="{= (${userManagementModel>role}.indexOf('stew')>1 || ${userManagementModel>role}.indexOf('approv')>1) ? 'true' : 'false'}"/>
 				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
 					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToVendorListClick"

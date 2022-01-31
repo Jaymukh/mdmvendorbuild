@@ -53,6 +53,8 @@ sap.ui.define([
 		onChangeReqLinkPress: function (oEvent) {
 			this.getView().setBusy(true);
 			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			var sWorkflowTaskID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.workflow_task_id;
+			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/workflowID", sWorkflowTaskID);
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
 				type: 'POST',

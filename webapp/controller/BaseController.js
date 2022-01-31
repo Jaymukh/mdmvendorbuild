@@ -14,6 +14,7 @@ sap.ui.define([
 
 		_createCREntityID: function (oParam) {
 			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason', '50001');
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
 				hasPayload: true,
@@ -67,7 +68,7 @@ sap.ui.define([
 							"FISKN": null,
 							"STKZA": null,
 							"STKZU": null,
-							"DTAMS" :" ",
+							"DTAMS": " ",
 							"DTAWS": null,
 							"ESRNR": null,
 							"XZEMP": null,
@@ -840,9 +841,14 @@ sap.ui.define([
 			// var that = sap.ui.controller("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest");
 			var objParam = {
 				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/statistics/get',
-				type: 'GET',
-				hasPayload: false
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"userId": 3
+				}
+
 			};
+			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				if (this.getOwnerComponent().getModel("changeRequestStatisticsModel")) {
@@ -871,9 +877,11 @@ sap.ui.define([
 				type: 'POST',
 				data: {
 					"crSearchType": "GET_ALL_CR",
-					"currentPage": nPageNo
+					"currentPage": nPageNo,
+					"userId": 3
 				}
 			};
+			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				if (oData.result.currentPage === 1) {
