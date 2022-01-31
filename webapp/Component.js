@@ -19,6 +19,7 @@ sap.ui.define([
 		 */
 		init: function () {
 			this.serviceCall = new ServiceCall();
+			
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 			this.getRouter().initialize();
@@ -29,23 +30,33 @@ sap.ui.define([
 				this.setModel(models.createUserInfoModel(sMailID), "userRoleModel");
 				// creating the user request
 				this.getModel("userRoleModel").attachRequestCompleted(function (oDataReq) {
-					debugger;
-					var oUserModelResources = this.getModel('userRoleModel').getData().Resources[0];
+					var oUserModelResources = this.getModel("userRoleModel").getData().Resources[0];
+					var aAccountGroup =this.getModel("CreateVendorModel").getProperty("/accountGroupsData");
+						debugger;
 					var aRoles =[];
-					var aAccountGrps=[];
+					var aTempAccountGrps=[];
+					var aAccountGrps = [];
+					oUserModelResources.groups.push({display:'DA_MDM_VEND_STEW_VEND', value:'DA_MDM_VEND_STEW_VEND'});
+					oUserModelResources.groups.push({display:'DA_MDM_VEND_STEW_JVPR', value:'DA_MDM_VEND_STEW_JVPR'});
 					oUserModelResources.groups.forEach(function (oItem) {
 						if(oItem.value.split("DA_MDM_VEND_")[1]) {
 							var aResultArr = oItem.value.split("DA_MDM_VEND_")[1].split('_');
-							if(aRoles.indexOf(aResultArr[0]) === -1){
+							if(aRoles.indexOf(aResultArr[0].toLowerCase()) === -1){
 								aRoles.push(aResultArr[0].toLowerCase());
 							}
-							if(aAccountGrps.indexOf(aResultArr[1]) === -1){
-								aAccountGrps.push(aResultArr[1]);
+							if(aTempAccountGrps.indexOf(aResultArr[1]) === -1){
+								aTempAccountGrps.push(aResultArr[1]);
+								var obj = aAccountGroup.find(function(objItem) {
+											  return objItem.key === aResultArr[1];
+											})
+								aAccountGrps.push(obj);
 							}
 							
 						}
 					});
-					this.getModel("userManagementModel").setProperty('/roles', aRoles);
+					console.log(aRoles);
+					this.getModel("userManagementModel").setProperty('/role', aRoles);
+					this.getModel("userManagementModel").setProperty('/accountGroups', aAccountGrps);
 					this.getModel("userManagementModel").refresh(true);
 					var oObjParam = {
 						url: "/murphyCustom/mdm/usermgmt-service/users/user/create",
