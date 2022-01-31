@@ -127,13 +127,13 @@
 					"rows": []
 				}
 			},
-			"userManagementModel":{
-				"type" : "sap.ui.model.json.JSONModel",
+			"userManagementModel": {
+				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay",
-					"role" : [],
-					"accountGroups":[],
-					"data":{}
+					"role": [],
+					"accountGroups": [],
+					"data": {}
 				}
 			}
 		},

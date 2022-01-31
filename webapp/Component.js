@@ -32,7 +32,6 @@ sap.ui.define([
 				this.getModel("userRoleModel").attachRequestCompleted(function (oDataReq) {
 					var oUserModelResources = this.getModel("userRoleModel").getData().Resources[0];
 					var aAccountGroup =this.getModel("CreateVendorModel").getProperty("/accountGroupsData");
-						debugger;
 					var aRoles =[];
 					var aTempAccountGrps=[];
 					var aAccountGrps = [];
@@ -48,13 +47,12 @@ sap.ui.define([
 								aTempAccountGrps.push(aResultArr[1]);
 								var obj = aAccountGroup.find(function(objItem) {
 											  return objItem.key === aResultArr[1];
-											})
+								});
 								aAccountGrps.push(obj);
 							}
 							
 						}
 					});
-					console.log(aRoles);
 					this.getModel("userManagementModel").setProperty('/role', aRoles);
 					this.getModel("userManagementModel").setProperty('/accountGroups', aAccountGrps);
 					this.getModel("userManagementModel").refresh(true);
