@@ -20,7 +20,6 @@ sap.ui.define([
 		},
 
 		onEditClick: function () {
-			debugger;
 			if (this.getView().getModel("CreateVendorModel").getData().vndDetails) {
 				this._createCREntityID({
 					"vndDetails": true
@@ -224,12 +223,12 @@ sap.ui.define([
 				}
 			}
 		},
-		onERPSaveClick: function (oEvent) {
+		onERPSaveClick1: function (oEvent) {
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");
-			debugger;
+		
 		},
-		onSaveClick1: function (oEvent) {
+		onERPSaveClick: function (oEvent) {
 			this.getView().setBusy(true);
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");

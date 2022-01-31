@@ -117,7 +117,7 @@
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor"
 										visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized" press="handleCreateERPVendor"></Button>
-										<Button text="Copy"  visible="{= ${userManagementModel>role}.indexOf('req')>1 ? 'true' : 'false'}"></Button>
+										<Button text="Copy"  visible="false"></Button>
 										<Label text="Page No."/>
 										<Select id="searchAllVendorPageSelectID" items="{SearchVendorModel>/PageData}" selectedKey="{SearchVendorModel>/selectedPageKey}"
 											change="onSelectSearchAllVendorPage">
