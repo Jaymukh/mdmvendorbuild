@@ -1924,7 +1924,7 @@
 														<Label text="Tribe No."/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}" maxLength="2"/>
 														<core:Title text="Payment Information"/>
-														<Label text="Payment Type"/>
+														<Label text="Payment Type" required="true"/>
 														<Select id="idPRAAccPaymentType" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}">
 															<items>
