@@ -532,13 +532,14 @@ sap.ui.define([
 
 		onSelectCheckBox: function (oEvent) {
 			var sKey = oEvent.getSource().getCustomData()[0].getKey();
-			if (sKey && sKey.split("/")[1] === "createCRVendorData") {
+			var sValue = oEvent.getSource().getCustomData()[0].getValue();
+			if (sValue && sValue !== "addComp") {
 				if (oEvent.getParameter("selected")) {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "X");
 				} else {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
 				}
-			} else if (sKey && sKey.split("/")[1] !== "createCRVendorData") {
+			} else if (sValue && sValue === "addComp") {
 				if (oEvent.getParameter("selected")) {
 					this.getView().getModel("CreateVendorModel").setProperty(sKey, "X");
 				} else {

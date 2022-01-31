@@ -486,8 +486,16 @@
 												<cells>
 													<Text text="{CreateVendorModel>lfb1/bukrs}"></Text>
 													<Text text="{CreateVendorModel>lfb1/AKONT}"></Text>
-													<CheckBox select = "onSelectERPCheckBox" ></CheckBox>
-													<CheckBox select = "onSelectERPCheckBox"></CheckBox>
+													<CheckBox selected="{= ${CreateVendorModel>lfb1/LOEVM} === 'X'}" select = "onSelectERPCheckBox" >
+														<customData>
+														<core:CustomData key="/addCompanyCodeRows/lfb1/LOEVM" value="addComp"></core:CustomData>
+													</customData>
+													</CheckBox>
+													<CheckBox selected="{= ${CreateVendorModel>lfb1/SPERR} === 'X'}" select = "onSelectERPCheckBox" >
+														<customData>
+														<core:CustomData key="/addCompanyCodeRows/lfb1/SPERR" value="addComp"></core:CustomData>
+													</customData>
+													</CheckBox>
 													<!--<HBox>-->
 													<!--	<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanYCodeEditPress"/>-->
 													<!--	<core:Icon src="sap-icon://delete" class="sapUiSmallMarginEnd" press="onCompanYCodeDeletePress"/>-->
@@ -1316,11 +1324,11 @@
 				<Button text="Save" type="Transparent" press="onERPSaveClick"
 			visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004' || ${CreateVendorModel>/changeReq/genData/reason} === '50005'}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-				visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50002' || ${CreateVendorModel>/changeReq/genData/reason} === '50001'}"/>
+				visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50002' || ${CreateVendorModel>/changeReq/genData/reason} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1  }"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
-				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= (${userManagementModel>role}.indexOf('stew')>1 || ${userManagementModel>role}.indexOf('approv')>1) ? 'true' : 'false'}"/>
-				<Button text="Reject" type="Reject" press="onRejectClick"  visible="{= (${userManagementModel>role}.indexOf('stew')>1 || ${userManagementModel>role}.indexOf('approv')>1) ? 'true' : 'false'}"/>
+				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
+				<Button text="Reject" type="Reject" press="onRejectClick"  visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
 				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
 					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToVendorListClick"

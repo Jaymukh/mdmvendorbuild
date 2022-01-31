@@ -973,7 +973,7 @@
 												<Label text="Sub. To Withholding Tax"/>
 												<CheckBox select="onSelectCheckBox">
 													<customData>
-														<core:CustomData key="/addCompanyCodeFormData/lfbw/WT_SUBJCT" value="X"></core:CustomData>
+														<core:CustomData key="/addCompanyCodeFormData/lfbw/WT_SUBJCT" value="addComp"></core:CustomData>
 													</customData>
 												</CheckBox>
 												<Label text="Exemption Cert. no."/>
@@ -1042,7 +1042,7 @@
 												<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox"
 													selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}">
 													<customData>
-														<core:CustomData key="/addCompanyCodeFormData/lfb1/REPRF" value="X"></core:CustomData>
+														<core:CustomData key="/addCompanyCodeFormData/lfb1/REPRF" value="addComp"></core:CustomData>
 													</customData>
 												</CheckBox>
 												<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
