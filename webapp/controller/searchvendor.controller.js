@@ -27,7 +27,15 @@ sap.ui.define([
 			this.handleGo(oParameters);
 			this.getOwnerComponent().getModel("SearchVendorModel").setSizeLimit(1000);
 		},
-
+		//	visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? 'true' : 'false' }"
+	
+		handleERPVendorVisible : function(aValue){
+			if(aValue.indexOf('req') !== -1){
+				return true;
+			}else{
+				return false;
+			}
+		},
 		handleGo: function (oParameters) {
 			if (this.getOwnerComponent().getModel("SearchVendorModel")) {
 				this.getOwnerComponent().getModel("SearchVendorModel").setProperty("/leftEnabled", false);
