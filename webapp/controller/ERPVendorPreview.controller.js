@@ -58,7 +58,7 @@ sap.ui.define([
 			// 	this.getView().setBusy(false);
 			// 	//	var sError = "";
 			// 	var aError = [];
-			// 	if (oError.responseJSON.result && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
+			// 	if (oError.responseJSON.result&& oError.responseJSON.result.workboxCreateTaskResponseDTO && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
 			// 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length > 0) {
 			// 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function (oItem) {
 			// 			//	sError = sError + oItem.MESSAGE + "\n" ;
@@ -687,6 +687,24 @@ sap.ui.define([
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
+				 var aError = [];
+			 	if (oError.responseJSON.result&& oError.responseJSON.result.workboxCreateTaskResponseDTO && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
+			 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length > 0) {
+					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function (oItem) {
+					//	sError = sError + oItem.MESSAGE + "\n" ;
+					aError.push({
+							ErrorMessage: oItem.MESSAGE
+						});
+					});
+				} else if (!oError.responseJSON.result) {
+			 		aError.push({
+			 			ErrorMessage: oError.responseJSON.error
+					});
+				}
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aError);
+				this.getView().getModel("CreateVendorModel").refresh(true);
+				this.getView().byId("idCreateVendorSubmitErrors").setVisible(true);
+				this.handleErrorLogs();
 				MessageToast.show("Error In " + sAction + " Workflow Task");
 			}.bind(this));
 		},

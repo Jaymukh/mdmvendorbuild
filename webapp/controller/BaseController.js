@@ -822,8 +822,8 @@ sap.ui.define([
 
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate
-					.getDate()
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" 
+					+ (oDate.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
 				);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/crTime",
