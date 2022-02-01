@@ -838,13 +838,14 @@ sap.ui.define([
 		},
 
 		handleChangeRequestStatistics: function () {
+			var oDataResources = this.getView().getModel("userManagementModel").getData();
 			// var that = sap.ui.controller("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest");
 			var objParam = {
 				url: '/murphyCustom/mdm/change-request-service/changerequests/changerequest/statistics/get',
 				type: 'POST',
 				hasPayload: true,
 				data: {
-					"userId": 3
+					"userId":oDataResources.data.user_id
 				}
 
 			};
@@ -861,7 +862,8 @@ sap.ui.define([
 		},
 
 		handleGetAllChangeRequests: function (nPageNo) {
-			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+				var oDataResources = this.getView().getModel("userManagementModel").getData();
+				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
 			} else {
@@ -878,7 +880,7 @@ sap.ui.define([
 				data: {
 					"crSearchType": "GET_ALL_CR",
 					"currentPage": nPageNo,
-					"userId": 3
+					"userId": oDataResources.data.user_id
 				}
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
