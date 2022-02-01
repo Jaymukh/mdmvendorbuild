@@ -92,7 +92,7 @@ sap.ui.define([
 					"parentCrDTOs": [{
 						"crDTO": {
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-							"change_request_by": 1,
+							"change_request_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 							"entity_type_id": 1,
 							"change_request_type_id": 1,
 							"change_request_priority_id": 1,
@@ -610,7 +610,7 @@ sap.ui.define([
 				"workboxTaskActionRequestDTO": {
 					"isChatBot": true,
 					// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-					"userId": 3,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 					"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname"),
 					"task": [{
 						"instanceId": sTaskID,
@@ -619,7 +619,7 @@ sap.ui.define([
 						"isAdmin": false,
 						"platform": "Web",
 						"signatureVerified": "NO",
-						"userId": 3
+						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 							// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 					}]
 				}
@@ -649,7 +649,7 @@ sap.ui.define([
 				"workboxTaskActionRequestDTO": {
 					"isChatBot": true,
 					// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-					"userId": 3,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 					"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname"),
 					"task": [{
 						"instanceId": sTaskID,
@@ -659,7 +659,7 @@ sap.ui.define([
 						"platform": "Web",
 						"signatureVerified": "NO",
 						"comment": sAction + " task",
-						"userId": 3
+						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 							// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 					}]
 				}
