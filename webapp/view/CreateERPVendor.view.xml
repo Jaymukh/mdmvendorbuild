@@ -79,7 +79,7 @@
 												items = "{userManagementModel>/accountGroups}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
 												<items>
-													<core:ListItem text="{userManagementModel>text}" additionalText="{userManagementModel>key}" key="{userManagementModel>/key}"/>
+													<core:ListItem text="{userManagementModel>text}" additionalText="{userManagementModel>key}" key="{userManagementModel>key}"/>
 													<!--<core:ListItem text="Employee/HR Related" additionalText="EMPL" key="EMPL"/>
 													<core:ListItem text="Intercompany Vendors" additionalText="INCO" key="INCO"/>
 													<core:ListItem text="Invoicing Party" additionalText="INVP" key="INVP"/>
