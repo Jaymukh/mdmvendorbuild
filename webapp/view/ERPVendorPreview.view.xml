@@ -1321,7 +1321,7 @@
 			<Toolbar>
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
-				<Button text="Save" type="Transparent" press="onERPSaveClick"
+				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
 			visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50004' || ${CreateVendorModel>/changeReq/genData/reason} === '50005'}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
 				visible = "{= ${CreateVendorModel>/changeReq/genData/reason} === '50002' || ${CreateVendorModel>/changeReq/genData/reason} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1  }"/>

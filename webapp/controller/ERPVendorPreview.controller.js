@@ -364,9 +364,11 @@ sap.ui.define([
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
+				this.getView().byId('idERPSAVECLICK').setVisible(false);
 				if (oDataResp.result) {
+					MessageToast.show("Successfuly Saved");
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
+					 this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
