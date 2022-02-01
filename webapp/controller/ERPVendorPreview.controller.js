@@ -226,7 +226,7 @@ sap.ui.define([
 		onERPSaveClick1: function (oEvent) {
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");
-		
+
 		},
 		onERPSaveClick: function (oEvent) {
 			this.getView().setBusy(true);
@@ -316,28 +316,45 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
+			var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/reason');
 			oData = Object.assign({}, oData);
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
-				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
-				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
-			}
-			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
-				delete oData.parentDTO.customData.pra_bp_ad;
-				delete oData.parentDTO.customData.pra_bp_vend_esc;
-				delete oData.parentDTO.customData.pra_bp_cust_md;
-				delete oData.parentDTO.customData.pra_bp_vend_md;
-				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+			if (sResoanId === "50005" || sResoanId === "50004") {
+					delete oData.parentDTO.customData.pra_bp_ad;
+					delete oData.parentDTO.customData.pra_bp_vend_esc;
+					delete oData.parentDTO.customData.pra_bp_cust_md;
+					delete oData.parentDTO.customData.pra_bp_vend_md;
+					delete oData.parentDTO.customData.gen_adrc;
+					delete oData.parentDTO.customData.vnd_knvk;
+					delete oData.parentDTO.customData.vnd_lfb1;
+					delete oData.parentDTO.customData.vnd_lfbk;
+					delete oData.parentDTO.customData.vnd_lfbw;
+					delete oData.parentDTO.customData.vnd_lfm1;
+					delete oData.parentDTO.customData.gen_bnka;
+					
+			} else {
+				if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
+					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
+					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+				}
+				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
+					delete oData.parentDTO.customData.pra_bp_ad;
+					delete oData.parentDTO.customData.pra_bp_vend_esc;
+					delete oData.parentDTO.customData.pra_bp_cust_md;
+					delete oData.parentDTO.customData.pra_bp_vend_md;
+					delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
+				}
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+				oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
+				var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+				aLFB1Objs.forEach(function (key, index) {
+					var sProerty = 'vnd_lfbw_' + (index + 1);
+					oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+				});
 			}
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
-			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
-			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-			aLFB1Objs.forEach(function (key, index) {
-				var sProerty = 'vnd_lfbw_' + (index + 1);
-				oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
-			});
+
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,

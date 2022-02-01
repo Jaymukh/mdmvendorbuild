@@ -477,7 +477,8 @@ sap.ui.define([
 							break;
 						}
 					}
-
+					this.getView().getModel("CreateVendorModel").setProperty(
+						"/addCompanyCodeRows", addCompanyCodeRows);
 					// this.getView().getModel("CreateVendorModel").setProperty(
 					// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
 					// 	oDataResp.result.parentDTO.customData.entity_id);
@@ -883,7 +884,8 @@ sap.ui.define([
 							break;
 						}
 					}
-
+					this.getView().getModel("CreateVendorModel").setProperty(
+						"/addCompanyCodeRows", addCompanyCodeRows);
 					this._createCREntityID({
 						"vndDetails": true
 					});
