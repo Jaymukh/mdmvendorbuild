@@ -72,7 +72,7 @@ sap.ui.define([
 								"roles": [{
 									"role_code_btp": "DA_MDM_ADMIN"
 								}],
-								"_active": true
+								"is_active": true
 							}]
 						}
 

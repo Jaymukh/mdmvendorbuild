@@ -58,7 +58,7 @@ sap.ui.define([
 			// 	this.getView().setBusy(false);
 			// 	//	var sError = "";
 			// 	var aError = [];
-			// 	if (oError.responseJSON.result && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
+			// 	if (oError.responseJSON.result&& oError.responseJSON.result.workboxCreateTaskResponseDTO && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
 			// 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length > 0) {
 			// 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function (oItem) {
 			// 			//	sError = sError + oItem.MESSAGE + "\n" ;
@@ -92,7 +92,7 @@ sap.ui.define([
 					"parentCrDTOs": [{
 						"crDTO": {
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-							"change_request_by": 1,
+							"change_request_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 							"entity_type_id": 1,
 							"change_request_type_id": 1,
 							"change_request_priority_id": 1,
@@ -226,7 +226,7 @@ sap.ui.define([
 		onERPSaveClick1: function (oEvent) {
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");
-		
+
 		},
 		onERPSaveClick: function (oEvent) {
 			this.getView().setBusy(true);
@@ -300,15 +300,29 @@ sap.ui.define([
 				}.bind(this));
 			} else {
 				var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
-				var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-				for (var i = 0; i < sKeylfb1.length; i++) {
-					oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLIFNR;
-				}
+						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
+						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
+						var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+						for (var k = 0; k < sKeylfb1.length; k++) {
+							oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
+						}
+						var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+						for (var j = 0; j < sKeylfbw.length; j++) {
+							oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
+						}
 
-				var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-				for (var i = 0; i < sKeylfbw.length; i++) {
-					oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLIFNR;
-				}
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
+						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
+						oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
+						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+						if(oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')){
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+						}
+						
+
 				this._handleSaveWithLifnr(oData);
 
 			}
@@ -316,28 +330,46 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
+			var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/reason');
 			oData = Object.assign({}, oData);
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
-				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
-				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
-			}
-			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
-				delete oData.parentDTO.customData.pra_bp_ad;
-				delete oData.parentDTO.customData.pra_bp_vend_esc;
-				delete oData.parentDTO.customData.pra_bp_cust_md;
-				delete oData.parentDTO.customData.pra_bp_vend_md;
-				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+			if (sResoanId === "50005" || sResoanId === "50004") {
+					delete oData.parentDTO.customData.pra_bp_ad;
+					delete oData.parentDTO.customData.pra_bp_vend_esc;
+					delete oData.parentDTO.customData.pra_bp_cust_md;
+					delete oData.parentDTO.customData.pra_bp_vend_md;
+					delete oData.parentDTO.customData.gen_adrc;
+					delete oData.parentDTO.customData.vnd_knvk;
+					delete oData.parentDTO.customData.vnd_lfb1;
+					delete oData.parentDTO.customData.vnd_lfbk;
+					delete oData.parentDTO.customData.vnd_lfbw;
+					delete oData.parentDTO.customData.vnd_lfm1;
+					delete oData.parentDTO.customData.gen_bnka;
+					
+			} else {
+				if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
+					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
+					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+				}
+				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
+					delete oData.parentDTO.customData.pra_bp_ad;
+					delete oData.parentDTO.customData.pra_bp_vend_esc;
+					delete oData.parentDTO.customData.pra_bp_cust_md;
+					delete oData.parentDTO.customData.pra_bp_vend_md;
+					delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
+				}
+				
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
+				oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+				oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
+				var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+				aLFB1Objs.forEach(function (key, index) {
+					var sProerty = 'vnd_lfbw_' + (index + 1);
+					oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+				});
 			}
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
-			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
-			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-			aLFB1Objs.forEach(function (key, index) {
-				var sProerty = 'vnd_lfbw_' + (index + 1);
-				oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
-			});
+
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -347,9 +379,11 @@ sap.ui.define([
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
+				this.getView().byId('idERPSAVECLICK').setVisible(false);
 				if (oDataResp.result) {
+					MessageToast.show("Successfuly Saved");
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
+					 this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
@@ -576,7 +610,7 @@ sap.ui.define([
 				"workboxTaskActionRequestDTO": {
 					"isChatBot": true,
 					// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-					"userId": 3,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 					"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname"),
 					"task": [{
 						"instanceId": sTaskID,
@@ -585,7 +619,7 @@ sap.ui.define([
 						"isAdmin": false,
 						"platform": "Web",
 						"signatureVerified": "NO",
-						"userId": 3
+						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 							// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 					}]
 				}
@@ -615,7 +649,7 @@ sap.ui.define([
 				"workboxTaskActionRequestDTO": {
 					"isChatBot": true,
 					// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-					"userId": 3,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 					"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname"),
 					"task": [{
 						"instanceId": sTaskID,
@@ -625,7 +659,7 @@ sap.ui.define([
 						"platform": "Web",
 						"signatureVerified": "NO",
 						"comment": sAction + " task",
-						"userId": 3
+						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 							// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 					}]
 				}
@@ -653,6 +687,24 @@ sap.ui.define([
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
+				 var aError = [];
+			 	if (oError.responseJSON.result&& oError.responseJSON.result.workboxCreateTaskResponseDTO && oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item &&
+			 		oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.length > 0) {
+					oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item.forEach(function (oItem) {
+					//	sError = sError + oItem.MESSAGE + "\n" ;
+					aError.push({
+							ErrorMessage: oItem.MESSAGE
+						});
+					});
+				} else if (!oError.responseJSON.result) {
+			 		aError.push({
+			 			ErrorMessage: oError.responseJSON.error
+					});
+				}
+				this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aError);
+				this.getView().getModel("CreateVendorModel").refresh(true);
+				this.getView().byId("idCreateVendorSubmitErrors").setVisible(true);
+				this.handleErrorLogs();
 				MessageToast.show("Error In " + sAction + " Workflow Task");
 			}.bind(this));
 		},
