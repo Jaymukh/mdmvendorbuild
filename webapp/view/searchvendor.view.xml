@@ -21,7 +21,7 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
-			<tnt:SideNavigation id="sideNavigation" selectedKey="srchVnd"  itemSelect=".onSideItemSelect">
+			<tnt:SideNavigation id="sideNavigation"  itemSelect=".onSideItemSelect">
 				<tnt:NavigationList>
 					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
 					<tnt:NavigationListItem text="Create Vendor" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" icon="sap-icon://create" key="createERPVendorView"/>
