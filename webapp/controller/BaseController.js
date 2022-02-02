@@ -2,8 +2,10 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
 	'sap/ui/core/Fragment',
-	"sap/m/MessageToast"
-], function (Controller, ServiceCall, Fragment, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Controller, ServiceCall, Fragment, MessageToast, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.BaseController", {
@@ -14,7 +16,6 @@ sap.ui.define([
 
 		_createCREntityID: function (oParam) {
 			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason', '50001');
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
 				hasPayload: true,
@@ -969,6 +970,25 @@ sap.ui.define([
 				sText = "Organization: (no description available)";
 			}
 			return sText;
+		},
+		
+		oReasonDataFilter : function(oItem){
+			var sVendOperation =this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id");
+		/*	var oItem ;*/
+			debugger;
+		/*	if(sVendOperation === "50001" || sVendOperation === "50002"){
+				oItem = this.getView().byId("idCreateERPVendorReason");
+			}else if(sVendOperation === "50005" || sVendOperation === "50004"){
+				oItem =  this.getView().byId("idERPVendorPreviewReason");
+			}*/
+			var aFilter = [];
+			if (sVendOperation) {
+				aFilter.push(new Filter("group_name", FilterOperator.Contains, sVendOperation));
+			}
+
+			// filter binding
+			var oBinding = oItem.getBinding("items");
+			oBinding.filter(aFilter);
 		}
 
 	});

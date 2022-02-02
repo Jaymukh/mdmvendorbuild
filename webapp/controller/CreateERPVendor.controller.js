@@ -246,7 +246,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result) {
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
 					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
@@ -701,7 +701,7 @@ sap.ui.define([
 			if (!sSection) {
 				sMsg = sName + " field is missing in " + sPanel + " Section";
 			} else {
-				sMsg = "No " + sSection + " is maintained in " + sSection + " table"
+				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
 			}
 			return sMsg;
 		},

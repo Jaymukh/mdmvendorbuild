@@ -26,18 +26,18 @@
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
 											<Label text="Priority"/>
-											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}"
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
-													<core:Item text="{CreateVendorModel>taxonomy_name}" key="{CreateVendorModel>taxonomy_code}"/>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
 												</items>
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
-											<Label text="Reason"/>
+											<Label  text="Reason"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Select enabled="false" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
-											items="{CreateVendorModel>/createCRDD/CR_CHANGE_REQ_TYPE}">
+											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
+											items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
 													<!--<core:Item text="Create New Vendor" key="01"/>

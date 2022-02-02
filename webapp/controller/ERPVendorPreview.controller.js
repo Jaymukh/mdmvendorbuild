@@ -1,8 +1,13 @@
 sap.ui.define([
 	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"sap/m/MessageToast",
-	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall"
-], function (BaseController, MessageToast, ServiceCall) {
+	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
+"sap/m/StandardListItem",
+	"sap/m/Dialog",
+	"sap/m/List",
+	"sap/m/Button",
+	"sap/m/ButtonType"
+], function (BaseController, MessageToast, ServiceCall,StandardListItem, Dialog, List, Button, ButtonType) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview", {
@@ -26,7 +31,8 @@ sap.ui.define([
 				});
 				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			}
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason', "50002");
+			
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', "50002");
 			this.getOwnerComponent().getModel("CreateVendorModel").refresh(true);
 			var sID = this.getView().getParent().getPages().find(function (e) {
 				return e.getId().indexOf("createERPVendorView") !== -1;
@@ -35,7 +41,6 @@ sap.ui.define([
 		},
 
 		onSubmitClick: function (oEvent) {
-			this.getView().setBusy(true);
 			// var objParamSubmit = {
 			// 	url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/action",
 			// 	type: 'POST',
@@ -78,9 +83,10 @@ sap.ui.define([
 			// 	//oError.responseJSON.result.workboxCreateTaskResponseDTO.response.EXT_MESSAGES.MESSAGES.item
 			// 	//	MessageToast.show(sError,{ duration: 6000,width: "100%"});
 			// }.bind(this));
-
-			this._createTask();
-
+			if(this.onERPCheckClick()){
+				this.getView().setBusy(true);
+				this._createTask();
+			}
 		},
 
 		_CreateCRID: function () {
@@ -326,7 +332,8 @@ sap.ui.define([
 				this._handleSaveWithLifnr(oData);
 
 			}
-
+		
+				
 		},
 
 		_handleSaveWithLifnr: function (oData) {
@@ -382,7 +389,7 @@ sap.ui.define([
 				this.getView().byId('idERPSAVECLICK').setVisible(false);
 				if (oDataResp.result) {
 					MessageToast.show("Successfuly Saved");
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
 					 this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
@@ -578,8 +585,8 @@ sap.ui.define([
 					"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 					"change_request_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 					"entity_type_id": 1,
-					"change_request_type_id": 1,
-					"change_request_priority_id": 1,
+					"change_request_type_id":  this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id"),
+					"change_request_priority_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/priority"),
 					"change_request_due_date": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
 					"change_request_desc": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/desc"),
 					"change_request_reason_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/reason")
@@ -717,6 +724,89 @@ sap.ui.define([
 		onRejectClick: function () {
 			var sWorkFlowID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/workflowID");
 			this._claimTask(sWorkFlowID, "Reject");
+		},
+		
+		onERPCheckClick: function () {
+			var aMandFields = [
+				{
+					"id": "idERPPriority",
+					"Name": "Priority",
+					"fieldMapping": "/changeReq/genData/priority",
+					"key": "priority",
+					"panelMapping": "Change Requests"
+				},{
+					"id": "idERPVendorPreviewReason",
+					"Name": "Reason",
+					"fieldMapping": "/changeReq/genData/reason",
+					"key": "reason",
+					"panelMapping": "Change Requests"
+				}
+				
+				];	
+			var aEmptyFields = [];
+			var oData = this.getView().getModel("CreateVendorModel");
+			var oController = this;
+			aMandFields.forEach(function (oItem) {
+				var oControl = oController.getView().byId(oItem.id);
+				var sValueState = "None";
+				if ( (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
+					aEmptyFields.push(oItem);
+					sValueState = "Error";
+				} else {
+					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
+						sValueState = "Success";
+					}
+				}
+				oControl.setValueState(sValueState);
+			});
+			
+
+			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
+			if (aEmptyFields.length) {
+				if (!this.oDefaultDialog) {
+					this.oDefaultDialog = new Dialog({
+						title: "Missing Fields",
+						content: new List({
+							items: {
+								path: "CreateVendorModel>/missingFields",
+								template: new StandardListItem({
+									title: {
+										parts: ['CreateVendorModel>Name', 'CreateVendorModel>panelMapping', 'CreateVendorModel>section'],
+										formatter: this.formatCheckErrorMessage
+									}
+									//title: "{= ${CreateVendorModel>section} ? 'No ${CreateVendorModel>section} is maintained in ${CreateVendorModel>section} Section.'  : '${CreateVendorModel>Name} field is missing in ${CreateVendorModel>panelMapping} Section.'}"
+
+								})
+							}
+						}),
+						// title: "{CreateVendorModel>Name}" + " field is missing in " + "{CreateVendorModel>panelMapping}" + " Section"
+
+						endButton: new Button({
+							text: "Close",
+							press: function () {
+								this.oDefaultDialog.close();
+							}.bind(this)
+						})
+					});
+					// to get access to the controller's model
+					this.getView().addDependent(this.oDefaultDialog);
+				}
+				this.oDefaultDialog.open();
+				return false;
+			} else {
+				MessageToast.show("Validation Successful");
+				return true;
+			}
+		},
+		formatCheckErrorMessage: function (sName, sPanel, sSection) {
+			var sMsg = "";
+			if (!sSection) {
+				sMsg = sName + " field is missing in " + sPanel + " Section";
+			} else {
+				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
+			}
+			return sMsg;
 		}
 
 		/**
