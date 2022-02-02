@@ -36,7 +36,7 @@
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-												<Select editable="false" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
+												<Select enabled="false" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
 											items="{CreateVendorModel>/createCRDD/CR_CHANGE_REQ_TYPE}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>

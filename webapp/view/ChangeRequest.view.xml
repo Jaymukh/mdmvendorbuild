@@ -83,7 +83,7 @@
 							</uxap:headerContent>
 							<uxap:sections>
 								<uxap:ObjectPageSection showTitle="false">
-									<uxap:ObjectPageSubSection showTitle="false">
+									<uxap:ObjectPageSubSection>
 										<uxap:blocks>
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
@@ -141,9 +141,10 @@
 																	content="{CreateVendorModel>/workflow}" groupByType="Year" enableScroll="false">
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" iconInitials="{CreateVendorModel>IconInitial}" userPicture="{CreateVendorModel>Photo}"
+																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}"
 																			text="{CreateVendorModel>JobResponsibilities}" userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}"
 																			icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>
@@ -202,9 +203,10 @@
 																	content="{CreateVendorModel>/comments}" groupByType="Year" enableScroll="false">
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" iconInitials="{CreateVendorModel>IconInitial}" userPicture="{CreateVendorModel>Photo}"
+																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}"
 																			text="{CreateVendorModel>JobResponsibilities}" userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}"
 																			icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>
