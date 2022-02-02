@@ -26,6 +26,7 @@ sap.ui.define([
 			};
 			this.handleGo(oParameters);
 			this.getOwnerComponent().getModel("SearchVendorModel").setSizeLimit(1000);
+			this.byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[0]);
 		},
 		//	visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? 'true' : 'false' }"
 	
