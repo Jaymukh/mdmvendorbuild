@@ -55,8 +55,7 @@ sap.ui.define([
 
 		_getDropDownData: function () {
 			var that = this;
-			var aConfigDD = [
-				{
+			var aConfigDD = [{
 					"controlID": "generalDataTitleId",
 					"controlTable": "TSAD3",
 					"controlField": "title",
@@ -622,6 +621,7 @@ sap.ui.define([
 		},
 
 		onAddComment: function () {
+			this.getView().setBusy(true);
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
 				type: 'POST',
@@ -631,58 +631,89 @@ sap.ui.define([
 						"crCommentDTOs": [{
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
-							"note_by": 1
+							"note_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 						}]
 					}]
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				this.getView().byId("createERPVendorCommentBoxId").setValue('');
-				if (oDataResp.result) {
-					var oModel = new JSONModel(oDataResp.result);
-					this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
-				}
-			}.bind(this));
+					this.getView().byId("createERPVendorCommentBoxId").setValue('');
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to add Comment, Please Try after some time.")
+
+				}.bind(this)
+			);
 
 		},
 
 		onCreateERPVendorUpload: function (oEvent) {
+			this.getView().setBusy(true);
 			var file = this.getView().byId('UploadCollection');
-			/*	this.getBase64(file);
+			// var a = this.getBase64(file.getItems()[0]);
+			for (var i = 0; i < file.getItems().length; i++) {
 				var objParamCreate = {
-					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/upload",
 					type: 'POST',
 					hasPayload: true,
 					data: {
-						"parentCrDTOs": [{
-							"crCommentDTOs": [{
-								"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-								"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
-								"note_by": 1
-							}]
+						"documentInteractionDtos": [{
+							"attachmentEntity": {
+								"attachment_name": file.getItems()[i].getFileName(),
+								"attachment_description": file.getItems()[i].getFileName(),
+								"attachment_link": "",
+								"mime_type": "application/text",
+								"file_name": file.getItems()[i].getFileName(),
+								"attachment_type_id": "11001",
+								"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+								"file_name_with_extension": file.getItems()[i].getFileName()
+							},
+							"entityType": "VENDOR",
+							"businessEntity": {
+								"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
+							},
+							"fileContent": this["oBase64_" + i]
 						}]
 					}
 				};
 				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-					this.getView().byId("createERPVendorCommentBoxId").setValue('');
-					if (oDataResp.result) {
-						var oModel = new JSONModel(oDataResp.result);
-						this.getView().byId("createERPVendorAddedCommentListId").setModel(oModel, "createERPAddCommentedModel");
-					}
-				}.bind(this));*/
+						this.getView().setBusy(false);
+						if (oDataResp.result) {
+							var sFileName = oDataResp.result.documentInteractionDtos[0].attachmentEntity.attachment_name;
+							var sEntityID = oDataResp.result.documentInteractionDtos[0].businessEntity.entity_id;
+							MessageToast.show(sFileName + " Uploaded Successfully for " + sEntityID + " Entity ID")
+						}
+					}.bind(this),
+					function (oError) {
+						this.getView().setBusy(false);
+						MessageToast.show("Error in File Uploading")
+
+					}.bind(this)
+				);
+			}
+
 		},
 
-		getBase64: function (file) {
-			return new Promise(function (resolve, reject) {
+		onChangeFileUpload: function (evt) {
+			var files = evt.getParameter("files");
+			var file = files[0];
+			if (files && file) {
+				var sIndex = evt.getSource().getItems().length;
 				var reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = function () {
-					resolve(reader.result);
-				};
-				reader.onerror = function (error) {
-					reject(error);
-				};
-			});
+
+				reader.onload = function (readerEvt) {
+					var binaryString = readerEvt.target.result;
+					// var sIndex = evt.getSource().getItems().length;
+					this["oBase64_" + sIndex] = btoa(binaryString);
+				}.bind(this);
+				reader.readAsBinaryString(file);
+			}
+
 		},
 
 		onCheckClick: function () {

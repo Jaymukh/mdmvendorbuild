@@ -823,8 +823,8 @@ sap.ui.define([
 
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" 
-					+ (oDate.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
+						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
 				);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/crTime",
@@ -846,7 +846,7 @@ sap.ui.define([
 				type: 'POST',
 				hasPayload: true,
 				data: {
-					"userId":oDataResources.data.user_id
+					"userId": oDataResources.data.user_id
 				}
 
 			};
@@ -863,8 +863,8 @@ sap.ui.define([
 		},
 
 		handleGetAllChangeRequests: function (nPageNo) {
-				var oDataResources = this.getView().getModel("userManagementModel").getData();
-				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+			var oDataResources = this.getView().getModel("userManagementModel").getData();
+			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
 			} else {
@@ -971,16 +971,15 @@ sap.ui.define([
 			}
 			return sText;
 		},
-		
-		oReasonDataFilter : function(oItem){
-			var sVendOperation =this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id");
-		/*	var oItem ;*/
-			debugger;
-		/*	if(sVendOperation === "50001" || sVendOperation === "50002"){
-				oItem = this.getView().byId("idCreateERPVendorReason");
-			}else if(sVendOperation === "50005" || sVendOperation === "50004"){
-				oItem =  this.getView().byId("idERPVendorPreviewReason");
-			}*/
+
+		oReasonDataFilter: function (oItem) {
+			var sVendOperation = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id");
+			/*	var oItem ;*/
+			/*	if(sVendOperation === "50001" || sVendOperation === "50002"){
+					oItem = this.getView().byId("idCreateERPVendorReason");
+				}else if(sVendOperation === "50005" || sVendOperation === "50004"){
+					oItem =  this.getView().byId("idERPVendorPreviewReason");
+				}*/
 			var aFilter = [];
 			if (sVendOperation) {
 				aFilter.push(new Filter("group_name", FilterOperator.Contains, sVendOperation));
@@ -989,6 +988,34 @@ sap.ui.define([
 			// filter binding
 			var oBinding = oItem.getBinding("items");
 			oBinding.filter(aFilter);
+		},
+
+		getAllCommentsForCR: function (sEntityID) {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crDTO": {
+							"entity_id": sEntityID
+						}
+					}]
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to get all Comment, Please Try after some time.");
+
+				}.bind(this)
+			);
 		}
 
 	});
