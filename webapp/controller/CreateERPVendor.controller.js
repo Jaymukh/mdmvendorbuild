@@ -55,7 +55,70 @@ sap.ui.define([
 
 		_getDropDownData: function () {
 			var that = this;
-			var aConfigDD = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRDDConfig");
+			var aConfigDD = [
+				{
+					"controlID": "generalDataTitleId",
+					"controlTable": "TSAD3",
+					"controlField": "title",
+					"controlFieldName": "title_MEDI"
+				}, {
+					"controlID": "taxTypeId",
+					"controlTable": "J_1AFITPV",
+					"controlField": "j_1afitp",
+					"controlFieldName": "text60"
+				}, {
+					"controlID": "taxInfoSocialInsuCodeId",
+					"controlTable": "J_1AACT",
+					"controlField": "actss",
+					"controlFieldName": "actss"
+				}, {
+					"controlID": "compCodesMinorIndicatorId",
+					"controlTable": "T059M",
+					"controlField": "mindk",
+					"controlFieldName": "mindk"
+				}, {
+					"controlID": "compCodesReleaseGroupId",
+					"controlTable": "VBWF08",
+					"controlField": "frgrp",
+					"controlFieldName": "frgrt"
+				}, {
+					"controlID": "compCodesGroupKeyId",
+					"controlTable": "TZGR",
+					"controlField": "zgrup",
+					"controlFieldName": "name1"
+				}, {
+					"controlID": "compCodesPayMethodSuppliementId",
+					"controlTable": "T042F",
+					"controlField": "uzawe",
+					"controlFieldName": "txt30"
+				}, {
+					"controlID": "compCodesPaymentBlockId",
+					"controlTable": "T008",
+					"controlField": "zahls",
+					"controlFieldName": "textl"
+				}, {
+					"controlID": "purOrgPurOrgId",
+					"controlTable": "T024E",
+					"controlField": "ekorg",
+					"controlFieldName": "ekotx"
+				}, {
+					"controlID": "purOrgProactContrlProfileId",
+					"controlTable": "TWVMO",
+					"controlField": "paprf",
+					"controlFieldName": "prtxt"
+				}, {
+					"controlID": "praDataAddrTabAddressTypeId",
+					"controlTable": "OIUCM_ADDR_TYPE",
+					"controlField": "addr_TYPE",
+					"controlFieldName": "description"
+				}, {
+					"controlID": "praDataAddrTabTitleId",
+					"controlTable": "TSAD3",
+					"controlField": "title",
+					"controlFieldName": "title_MEDI"
+				}
+
+			];
 			$.each(aConfigDD, function (index, item) {
 				$.ajax({
 					url: "/murphyCustom/config-service/configurations/configuration",
@@ -64,13 +127,11 @@ sap.ui.define([
 					data: JSON.stringify({
 						"configType": item.controlTable
 					}),
-					async: false,
 					success: searchCallback
 				});
 
 				function searchCallback(data) {
 					var oJsonModel = new JSONModel(data.result);
-					// console.log(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
 					var oItemSelectTemplate1 = new sap.ui.core.Item({
@@ -124,19 +185,19 @@ sap.ui.define([
 							var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
 							oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
-							
+
 							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
 							// oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
 							var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
 							for (var i = 0; i < sKeylfb1.length; i++) {
 								oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLifnr;
 							}
-							
+
 							var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
 							for (var i = 0; i < sKeylfbw.length; i++) {
 								oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLifnr;
 							}
-							
+
 							// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
 
 							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
@@ -169,28 +230,28 @@ sap.ui.define([
 						MessageToast.show("Error In Generating Lifnr");
 					}.bind(this));
 				} else {
-							var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
-						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
-						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
-						var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-						for (var k = 0; k < sKeylfb1.length; k++) {
-							oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
-						}
-						var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-						for (var j = 0; j < sKeylfbw.length; j++) {
-							oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
-						}
+					var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
+					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
+					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
+					var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+					for (var k = 0; k < sKeylfb1.length; k++) {
+						oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
+					}
+					var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+					for (var j = 0; j < sKeylfbw.length; j++) {
+						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
+					}
 
-						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
-						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
-						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
-						oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
-						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
-						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-						if(oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')){
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-						}
+					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+					oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
+					oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
+					oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
+					oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+					oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+					if (oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
+						oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+						oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+					}
 					this._handleSaveWithLifnr(oData);
 					/*var objParamCreate = {
 						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
@@ -246,7 +307,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result) {
-					this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
 					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
@@ -654,9 +715,9 @@ sap.ui.define([
 			});
 			if (!oData.getProperty("/addCompanyCodeRows").length) {
 				aEmptyFields.push({
-		 		section: "Company Code"
-			 	})
-			 }
+					section: "Company Code"
+				})
+			}
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
@@ -701,7 +762,7 @@ sap.ui.define([
 			if (!sSection) {
 				sMsg = sName + " field is missing in " + sPanel + " Section";
 			} else {
-				sMsg = "No " + sSection + " is maintained in " + sSection + " table"
+				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
 			}
 			return sMsg;
 		},
@@ -868,8 +929,8 @@ sap.ui.define([
 			});
 			return bCheck;
 		},
-		
-		handleERPPOBOXPostalCode : function(oEvent){
+
+		handleERPPOBOXPostalCode: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
 		}

@@ -193,6 +193,7 @@ sap.ui.define([
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
 			if (sKey === "createERPVendorView") {
+				this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', '50001');
 				this._createCREntityID();
 			}
 			if (sKey === "changeRequestId" || sKey === "changeRequestId-Mass") {
@@ -267,6 +268,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', '50001');
 			this._createCREntityID();
 		},
 
@@ -351,6 +353,8 @@ sap.ui.define([
 							if(oDataResp.result.parentDTO.customData.vnd_lfa1){
 								this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1",
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
+									var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS  = sDTAMS ? sDTAMS : " "; 
 							}
 							break;
 						case "vnd_lfb1":
@@ -517,7 +521,6 @@ sap.ui.define([
 				onClose: function (oEvt) {
 					if (oEvt === "OK") {
 						this.getView().setBusy(true);
-					//	this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason','50005');
 						this.navigateTOVendorPages(sVendorNo,'DELETE');
 						/*var objParam = {
 							url: "/murphyCustom/mdm/entity-service/entities/entity/delete",
@@ -768,6 +771,8 @@ sap.ui.define([
 							if(oDataResp.result.parentDTO.customData.vnd_lfa1){
 							this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1",
 								oDataResp.result.parentDTO.customData.vnd_lfa1);
+								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS  = sDTAMS ? sDTAMS : " "; 
 							}
 							break;
 						case "vnd_lfb1":
@@ -895,7 +900,7 @@ sap.ui.define([
 						case 'BLOCK' :sOperationKey ='50004'; break;
 						case 'DELETE' : sOperationKey ='50005'; break;
 					}
-					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/reason',sOperationKey);
+					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id',sOperationKey);
 					if(operation === "DELETE" || operation === "BLOCK"){
 							this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 								/*var sID = this.getView().getParent().getPages().find(function (e) {
