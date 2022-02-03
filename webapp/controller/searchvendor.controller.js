@@ -336,7 +336,6 @@ sap.ui.define([
 
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				debugger;
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);

@@ -29,17 +29,19 @@
 											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
-													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
+														key="{CreateVendorModel>taxonomy_id}"/>
 												</items>
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
-											<Label  text="Reason"/>
+											<Label text="Reason"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
-											items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
+											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
+												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
 												<items>
-													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
+														key="{CreateVendorModel>taxonomy_id}"/>
 													<!--<core:Item text="Create New Vendor" key="01"/>
 													<core:Item text="Update Vendor" key="02"/>
 													<core:Item text="Delete Vendor" key="03"/>
@@ -75,8 +77,7 @@
 											<Input enabled="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}" maxLength="10"/>
 											<core:Title/>
 											<Label text="Account Group" required="true"/>
-											<Select forceSelection="false" showSecondaryValues="true" id="accountGrpID"
-												items = "{userManagementModel>/accountGroups}"
+											<Select forceSelection="false" showSecondaryValues="true" id="accountGrpID" items="{userManagementModel>/accountGroups}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK}">
 												<items>
 													<core:ListItem text="{userManagementModel>text}" additionalText="{userManagementModel>key}" key="{userManagementModel>key}"/>
@@ -183,10 +184,10 @@
 											<Label text="Undeliverable"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
 											<core:Title text="Address"/>
-											<Label text="Street /  House No."/>
-											<Input id="ERPAddrHouseNoId" required="ture" width = "100%" 
+											<Label text="Street / House No."/>
+											<Input id="ERPAddrHouseNoId" required="ture" width="100%"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}"/>
-											<Input id="ERPAddrStreetId" required="true" width = "100%"
+											<Input id="ERPAddrStreetId" required="true" width="100%"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}">
 												<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
@@ -255,7 +256,8 @@
 											<Label text="Transportation Zone"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
+											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -626,7 +628,7 @@
 											<Select id="payTransDMEIndicatorId" forceSelection="true"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS}">
 												<items>
-													<core:Item text="Use house bank default value" key="  "/>
+													<core:Item text="Use house bank default value" key=" "/>
 													<core:Item text="Single data record can be forwarded to the Bundesbank" key="0"/>
 													<core:Item text="Single data record not to be forwarded to the Bundesbank" key="1"/>
 												</items>
@@ -2198,7 +2200,8 @@
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
-														<Input id="PRAADDRPOBOXId" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
+														<Input id="PRAADDRPOBOXId" required="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
 														<Label text="PO Box Postal Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code2}"/>
 														<Label text="Company Postal Code"/>
@@ -2340,10 +2343,10 @@
 									<!--</IconTabFilter>-->
 									<IconTabFilter text="Attachments" key="attachments">
 										<!--<Text text="Attachments go here ..."/>-->
-										<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
-											instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
-											fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
-											uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
+										<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="false" sameFilenameAllowed="false"
+											instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload"
+											change="onChangeFileUpload" fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed"
+											typeMissmatch="onTypeMissmatch"/>
 										<Toolbar>
 											<!--<Button text="Add"/>-->
 											<ToolbarSpacer/>
@@ -2362,11 +2365,11 @@
 											<Button text="Add" press="onAddComment"/>
 										</Toolbar>
 										<!--</VBox>-->
-										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{createERPAddCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
-											<FeedListItem sender="{createERPAddCommentedModel>note_by}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress"
-												iconDensityAware="false" info="{Type}" timestamp="{createERPAddCommentedModel>note_date}" text="{createERPAddCommentedModel>note_desc}"
+										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
+											<FeedListItem sender="{crERPCommentedModel>note_by}"
+												iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}" text="{crERPCommentedModel>note_desc}"
 												convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
-												<FeedListItemAction text="{createERPAddCommentedModel>note_desc}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+												<FeedListItemAction text="{crERPCommentedModel>note_desc}" icon="{Icon}" key="{Key}"/>
 											</FeedListItem>
 										</List>
 									</IconTabFilter>
