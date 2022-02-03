@@ -695,7 +695,8 @@ sap.ui.define([
 					this.onAllChangeReqClick();
 				}
 				this.getView().setBusy(false);
-				MessageToast.show(sAction + " Done");
+				var sMessage =  sAction.toLowerCase() === "approve" ? "Approved" : "Rejected"; 
+				MessageToast.show(sMessage);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				 var aError = [];
