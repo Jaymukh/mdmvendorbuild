@@ -18,6 +18,7 @@
 						<OverflowToolbarLayoutData priority="Low"/>
 					</layoutData>
 				</Title>
+				
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
@@ -29,7 +30,7 @@
 						<tnt:NavigationListItem text="All Change Request" key="changeRequestId"/>
 						<tnt:NavigationListItem text="Mass Change Request" key="changeRequestId-Mass"/>
 					</tnt:NavigationListItem>
-					<tnt:NavigationListItem text="Text1" icon="sap-icon://copy" key="copy"/>
+					<!--<tnt:NavigationListItem text="Text1" icon="sap-icon://copy" key="copy"/>-->
 				</tnt:NavigationList>
 				<tnt:fixedItem>
 					<tnt:NavigationList>
@@ -194,9 +195,9 @@
 					<!--<ScrollContainer id="allReq" horizontal="false" vertical="true" height="100%">-->
 					<!--	<Text text="This is All Request Page"/>-->
 					<!--</ScrollContainer>-->
-					<ScrollContainer id="copy" horizontal="false" vertical="true" height="100%">
+				<!--	<ScrollContainer id="copy" horizontal="false" vertical="true" height="100%">
 						<Text text="This is copy Page"/>
-					</ScrollContainer>
+					</ScrollContainer>-->
 				</pages>
 			</NavContainer>
 		</tnt:mainContents>
