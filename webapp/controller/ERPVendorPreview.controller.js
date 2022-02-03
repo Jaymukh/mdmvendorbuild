@@ -688,10 +688,15 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				this.getView().setBusy(false);
 				if (oDataResp.result) {
+					this.nPageNo = 1;
+					this.handleGetAllChangeRequests(this.nPageNo);
+					this.handleChangeRequestStatistics();
 					this.onAllChangeReqClick();
 				}
+				this.getView().setBusy(false);
+				var sMessage =  sAction.toLowerCase() === "approve" ? "Approved" : "Rejected"; 
+				MessageToast.show(sMessage);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				 var aError = [];
