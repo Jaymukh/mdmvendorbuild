@@ -37,8 +37,8 @@ sap.ui.define([
 					var aRoles =[];
 					var aTempAccountGrps=[];
 					var aAccountGrps = [];
-					oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_VEND', value:'DA_MDM_VEND_REQ_VEND'});
-					oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_JVPR', value:'DA_MDM_VEND_REQ_JVPR'});
+					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_VEND', value:'DA_MDM_VEND_REQ_VEND'});
+					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_JVPR', value:'DA_MDM_VEND_REQ_JVPR'});
 					oUserModelResources.groups.forEach(function (oItem) {
 						if(oItem.value.split("DA_MDM_VEND_")[1]) {
 							var aResultArr = oItem.value.split("DA_MDM_VEND_")[1].split('_');
