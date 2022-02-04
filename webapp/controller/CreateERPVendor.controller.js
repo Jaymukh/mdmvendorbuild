@@ -110,11 +110,6 @@ sap.ui.define([
 					"controlTable": "OIUCM_ADDR_TYPE",
 					"controlField": "addr_TYPE",
 					"controlFieldName": "description"
-				}, {
-					"controlID": "praDataAddrTabTitleId",
-					"controlTable": "TSAD3",
-					"controlField": "title",
-					"controlFieldName": "title_MEDI"
 				}
 
 			];
@@ -133,11 +128,15 @@ sap.ui.define([
 					var oJsonModel = new JSONModel(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
-					var oItemSelectTemplate1 = new sap.ui.core.Item({
-						key: "{" + item.controlField + "}",
-						text: "{" + item.controlFieldName + "}"
-					});
-					that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+					if(item.controlID === 'generalDataTitleId'){
+						that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
+					}else{
+						var oItemSelectTemplate1 = new sap.ui.core.Item({
+							key: "{" + item.controlField + "}",
+							text: "{" + item.controlFieldName + "}"
+						});
+						that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+					}
 				}
 			});
 			// });
@@ -618,6 +617,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty(sKey, "");
 				}
 			}
+			this.getView().getModel("CreateVendorModel").refresh(true);
 		},
 
 		onCreateERPVendorUpload: function (oEvent) {
@@ -801,7 +801,7 @@ sap.ui.define([
 							"PERNR": null,
 							"ZTERM": null,
 							"KULTG": null,
-							"REPRF": null,
+							"REPRF": "X",
 							"ZWELS": null,
 							"LNRZB": null,
 							"WEBTR": null,
@@ -932,6 +932,8 @@ sap.ui.define([
 		handleERPPOBOXPostalCode: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1", oEvent.getSource().getValue());
 		},
 
 		onAddCommentCreateCR: function () {
@@ -940,6 +942,28 @@ sap.ui.define([
 				comment: this.getView().byId("createERPVendorCommentBoxId").getValue(),
 				sControlID: "createERPVendorCommentBoxId"
 			});
+		},
+		handleERPVendorName2 : function(oEvent){
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2", oEvent.getSource().getValue());
+
+		},
+		onERPTitleChange : function(oEvent){
+		//	debugger;
+			//var sSelectedKey = oEvent.getSource().getSelectedKey();
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title", oEvent.getSource().getSelectedKey());
+
+		},
+		handleAddressSection : function(oEvent){
+			if(oEvent.getParameter('expand')){
+			var sHouseNo = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1");
+			var sStreet = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street");
+			sHouseNo = sHouseNo === null ? '' : sHouseNo;
+			sStreet = sStreet === null ? '' : " "+sStreet;
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
+			}
 		}
 
 		/**
