@@ -137,13 +137,13 @@
 					"data": {}
 				}
 			},
-			"crERPCommentedModel" : {
+			"crERPCommentedModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
 			},
-			"crERPTitleFilterModel" : {
+			"crERPTitleFilterModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
