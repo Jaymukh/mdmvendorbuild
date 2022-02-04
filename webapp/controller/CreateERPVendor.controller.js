@@ -620,38 +620,6 @@ sap.ui.define([
 			}
 		},
 
-		onAddComment: function () {
-			this.getView().setBusy(true);
-			var objParamCreate = {
-				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"parentCrDTOs": [{
-						"crCommentDTOs": [{
-							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-							"note_desc": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/newComment"),
-							"note_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
-						}]
-					}]
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-					this.getView().byId("createERPVendorCommentBoxId").setValue('');
-					this.getView().setBusy(false);
-					if (oDataResp.result) {
-						this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
-					}
-				}.bind(this),
-				function (oError) {
-					this.getView().setBusy(false);
-					MessageToast.show("Failed to add Comment, Please Try after some time.")
-
-				}.bind(this)
-			);
-
-		},
-
 		onCreateERPVendorUpload: function (oEvent) {
 			this.getView().setBusy(true);
 			var file = this.getView().byId('UploadCollection');
@@ -964,6 +932,14 @@ sap.ui.define([
 		handleERPPOBOXPostalCode: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
+		},
+
+		onAddCommentCreateCR: function () {
+			this.onAddComment({
+				sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+				comment: this.getView().byId("createERPVendorCommentBoxId").getValue(),
+				sControlID: "createERPVendorCommentBoxId"
+			});
 		}
 
 		/**

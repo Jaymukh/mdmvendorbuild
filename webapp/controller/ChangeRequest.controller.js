@@ -288,6 +288,24 @@ sap.ui.define([
 		onSelectChnageReqPageRight: function () {
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
 			this.handleGetAllChangeRequests(oSelectedPage + 1);
+		},
+
+		onSelectChangeRequest: function (oEvent) {
+			var sEntityID = oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			this.getAllCommentsForCR(sEntityID);
+			var oToggleBtn = this.getView().byId("slideToggleButtonID");
+			oToggleBtn.firePress({pressed : true});
+			oToggleBtn.setPressed(true);
+		},
+
+		onAddCommentCRList: function () {
+			var oList = this.getView().byId("crList");
+			this.onAddComment({
+				sEntityID: oList.getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id,
+				comment: this.getView().byId("changeReruestListCommentBoxId").getValue(),
+				sControlID: "changeReruestListCommentBoxId"
+			});
+			this.onPressCancelComment();
 		}
 
 		/**

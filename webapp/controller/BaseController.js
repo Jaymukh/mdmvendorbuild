@@ -885,6 +885,7 @@ sap.ui.define([
 				}
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				// "userId": oDataResources.data.user_id
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				if (oData.result.currentPage === 1) {
@@ -989,6 +990,40 @@ sap.ui.define([
 			var oBinding = oItem.getBinding("items");
 			oBinding.filter(aFilter);
 		},
+		
+		onAddComment: function (oParam) {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/add",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crCommentDTOs": [{
+							"entity_id": oParam.sEntityID,
+							"note_desc": oParam.comment,
+							"note_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+						}]
+					}]
+				}
+			};
+			var sControlID = oParam.sControlID;
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				// var sControlID = oParam.sControlID;
+					this.getView().byId(sControlID).setValue('');
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to add Comment, Please Try after some time.");
+
+				}.bind(this)
+			);
+
+		},
 
 		getAllCommentsForCR: function (sEntityID) {
 			this.getView().setBusy(true);
@@ -1008,6 +1043,7 @@ sap.ui.define([
 					this.getView().setBusy(false);
 					if (oDataResp.result) {
 						this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
+						this.getView().getModel("crERPCommentedModel").refresh(true);
 					}
 				}.bind(this),
 				function (oError) {

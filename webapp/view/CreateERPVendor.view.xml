@@ -2362,7 +2362,7 @@
 										</HBox>
 										<Toolbar>
 											<ToolbarSpacer/>
-											<Button text="Add" press="onAddComment"/>
+											<Button text="Add" press="onAddCommentCreateCR"/>
 										</Toolbar>
 										<!--</VBox>-->
 										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
