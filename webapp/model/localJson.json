@@ -700,7 +700,7 @@
 							"direct_pay_fl": null,
 							"do_not_rpt_onrr": null,
 							"owner_min_pay": "",
-							"pay_frequency": "",
+							"pay_frequency": "1",
 							"do_not_recoup": null,
 							"b_notice": null,
 							"payment_type": "",
@@ -812,8 +812,16 @@
 	"createMandtFields": [{
 		"id": "idERPPOBOXPOSTALCODE",
 		"Name": "PO Box Postal Code/ PO Box",
-		"Key": "PO_BOX",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX",
+		"Key": "PSTL2",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2",
+		"panelMapping": "ERP Vendor Details",
+		"isPRAData": false
+	},
+	{
+		"id": "idERPPOBX",
+		"Name": "PO Box Postal Code/ PO Box",
+		"Key": "PFACH",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH",
 		"panelMapping": "ERP Vendor Details",
 		"isPRAData": false
 	},{
@@ -898,20 +906,6 @@
 		"Name": "Terms of Payment",
 		"Key": "ZTERM",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false
-	}, {
-		"id": "idPurOrgIncoPart1",
-		"Name": "Incoternms (Part 1)",
-		"Key": "INCO1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false
-	}, {
-		"id": "idPurOrgIncoPart2",
-		"Name": "Incoternms (Part 2)",
-		"Key": "INCO2",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2",
 		"panelMapping": "Purchasing Organization",
 		"isPRAData": false
 	}, {
@@ -2925,7 +2919,7 @@
 			"PERNR": null,
 			"ZTERM": null,
 			"KULTG": null,
-			"REPRF": null,
+			"REPRF": "X",
 			"ZWELS": null,
 			"LNRZB": null,
 			"WEBTR": null,
@@ -3027,7 +3021,7 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZUAWA",
 		"panelMapping": "Company Codes",
 		"isPRAData": false
-	}, {
+	},  {
 		"id": "idCompCodePaymentMethod",
 		"Name": "Payment method",
 		"Key": "ZWELS",

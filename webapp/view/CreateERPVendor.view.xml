@@ -59,7 +59,7 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/crTime}" enabled="false">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 										</form:content>
@@ -95,23 +95,21 @@
 											</Select>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
-											<Select forceSelection="false" id="generalDataTitleId"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
-												<!--	<items>
-													<core:Item text="Title1" key="1"/>
-													<core:Item text="Title2" key="2"/>
-													<core:Item text="Title3" key="3"/>
-												</items>-->
+											<Select forceSelection="false" id="generalDataTitleId" items="{crERPTitleFilterModel>/modelMap}"
+											change="onERPTitleChange" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
+												<items>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+												</items>
 											</Select>
-											<Label text="Name1"/>
+											<Label text="Name 1"/>
 											<Input id="idERPVendorName1" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"
 												maxLength="35" liveChange="handleName1"/>
-											<Label text="Name2"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}" maxLength="35"/>
-											<Label text="Name3"/>
+											<Label text="Name 2"/>
+											<Input liveChange="handleERPVendorName2" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}" maxLength="35"/>
+											<Label text="Name 3"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/Name3}" maxLength="35"/>
 											<core:Title/>
-											<Label text="Legal Name (Name4)"/>
+											<Label text="Legal Name (Name 4)"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME4}" maxLength="35"/>
 											<Label text="Natural person"/>
 											<CheckBox select="onSelectCheckBox">
@@ -122,67 +120,7 @@
 											<Label text="Search Terms"/>
 											<Input id="idERPVendorSearchTerms" required="true" liveChange="handleSearchTerms"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="10"/>
-											<core:Title text="Communication Data"/>
-											<Label text="Telephone"/>
-											<Input value="">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Input type="Number" value="" placeholder="Phone">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Input type="Number" value="" placeholder="Ext"/>
-											<Label text="Mobile"/>
-											<Input type="Number" value="">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Input type="Number" value="" placeholder="Phone">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Label text="E-mail Address"/>
-											<Input type="Email" value=""/>
-											<Label text="Fax"/>
-											<Input type="Number" value="">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Input value="" placeholder="Phone">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
-											</Input>
-											<Input value="" placeholder="Ext"/>
-											<Label text="Web site"/>
-											<Input value=""/>
-											<core:Title/>
-											<Label text="PO Box Lobby"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
-											<Label text="Type of Delivery Service"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_type}" showValueHelp="true"
-												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
-												<customData>
-													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
-													<core:CustomData key="table" value="ADDRC_DELI_SERV"></core:CustomData>
-													<core:CustomData key="inputKey" value="deli_SERV_TYPE"></core:CustomData>
-													<core:CustomData key="inputText" value="deli_SERV_DSCR"></core:CustomData>
-													<core:CustomData key="deli_SERV_TYPE" value="Delivery Type"></core:CustomData>
-													<core:CustomData key="deli_SERV_DSCR" value="Description"></core:CustomData>
-												</customData>
-											</Input>
-											<Label text="Number of Delivery Service"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
-											<Label text="PO Box"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
-											<Label text="Undeliverable"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
+											
 											<core:Title text="Address"/>
 											<Label text="Street / House No."/>
 											<Input id="ERPAddrHouseNoId" required="ture" width="100%"
@@ -190,7 +128,7 @@
 											<Input id="ERPAddrStreetId" required="true" width="100%"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="District"/>
@@ -200,14 +138,14 @@
 											<Label text="Street 3"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
 											<Label text="Street 4"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl3}"/>
 											<Label text="Street 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
 											<Input id="idERPVendorPostalCode" required="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
-												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Input id="idERPVendorCity" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"
@@ -254,12 +192,25 @@
 												</customData>
 											</Input>
 											<Label text="Transportation Zone"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Transportation Zone"></core:CustomData>
+													<core:CustomData key="table" value="TZONE"></core:CustomData>
+													<core:CustomData key="inputKey" value="land1"></core:CustomData>
+													<core:CustomData key="inputText" value="vtext"></core:CustomData>
+													<core:CustomData key="land1" value="Code"></core:CustomData>
+													<core:CustomData key="vtext" value="Transportation Zone"></core:CustomData>
+												</customData>
+											</Input>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>-->
 											<Label text="PO Box Postal Code/ PO Box"/>
 											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
+											<Input required="true" id="idERPPOBX" liveChange="handleERPPOBOX"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num} === 'X'}">
 												<customData>
 													<core:CustomData key="/gen_adrc/gen_adrc_1/po_box_num" value="X"></core:CustomData>
 												</customData>
@@ -268,7 +219,79 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
 											<Label text="Supplement"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
-										</form:content>
+
+											
+											<core:Title text="Communication Data"/>
+											<Label text="Telephone"/>
+											<Input value="">
+												<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input type="Number" value="" placeholder="Number">
+												<!--<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
+												</layoutData>-->
+											</Input>
+											<Input type="Number" value="" placeholder="Ext">
+												<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="Mobile"/>
+											<Input type="Number" value="">
+												<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input type="Number" value="" placeholder="Number">
+											<!--	<layoutData>
+													<l:GridData span="XL2 L4 M3 S4"/>
+												</layoutData>-->
+											</Input>
+											<Label text="E-mail Address"/>
+											<Input type="Email" value=""/>
+											<Label text="Fax"/>
+											<Input type="Number" value="">
+												<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Input value="" placeholder="Number">
+											<!--	<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
+												</layoutData>-->
+											</Input>
+											<Input value="" placeholder="Ext">
+													<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+											</Input>
+											<Label text="Web site"/>
+											<Input value=""/>
+											<core:Title/>
+											<Label text="PO Box Lobby"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
+											<Label text="Type of Delivery Service"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_type}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
+													<core:CustomData key="table" value="ADDRC_DELI_SERV"></core:CustomData>
+													<core:CustomData key="inputKey" value="deli_SERV_TYPE"></core:CustomData>
+													<core:CustomData key="inputText" value="deli_SERV_DSCR"></core:CustomData>
+													<core:CustomData key="deli_SERV_TYPE" value="Delivery Type"></core:CustomData>
+													<core:CustomData key="deli_SERV_DSCR" value="Description"></core:CustomData>
+												</customData>
+											</Input>
+											<Label text="Number of Delivery Service"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/deli_serv_number}"/>
+											<Label text="PO Box"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
+											<Label text="Undeliverable"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
+										
+																					</form:content>
 									</form:SimpleForm>
 								</content>
 							</Panel>
@@ -551,7 +574,7 @@
 											<Label text="Bank Detail ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}" maxLength="4"/>
 											<Label text="Bank Account"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="2"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="15"/>
 											<Label text="Account Holder"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}" maxLength="60"/>
 											<Label text="IBAN"/>
@@ -572,7 +595,7 @@
 													<core:Item text="IBAN 3" key="3"/>
 												</items>
 											</Select>
-											<Label text="Account No."/>
+											<Label text="Account Name."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}" maxLength="18"/>
 											<Label text="Control key"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="2"/>
@@ -812,7 +835,7 @@
 													</customData>
 												</Input>
 												<Label text="Planning Group"/>
-												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+												<Input id="idComCodesPlannigGroup"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/FDGRV}">
 													<customData>
 														<core:CustomData key="title" value="Planning Group"></core:CustomData>
@@ -868,6 +891,17 @@
 												<Label text="Last Key Run"/>
 												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
 												<core:Title text="Withholding Tax"/>
+												<Label text="Withholding Tax Country"/>
+												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+													<customData>
+														<core:CustomData key="title" value="Withholding Tax Country"></core:CustomData>
+														<core:CustomData key="table" value="T005"></core:CustomData>
+														<core:CustomData key="land1" value="Country Code"></core:CustomData>
+														<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+														<core:CustomData key="inputKey" value="land1"></core:CustomData>
+														<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
+													</customData>
+												</Input>
 												<Label text="Withholding Tax Code"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}">
@@ -878,17 +912,6 @@
 														<core:CustomData key="land1" value="Country"></core:CustomData>
 														<core:CustomData key="inputKey" value="wt_WITHCD"></core:CustomData>
 														<core:CustomData key="inputText" value="text40"></core:CustomData>
-													</customData>
-												</Input>
-												<Label text="Withholding Tax Country"/>
-												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
-													<customData>
-														<core:CustomData key="title" value="Withholding Tax Country"></core:CustomData>
-														<core:CustomData key="table" value="T005"></core:CustomData>
-														<core:CustomData key="land1" value="Country Code"></core:CustomData>
-														<core:CustomData key="lkvrz" value="Country"></core:CustomData>
-														<core:CustomData key="inputKey" value="land1"></core:CustomData>
-														<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
 													</customData>
 												</Input>
 												<Label text="Recipient Type"/>
@@ -1041,7 +1064,7 @@
 													</customData>
 												</Input>
 												<Label required="true" text="Check Double Invoice"/>
-												<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox"
+												<CheckBox id="idCompCodeCheckDoubleInvoice" select="onSelectCheckBox" editable="true"
 													selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}">
 													<customData>
 														<core:CustomData key="/addCompanyCodeFormData/lfb1/REPRF" value="addComp"></core:CustomData>
@@ -1150,7 +1173,7 @@
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/EIKTO}" maxLength="12"/>
 												<Label text="Clerk's Telephone No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TLFNS}" maxLength="30"/>
-												<Label text="Clerk's Internet Addredd"/>
+												<Label text="Clerk's Internet Address"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/INTAD}" maxLength="130"/>
 												<!--<core:Title/>-->
 												<Label text="Local Processing"/>
@@ -1257,7 +1280,7 @@
 												</customData>
 											</Input>
 											<Label text="Incoterms"/>
-											<Input id="idPurOrgIncoPart1" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+											<Input id="idPurOrgIncoPart1"  showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}">
 												<customData>
 													<core:CustomData key="title" value="Incoterms"></core:CustomData>
@@ -1268,8 +1291,8 @@
 													<core:CustomData key="inputText" value="bezei"></core:CustomData>
 												</customData>
 											</Input>
-											<Label text="Incoterms"/>
-											<Input id="idPurOrgIncoPart2" required="true"
+											<Label text="Incoterms Description"/>
+											<Input id="idPurOrgIncoPart2" 
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}" maxLength="28"/>
 											<Label text="Pricing date Control"/>
 											<Select forceSelection="false" id="purOrgPricingDateContrId"
@@ -1519,7 +1542,7 @@
 									</form:SimpleForm>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Address*">
+							<Panel expandable="true" expanded="false" headerText="Address*" expand ="handleAddressSection">
 								<content>
 									<!--<Table items="{CreateERPVendorAddrTableModel>/rows}">-->
 									<!--	<headerToolbar>-->
@@ -1578,7 +1601,7 @@
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="Country"/>
@@ -1644,7 +1667,12 @@
 											<Label text="PO Box postal code / PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}" maxLength="10"/>
 											<Label text="PO Box Without No."/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>
+											<CheckBox select="onSelectCheckBox" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num} === 'X'}">
+												<customData>
+													<core:CustomData key="/gen_adrc/gen_adrc_1/po_box_num" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>-->
 											<Label text="Company Post code"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
 											<core:Title/>
@@ -1652,17 +1680,15 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<Label text="Title"/>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
-											<Select forceSelection="false" id="idAddressTitle"
+											<Select forceSelection="false" id="idAddressTitle" items="{crERPTitleFilterModel>/modelMap}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
-												<!--<items>
-																<core:Item text="Title1" key="1"/>
-																<core:Item text="Title2" key="2"/>
-																<core:Item text="Title3" key="3"/>
-															</items>-->
+												<items>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+												</items>
 											</Select>
 											<Label text="Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
-											<Label text="Name2"/>
+											<Label text="Name 2"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 											<Label text="Search Term 1"/>
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
@@ -1756,11 +1782,9 @@
 											<Input value=""/>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
-											<Select forceSelection="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}">
+											<Select items="{crERPTitleFilterModel>/modelMap}" forceSelection="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}">
 												<items>
-													<core:Item text="Title 1" key="1"/>
-													<core:Item text="Title 2" key="2"/>
-													<core:Item text="Title 3" key="3"/>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
 												</items>
 											</Select>
 											<Label text="Last Name"/>
@@ -1946,7 +1970,7 @@
 															</customData>
 														</CheckBox>
 														<Label text="Pay Frequency" required="true"/>
-														<Select id="idPRAAccPayFreq" forceSelection="false"
+														<Select id="idPRAAccPayFreq" forceSelection="true"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}">
 															<items>
 																<core:Item text="Normal" key="1"/>
@@ -2145,8 +2169,11 @@
 														</Select>
 														<Label text="Title"/>
 														<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
-														<Select forceSelection="false" id="praDataAddrTabTitleId"
+														<Select forceSelection="false" id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/title}">
+															<items>
+																<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+															</items>
 															<!--<items>
 																<core:Item text="Title1" key="1"/>
 																<core:Item text="Title2" key="2"/>
@@ -2156,7 +2183,7 @@
 														<Label text="Name"/>
 														<Input id="idPRAAddrName" required="true"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
-														<Label text="Name2"/>
+														<Label text="Name 2"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name2}"/>
 														<Label text="Search Term 1"/>
 														<Input required="true" id="idAddrSearTerm1"
