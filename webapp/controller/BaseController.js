@@ -761,6 +761,7 @@ sap.ui.define([
 					});
 				}
 
+				this.getView().getModel("crERPCommentedModel").setData({});
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", oData.result.vendorDTOs[0].customVendorBusDTO
 					.entity_id);
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/entity_id",
@@ -885,7 +886,7 @@ sap.ui.define([
 				}
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
-				// "userId": oDataResources.data.user_id
+			// "userId": oDataResources.data.user_id
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				if (oData.result.currentPage === 1) {
@@ -990,7 +991,7 @@ sap.ui.define([
 			var oBinding = oItem.getBinding("items");
 			oBinding.filter(aFilter);
 		},
-		
+
 		onAddComment: function (oParam) {
 			this.getView().setBusy(true);
 			var objParamCreate = {
@@ -1009,7 +1010,7 @@ sap.ui.define([
 			};
 			var sControlID = oParam.sControlID;
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-				// var sControlID = oParam.sControlID;
+					// var sControlID = oParam.sControlID;
 					this.getView().byId(sControlID).setValue('');
 					this.getView().setBusy(false);
 					if (oDataResp.result) {
