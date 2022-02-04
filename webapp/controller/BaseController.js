@@ -619,7 +619,7 @@ sap.ui.define([
 								"direct_pay_fl": null,
 								"do_not_rpt_onrr": null,
 								"owner_min_pay": "",
-								"pay_frequency": "",
+								"pay_frequency": "1",
 								"do_not_recoup": null,
 								"b_notice": null,
 								"payment_type": "",
