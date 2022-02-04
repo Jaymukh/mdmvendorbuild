@@ -812,6 +812,14 @@ sap.ui.define([
 				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
 			}
 			return sMsg;
+		},
+		
+		onAddCommentCRPreview: function () {
+			this.onAddComment({
+				sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
+				comment: this.getView().byId("previewCRCommentBoxId").getValue(),
+				sControlID: "previewCRCommentBoxId"
+			});
 		}
 
 		/**

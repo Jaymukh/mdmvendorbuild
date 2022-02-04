@@ -26,20 +26,22 @@
 											<Label text="Description"/>
 											<Input value="{CreateVendorModel>/changeReq/genData/desc}"></Input>
 											<Label required="true" text="Priority"/>
-											<Select id = "idERPPriority" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}"
-											showSecondaryValues="true"	items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
+											<Select id="idERPPriority" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
+												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
-													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
+														key="{CreateVendorModel>taxonomy_id}"/>
 												</items>
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label required="true" text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-												<Select id="idERPVendorPreviewReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}" showSecondaryValues="true"
-											items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
+											<Select id="idERPVendorPreviewReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
+												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
 												<items>
-													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}" key="{CreateVendorModel>taxonomy_id}"/>
+													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
+														key="{CreateVendorModel>taxonomy_id}"/>
 												</items>
 											</Select>
 											<core:Title text="Process Data"/>
@@ -61,30 +63,29 @@
 								</content>
 							</Panel>
 							<Panel expandable="true" expanded="true" headerText="Deletion Flags"
-							visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+								visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
 								<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-										singleContainerFullSize="false">
-										<form:content>
-											<core:Title text="Vendor Details"/>
-											<Label text="Vendor"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}"/>
-											<core:Title text="Deletion Flag"/>
-											<CheckBox useEntireWidth="true" width="100%" wrapping ="true" text="Central Deletion Flag"
-											select="onSelectERPCheckBox" visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
-													<customData>
-													<core:CustomData key="/vnd_lfa1/LOEVM" value="X"></core:CustomData>
-												</customData>
-											</CheckBox>
-											<CheckBox width="100%" useEntireWidth="true" wrapping ="true"  text="Central Block Flag"
-											select="onSelectERPCheckBox" visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
-													<customData>
-													<core:CustomData key="/vnd_lfa1/SPERR" value="X"></core:CustomData>
-												</customData>
-											</CheckBox>
-											
+									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+									singleContainerFullSize="false">
+									<form:content>
+										<core:Title text="Vendor Details"/>
+										<Label text="Vendor"/>
+										<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}"/>
+										<core:Title text="Deletion Flag"/>
+										<CheckBox useEntireWidth="true" width="100%" wrapping="true" text="Central Deletion Flag" select="onSelectERPCheckBox"
+											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+											<customData>
+												<core:CustomData key="/vnd_lfa1/LOEVM" value="X"></core:CustomData>
+											</customData>
+										</CheckBox>
+										<CheckBox width="100%" useEntireWidth="true" wrapping="true" text="Central Block Flag" select="onSelectERPCheckBox"
+											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
+											<customData>
+												<core:CustomData key="/vnd_lfa1/SPERR" value="X"></core:CustomData>
+											</customData>
+										</CheckBox>
 										<!--	</core:Title>-->
-										</form:content>
+									</form:content>
 								</form:SimpleForm>
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="ERP Vendor Details">
@@ -470,12 +471,12 @@
 													<Label text="Reconcillation" design="Bold"></Label>
 												</header>
 											</Column>
-											<Column visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
 												<header>
 													<Label text="Deletion Flag"></Label>
 												</header>
 											</Column>
-											<Column visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
+											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
 												<header>
 													<Label text="Block Flag"></Label>
 												</header>
@@ -486,15 +487,15 @@
 												<cells>
 													<Text text="{CreateVendorModel>lfb1/bukrs}"></Text>
 													<Text text="{CreateVendorModel>lfb1/AKONT}"></Text>
-													<CheckBox selected="{= ${CreateVendorModel>lfb1/LOEVM} === 'X'}" select = "onSelectERPCheckBox" >
+													<CheckBox selected="{= ${CreateVendorModel>lfb1/LOEVM} === 'X'}" select="onSelectERPCheckBox">
 														<customData>
-														<core:CustomData key="/addCompanyCodeRows/lfb1/LOEVM" value="addComp"></core:CustomData>
-													</customData>
+															<core:CustomData key="/addCompanyCodeRows/lfb1/LOEVM" value="addComp"></core:CustomData>
+														</customData>
 													</CheckBox>
-													<CheckBox selected="{= ${CreateVendorModel>lfb1/SPERR} === 'X'}" select = "onSelectERPCheckBox" >
+													<CheckBox selected="{= ${CreateVendorModel>lfb1/SPERR} === 'X'}" select="onSelectERPCheckBox">
 														<customData>
-														<core:CustomData key="/addCompanyCodeRows/lfb1/SPERR" value="addComp"></core:CustomData>
-													</customData>
+															<core:CustomData key="/addCompanyCodeRows/lfb1/SPERR" value="addComp"></core:CustomData>
+														</customData>
 													</CheckBox>
 													<!--<HBox>-->
 													<!--	<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanYCodeEditPress"/>-->
@@ -567,8 +568,7 @@
 											<Label text="Withholding Tax Code"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}"></Text>
 											<Label text="Sub. To Withholding Tax"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_SUBJECT} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_SUBJECT} === 'X'}"></CheckBox>
 											<Label text="Exemption Cert. no."/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}"/>
 											<Label text="Exemption Reason"/>
@@ -590,36 +590,29 @@
 											<Label text="Tolerance Group"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}"></Text>
 											<Label text="Check Double Invoice"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}"></CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZWELS}"></Text>
 											<Label text="Alternative Payee"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/LNRZB}"></Text>
 											<Label text="Grouping Key"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}">
-											</Text>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}"></Text>
 											<Label text="Bill of Exchange limit"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/WEBTR}"/>
 											<Label text="Payment Method Suppliement"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/UZAWE}">
-											</Text>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/UZAWE}"></Text>
 											<core:Title/>
 											<Label text="Payment Block"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}">
-											</Text>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Text>
 											<Label text="House Bank"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}"></Text>
 											<Label text="Individual Payment"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XPORE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XPORE} === 'X'}"></CheckBox>
 											<Label text="Payment Advice by EDI"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XEDIP} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XEDIP} === 'X'}"></CheckBox>
 											<Label text="Clearing with Cust."/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERR} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERR} === 'X'}"></CheckBox>
 											<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
 											<Label text="Delivery Tolerance Group"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}"></Text>
@@ -634,8 +627,7 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/INTAD}"/>
 											<!--<core:Title/>-->
 											<Label text="Local Processing"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XDEZV} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XDEZV} === 'X'}"></CheckBox>
 											<Label text="Account Statement"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>
 											<Label text="Account Memo"/>
@@ -646,8 +638,7 @@
 											<Label text="Dunning Areas"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/MGRUP}"/>
 											<Label text="Grouping Key"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}">
-											</Text>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZGRUP}"></Text>
 											<Label text="ESTMA (CAN)"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZZESTMA}"/>
 										</form:content>
@@ -1296,17 +1287,17 @@
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
 											<!--<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
-											<TextArea width="164%"></TextArea>
+											<TextArea id="previewCRCommentBoxId" width="164%"></TextArea>
 										</HBox>
 										<Toolbar>
 											<ToolbarSpacer/>
-											<Button text="Add"/>
+											<Button text="Add" press="onAddCommentCRPreview"/>
 										</Toolbar>
 										<!--</VBox>-->
-										<List headerText="Added Comments" items="{/Comments}">
-											<FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onPress" iconPress="onPress" iconDensityAware="false" info="{Type}"
-												timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
-												<FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press="onActionPressed"/>
+										<List headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
+											<FeedListItem sender="{crERPCommentedModel>note_by}" iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}"
+												text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+												<FeedListItemAction text="{crERPCommentedModel>note_desc}" icon="{Icon}" key="{Key}"/>
 											</FeedListItem>
 										</List>
 									</IconTabFilter>
@@ -1322,13 +1313,15 @@
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
-			visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}"/>
+					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-				visible = "{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50002' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1  }"/>
+					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50002' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1 }"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
-				<Button text="Approve" type="Accept" press="onApproveClick" visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
-				<Button text="Reject" type="Reject" press="onRejectClick"  visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
+				<Button text="Approve" type="Accept" press="onApproveClick"
+					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
+				<Button text="Reject" type="Reject" press="onRejectClick"
+					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
 				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
 					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToVendorListClick"

@@ -48,7 +48,7 @@
 									<Toolbar>
 										<SearchField/>
 										<!--<Button icon="sap-icon://filter"></Button>-->
-										<ToggleButton icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
+										<ToggleButton id="slideToggleButtonID" icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
 									</Toolbar>
 									<filterbar:FilterBar id="fbChangeRequestId" showFilterConfiguration="false" showGoOnFB="false">
 										<filterbar:filterGroupItems >
@@ -88,7 +88,7 @@
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}">
+													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
@@ -191,21 +191,23 @@
 																	<Label text="Write a Comment:"/>
 																	<HBox width="100%">
 																	<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
-																		<TextArea width="150%"></TextArea>
+																		<TextArea id="changeReruestListCommentBoxId" width="150%"></TextArea>
 																	</HBox>
 																	<Toolbar>
 																		<ToolbarSpacer/>
-																		<Button text="Add"/>
+																		<Button text="Add" press="onAddCommentCRList"/>
 																		<Button text="Cancel" press="onPressCancelComment"/>
 																	</Toolbar>
 																</VBox>
-																<commons:Timeline enableDoubleSided="true" groupBy="HireDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
-																	content="{CreateVendorModel>/comments}" groupByType="Year" enableScroll="false">
+																<commons:Timeline enableDoubleSided="true" filterTitle="note_by" sortOldestFirst="false"
+																	content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" enableScroll="false">
+																	<!--	<commons:Timeline enableDoubleSided="true" groupBy="note_date" growingThreshold="0" filterTitle="note_by" sortOldestFirst="false"-->
+																	<!--content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" groupByType="Year" enableScroll="false">-->
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}"
-																			text="{CreateVendorModel>JobResponsibilities}" userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}"
-																			icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by}" userNameClickable="false"
+																			
+																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"
+																			></commons:TimelineItem>
 																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
