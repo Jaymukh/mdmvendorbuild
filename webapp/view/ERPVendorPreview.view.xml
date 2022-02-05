@@ -27,6 +27,7 @@
 											<Input value="{CreateVendorModel>/changeReq/genData/desc}"></Input>
 											<Label required="true" text="Priority"/>
 											<Select id="idERPPriority" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
+											enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
@@ -37,7 +38,8 @@
 											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label required="true" text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Select id="idERPVendorPreviewReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
+											<Select id="idERPVendorPreviewReason"  forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
+											enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
 												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
@@ -330,6 +332,15 @@
 										singleContainerFullSize="false">
 										<form:content>
 											<core:Title text="Tax Information"/>
+											<Label text="Tax Number1"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}" />
+											<Label text="Tax Number2"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD2}" />
+											<Label text="Tax Number3"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD3}" />
+											<Label text="Tax Number4"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD4}"/>
+											
 											<Label text="Fiscal Address"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKN}"></Text>
 											<Label text="Tax Office"/>
@@ -1316,7 +1327,8 @@
 					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
 					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50002' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1 }"/>
-				<Button text="Submit" type="Transparent" press="onSubmitClick" visible="{= ${CreateVendorModel>/preview} === true}"/>
+				<Button text="Submit" type="Transparent" press="onSubmitClick" 
+					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1 || ${CreateVendorModel>/preview} === true) ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"
 					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>

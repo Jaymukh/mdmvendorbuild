@@ -583,7 +583,8 @@ sap.ui.define([
 				},
 				"changeRequestDTO": {
 					"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
-					"change_request_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+					"change_request_by":{"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")},
+					"modified_by":{"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")},
 					"entity_type_id": 1,
 					"change_request_type_id":  this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id"),
 					"change_request_priority_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/priority"),

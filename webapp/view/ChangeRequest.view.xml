@@ -94,7 +94,7 @@
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
 																<ToolbarSpacer></ToolbarSpacer>
 																<Button icon="sap-icon://sort"></Button>
-																<Button text="My Request"></Button>
+																<Button text="My Request" press="handleMyRequest"></Button>
 																<Label text="Page No."/>
 																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}"
 																	change="onSelectChnageReqPage">
@@ -125,8 +125,8 @@
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_desc}"></Text>
 																	<ObjectStatus text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
-																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by}"></Text>
-																	<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
+																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by/firstname} {changeRequestGetAllModel>crDTO/change_request_by/lastname}"></Text>
+																	<!--<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>-->
 																</cells>
 															</ColumnListItem>
 														</items>
