@@ -66,7 +66,7 @@ sap.ui.define([
 								"email_id": oUserModelResources.emails[0].value,
 								"firstname": oUserModelResources.name.givenName,
 								"lastname": oUserModelResources.name.familyName,
-								"display_name": oUserModelResources.displayName,
+								"display_name": oUserModelResources.name.givenName +" "+oUserModelResources.name.familyName,
 								"external_id": oUserModelResources.id,
 								"created_by": 1,
 								"modified_by": 1,

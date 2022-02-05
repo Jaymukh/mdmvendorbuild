@@ -306,6 +306,68 @@ sap.ui.define([
 				sControlID: "changeReruestListCommentBoxId"
 			});
 			this.onPressCancelComment();
+		},
+		
+		handleMyRequest : function(oEvent){
+			this.getView().setBusy(true);
+			var objParamSubmit = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+						"crSearchType":"GET_ALL_BY_USER_ID",
+						"currentPage":1,
+						"userId":this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+						}
+			};
+			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
+				this.getView().setBusy(false);
+				if (oData.result.currentPage === 1) {
+					var aPageJson = [];
+					for (var i = 0; i < oData.result.totalPageCount; i++) {
+						aPageJson.push({
+							key: i + 1,
+							text: i + 1
+						});
+					}
+					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+					}
+				}
+				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+					}
+
+				} else {
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+					}
+				}
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+				MessageToast.show("Error in getting my requests");
+			}.bind(this));
 		}
 
 		/**

@@ -4,9 +4,10 @@
 	<Popover
 		id="idCreateVendorErrorPopover"
 		showHeader="false"
-		contentWidth="320px"
+		contentWidth="500px"
 		contentHeight="500px"
 		placement="Right"
+		resizable="true"
 		ariaLabelledBy="master-title">
 			<Page
 				id="master"
@@ -15,7 +16,7 @@
 				<List
 					id="list"
 					items="{CreateVendorModel>/missingFields}" >
-					<StandardListItem wrapping = "true"
+					<StandardListItem 
 						title="{CreateVendorModel>ErrorMessage}" />
 				</List>
 			</Page>
