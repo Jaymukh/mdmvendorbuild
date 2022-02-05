@@ -457,6 +457,10 @@ sap.ui.define([
 						this.oTableDataModel.setProperty("/item", oLocalData);
 						this.oTableDataModel.refresh();
 					} else if (oData.table === 'LFA1') {
+						var obj = {};
+						obj[oData["key"]] = "";
+						obj[oData["text"]] = ""
+						oDataResp.result.vendorDTOs.unshift(obj);
 						this.oTableDataModel.setProperty("/item", oDataResp.result.vendorDTOs);
 						this.oTableDataModel.refresh();
 					}
