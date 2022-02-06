@@ -95,12 +95,10 @@ sap.ui.define([
 				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
 				var oVendorModel = this.getView().getModel("CreateVendorModel");
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
-				
+				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
 				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
-				
-				
 				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
 				if(oChangeReq.change_request_due_date){
 					var sDueDate = oChangeReq.change_request_due_date.substring(0,10).replaceAll("-", "");
