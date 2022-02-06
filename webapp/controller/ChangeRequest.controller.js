@@ -109,7 +109,7 @@ sap.ui.define([
 					var sReqDate = oChangeReq.change_request_date.substring(0,10).replaceAll("-", "");
 					var sReqTime = oChangeReq.change_request_date.substring(11,16);
 					oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from", sReqDate);
-					oVendorModel.setProperty("/createCRVendorData/crTime", sReqTime);
+					oVendorModel.setProperty("/changeReq/genData/timeCreation", sReqTime);
 				}
 				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
 			}.bind(this));
