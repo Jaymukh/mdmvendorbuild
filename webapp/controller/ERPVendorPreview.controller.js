@@ -703,7 +703,7 @@ sap.ui.define([
 					}
 					
 					//Adding rejection reason to comment section
-					if (sAction.toLowerCase() === "Rejected") {
+					if (sAction.toLowerCase() === "rejected") {
 						this.onAddComment({
 							sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							comment: sReason,
