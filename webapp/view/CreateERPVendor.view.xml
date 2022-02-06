@@ -34,7 +34,7 @@
 												</items>
 											</Select>
 											<Label text="Due Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label text="Reason"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
@@ -222,11 +222,12 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
-											<Input value="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-											</Input>
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+											</ComboBox>
 											<Input type="Number" value="" placeholder="Number">
 												<!--<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -238,11 +239,12 @@
 												</layoutData>
 											</Input>
 											<Label text="Mobile"/>
-											<Input type="Number" value="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-											</Input>
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+											</ComboBox>
 											<Input type="Number" value="" placeholder="Number">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L4 M3 S4"/>
@@ -251,11 +253,12 @@
 											<Label text="E-mail Address"/>
 											<Input type="Email" value=""/>
 											<Label text="Fax"/>
-											<Input type="Number" value="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-											</Input>
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+											</ComboBox>
 											<Input value="" placeholder="Number">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -1724,7 +1727,11 @@
 											</Input>
 											<core:Title text="Telephone No's."/>
 											<Label text="Country"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>-->
+											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}">
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+											</ComboBox>
 											<Label text="Telephone"/>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
 											<Label text="Extention"/>
@@ -1737,7 +1744,11 @@
 											</CheckBox>
 											<core:Title text="Fax No."/>
 											<Label text="Country"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>-->
+											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}">
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+											</ComboBox>
 											<Label text="Telephone"/>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
 											<Label text="Extention"/>

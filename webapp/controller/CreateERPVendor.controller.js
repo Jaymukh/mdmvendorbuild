@@ -33,6 +33,7 @@ sap.ui.define([
 		onInit: function () {
 			this._getTaxonomyData();
 			this._getDropDownData();
+			this.getTelCountryNumber();
 			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 

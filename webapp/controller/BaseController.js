@@ -1053,7 +1053,22 @@ sap.ui.define([
 
 				}.bind(this)
 			);
-		}
+		},
 
+		getTelCountryNumber: function () {
+			var objParamCreate = {
+				url: "/murphyCustom/config-service/configurations/configuration",
+				type: "POST",
+				hasPayload: true,
+				data: {
+					configType: "T005K"
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result) {
+					this.getOwnerComponent().getModel("valueHelps").setProperty("/TelCountryCodes", oDataResp.result.modelMap);
+				}
+			}.bind(this));
+		}
 	});
 });

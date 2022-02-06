@@ -26,6 +26,7 @@ sap.ui.define([
 			this.getRouter().initialize();
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.createUserModel(), "userModel");
+			this.getModel("valueHelps").setSizeLimit(100000);
 			this.getModel("userModel").attachRequestCompleted(function (oData) {
 				var sMailID = oData.getSource().getProperty("/email");
 				this.setModel(models.createUserInfoModel(sMailID), "userRoleModel");
