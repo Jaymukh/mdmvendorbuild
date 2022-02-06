@@ -128,9 +128,9 @@ sap.ui.define([
 					var oJsonModel = new JSONModel(data.result);
 					var sControlID = item.controlID;
 					that.getView().byId(sControlID).setModel(oJsonModel);
-					if(item.controlID === 'generalDataTitleId'){
+					if (item.controlID === 'generalDataTitleId') {
 						that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
-					}else{
+					} else {
 						var oItemSelectTemplate1 = new sap.ui.core.Item({
 							key: "{" + item.controlField + "}",
 							text: "{" + item.controlFieldName + "}"
@@ -484,8 +484,31 @@ sap.ui.define([
 					oTable.setModel(this.oTableDataModel);
 					oTable.setModel(this.oColModel, "columns");
 
+					//Apply filters
+					var aFilters = [];
+					if (oData.table === "T059Z") {
+						var sLand1 = this.byId("idWithHoldTaxCtry").getValue();
+						if (sLand1) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLand1));
+						}
+					}
+
+					if (oData.table === "T059C") {
+						var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
+						var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
+						if (sTaxCode) {
+							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxCode));
+						}
+						if (sLandTax) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
+						}
+					}
+
 					if (oTable.bindRows) {
-						oTable.bindAggregation("rows", "/item");
+						oTable.bindAggregation("rows", {
+							path: "/item",
+							filters: aFilters
+						});
 					}
 
 					if (oTable.bindItems) {
@@ -947,26 +970,28 @@ sap.ui.define([
 				sControlID: "createERPVendorCommentBoxId"
 			});
 		},
-		handleERPVendorName2 : function(oEvent){
+		handleERPVendorName2: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2", oEvent.getSource().getValue());
 
 		},
-		onERPTitleChange : function(oEvent){
-		//	debugger;
+		onERPTitleChange: function (oEvent) {
+			//	debugger;
 			//var sSelectedKey = oEvent.getSource().getSelectedKey();
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title", oEvent.getSource().getSelectedKey());
 
 		},
-		handleAddressSection : function(oEvent){
-			if(oEvent.getParameter('expand')){
-			var sHouseNo = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1");
-			var sStreet = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street");
-			sHouseNo = sHouseNo === null ? '' : sHouseNo;
-			sStreet = sStreet === null ? '' : " "+sStreet;
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
+		handleAddressSection: function (oEvent) {
+			if (oEvent.getParameter('expand')) {
+				var sHouseNo = this.getOwnerComponent().getModel("CreateVendorModel").getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1");
+				var sStreet = this.getOwnerComponent().getModel("CreateVendorModel").getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street");
+				sHouseNo = sHouseNo === null ? '' : sHouseNo;
+				sStreet = sStreet === null ? '' : " " + sStreet;
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
 			}
 		}
 

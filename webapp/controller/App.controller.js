@@ -7,6 +7,7 @@ sap.ui.define([
 		onInit: function () {
 				//Please dont delete this  below line, and whenever new build you are doing please update the version as well eq : 1.0.2
 			console.log('Version : 1.0.4');
+			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		}
 	});
 });
