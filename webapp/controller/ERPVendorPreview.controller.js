@@ -354,7 +354,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/reason');
+			var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
 			oData = Object.assign({}, oData);
 			if (sResoanId === "50005" || sResoanId === "50004") {
 				delete oData.parentDTO.customData.pra_bp_ad;
@@ -719,7 +719,7 @@ sap.ui.define([
 					}
 					
 					//Adding rejection reason to comment section
-					if (sAction.toLowerCase() === "rejected") {
+					if (sAction.toLowerCase() === "reject") { 
 						this.onAddComment({
 							sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							comment: sReason,
