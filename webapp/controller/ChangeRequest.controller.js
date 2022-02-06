@@ -277,7 +277,7 @@ sap.ui.define([
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Not able to fetch the data, Please try after some time");
-			});
+			}.bind(this));
 
 		},
 
