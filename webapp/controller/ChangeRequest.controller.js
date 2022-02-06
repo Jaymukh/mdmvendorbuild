@@ -52,8 +52,11 @@ sap.ui.define([
 
 		onChangeReqLinkPress: function (oEvent) {
 			this.getView().setBusy(true);
-			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
-			var sWorkflowTaskID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.workflow_task_id;
+			var oChangeRequest = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject(),
+				sEntityID = oChangeRequest.crDTO.entity_id,
+				sWorkflowTaskID = oChangeRequest.crDTO.workflow_task_id,
+				sChangeRequestId = oChangeRequest.crDTO.change_request_id;
+
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/workflowID", sWorkflowTaskID);
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
@@ -70,8 +73,47 @@ sap.ui.define([
 						}
 					}
 				}
-
 			};
+			var oParamChangeReq = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"crSearchType": "GET_BY_CR_ID",
+					"parentCrDTOs": [{
+						"crDTO": {
+							"change_request_id": sChangeRequestId
+						}
+					}],
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
+			};
+			
+			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function(oData){
+				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
+				var oVendorModel = this.getView().getModel("CreateVendorModel");
+				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
+				
+				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
+				/*/changeReq/genData/status
+				/changeReq/genData/currWrkItem*/
+				
+				
+				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
+				if(oChangeReq.change_request_due_date){
+					var sDueDate = oChangeReq.change_request_due_date.substring(0,10).replaceAll("-", "");
+					oVendorModel.setProperty("/changeReq/genData/dueDate", sDueDate);
+				}
+				
+				if(oChangeReq.change_request_date){
+					var sReqDate = oChangeReq.change_request_date.substring(0,10).replaceAll("-", "");
+					var sReqTime = oChangeReq.change_request_date.substring(11,16);
+					oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from", sReqDate);
+					oVendorModel.setProperty("/createCRVendorData/crTime", sReqTime);
+				}
+				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
+			}.bind(this));
+			
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
@@ -294,7 +336,9 @@ sap.ui.define([
 			var sEntityID = oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			this.getAllCommentsForCR(sEntityID);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
-			oToggleBtn.firePress({pressed : true});
+			oToggleBtn.firePress({
+				pressed: true
+			});
 			oToggleBtn.setPressed(true);
 		},
 
@@ -307,18 +351,18 @@ sap.ui.define([
 			});
 			this.onPressCancelComment();
 		},
-		
-		handleMyRequest : function(oEvent){
+
+		handleMyRequest: function (oEvent) {
 			this.getView().setBusy(true);
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				type: 'POST',
 				hasPayload: true,
 				data: {
-						"crSearchType":"GET_ALL_BY_USER_ID",
-						"currentPage":1,
-						"userId":this.getView().getModel("userManagementModel").getProperty("/data/user_id")
-						}
+					"crSearchType": "GET_ALL_BY_USER_ID",
+					"currentPage": 1,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 				this.getView().setBusy(false);
