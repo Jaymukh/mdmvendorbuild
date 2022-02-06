@@ -229,44 +229,46 @@ sap.ui.define([
 						MessageToast.show("Error In Generating Lifnr");
 					}.bind(this));
 				} else {
-					var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
-					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
-					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
-					var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-					for (var k = 0; k < sKeylfb1.length; k++) {
-						oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
-					}
-					var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-					for (var j = 0; j < sKeylfbw.length; j++) {
-						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
-					}
-
-					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
-					oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
-					oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
-					oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
-					oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
-					oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-					if (oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
-						oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-						oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-					}
-					this._handleSaveWithLifnr(oData);
-					/*var objParamCreate = {
-						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-						hasPayload: true,
-						data: oData,
-						type: 'POST'
-					};
-					this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-						if (oDataResp.result) {
-							this.getView().setBusy(false);
-							this.getView().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result);
-							this.getView().byId("idCreateVendorSubmit").setVisible(true);
+						var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
+						if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1')) {
+							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
 						}
-					}.bind(this), function (oError) {
-						this.getView().setBusy(false);
-					}.bind(this));*/
+						if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
+							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
+						}
+					
+						var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+						for (var k = 0; k < sKeylfb1.length; k++) {
+							oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
+						}
+						var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+						for (var j = 0; j < sKeylfbw.length; j++) {
+							oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
+						}
+						if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+						}
+						if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
+							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
+						}
+						if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.hasOwnProperty('pra_bp_vend_esc_1')) {
+							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
+						}
+						if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.hasOwnProperty('pra_bp_vend_md_1')) {
+							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
+						}
+						if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
+								oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+						}
+						if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
+							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+						}
+						if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+						}
+			
+						this._handleSaveWithLifnr(oData);
 				}
 
 			}
