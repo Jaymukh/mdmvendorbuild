@@ -54,27 +54,32 @@
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="dateRange" label="Date Range">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<DateRangeSelection id="DRS2" change="handleDateRangeChange"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Created by">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Show">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Select id="chngShowID" forceSelection="false" selectedKey="{changeRequestGetAllModel>/selectedPageKey}">
+														<core:Item text="Created by Me" key="01"/>
+														<core:Item text="To be processed by Me" key="01"/>
+														<core:Item text="Processed by Me" key="01"/>
+														<core:Item text="All" key="01"/>
+													</Select>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="vendor" label="Vendor">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="city" label="City">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="companyCode" label="Company Code">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -88,13 +93,20 @@
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest">
+													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}"
+														items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest">
 														<headerToolbar>
 															<Toolbar>
-																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
+																<Label id="idAllChangeRequest" text="All Change Request({changeRequestGetAllModel>/totalCount})" design="Bold"></Label>
 																<ToolbarSpacer></ToolbarSpacer>
-																<Button icon="sap-icon://sort"></Button>
-																<Button text="My Request" press="handleMyRequest"></Button>
+																<Button icon="sap-icon://sort" press="onSortChnageReq"></Button>
+																<!--	<Button text="My Request" press="handleMyRequest"></Button>-->
+																<SegmentedButton id="SB1" selectionChange="onSelChangeRequestTyp">
+																	<items>
+																		<SegmentedButtonItem text="All Change Request" key="01"/>
+																		<SegmentedButtonItem text="My Change Request" key="02"/>
+																	</items>
+																</SegmentedButton>
 																<Label text="Page No."/>
 																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}"
 																	change="onSelectChnageReqPage">
@@ -141,10 +153,9 @@
 																	content="{CreateVendorModel>/workflow}" groupByType="Year" enableScroll="false">
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}"
-																			text="{CreateVendorModel>JobResponsibilities}" userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}"
-																			icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
-																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}" text="{CreateVendorModel>JobResponsibilities}"
+																			userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}" icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>
@@ -190,7 +201,7 @@
 																<VBox id="commentVBoxID" visible="false">
 																	<Label text="Write a Comment:"/>
 																	<HBox width="100%">
-																	<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
+																		<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
 																		<TextArea id="changeReruestListCommentBoxId" width="150%"></TextArea>
 																	</HBox>
 																	<Toolbar>
@@ -205,10 +216,8 @@
 																	<!--content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" groupByType="Year" enableScroll="false">-->
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by}" userNameClickable="false"
-																			
-																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"
-																			></commons:TimelineItem>
-																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"></commons:TimelineItem>
+																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>

@@ -905,6 +905,8 @@ sap.ui.define([
 				}
 				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					////Total count 
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 					if (oData.result.totalPageCount > oData.result.currentPage) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);

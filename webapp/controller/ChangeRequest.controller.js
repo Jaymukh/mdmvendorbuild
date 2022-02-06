@@ -1,10 +1,12 @@
 sap.ui.define([
 	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
-	"sap/m/MessageToast"
-], function (BaseController, ServiceCall, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/core/Fragment",
+	"sap/ui/core/library"
+], function (BaseController, ServiceCall, MessageToast, Fragment, CoreLibrary) {
 	"use strict";
-
+	var ValueState = CoreLibrary.ValueState;
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
@@ -294,7 +296,9 @@ sap.ui.define([
 			var sEntityID = oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			this.getAllCommentsForCR(sEntityID);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
-			oToggleBtn.firePress({pressed : true});
+			oToggleBtn.firePress({
+				pressed: true
+			});
 			oToggleBtn.setPressed(true);
 		},
 
@@ -307,18 +311,18 @@ sap.ui.define([
 			});
 			this.onPressCancelComment();
 		},
-		
-		handleMyRequest : function(oEvent){
+
+		handleMyRequest: function (oEvent) {
 			this.getView().setBusy(true);
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				type: 'POST',
 				hasPayload: true,
 				data: {
-						"crSearchType":"GET_ALL_BY_USER_ID",
-						"currentPage":1,
-						"userId":this.getView().getModel("userManagementModel").getProperty("/data/user_id")
-						}
+					"crSearchType": "GET_ALL_BY_USER_ID",
+					"currentPage": 1,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 				this.getView().setBusy(false);
@@ -338,6 +342,9 @@ sap.ui.define([
 				}
 				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					////Total count 
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 					if (oData.result.totalPageCount > oData.result.currentPage) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
@@ -368,6 +375,58 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				MessageToast.show("Error in getting my requests");
 			}.bind(this));
+		},
+		onSortChnageReq: function (oEvent) {
+			var oButton = oEvent.getSource(),
+				oView = this.getView();
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "murphy.mdm.vendor.murphymdmvendor.fragments.SortAllChangeRequests",
+					controller: this
+				}).then(function (oPopover) {
+					oView.addDependent(oPopover);
+					return oPopover;
+				});
+			}
+
+			this._pPopover.then(function (oPopover) {
+				oPopover.open(oButton);
+			});
+		},
+		onConfirmSortChangeReq: function (oEvent) {
+			var oView = this.getView();
+			var oTable = oView.byId("crList");
+			var mParams = oEvent.getParameters();
+			var oBinding = oTable.getBinding("items");
+			var aSorters = [];
+			// apply sorter 
+			var sPath = mParams.sortItem.getKey();
+			var bDescending = mParams.sortDescending;
+			aSorters.push(new sap.ui.model.Sorter(sPath, bDescending));
+			oBinding.sort(aSorters);
+		},
+		onSelChangeRequestTyp: function (oEvent) {
+			var sKey = oEvent.getParameter("item").getKey();
+			if (sKey === "02") {
+				this.handleMyRequest();
+			} else {
+				this.handleGetAllChangeRequests();
+			}
+		},
+		handleDateRangeChange: function (oEvent) {
+			var sFrom = oEvent.getParameter("from"),
+				sTo = oEvent.getParameter("to"),
+				bValid = oEvent.getParameter("valid"),
+				oEventSource = oEvent.getSource();
+
+			if (bValid) {
+				oEventSource.setValueState(ValueState.None);
+			} else {
+				oEventSource.setValueState(ValueState.Error);
+			}
 		}
 
 		/**
