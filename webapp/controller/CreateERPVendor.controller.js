@@ -33,6 +33,7 @@ sap.ui.define([
 		onInit: function () {
 			this._getTaxonomyData();
 			this._getDropDownData();
+			this.getTelCountryNumber();
 			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 
@@ -488,16 +489,25 @@ sap.ui.define([
 
 					//Apply filters
 					var aFilters = [];
-					if (oData.table === "T059Z") {
-						var sLand1 = this.byId("idWithHoldTaxCtry").getValue();
-						if (sLand1) {
-							aFilters.push(new Filter("land1", FilterOperator.EQ, sLand1));
+					var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
+					var sTaxType = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/witht");
+					var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
+					if("T059P"){ //Tax type
+						if (sLandTax) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
+						}
+					}
+					
+					if (oData.table === "T059Z") { //Tax code
+						if (sLandTax) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
+						}
+						if(sTaxType){
+							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxType));
 						}
 					}
 
-					if (oData.table === "T059C") {
-						var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
-						var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
+					if (oData.table === "T059C") {//Recipient type
 						if (sTaxCode) {
 							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxCode));
 						}
@@ -567,7 +577,7 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1', oVal.land1);
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oVal.land1);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 			this._oValueHelpDialog.close();

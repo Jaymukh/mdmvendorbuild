@@ -27,7 +27,7 @@
 											<Input value="{CreateVendorModel>/changeReq/genData/desc}"></Input>
 											<Label required="true" text="Priority"/>
 											<Select id="idERPPriority" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
-											enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
+												enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
@@ -35,11 +35,11 @@
 												</items>
 											</Select>
 											<Label text="Due Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label required="true" text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
-											<Select id="idERPVendorPreviewReason"  forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
-											enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
+											<Select id="idERPVendorPreviewReason" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
+												enabled="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? false : true}"
 												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
 												<items>
 													<core:ListItem text="{CreateVendorModel>taxonomy_name}" additionalText="{CreateVendorModel>taxonomy_id}"
@@ -75,12 +75,14 @@
 										<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr}"/>
 										<core:Title text="Deletion Flag"/>
 										<CheckBox useEntireWidth="true" width="100%" wrapping="true" text="Central Deletion Flag" select="onSelectERPCheckBox"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM} === 'X'}"
 											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
 											<customData>
 												<core:CustomData key="/vnd_lfa1/LOEVM" value="X"></core:CustomData>
 											</customData>
 										</CheckBox>
 										<CheckBox width="100%" useEntireWidth="true" wrapping="true" text="Central Block Flag" select="onSelectERPCheckBox"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR} === 'X'}"
 											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
 											<customData>
 												<core:CustomData key="/vnd_lfa1/SPERR" value="X"></core:CustomData>
@@ -333,14 +335,13 @@
 										<form:content>
 											<core:Title text="Tax Information"/>
 											<Label text="Tax Number1"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}" />
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}"/>
 											<Label text="Tax Number2"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD2}" />
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD2}"/>
 											<Label text="Tax Number3"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD3}" />
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD3}"/>
 											<Label text="Tax Number4"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD4}"/>
-											
 											<Label text="Fiscal Address"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKN}"></Text>
 											<Label text="Tax Office"/>
@@ -906,7 +907,7 @@
 											<Label text="Postal Code"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}"></Text>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country}"></Text>
 											<Label text="City"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
 											<Label text="Language Key"/>
@@ -1327,7 +1328,7 @@
 					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
 					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50002' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50001' || ${userManagementModel>/role}.indexOf('stew') !== -1 }"/>
-				<Button text="Submit" type="Transparent" press="onSubmitClick" 
+				<Button text="Submit" type="Transparent" press="onSubmitClick"
 					visible="{= (${userManagementModel>/role}.indexOf('stew') === -1 || ${userManagementModel>/role}.indexOf('approv') === -1) &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"

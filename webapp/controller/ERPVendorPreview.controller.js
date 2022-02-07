@@ -354,9 +354,9 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-			var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/reason');
+		//	var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
 			oData = Object.assign({}, oData);
-			if (sResoanId === "50005" || sResoanId === "50004") {
+		/*	if (sResoanId === "50005" || sResoanId === "50004") {
 				delete oData.parentDTO.customData.pra_bp_ad;
 				delete oData.parentDTO.customData.pra_bp_vend_esc;
 				delete oData.parentDTO.customData.pra_bp_cust_md;
@@ -369,7 +369,7 @@ sap.ui.define([
 				delete oData.parentDTO.customData.vnd_lfm1;
 				delete oData.parentDTO.customData.gen_bnka;
 
-			} else {
+			} else {*/
 				if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
@@ -392,7 +392,7 @@ sap.ui.define([
 					var sProerty = 'vnd_lfbw_' + (index + 1);
 					oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
 				});
-			}
+			//}
 
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
@@ -719,7 +719,7 @@ sap.ui.define([
 					}
 					
 					//Adding rejection reason to comment section
-					if (sAction.toLowerCase() === "rejected") {
+					if (sAction.toLowerCase() === "reject") { 
 						this.onAddComment({
 							sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							comment: sReason,

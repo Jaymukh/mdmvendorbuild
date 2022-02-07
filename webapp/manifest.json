@@ -160,6 +160,12 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"valueHelps": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"TelCountryCodes": []
+				}
 			}
 		},
 		"resources": {

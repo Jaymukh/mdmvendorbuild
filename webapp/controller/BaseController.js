@@ -905,6 +905,8 @@ sap.ui.define([
 				}
 				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					////Total count 
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 					if (oData.result.totalPageCount > oData.result.currentPage) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
@@ -1313,7 +1315,22 @@ sap.ui.define([
 			var sSeconds = ("" + date.getSeconds()).length === 1 ? "0" + date.getSeconds() : date.getSeconds();
 			date.getSeconds();
 			return sDate + "-" + sMonth + "-" + sYear + " at " + sHour + ":" + sMinute + ":" + sSeconds;
-		}
+		},
 
+		getTelCountryNumber: function () {
+			var objParamCreate = {
+				url: "/murphyCustom/config-service/configurations/configuration",
+				type: "POST",
+				hasPayload: true,
+				data: {
+					configType: "T005K"
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				if (oDataResp.result) {
+					this.getOwnerComponent().getModel("valueHelps").setProperty("/TelCountryCodes", oDataResp.result.modelMap);
+				}
+			}.bind(this));
+		}
 	});
 });

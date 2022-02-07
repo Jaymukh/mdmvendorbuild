@@ -54,27 +54,32 @@
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="dateRange" label="Date Range">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<DateRangeSelection id="DRS2" change="handleDateRangeChange"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Created by">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Show">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Select id="chngShowID" forceSelection="false" selectedKey="{changeRequestGetAllModel>/selectedPageKey}">
+														<core:Item text="Created by Me" key="01"/>
+														<core:Item text="To be processed by Me" key="01"/>
+														<core:Item text="Processed by Me" key="01"/>
+														<core:Item text="All" key="01"/>
+													</Select>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="vendor" label="Vendor">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="city" label="City">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="companyCode" label="Company Code">
 												<filterbar:control>
-													<ComboBox></ComboBox>
+													<Input/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -93,10 +98,16 @@
 														noDataText="No Chnage Request available, Please adjust filter or Try Again.">
 														<headerToolbar>
 															<Toolbar>
-																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
+																<Label id="idAllChangeRequest" text="All Change Request({changeRequestGetAllModel>/totalCount})" design="Bold"></Label>
 																<ToolbarSpacer></ToolbarSpacer>
-																<Button icon="sap-icon://sort"></Button>
-																<Button text="My Request" press="handleMyRequest"></Button>
+																<Button icon="sap-icon://sort" press="onSortChnageReq"></Button>
+																<!--	<Button text="My Request" press="handleMyRequest"></Button>-->
+																<SegmentedButton id="SB1" selectionChange="onSelChangeRequestTyp">
+																	<items>
+																		<SegmentedButtonItem text="All Change Request" key="01"/>
+																		<SegmentedButtonItem text="My Change Request" key="02"/>
+																	</items>
+																</SegmentedButton>
 																<Label text="Page No."/>
 																<Select id="changeReqPageSelectID" items="{changeRequestGetAllModel>/PageData}" selectedKey="{changeRequestGetAllModel>/selectedPageKey}"
 																	change="onSelectChnageReqPage">

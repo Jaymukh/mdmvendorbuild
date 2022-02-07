@@ -1,10 +1,12 @@
 sap.ui.define([
 	"murphy/mdm/vendor/murphymdmvendor/controller/BaseController",
 	"murphy/mdm/vendor/murphymdmvendor/shared/serviceCall",
-	"sap/m/MessageToast"
-], function (BaseController, ServiceCall, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/core/Fragment",
+	"sap/ui/core/library"
+], function (BaseController, ServiceCall, MessageToast, Fragment, CoreLibrary) {
 	"use strict";
-
+	var ValueState = CoreLibrary.ValueState;
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.ChangeRequest", {
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
@@ -52,9 +54,11 @@ sap.ui.define([
 
 		onChangeReqLinkPress: function (oEvent) {
 			this.getView().setBusy(true);
-			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
-			var sWorkflowTaskID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.workflow_task_id;
-			var sCRID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
+			var oChangeRequest = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject(),
+				sEntityID = oChangeRequest.crDTO.entity_id,
+				sWorkflowTaskID = oChangeRequest.crDTO.workflow_task_id,
+				sChangeRequestId = oChangeRequest.crDTO.change_request_id;
+
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/workflowID", sWorkflowTaskID);
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
@@ -71,8 +75,45 @@ sap.ui.define([
 						}
 					}
 				}
-
 			};
+			var oParamChangeReq = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"crSearchType": "GET_BY_CR_ID",
+					"parentCrDTOs": [{
+						"crDTO": {
+							"change_request_id": sChangeRequestId
+						}
+					}],
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
+			};
+
+			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function (oData) {
+				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
+				var oVendorModel = this.getView().getModel("CreateVendorModel");
+				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
+				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
+				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
+				/*/changeReq/genData/status
+				/changeReq/genData/currWrkItem*/
+				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
+				if (oChangeReq.change_request_due_date) {
+					var sDueDate = oChangeReq.change_request_due_date.substring(0, 10).replaceAll("-", "");
+					oVendorModel.setProperty("/changeReq/genData/dueDate", sDueDate);
+				}
+
+				if (oChangeReq.change_request_date) {
+					var sReqDate = oChangeReq.change_request_date.substring(0, 10).replaceAll("-", "");
+					var sReqTime = oChangeReq.change_request_date.substring(11, 16);
+					oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from", sReqDate);
+					oVendorModel.setProperty("/changeReq/genData/timeCreation", sReqTime);
+				}
+				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
+			}.bind(this));
+
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
@@ -218,7 +259,7 @@ sap.ui.define([
 					// );
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
-					this.getAuditLogsForCR(sCRID);
+					this.getAuditLogsForCR(sChangeRequestId);
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
@@ -236,7 +277,7 @@ sap.ui.define([
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Not able to fetch the data, Please try after some time");
-			});
+			}.bind(this));
 
 		},
 
@@ -345,6 +386,9 @@ sap.ui.define([
 				}
 				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					////Total count 
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 					if (oData.result.totalPageCount > oData.result.currentPage) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
@@ -380,6 +424,59 @@ sap.ui.define([
 		onChnageLogSwitchChangeReq: function (oEvent) {
 			var oList = this.getView().byId("idAuditLogListChangeRequest");
 			oList.setVisible(oEvent.getParameter("state"));
+		},
+		
+		onSortChnageReq: function (oEvent) {
+			var oButton = oEvent.getSource(),
+				oView = this.getView();
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "murphy.mdm.vendor.murphymdmvendor.fragments.SortAllChangeRequests",
+					controller: this
+				}).then(function (oPopover) {
+					oView.addDependent(oPopover);
+					return oPopover;
+				});
+			}
+
+			this._pPopover.then(function (oPopover) {
+				oPopover.open(oButton);
+			});
+		},
+		onConfirmSortChangeReq: function (oEvent) {
+			var oView = this.getView();
+			var oTable = oView.byId("crList");
+			var mParams = oEvent.getParameters();
+			var oBinding = oTable.getBinding("items");
+			var aSorters = [];
+			// apply sorter 
+			var sPath = mParams.sortItem.getKey();
+			var bDescending = mParams.sortDescending;
+			aSorters.push(new sap.ui.model.Sorter(sPath, bDescending));
+			oBinding.sort(aSorters);
+		},
+		onSelChangeRequestTyp: function (oEvent) {
+			var sKey = oEvent.getParameter("item").getKey();
+			if (sKey === "02") {
+				this.handleMyRequest();
+			} else {
+				this.handleGetAllChangeRequests();
+			}
+		},
+		handleDateRangeChange: function (oEvent) {
+			var sFrom = oEvent.getParameter("from"),
+				sTo = oEvent.getParameter("to"),
+				bValid = oEvent.getParameter("valid"),
+				oEventSource = oEvent.getSource();
+
+			if (bValid) {
+				oEventSource.setValueState(ValueState.None);
+			} else {
+				oEventSource.setValueState(ValueState.Error);
+			}
 		}
 
 		/**
