@@ -907,7 +907,7 @@
 											<Label text="Postal Code"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}"></Text>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country}"></Text>
 											<Label text="City"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
 											<Label text="Language Key"/>

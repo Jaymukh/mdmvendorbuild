@@ -1699,7 +1699,7 @@
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
 											<Input id="idAddrCountryKey" required="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1}" showValueHelp="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country}" showValueHelp="true"
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Country Key"></core:CustomData>
