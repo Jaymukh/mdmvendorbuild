@@ -947,7 +947,7 @@
 		"id": "idAddrCountryKey",
 		"Name": "Country Key",
 		"Key": "land1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country",
 		"panelMapping": "Address",
 		"isPRAData": false
 	}, {
