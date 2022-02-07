@@ -193,7 +193,21 @@ sap.ui.define([
 			titleID.setText(this.oBundle.getText(sKey + "-title"));
 			this.byId("pageContainer").to(this.getView().createId(sKey));
 			if (sKey === "createERPVendorView") {
-				this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', '50001');
+				var oChangeReq =  {
+								"genData": {
+									"desc": "",
+									"priority": "",
+									"dueDate": "",
+									"reason": "30001",
+									"status": "",
+									"createdBy": "",
+									"currWrkItem": "",
+									"timeCreation": "",
+									"dateCreation": "",
+									"change_request_id" :"50001"
+								}
+							};
+				this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
 				this._createCREntityID();
 			}
 			if (sKey === "changeRequestId" || sKey === "changeRequestId-Mass") {
@@ -268,7 +282,22 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', '50001');
+			var oChangeReq =  {
+								"genData": {
+									"desc": "",
+									"priority": "",
+									"dueDate": "",
+									"reason": "30001",
+									"status": "",
+									"createdBy": "",
+									"currWrkItem": "",
+									"timeCreation": "",
+									"dateCreation": "",
+									"change_request_id" :"50001"
+								}
+							};
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
+			
 			this._createCREntityID();
 		},
 
