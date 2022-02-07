@@ -903,6 +903,18 @@
 														<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
 													</customData>
 												</Input>
+												<Label text="Withholding Tax Type"/>
+												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/witht}">
+													<customData>
+														<core:CustomData key="title" value="Withholding Tax Type"></core:CustomData>
+														<core:CustomData key="table" value="T059P"></core:CustomData>
+														<core:CustomData key="text40" value="Name"></core:CustomData>
+														<core:CustomData key="witht" value="Key"></core:CustomData>
+														<core:CustomData key="inputKey" value="witht"></core:CustomData>
+														<core:CustomData key="inputText" value="text40"></core:CustomData>
+													</customData>
+												</Input>
 												<Label text="Withholding Tax Code"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}">

@@ -489,16 +489,25 @@ sap.ui.define([
 
 					//Apply filters
 					var aFilters = [];
-					if (oData.table === "T059Z") {
-						var sLand1 = this.byId("idWithHoldTaxCtry").getValue();
-						if (sLand1) {
-							aFilters.push(new Filter("land1", FilterOperator.EQ, sLand1));
+					var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
+					var sTaxType = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/witht");
+					var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
+					if("T059P"){ //Tax type
+						if (sLandTax) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
+						}
+					}
+					
+					if (oData.table === "T059Z") { //Tax code
+						if (sLandTax) {
+							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
+						}
+						if(sTaxType){
+							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxType));
 						}
 					}
 
-					if (oData.table === "T059C") {
-						var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
-						var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
+					if (oData.table === "T059C") {//Recipient type
 						if (sTaxCode) {
 							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxCode));
 						}
