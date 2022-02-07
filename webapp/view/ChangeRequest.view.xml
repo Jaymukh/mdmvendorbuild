@@ -88,7 +88,9 @@
 											<l:DynamicSideContent id="changeReqSideContentId" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true"
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
-													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}" items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest">
+													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}"
+														items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest"
+														noDataText="No Chnage Request available, Please adjust filter or Try Again.">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestStatisticsModel>/totalCount})" design="Bold"></Label>
@@ -141,10 +143,9 @@
 																	content="{CreateVendorModel>/workflow}" groupByType="Year" enableScroll="false">
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}"
-																			text="{CreateVendorModel>JobResponsibilities}" userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}"
-																			icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
-																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}" text="{CreateVendorModel>JobResponsibilities}"
+																			userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}" icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>
@@ -179,7 +180,39 @@
 																</form:SimpleForm>
 															</IconTabFilter>
 															<IconTabFilter text="Attachments" key="attachments">
-																<Text text="Attachments go here ..."/>
+																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload"
+																	selectionChange="onSelectionDocumentChange" typeMissmatch="onTypeMissmatch"
+																	items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }" numberOfAttachmentsText="Uploaded Documents"
+																	uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster" fileType="{CreateVendorModel>/SupportedFileType}">
+																	<!--showSeparators="{settings>/showSeparators}"-->
+																	<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
+																	<!--maximumFileSize="{settings>/maximumFileSize}" -->
+																	<!--<toolbar>-->
+																	<!--	<OverflowToolbar id="myId">-->
+																	<!--		<Title id="attachmentTitle"/>-->
+																	<!--		<ToolbarSpacer/>-->
+																	<!--		<SearchField width="10rem" search="onSearch"/>-->
+																	<!--		<Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent"/>-->
+																	<!--		<ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent"/>-->
+																	<!--		<UploadCollectionToolbarPlaceholder/>-->
+																	<!--	</OverflowToolbar>-->
+																	<!--</toolbar>-->
+																	<items>
+																		<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
+																			fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
+																			enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+																			<!-- attributes="{path : '/', templateShareable : false}"-->
+																			<!--statuses="{path : '/', templateShareable : false}" -->
+																			<attributes>
+																				<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by}"/>
+																				<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on', formatter : '.dateFormater'}"/>
+																			</attributes>
+																			<!--<statuses>-->
+																			<!--	<ObjectStatus title="{title}" text="{text}" state="{state}"/>-->
+																			<!--</statuses>-->
+																		</UploadCollectionItem>
+																	</items>
+																</UploadCollection>
 															</IconTabFilter>
 															<IconTabFilter text="Comments" key="comments">
 																<!--<Label text="Comments go here..."/>-->
@@ -190,7 +223,7 @@
 																<VBox id="commentVBoxID" visible="false">
 																	<Label text="Write a Comment:"/>
 																	<HBox width="100%">
-																	<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
+																		<!--	<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
 																		<TextArea id="changeReruestListCommentBoxId" width="150%"></TextArea>
 																	</HBox>
 																	<Toolbar>
@@ -205,10 +238,8 @@
 																	<!--content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" groupByType="Year" enableScroll="false">-->
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by}" userNameClickable="false"
-																			
-																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"
-																			></commons:TimelineItem>
-																			<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"></commons:TimelineItem>
+																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
 															</IconTabFilter>

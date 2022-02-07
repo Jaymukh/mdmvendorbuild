@@ -143,6 +143,18 @@
 					"defaultBindingMode": "TwoWay"
 				}
 			},
+			"crERPAttachmentModel":{
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"crAuditLogModel":{
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
 			"crERPTitleFilterModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {

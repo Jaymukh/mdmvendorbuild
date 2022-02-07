@@ -228,46 +228,46 @@ sap.ui.define([
 						MessageToast.show("Error In Generating Lifnr");
 					}.bind(this));
 				} else {
-						var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
-						if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1')) {
-							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
-						}
-						if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
-							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
-						}
-					
-						var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-						for (var k = 0; k < sKeylfb1.length; k++) {
-							oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
-						}
-						var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-						for (var j = 0; j < sKeylfbw.length; j++) {
-							oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
-						}
-						if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
-							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
-						}
-						if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
-							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
-						}
-						if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.hasOwnProperty('pra_bp_vend_esc_1')) {
-							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
-						}
-						if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.hasOwnProperty('pra_bp_vend_md_1')) {
-							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
-						}
-						if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
-								oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
-						}
-						if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
-							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-						}
-						if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-						}
-			
-						this._handleSaveWithLifnr(oData);
+					var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
+					if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1')) {
+						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
+					}
+					if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
+						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
+					}
+
+					var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+					for (var k = 0; k < sKeylfb1.length; k++) {
+						oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
+					}
+					var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+					for (var j = 0; j < sKeylfbw.length; j++) {
+						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
+					}
+					if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
+						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.hasOwnProperty('pra_bp_vend_esc_1')) {
+						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.hasOwnProperty('pra_bp_vend_md_1')) {
+						oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
+						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
+						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+					}
+					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
+						oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+						oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+					}
+
+					this._handleSaveWithLifnr(oData);
 				}
 
 			}
@@ -565,7 +565,7 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-			}else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
+			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/land1', oVal.land1);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
@@ -651,70 +651,6 @@ sap.ui.define([
 				}
 			}
 			this.getView().getModel("CreateVendorModel").refresh(true);
-		},
-
-		onCreateERPVendorUpload: function (oEvent) {
-			this.getView().setBusy(true);
-			var file = this.getView().byId('UploadCollection');
-			// var a = this.getBase64(file.getItems()[0]);
-			for (var i = 0; i < file.getItems().length; i++) {
-				var objParamCreate = {
-					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/upload",
-					type: 'POST',
-					hasPayload: true,
-					data: {
-						"documentInteractionDtos": [{
-							"attachmentEntity": {
-								"attachment_name": file.getItems()[i].getFileName(),
-								"attachment_description": file.getItems()[i].getFileName(),
-								"attachment_link": "",
-								"mime_type": "application/text",
-								"file_name": file.getItems()[i].getFileName(),
-								"attachment_type_id": "11001",
-								"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-								"file_name_with_extension": file.getItems()[i].getFileName()
-							},
-							"entityType": "VENDOR",
-							"businessEntity": {
-								"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId")
-							},
-							"fileContent": this["oBase64_" + i]
-						}]
-					}
-				};
-				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-						this.getView().setBusy(false);
-						if (oDataResp.result) {
-							var sFileName = oDataResp.result.documentInteractionDtos[0].attachmentEntity.attachment_name;
-							var sEntityID = oDataResp.result.documentInteractionDtos[0].businessEntity.entity_id;
-							MessageToast.show(sFileName + " Uploaded Successfully for " + sEntityID + " Entity ID")
-						}
-					}.bind(this),
-					function (oError) {
-						this.getView().setBusy(false);
-						MessageToast.show("Error in File Uploading")
-
-					}.bind(this)
-				);
-			}
-
-		},
-
-		onChangeFileUpload: function (evt) {
-			var files = evt.getParameter("files");
-			var file = files[0];
-			if (files && file) {
-				var sIndex = evt.getSource().getItems().length;
-				var reader = new FileReader();
-
-				reader.onload = function (readerEvt) {
-					var binaryString = readerEvt.target.result;
-					// var sIndex = evt.getSource().getItems().length;
-					this["oBase64_" + sIndex] = btoa(binaryString);
-				}.bind(this);
-				reader.readAsBinaryString(file);
-			}
-
 		},
 
 		onCheckClick: function () {

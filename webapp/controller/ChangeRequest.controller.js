@@ -54,6 +54,7 @@ sap.ui.define([
 			this.getView().setBusy(true);
 			var sEntityID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			var sWorkflowTaskID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.workflow_task_id;
+			var sCRID = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
 			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/workflowID", sWorkflowTaskID);
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
@@ -216,6 +217,8 @@ sap.ui.define([
 					// 	oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate.getDate()
 					// );
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAuditLogsForCR(sCRID);
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
@@ -293,6 +296,8 @@ sap.ui.define([
 		onSelectChangeRequest: function (oEvent) {
 			var sEntityID = oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			this.getAllCommentsForCR(sEntityID);
+			this.getAllDocumentsForCR(sEntityID);
+			this.getAuditLogsForCR(oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
 			oToggleBtn.firePress({pressed : true});
 			oToggleBtn.setPressed(true);
