@@ -1092,7 +1092,7 @@ sap.ui.define([
 				hasPayload: true,
 				data: {
 					"changeRequestLogs": [{
-						"changeRequestId": 1235
+						"changeRequestId": sCrID
 					}]
 				}
 			};
@@ -1101,6 +1101,49 @@ sap.ui.define([
 					if (oDataResp.result) {
 						this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
 						this.getView().getModel("crAuditLogModel").refresh(true);
+
+						var result = {};
+
+						for (var {
+								attributeCategoryId,
+								attributeName,
+								changeLogTypeId,
+								changeRequestId,
+								change_request_log_id,
+								logBy,
+								logDate,
+								newValue,
+								oldValue
+							}
+							of oDataResp.result.changeRequestLogs) {
+							if (!result[logBy]) result[logBy] = [];
+							result[logBy].push({
+								attributeCategoryId,
+								attributeName,
+								changeLogTypeId,
+								changeRequestId,
+								change_request_log_id,
+								logDate,
+								newValue,
+								oldValue
+							});
+						}
+
+						var changeLog = [];
+
+						for (var i = 0; i < Object.keys(result).length; i++) {
+							var obj = {
+								logBy: Object.keys(result)[i],
+								logs: result[Object.keys(result)[i]]
+							}
+							changeLog.push(obj)
+
+						}
+						this.getView().getModel("crAuditLogModel").setData({
+							items: changeLog
+						});
+						this.getView().getModel("crAuditLogModel").refresh(true);
+
 					}
 				}.bind(this),
 				function (oError) {
@@ -1241,7 +1284,35 @@ sap.ui.define([
 		dateFormater: function (sDateTime) {
 			var sDate = sDateTime.split("T")[0] ? sDateTime.split("T")[0] : "";
 			var sTime = sDateTime.split("T")[1] ? sDateTime.split("T")[1].split(".")[0] : "";
-			return sDate + " " + sTime;
+			return sDate + " at " + sTime;
+		},
+
+		auditLogOldDateFormat: function (sValue, attrName) {
+			if (attrName === "created_on" || attrName === "modified_on") {
+				sValue = sValue ? this.getDateFromTime(sValue) : "";
+			}
+			return "Old : " + sValue;
+		},
+
+		auditLogNewDateFormat: function (sValue, attrName) {
+			if (attrName === "created_on" || attrName === "modified_on") {
+				sValue = sValue ? this.getDateFromTime(sValue) : "";
+			}
+			return "New : " + sValue;
+		},
+
+		getDateFromTime: function (sValue) {
+			var date = new Date(1970, 0, 1);
+			date.setSeconds(sValue.slice(0, 10));
+			var sDate = ("" + date.getDate()).length === 1 ? "0" + date.getDate() : date.getDate();
+			var sMonth = ("" + (date.getMonth() + 1)).length === 1 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+			var sYear = date.getFullYear();
+			var sHour = ("" + date.getHours()).length === 1 ? "0" + date.getHours() : date.getHours();
+			var sMinute = ("" + date.getMinutes()).length === 1 ? "0" + date.getMinutes() : date.getMinutes();
+			date.getMinutes();
+			var sSeconds = ("" + date.getSeconds()).length === 1 ? "0" + date.getSeconds() : date.getSeconds();
+			date.getSeconds();
+			return sDate + "-" + sMonth + "-" + sYear + " at " + sHour + ":" + sMinute + ":" + sSeconds;
 		}
 
 	});

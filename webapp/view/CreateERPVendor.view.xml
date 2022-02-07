@@ -2371,7 +2371,7 @@
 									<IconTabFilter text="Attachments" key="attachments">
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionCreateReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
-											typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete" uploadTerminated="onUploadTerminated"
+											typeMissmatch="onTypeMissmatch"
 											items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }" numberOfAttachmentsText="Uploaded Documents"
 											uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster" fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->

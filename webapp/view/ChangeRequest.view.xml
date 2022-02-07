@@ -153,7 +153,7 @@
 																<!--<Text text="Documents go here ..."/>-->
 																<HBox>
 																	<SearchField ></SearchField>
-																	<Switch state="true" customTextOn=" " customTextOff=" "></Switch>
+																	<Switch state="false" change="onChnageLogSwitchChangeReq"></Switch>
 																	<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
 																</HBox>
 																<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
@@ -178,12 +178,51 @@
 																		<Text text="3"/>
 																	</form:content>
 																</form:SimpleForm>
+																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}">
+																	<CustomListItem>
+																		<Panel width="auto">
+																			<content>
+																				<VBox>
+																					<HBox alignItems="Center">
+																						<f:Avatar initials="{crAuditLogModel>logBy}" displaySize="XS"></f:Avatar>
+																						<Text text="{crAuditLogModel>logBy} added Changes"/>
+																					</HBox>
+																					<Table items="{path: 'crAuditLogModel>logs'}">
+																						<columns>
+																							<Column>
+																								<Text text="Change Type"/>
+																							</Column>
+																							<Column>
+																								<Text text="Attribute"/>
+																							</Column>
+																							<Column >
+																								<Text text="Value"/>
+																							</Column>
+																						</columns>
+																						<items>
+																							<ColumnListItem>
+																								<cells>
+																									<Text text="{crAuditLogModel>changeLogTypeId}"/>
+																									<Text text="{crAuditLogModel>attributeName}"/>
+																									<VBox>
+																										<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
+																									<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
+																									</VBox>
+																								</cells>
+																							</ColumnListItem>
+																						</items>
+																					</Table>
+																				</VBox>
+																			</content>
+																		</Panel>
+																	</CustomListItem>
+																</List>
 															</IconTabFilter>
 															<IconTabFilter text="Attachments" key="attachments">
-																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload"
-																	selectionChange="onSelectionDocumentChange" typeMissmatch="onTypeMissmatch"
-																	items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }" numberOfAttachmentsText="Uploaded Documents"
-																	uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster" fileType="{CreateVendorModel>/SupportedFileType}">
+																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
+																	typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
+																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+																	fileType="{CreateVendorModel>/SupportedFileType}">
 																	<!--showSeparators="{settings>/showSeparators}"-->
 																	<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
 																	<!--maximumFileSize="{settings>/maximumFileSize}" -->

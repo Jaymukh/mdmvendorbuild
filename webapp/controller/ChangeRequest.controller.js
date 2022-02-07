@@ -299,7 +299,9 @@ sap.ui.define([
 			this.getAllDocumentsForCR(sEntityID);
 			this.getAuditLogsForCR(oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
-			oToggleBtn.firePress({pressed : true});
+			oToggleBtn.firePress({
+				pressed: true
+			});
 			oToggleBtn.setPressed(true);
 		},
 
@@ -312,18 +314,18 @@ sap.ui.define([
 			});
 			this.onPressCancelComment();
 		},
-		
-		handleMyRequest : function(oEvent){
+
+		handleMyRequest: function (oEvent) {
 			this.getView().setBusy(true);
 			var objParamSubmit = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				type: 'POST',
 				hasPayload: true,
 				data: {
-						"crSearchType":"GET_ALL_BY_USER_ID",
-						"currentPage":1,
-						"userId":this.getView().getModel("userManagementModel").getProperty("/data/user_id")
-						}
+					"crSearchType": "GET_ALL_BY_USER_ID",
+					"currentPage": 1,
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 				this.getView().setBusy(false);
@@ -373,6 +375,11 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				MessageToast.show("Error in getting my requests");
 			}.bind(this));
+		},
+
+		onChnageLogSwitchChangeReq: function (oEvent) {
+			var oList = this.getView().byId("idAuditLogListChangeRequest");
+			oList.setVisible(oEvent.getParameter("state"));
 		}
 
 		/**
