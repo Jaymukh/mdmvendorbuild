@@ -90,8 +90,8 @@ sap.ui.define([
 					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 				}
 			};
-			
-			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function(oData){
+
+			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function (oData) {
 				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
 				var oVendorModel = this.getView().getModel("CreateVendorModel");
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
@@ -100,20 +100,20 @@ sap.ui.define([
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
 				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
-				if(oChangeReq.change_request_due_date){
-					var sDueDate = oChangeReq.change_request_due_date.substring(0,10).replaceAll("-", "");
+				if (oChangeReq.change_request_due_date) {
+					var sDueDate = oChangeReq.change_request_due_date.substring(0, 10).replaceAll("-", "");
 					oVendorModel.setProperty("/changeReq/genData/dueDate", sDueDate);
 				}
-				
-				if(oChangeReq.change_request_date){
-					var sReqDate = oChangeReq.change_request_date.substring(0,10).replaceAll("-", "");
-					var sReqTime = oChangeReq.change_request_date.substring(11,16);
+
+				if (oChangeReq.change_request_date) {
+					var sReqDate = oChangeReq.change_request_date.substring(0, 10).replaceAll("-", "");
+					var sReqTime = oChangeReq.change_request_date.substring(11, 16);
 					oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from", sReqDate);
 					oVendorModel.setProperty("/changeReq/genData/timeCreation", sReqTime);
 				}
 				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
 			}.bind(this));
-			
+
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result.parentDTO.customData) {
@@ -258,6 +258,8 @@ sap.ui.define([
 					// 	oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + oDate.getDate()
 					// );
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAuditLogsForCR(sChangeRequestId);
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
@@ -335,6 +337,8 @@ sap.ui.define([
 		onSelectChangeRequest: function (oEvent) {
 			var sEntityID = oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
 			this.getAllCommentsForCR(sEntityID);
+			this.getAllDocumentsForCR(sEntityID);
+			this.getAuditLogsForCR(oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
 			oToggleBtn.firePress({
 				pressed: true
@@ -416,6 +420,12 @@ sap.ui.define([
 				MessageToast.show("Error in getting my requests");
 			}.bind(this));
 		},
+
+		onChnageLogSwitchChangeReq: function (oEvent) {
+			var oList = this.getView().byId("idAuditLogListChangeRequest");
+			oList.setVisible(oEvent.getParameter("state"));
+		},
+		
 		onSortChnageReq: function (oEvent) {
 			var oButton = oEvent.getSource(),
 				oView = this.getView();

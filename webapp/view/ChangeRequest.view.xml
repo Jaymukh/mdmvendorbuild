@@ -94,7 +94,8 @@
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
 													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}"
-														items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest">
+														items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest"
+														noDataText="No Chnage Request available, Please adjust filter or Try Again.">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestGetAllModel>/totalCount})" design="Bold"></Label>
@@ -163,7 +164,7 @@
 																<!--<Text text="Documents go here ..."/>-->
 																<HBox>
 																	<SearchField ></SearchField>
-																	<Switch state="true" customTextOn=" " customTextOff=" "></Switch>
+																	<Switch state="false" change="onChnageLogSwitchChangeReq"></Switch>
 																	<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
 																</HBox>
 																<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
@@ -188,9 +189,80 @@
 																		<Text text="3"/>
 																	</form:content>
 																</form:SimpleForm>
+																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}">
+																	<CustomListItem>
+																		<Panel width="auto">
+																			<content>
+																				<VBox>
+																					<HBox alignItems="Center">
+																						<f:Avatar initials="{crAuditLogModel>logBy}" displaySize="XS"></f:Avatar>
+																						<Text text="{crAuditLogModel>logBy} added Changes"/>
+																					</HBox>
+																					<Table items="{path: 'crAuditLogModel>logs'}">
+																						<columns>
+																							<Column>
+																								<Text text="Change Type"/>
+																							</Column>
+																							<Column>
+																								<Text text="Attribute"/>
+																							</Column>
+																							<Column >
+																								<Text text="Value"/>
+																							</Column>
+																						</columns>
+																						<items>
+																							<ColumnListItem>
+																								<cells>
+																									<Text text="{crAuditLogModel>changeLogTypeId}"/>
+																									<Text text="{crAuditLogModel>attributeName}"/>
+																									<VBox>
+																										<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
+																									<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
+																									</VBox>
+																								</cells>
+																							</ColumnListItem>
+																						</items>
+																					</Table>
+																				</VBox>
+																			</content>
+																		</Panel>
+																	</CustomListItem>
+																</List>
 															</IconTabFilter>
 															<IconTabFilter text="Attachments" key="attachments">
-																<Text text="Attachments go here ..."/>
+																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
+																	typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
+																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+																	fileType="{CreateVendorModel>/SupportedFileType}">
+																	<!--showSeparators="{settings>/showSeparators}"-->
+																	<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
+																	<!--maximumFileSize="{settings>/maximumFileSize}" -->
+																	<!--<toolbar>-->
+																	<!--	<OverflowToolbar id="myId">-->
+																	<!--		<Title id="attachmentTitle"/>-->
+																	<!--		<ToolbarSpacer/>-->
+																	<!--		<SearchField width="10rem" search="onSearch"/>-->
+																	<!--		<Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent"/>-->
+																	<!--		<ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent"/>-->
+																	<!--		<UploadCollectionToolbarPlaceholder/>-->
+																	<!--	</OverflowToolbar>-->
+																	<!--</toolbar>-->
+																	<items>
+																		<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
+																			fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
+																			enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+																			<!-- attributes="{path : '/', templateShareable : false}"-->
+																			<!--statuses="{path : '/', templateShareable : false}" -->
+																			<attributes>
+																				<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by}"/>
+																				<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on', formatter : '.dateFormater'}"/>
+																			</attributes>
+																			<!--<statuses>-->
+																			<!--	<ObjectStatus title="{title}" text="{text}" state="{state}"/>-->
+																			<!--</statuses>-->
+																		</UploadCollectionItem>
+																	</items>
+																</UploadCollection>
 															</IconTabFilter>
 															<IconTabFilter text="Comments" key="comments">
 																<!--<Label text="Comments go here..."/>-->

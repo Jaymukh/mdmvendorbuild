@@ -111,7 +111,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft"  items="{SearchVendorModel>/searchAllModelData/vendorDTOs}">
+							<Table mode="SingleSelectLeft"  items="{SearchVendorModel>/searchAllModelData/vendorDTOs}" noDataText="No Vendor available, Please adjust filter or Try Again.">
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
