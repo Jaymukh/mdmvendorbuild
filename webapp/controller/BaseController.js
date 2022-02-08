@@ -831,6 +831,9 @@ sap.ui.define([
 					"/createCRVendorData/crTime",
 					oDate.getHours() + ":" + oDate.getMinutes()
 				);
+				this.getView().getModel("crERPCommentedModel").setData(null);
+				this.getView().getModel("crERPAttachmentModel").setData(null);
+				this.getView().getModel("crAuditLogModel").setData(null);
 				this.getView().getModel("CreateVendorModel").refresh();
 			}.bind(this), function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
@@ -1174,6 +1177,7 @@ sap.ui.define([
 					var binaryString = readerEvt.target.result;
 					// var sIndex = evt.getSource().getItems().length;
 					var sBase64 = btoa(binaryString);
+					var sResult = `data:${file.type};base64,${btoa(event.target.result)}`
 					var objParamCreate = {
 						url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/upload",
 						type: 'POST',
@@ -1194,7 +1198,7 @@ sap.ui.define([
 								"businessEntity": {
 									"entity_id": sEntityID
 								},
-								"fileContent": sBase64
+								"fileContent": sResult
 							}]
 						}
 					};
@@ -1238,7 +1242,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
 					if (oDataResp) {
-						var blob;
+						/*var blob;
 						if (sMimeType === "pdf") {
 							blob = this.converBase64toBlob(oDataResp, 'application/pdf');
 						} else if (sMimeType === "jpeg" || sMimeType === "jpg") {
@@ -1249,7 +1253,18 @@ sap.ui.define([
 
 						} else if (sMimeType === "eml") {
 							blob = this.converBase64toBlob(oDataResp, 'message/rfc822');
-						}
+						}*/
+						
+						var a = document.createElement("a");
+						a.href = oDataResp;
+						a.download = sDocName;
+						a.click();
+
+						//var a = document.createElement("a"); //Create <a>
+						//   a.href = "data:image/png;base64," + oDataResp; //Image Base64 Goes here
+						//   a.download = "Image.PNG"; //File name Here
+						//   a.click();
+
 					}
 				}.bind(this),
 				function (oError) {
@@ -1277,6 +1292,7 @@ sap.ui.define([
 				type: contentType
 			}); //statement which creates the blob
 			return blob;
+
 		},
 
 		onTypeMissmatch: function () {

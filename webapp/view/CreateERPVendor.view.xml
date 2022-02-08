@@ -226,7 +226,7 @@
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Input type="Number" value="" placeholder="Number">
 												<!--<layoutData>
@@ -243,7 +243,7 @@
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Input type="Number" value="" placeholder="Number">
 												<!--	<layoutData>
@@ -257,7 +257,7 @@
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Input value="" placeholder="Number">
 												<!--	<layoutData>
@@ -1742,7 +1742,7 @@
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>-->
 											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}">
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
@@ -1759,7 +1759,7 @@
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>-->
 											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}">
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}" />
+												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
@@ -1943,8 +1943,17 @@
 														<Label text="Intercompany Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bukrs}" maxLength="4"/>
 														<Label text="Resident Country"/>
-														<Input id="idPRAAccResidentCountry" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"/>
+														<Input id="idPRAAccResidentCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3">
+															<customData>
+																<core:CustomData key="title" value="Country"></core:CustomData>
+																<core:CustomData key="table" value="T005"></core:CustomData>
+																<core:CustomData key="land1" value="Country code"></core:CustomData>
+																<core:CustomData key="landx" value="Name"></core:CustomData>
+																<core:CustomData key="inputKey" value="land1"></core:CustomData>
+																<core:CustomData key="inputText" value="land1"></core:CustomData>
+															</customData>
+														</Input>
 														<Label required="true" text="Entity Type"/>
 														<Select id="idPRAAccEntityType" forceSelection="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}">
@@ -1968,8 +1977,17 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/cdex_company}"
 															maxLength="2"/>
 														<Label text="Region"/>
-														<Input id="idPRAAccRegionResidence" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3"/>
+														<Input id="idPRAAccRegionResidence" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3">
+															<customData>
+																<core:CustomData key="title" value="Region"></core:CustomData>
+																<core:CustomData key="table" value="T005S"></core:CustomData>
+																<core:CustomData key="inputKey" value="bland"></core:CustomData>
+																<core:CustomData key="inputText" value="bland"></core:CustomData>
+																<core:CustomData key="bland" value="Code"></core:CustomData>
+																<core:CustomData key="bezei" value="Region"></core:CustomData>
+															</customData>
+														</Input>
 														<Label text="Tribe No."/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}" maxLength="2"/>
 														<core:Title text="Payment Information"/>
@@ -2394,9 +2412,9 @@
 									<IconTabFilter text="Attachments" key="attachments">
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionCreateReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
-											typeMissmatch="onTypeMissmatch"
-											items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }" numberOfAttachmentsText="Uploaded Documents"
-											uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster" fileType="{CreateVendorModel>/SupportedFileType}">
+											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
+											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+											fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->
 											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
 											<!--maximumFileSize="{settings>/maximumFileSize}" -->
