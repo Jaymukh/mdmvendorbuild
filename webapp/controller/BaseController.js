@@ -1177,6 +1177,7 @@ sap.ui.define([
 					var binaryString = readerEvt.target.result;
 					// var sIndex = evt.getSource().getItems().length;
 					var sBase64 = btoa(binaryString);
+					var sResult = `data:${file.type};base64,${btoa(event.target.result)}`
 					var objParamCreate = {
 						url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/upload",
 						type: 'POST',
@@ -1197,7 +1198,7 @@ sap.ui.define([
 								"businessEntity": {
 									"entity_id": sEntityID
 								},
-								"fileContent": sBase64
+								"fileContent": sResult
 							}]
 						}
 					};
@@ -1241,7 +1242,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
 					if (oDataResp) {
-						var blob;
+						/*var blob;
 						if (sMimeType === "pdf") {
 							blob = this.converBase64toBlob(oDataResp, 'application/pdf');
 						} else if (sMimeType === "jpeg" || sMimeType === "jpg") {
@@ -1252,7 +1253,12 @@ sap.ui.define([
 
 						} else if (sMimeType === "eml") {
 							blob = this.converBase64toBlob(oDataResp, 'message/rfc822');
-						}
+						}*/
+						
+						var a = document.createElement("a");
+						a.href = oDataResp;
+						a.download = sDocName;
+						a.click();
 
 						//var a = document.createElement("a"); //Create <a>
 						//   a.href = "data:image/png;base64," + oDataResp; //Image Base64 Goes here
