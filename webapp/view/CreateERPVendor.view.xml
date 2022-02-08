@@ -174,8 +174,9 @@
 													<core:CustomData key="table" value="T005S"></core:CustomData>
 													<core:CustomData key="inputKey" value="bland"></core:CustomData>
 													<core:CustomData key="inputText" value="bland"></core:CustomData>
-													<core:CustomData key="bland" value="Code"></core:CustomData>
 													<core:CustomData key="bezei" value="Region"></core:CustomData>
+													<core:CustomData key="bland" value="Region Code"></core:CustomData>
+													<core:CustomData key="land1" value="Country"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Language"/>
@@ -625,10 +626,15 @@
 												<customData>
 													<core:CustomData key="title" value="Bank Key"></core:CustomData>
 													<core:CustomData key="table" value="local"></core:CustomData>
-													<core:CustomData key="bankKey" value="Bank Key"></core:CustomData>
-													<core:CustomData key="bankName" value="Bank Name"></core:CustomData>
-													<core:CustomData key="inputKey" value="bankKey"></core:CustomData>
-													<core:CustomData key="inputText" value="bankKey"></core:CustomData>
+													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
+													<core:CustomData key="inputText" value="bankl"></core:CustomData>
+													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>
+													<core:CustomData key="banka" value="Bank Name"></core:CustomData>
+													<core:CustomData key="brnch" value="Branch"></core:CustomData>
+													<core:CustomData key="swift" value="Swift Code"></core:CustomData>
+													<core:CustomData key="stras" value="Address"></core:CustomData>
+													<core:CustomData key="ort01" value="City"></core:CustomData>
+													<core:CustomData key="banks" value="Country"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Bank Name"/>
@@ -971,6 +977,7 @@
 														<core:CustomData key="table" value="T059P"></core:CustomData>
 														<core:CustomData key="text40" value="Name"></core:CustomData>
 														<core:CustomData key="witht" value="Key"></core:CustomData>
+														<core:CustomData key="land1" value="Country"></core:CustomData>
 														<core:CustomData key="inputKey" value="witht"></core:CustomData>
 														<core:CustomData key="inputText" value="text40"></core:CustomData>
 													</customData>
@@ -1635,10 +1642,11 @@
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
-													<core:CustomData key="inputKey" value="land1"></core:CustomData>
-													<core:CustomData key="inputText" value="land1"></core:CustomData>
-													<core:CustomData key="land1" value="Code"></core:CustomData>
+													<core:CustomData key="inputKey" value="bland"></core:CustomData>
+													<core:CustomData key="inputText" value="bland"></core:CustomData>
 													<core:CustomData key="bezei" value="Region"></core:CustomData>
+													<core:CustomData key="bland" value="Region Code"></core:CustomData>
+													<core:CustomData key="land1" value="Country"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="Language"/>
@@ -2261,10 +2269,11 @@
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
-																<core:CustomData key="inputKey" value="land1"></core:CustomData>
-																<core:CustomData key="inputText" value="land1"></core:CustomData>
+																<core:CustomData key="inputKey" value="bland"></core:CustomData>
+																<core:CustomData key="inputText" value="bland"></core:CustomData>
 																<core:CustomData key="bezei" value="Region"></core:CustomData>
-																<core:CustomData key="land1" value="Code"></core:CustomData>
+																<core:CustomData key="bland" value="Region Code"></core:CustomData>
+																<core:CustomData key="land1" value="Country"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
