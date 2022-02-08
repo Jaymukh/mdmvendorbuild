@@ -189,7 +189,7 @@
 																		<Text text="3"/>
 																	</form:content>
 																</form:SimpleForm>
-																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}">
+																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
 																	<CustomListItem>
 																		<Panel width="auto">
 																			<content>
