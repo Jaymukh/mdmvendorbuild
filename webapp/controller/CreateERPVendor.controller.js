@@ -674,11 +674,18 @@ sap.ui.define([
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
-				if (!oItem.isPRAData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+				if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if ((oItem.isPRAData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR")) &&
+				} else if (	(oItem.isPRAData &&  !oItem.isPurOrgData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR")) &&
+					(oData.getProperty(oItem
+							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
+					aEmptyFields.push(oItem);
+					sValueState = "Error";
+				}else if(oItem.isPurOrgData && 
+					((oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") || (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "GENV"))&&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
