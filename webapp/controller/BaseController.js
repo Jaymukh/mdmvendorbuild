@@ -831,6 +831,9 @@ sap.ui.define([
 					"/createCRVendorData/crTime",
 					oDate.getHours() + ":" + oDate.getMinutes()
 				);
+				this.getView().getModel("crERPCommentedModel").setData(null);
+				this.getView().getModel("crERPAttachmentModel").setData(null);
+				this.getView().getModel("crAuditLogModel").setData(null);
 				this.getView().getModel("CreateVendorModel").refresh();
 			}.bind(this), function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
@@ -1056,6 +1059,9 @@ sap.ui.define([
 				}.bind(this)
 			);
 		},
+		this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
+		this.getView().getModel("crERPAttachmentModel").setData(oDataResp.result);
+		this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
 
 		getAllDocumentsForCR: function (sEntityID) {
 			this.getView().setBusy(true);
@@ -1250,6 +1256,12 @@ sap.ui.define([
 						} else if (sMimeType === "eml") {
 							blob = this.converBase64toBlob(oDataResp, 'message/rfc822');
 						}
+
+						//var a = document.createElement("a"); //Create <a>
+						//   a.href = "data:image/png;base64," + oDataResp; //Image Base64 Goes here
+						//   a.download = "Image.PNG"; //File name Here
+						//   a.click();
+
 					}
 				}.bind(this),
 				function (oError) {
@@ -1277,6 +1289,7 @@ sap.ui.define([
 				type: contentType
 			}); //statement which creates the blob
 			return blob;
+
 		},
 
 		onTypeMissmatch: function () {
