@@ -1059,9 +1059,6 @@ sap.ui.define([
 				}.bind(this)
 			);
 		},
-		this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
-		this.getView().getModel("crERPAttachmentModel").setData(oDataResp.result);
-		this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
 
 		getAllDocumentsForCR: function (sEntityID) {
 			this.getView().setBusy(true);
