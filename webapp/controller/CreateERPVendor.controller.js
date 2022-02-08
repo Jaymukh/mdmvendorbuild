@@ -509,7 +509,7 @@ sap.ui.define([
 
 					if (oData.table === "T059C") {//Recipient type
 						if (sTaxCode) {
-							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxCode));
+							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxType));
 						}
 						if (sLandTax) {
 							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
@@ -563,13 +563,13 @@ sap.ui.define([
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.bankName);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.banka);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.street);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.stras);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.city);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.ort01);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.country);
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.banks);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
