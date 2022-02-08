@@ -112,6 +112,8 @@ sap.ui.define([
 					oVendorModel.setProperty("/changeReq/genData/timeCreation", sReqTime);
 				}
 				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
+				oVendorModel.refresh(true);
+				
 			}.bind(this));
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
