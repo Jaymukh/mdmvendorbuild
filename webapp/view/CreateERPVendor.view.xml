@@ -2010,7 +2010,7 @@
 															</items>
 														</Select>
 														<Label text="Owner Minimum Pay"/>
-														<Input id="idPRAAccOwnerMinPay" required="true" maxLength="13"
+														<Input id="idPRAAccOwnerMinPay" maxLength="13"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay}"/>
 														<Label text="Do Not Recoup"/>
 														<CheckBox select="onSelectCheckBox">

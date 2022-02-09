@@ -700,7 +700,7 @@
 							"enty_cd": "",
 							"direct_pay_fl": null,
 							"do_not_rpt_onrr": null,
-							"owner_min_pay": "",
+							"owner_min_pay": "1",
 							"pay_frequency": "1",
 							"do_not_recoup": null,
 							"b_notice": null,
@@ -1006,14 +1006,6 @@
 		"Name": "Payment Type",
 		"Key": "payment_type",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	}, {
-		"id": "idPRAAccOwnerMinPay",
-		"Name": "Owner Minimum Pay",
-		"Key": "owner_min_pay",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay",
 		"panelMapping": "PRA DATA/Accounting",
 		"isPRAData": true,
 		"isPurOrgData" : false
