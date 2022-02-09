@@ -25,7 +25,7 @@
 												enabled="false"/>
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
-											<Label text="Priority"/>
+											<Label required="true" text="Priority"/>
 											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
@@ -35,7 +35,7 @@
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
-											<Label text="Reason"/>
+											<Label text="Reason" required="true" />
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
 												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
@@ -208,7 +208,7 @@
 											<Label text="PO Box Postal Code/ PO Box"/>
 											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
-											<Input required="true" id="idERPPOBX" liveChange="handleERPPOBOX"
+											<Input  liveChange="handleERPPOBOX"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox"
@@ -2010,7 +2010,7 @@
 															</items>
 														</Select>
 														<Label text="Owner Minimum Pay"/>
-														<Input id="idPRAAccOwnerMinPay" required="true" maxLength="13"
+														<Input id="idPRAAccOwnerMinPay" maxLength="13"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay}"/>
 														<Label text="Do Not Recoup"/>
 														<CheckBox select="onSelectCheckBox">

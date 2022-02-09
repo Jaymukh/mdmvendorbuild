@@ -618,7 +618,7 @@ sap.ui.define([
 								"enty_cd": "",
 								"direct_pay_fl": null,
 								"do_not_rpt_onrr": null,
-								"owner_min_pay": "",
+								"owner_min_pay": "1",
 								"pay_frequency": "1",
 								"do_not_recoup": null,
 								"b_notice": null,
