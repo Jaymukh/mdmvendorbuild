@@ -94,8 +94,8 @@
 												sideContentFallDown="BelowM" showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
 												<VBox>
 													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}"
-														items="{changeRequestGetAllModel>/oChangeReq/parentCrDTOs}" selectionChange="onSelectChangeRequest"
-														noDataText="No Chnage Request available, Please adjust filter or Try Again.">
+														items="{path:'changeRequestGetAllModel>/oChangeReq/parentCrDTOs', sorter: {path:'crDTO/change_request_id'}}"
+														selectionChange="onSelectChangeRequest" noDataText="No Chnage Request available, Please adjust filter or Try Again.">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestGetAllModel>/totalCount})" design="Bold"></Label>
