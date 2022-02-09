@@ -310,6 +310,9 @@ sap.ui.define([
 				if (oDataResp.result) {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
 					// this.getView().byId("idCreateVendorSubmit").setVisible(true);
+					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					this.getAuditLogsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
@@ -492,22 +495,22 @@ sap.ui.define([
 					var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
 					var sTaxType = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/witht");
 					var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
-					if("T059P"){ //Tax type
+					if ("T059P") { //Tax type
 						if (sLandTax) {
 							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
 						}
 					}
-					
+
 					if (oData.table === "T059Z") { //Tax code
 						if (sLandTax) {
 							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
 						}
-						if(sTaxType){
+						if (sTaxType) {
 							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxType));
 						}
 					}
 
-					if (oData.table === "T059C") {//Recipient type
+					if (oData.table === "T059C") { //Recipient type
 						if (sTaxCode) {
 							aFilters.push(new Filter("witht", FilterOperator.EQ, sTaxType));
 						}
@@ -674,18 +677,21 @@ sap.ui.define([
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
-				if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+				if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
+						"" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if (	(oItem.isPRAData &&  !oItem.isPurOrgData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR")) &&
+				} else if ((oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(
+						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR")) &&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				}else if(oItem.isPurOrgData && 
-					((oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") || (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "GENV"))&&
+				} else if (oItem.isPurOrgData &&
+					((oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") || (oData.getProperty(
+						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "GENV")) &&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
@@ -953,12 +959,12 @@ sap.ui.define([
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
 			}
 		},
-		onHandleCityValue : function(oEvent){
+		onHandleCityValue: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1", oEvent.getSource().getValue());
-				this.getView().getModel("CreateVendorModel").setProperty(
+			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1", oEvent.getSource().getValue());
-				this.getView().getModel("CreateVendorModel").setProperty(
+			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		}
 
