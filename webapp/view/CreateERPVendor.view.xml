@@ -625,7 +625,7 @@
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Bank Key"></core:CustomData>
-													<core:CustomData key="table" value="local"></core:CustomData>
+													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
 													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
 													<core:CustomData key="inputText" value="bankl"></core:CustomData>
 													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>

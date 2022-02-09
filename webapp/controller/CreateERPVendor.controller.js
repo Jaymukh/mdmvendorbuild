@@ -368,9 +368,9 @@ sap.ui.define([
 				case "Payment terms":
 					aData = oModel.getProperty("/paymentTermsData");
 					break;
-				case "Bank Key":
-					aData = oModel.getProperty("/BankKeyData");
-					break;
+					/*case "Bank Key":
+						aData = oModel.getProperty("/BankKeyData");
+						break;*/
 				}
 				if (aData.length > 0) {
 					this.oTableDataModel.setProperty("/item", aData);
@@ -392,6 +392,16 @@ sap.ui.define([
 									"vnd_lfa1": {}
 								}
 							}
+						}
+					};
+				} else if (oData.table === "VW_BNKA") {
+					objParamCreate = {
+						url: "/murphyCustom/config-service/configurations/configuration/filter",
+						type: 'POST',
+						hasPayload: true,
+						data: {
+							"configType": oData.table,
+							"currentPage": 1
 						}
 					};
 				} else {
@@ -482,6 +492,10 @@ sap.ui.define([
 				this._oValueHelpDialog.setModel(this.oColModel, "oViewModel");
 
 				var oFilterBar = this._oValueHelpDialog.getFilterBar();
+				oFilterBar.addCustomData(new sap.ui.core.CustomData({
+					key: "table",
+					value: oData.table
+				}))
 				oFilterBar.setFilterBarExpanded(true);
 				oFilterBar.setBasicSearch(this._oBasicSearchField);
 				oFilterBar.setModel(this.oColModel, "columns");
@@ -495,7 +509,7 @@ sap.ui.define([
 					var sTaxCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/WT_WITHCD");
 					var sTaxType = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/witht");
 					var sLandTax = this.byId("idWithHoldTaxCtry").getValue();
-					if ("T059P") { //Tax type
+					if (oData.table === "T059P") { //Tax type
 						if (sLandTax) {
 							aFilters.push(new Filter("land1", FilterOperator.EQ, sLandTax));
 						}
@@ -596,39 +610,74 @@ sap.ui.define([
 
 		onFilterBarSearch: function (oEvent) {
 			var sSearchQuery = this._oBasicSearchField.getValue(),
-				aSelectionSet = oEvent.getParameter("selectionSet");
-			var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
-				if (oControl.getValue()) {
-					aResult.push(new Filter({
-						// path: oControl.getName(),
-						path: oControl.getModel("oViewModel").getProperty("/cols/" + oControl.getId().split("-")[oControl.getId().split("-").length -
-							1] + "/template"),
+				aSelectionSet = oEvent.getParameter("selectionSet"),
+				sTableName = oEvent.getSource().getCustomData()[0].getValue();
+			if (sTableName === "VW_BNKA") {
+				var oParameters = {
+					"configType": sTableName,
+					"currentPage": 1,
+					"configFilters": {
+
+					}
+				};
+				aSelectionSet.forEach(function (oItem) {
+					if (oItem.getValue()) {
+						oParameters.configFilters[
+							oItem.getModel("oViewModel").getProperty("/cols/" + oItem.getId().split("-")[oItem.getId().split("-").length -
+								1] + "/template")
+						] = oItem.getValue()
+					}
+				});
+				this.getFilteredValues(oParameters);
+
+			} else {
+				var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
+					if (oControl.getValue()) {
+						aResult.push(new Filter({
+							// path: oControl.getName(),
+							path: oControl.getModel("oViewModel").getProperty("/cols/" + oControl.getId().split("-")[oControl.getId().split("-").length -
+								1] + "/template"),
+							operator: FilterOperator.Contains,
+							value1: oControl.getValue()
+						}));
+					}
+
+					return aResult;
+				}, []);
+				var customFilter = [];
+				for (var i = 0; i < this.oColModel.getData().cols.length; i++) {
+					customFilter.push(new Filter({
+						path: this.oColModel.getData().cols[i].template,
 						operator: FilterOperator.Contains,
-						value1: oControl.getValue()
+						value1: sSearchQuery ? sSearchQuery : ""
 					}));
+
 				}
 
-				return aResult;
-			}, []);
-			var customFilter = [];
-			for (var i = 0; i < this.oColModel.getData().cols.length; i++) {
-				customFilter.push(new Filter({
-					path: this.oColModel.getData().cols[i].template,
-					operator: FilterOperator.Contains,
-					value1: sSearchQuery ? sSearchQuery : ""
+				aFilters.push(new Filter({
+					filters: customFilter,
+					and: false
 				}));
 
+				this._filterTable(new Filter({
+					filters: aFilters,
+					and: true
+				}));
 			}
+		},
 
-			aFilters.push(new Filter({
-				filters: customFilter,
-				and: false
-			}));
-
-			this._filterTable(new Filter({
-				filters: aFilters,
-				and: true
-			}));
+		getFilteredValues: function (oParameters) {
+			var oObject = {
+				url: "/murphyCustom/config-service/configurations/configuration/filter",
+				type: 'POST',
+				hasPayload: true,
+				data: oParameters
+			};
+			this.serviceCall.handleServiceRequest(oObject).then(function (oDataResp) {
+				this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
+				this.oTableDataModel.refresh();
+				oValueHelpDialog.update();
+			}.bind(this));
 		},
 
 		_filterTable: function (oFilter) {
