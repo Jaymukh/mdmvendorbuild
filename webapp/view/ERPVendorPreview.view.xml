@@ -1284,15 +1284,39 @@
 									</IconTabFilter>
 									<IconTabFilter text="Attachments" key="attachments">
 										<!--<Text text="Attachments go here ..."/>-->
-										<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
-											instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
-											fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
-											uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
-										<Toolbar>
-											<!--<Button text="Add"/>-->
-											<ToolbarSpacer/>
-											<Button text="Upload"/>
-										</Toolbar>
+										<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
+											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
+											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+											fileType="{CreateVendorModel>/SupportedFileType}">
+											<!--showSeparators="{settings>/showSeparators}"-->
+											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
+											<!--maximumFileSize="{settings>/maximumFileSize}" -->
+											<!--<toolbar>-->
+											<!--	<OverflowToolbar id="myId">-->
+											<!--		<Title id="attachmentTitle"/>-->
+											<!--		<ToolbarSpacer/>-->
+											<!--		<SearchField width="10rem" search="onSearch"/>-->
+											<!--		<Button id="deleteSelectedButton" text="Delete" press="onDeleteSelectedItems" enabled="false" visible="false" type="Transparent"/>-->
+											<!--		<ToggleButton id="selectAllButton" text="Select all" press="onSelectAllPress" enabled="false" visible="false" type="Transparent"/>-->
+											<!--		<UploadCollectionToolbarPlaceholder/>-->
+											<!--	</OverflowToolbar>-->
+											<!--</toolbar>-->
+											<items>
+												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
+													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
+													enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+													<!-- attributes="{path : '/', templateShareable : false}"-->
+													<!--statuses="{path : '/', templateShareable : false}" -->
+													<attributes>
+														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by}"/>
+														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on', formatter : '.dateFormater'}"/>
+													</attributes>
+													<!--<statuses>-->
+													<!--	<ObjectStatus title="{title}" text="{text}" state="{state}"/>-->
+													<!--</statuses>-->
+												</UploadCollectionItem>
+											</items>
+										</UploadCollection>
 									</IconTabFilter>
 									<IconTabFilter text="Comments" key="comments">
 										<!--<VBox>-->
