@@ -265,7 +265,7 @@ sap.ui.define([
 					if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
 						this.getView().getModel("crAuditLogModel").setProperty("/details", {});
 					}
-					this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oChangeRequest.ccrDTO.change_request_desc);
+					this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oChangeRequest.crDTO.change_request_desc);
 					this.getView().getModel("crAuditLogModel").setProperty("/details/businessID", sEntityID);
 					// this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oChangeRequest.ccrDTO.change_request_desc);
 					var sID = this.getView().getParent().getPages().find(function (e) {
