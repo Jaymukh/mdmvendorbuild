@@ -897,6 +897,11 @@ sap.ui.define([
 				comment: this.getView().byId("previewCRCommentBoxId").getValue(),
 				sControlID: "previewCRCommentBoxId"
 			});
+		},
+		
+		onChnageLogSwitchERPPreview: function(oEvent){
+			var oList = this.getView().byId("idAuditLogListERPPreview");
+			oList.setVisible(oEvent.getParameter("state"));
 		}
 
 		/**
