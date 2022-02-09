@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
 	controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="VendorPreview" showHeader="false" showNavButton="false">
 		<content>
