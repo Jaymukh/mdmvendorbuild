@@ -866,7 +866,7 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		handleGetAllChangeRequests: function (nPageNo) {
+		handleGetAllChangeRequests: function (nPageNo, sSearchType) {
 			var oDataResources = this.getView().getModel("userManagementModel").getData();
 			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
@@ -878,12 +878,15 @@ sap.ui.define([
 			if (!nPageNo) {
 				nPageNo = 1;
 			}
+			if (!sSearchType) {
+				sSearchType = "GET_ALL_CR";
+			}
 			var objParam = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				hasPayload: true,
 				type: 'POST',
 				data: {
-					"crSearchType": "GET_ALL_CR",
+					"crSearchType": sSearchType,
 					"currentPage": nPageNo,
 					"userId": oDataResources.data.user_id
 				}
@@ -1117,6 +1120,24 @@ sap.ui.define([
 					if (oDataResp.result) {
 						// this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
 						// this.getView().getModel("crAuditLogModel").refresh(true);
+						var nNewCount = oDataResp.result.changeRequestLogs.filter(function (e) {
+							return e.changeLogTypeId === 40001;
+						}).length;
+
+						var nChangedCount = oDataResp.result.changeRequestLogs.filter(function (e) {
+							return e.changeLogTypeId === 40002;
+						}).length;
+
+						var nDeleteCount = oDataResp.result.changeRequestLogs.filter(function (e) {
+							return e.changeLogTypeId === 40003;
+						}).length;
+
+						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+							this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+						}
+						this.getView().getModel("crAuditLogModel").setProperty("/details/newCount", nNewCount);
+						this.getView().getModel("crAuditLogModel").setProperty("/details/changedCount", nChangedCount);
+						this.getView().getModel("crAuditLogModel").setProperty("/details/deleteCount", nDeleteCount);
 
 						var result = {};
 
@@ -1207,7 +1228,7 @@ sap.ui.define([
 								"businessEntity": {
 									"entity_id": sEntityID
 								},
-								"fileContent": sResult
+								"fileContent": sBase64
 							}]
 						}
 					};
@@ -1316,16 +1337,29 @@ sap.ui.define([
 
 		auditLogOldDateFormat: function (sValue, attrName) {
 			if (attrName === "created_on" || attrName === "modified_on") {
-				sValue = sValue ? this.getDateFromTime(sValue) : "";
+				sValue = (sValue && sValue !== "null") ? this.getDateFromTime(sValue) : "";
 			}
-			return "Old : " + sValue;
+			return "Old : " + ((sValue && sValue !== "null") ? sValue : "");
 		},
 
 		auditLogNewDateFormat: function (sValue, attrName) {
 			if (attrName === "created_on" || attrName === "modified_on") {
-				sValue = sValue ? this.getDateFromTime(sValue) : "";
+				sValue = (sValue && sValue !== "null") ? this.getDateFromTime(sValue) : "";
 			}
-			return "New : " + sValue;
+			return "New : " + ((sValue && sValue !== "null") ? sValue : "");
+		},
+
+		changeTypeFormatter: function (nChangeType) {
+			debugger
+			var sChnageType = "";
+			if (nChangeType && nChangeType === 40001) {
+				sChnageType = "New";
+			} else if (nChangeType && nChangeType === 40002) {
+				sChnageType = "Changed";
+			} else if (nChangeType && nChangeType === 40003) {
+				sChnageType = "Deleted";
+			}
+			return sChnageType;
 		},
 
 		getDateFromTime: function (sValue) {

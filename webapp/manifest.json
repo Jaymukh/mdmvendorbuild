@@ -143,13 +143,13 @@
 					"defaultBindingMode": "TwoWay"
 				}
 			},
-			"crERPAttachmentModel":{
+			"crERPAttachmentModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
 			},
-			"crAuditLogModel":{
+			"crAuditLogModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
