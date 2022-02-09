@@ -25,7 +25,7 @@
 												enabled="false"/>
 											<Label text="Description"/>
 											<TextArea value="{CreateVendorModel>/changeReq/genData/desc}"></TextArea>
-											<Label text="Priority"/>
+											<Label required="true" text="Priority"/>
 											<Select forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/priority}" showSecondaryValues="true"
 												items="{CreateVendorModel>/createCRDD/CR_PRIORITY}">
 												<items>
@@ -35,7 +35,7 @@
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
-											<Label text="Reason"/>
+											<Label text="Reason" required="true" />
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
 												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
@@ -208,7 +208,7 @@
 											<Label text="PO Box Postal Code/ PO Box"/>
 											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
-											<Input required="true" id="idERPPOBX" liveChange="handleERPPOBOX"
+											<Input  liveChange="handleERPPOBOX"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox"
@@ -625,7 +625,7 @@
 												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 												<customData>
 													<core:CustomData key="title" value="Bank Key"></core:CustomData>
-													<core:CustomData key="table" value="local"></core:CustomData>
+													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
 													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
 													<core:CustomData key="inputText" value="bankl"></core:CustomData>
 													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>

@@ -818,15 +818,6 @@
 		"panelMapping": "ERP Vendor Details",
 		"isPRAData": false,
 		"isPurOrgData" : false
-	},
-	{
-		"id": "idERPPOBX",
-		"Name": "PO Box Postal Code/ PO Box",
-		"Key": "PFACH",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false
 	},{
 		"id": "idERPVendorCountry",
 		"Name": "Country",
