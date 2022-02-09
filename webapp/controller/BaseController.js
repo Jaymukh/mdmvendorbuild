@@ -1050,6 +1050,12 @@ sap.ui.define([
 					if (oDataResp.result) {
 						this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
 						this.getView().getModel("crERPCommentedModel").refresh(true);
+						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+							this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+						}
+						var nCommentCount = oDataResp.result.parentCrDTOs[0].crCommentDTOs ? oDataResp.result.parentCrDTOs[0].crCommentDTOs.length : 0;
+						this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", nCommentCount);
+
 					}
 				}.bind(this),
 				function (oError) {
@@ -1079,6 +1085,11 @@ sap.ui.define([
 					if (oDataResp.result) {
 						this.getView().getModel("crERPAttachmentModel").setData(oDataResp.result);
 						this.getView().getModel("crERPAttachmentModel").refresh(true);
+						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+							this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+						}
+						var nAttachmentCount = oDataResp.result.documentInteractionDtos ? oDataResp.result.documentInteractionDtos.length : 0;
+						this.getView().getModel("crAuditLogModel").setProperty("/details/attachmentCount", nAttachmentCount);
 					}
 				}.bind(this),
 				function (oError) {
@@ -1104,8 +1115,8 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
 					if (oDataResp.result) {
-						this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
-						this.getView().getModel("crAuditLogModel").refresh(true);
+						// this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
+						// this.getView().getModel("crAuditLogModel").refresh(true);
 
 						var result = {};
 
@@ -1144,9 +1155,7 @@ sap.ui.define([
 							changeLog.push(obj)
 
 						}
-						this.getView().getModel("crAuditLogModel").setData({
-							items: changeLog
-						});
+						this.getView().getModel("crAuditLogModel").setProperty("/items", changeLog);
 						this.getView().getModel("crAuditLogModel").refresh(true);
 
 					}
@@ -1254,7 +1263,7 @@ sap.ui.define([
 						} else if (sMimeType === "eml") {
 							blob = this.converBase64toBlob(oDataResp, 'message/rfc822');
 						}*/
-						
+
 						var a = document.createElement("a");
 						a.href = oDataResp;
 						a.download = sDocName;

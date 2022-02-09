@@ -173,20 +173,20 @@
 																	<form:content>
 																		<core:Title text="General Data"/>
 																		<Label text="Business Partner ID"/>
-																		<Text text="3190099"></Text>
+																		<Text text="{crAuditLogModel>/details/businessID}"></Text>
 																		<Label text="Description"/>
-																		<Text text="Test123"></Text>
+																		<Text text="{crAuditLogModel>/details/desc}"></Text>
 																		<Label text="Comments"/>
-																		<Text text="3"></Text>
+																		<Text text="{crAuditLogModel>/details/commentCount}"></Text>
 																		<Label text="Attachement"/>
-																		<Text text="3"></Text>
-																		<core:Title text="Change Type"/>
-																		<Label text="Changed"/>
-																		<Text text="4"/>
-																		<Label text="Delete"/>
-																		<Text text="2"/>
-																		<Label text="New"/>
-																		<Text text="3"/>
+																		<Text text="{crAuditLogModel>/details/attachmentCount}"></Text>
+																		<!--<core:Title text="Change Type"/>-->
+																		<!--<Label text="Changed"/>-->
+																		<!--<Text text="4"/>-->
+																		<!--<Label text="Delete"/>-->
+																		<!--<Text text="2"/>-->
+																		<!--<Label text="New"/>-->
+																		<!--<Text text="3"/>-->
 																	</form:content>
 																</form:SimpleForm>
 																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
@@ -217,7 +217,7 @@
 																									<Text text="{crAuditLogModel>attributeName}"/>
 																									<VBox>
 																										<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
-																									<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
+																										<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
 																									</VBox>
 																								</cells>
 																							</ColumnListItem>

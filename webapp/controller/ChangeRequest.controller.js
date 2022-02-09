@@ -113,7 +113,7 @@ sap.ui.define([
 				}
 				oVendorModel.setProperty("/changeReq/genData/desc", oChangeReq.change_request_desc);
 				oVendorModel.refresh(true);
-				
+
 			}.bind(this));
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
@@ -262,6 +262,12 @@ sap.ui.define([
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAuditLogsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+					if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+						this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+					}
+					this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oChangeRequest.ccrDTO.change_request_desc);
+					this.getView().getModel("crAuditLogModel").setProperty("/details/businessID", sEntityID);
+					// this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oChangeRequest.ccrDTO.change_request_desc);
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
@@ -341,6 +347,12 @@ sap.ui.define([
 			this.getAllCommentsForCR(sEntityID);
 			this.getAllDocumentsForCR(sEntityID);
 			this.getAuditLogsForCR(sEntityID);
+			if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+				this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+			}
+			this.getView().getModel("crAuditLogModel").setProperty("/details/desc", oEvent.getParameter("listItem").getBindingContext(
+				"changeRequestGetAllModel").getObject().crDTO.change_request_desc);
+			this.getView().getModel("crAuditLogModel").setProperty("/details/businessID", sEntityID);
 			var oToggleBtn = this.getView().byId("slideToggleButtonID");
 			oToggleBtn.firePress({
 				pressed: true
@@ -427,7 +439,7 @@ sap.ui.define([
 			var oList = this.getView().byId("idAuditLogListChangeRequest");
 			oList.setVisible(oEvent.getParameter("state"));
 		},
-		
+
 		onSortChnageReq: function (oEvent) {
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
