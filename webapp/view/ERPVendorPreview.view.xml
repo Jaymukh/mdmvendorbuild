@@ -1,5 +1,5 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
-	controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="VendorPreview" showHeader="false" showNavButton="false">
 		<content>
 			<Toolbar>
@@ -1279,75 +1279,75 @@
 									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/preview} === false}">
 										<Text text="Workflow comes here"/>
 									</IconTabFilter>
-															<IconTabFilter text="Change Documents" key="changeDoc">
-																<!--<Text text="Documents go here ..."/>-->
-																<HBox>
-																	<SearchField ></SearchField>
-																	<Switch state="false" change="onChnageLogSwitchERPPreview"></Switch>
-																	<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
-																</HBox>
-																<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
-																	adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
-																	singleContainerFullSize="true">
-																	<form:content>
-																		<core:Title text="General Data"/>
-																		<Label text="Business Partner ID"/>
-																		<Text text="{crAuditLogModel>/details/businessID}"></Text>
-																		<Label text="Description"/>
-																		<Text text="{crAuditLogModel>/details/desc}"></Text>
-																		<Label text="Comments"/>
-																		<Text text="{crAuditLogModel>/details/commentCount}"></Text>
-																		<Label text="Attachement"/>
-																		<Text text="{crAuditLogModel>/details/attachmentCount}"></Text>
-																		<!--<core:Title text="Change Type"/>-->
-																		<!--<Label text="Changed"/>-->
-																		<!--<Text text="4"/>-->
-																		<!--<Label text="Delete"/>-->
-																		<!--<Text text="2"/>-->
-																		<!--<Label text="New"/>-->
-																		<!--<Text text="3"/>-->
-																	</form:content>
-																</form:SimpleForm>
-																<List visible="false" id="idAuditLogListERPPreview" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
-																	<CustomListItem>
-																		<Panel width="auto">
-																			<content>
-																				<VBox>
-																					<HBox alignItems="Center">
-																						<f:Avatar initials="{crAuditLogModel>logBy}" displaySize="XS"></f:Avatar>
-																						<Text text="{crAuditLogModel>logBy} added Changes"/>
-																					</HBox>
-																					<Table items="{path: 'crAuditLogModel>logs'}">
-																						<columns>
-																							<Column>
-																								<Text text="Change Type"/>
-																							</Column>
-																							<Column>
-																								<Text text="Attribute"/>
-																							</Column>
-																							<Column >
-																								<Text text="Value"/>
-																							</Column>
-																						</columns>
-																						<items>
-																							<ColumnListItem>
-																								<cells>
-																									<Text text="{crAuditLogModel>changeLogTypeId}"/>
-																									<Text text="{crAuditLogModel>attributeName}"/>
-																									<VBox>
-																										<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
-																										<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
-																									</VBox>
-																								</cells>
-																							</ColumnListItem>
-																						</items>
-																					</Table>
-																				</VBox>
-																			</content>
-																		</Panel>
-																	</CustomListItem>
-																</List>
-															</IconTabFilter>
+									<IconTabFilter text="Change Documents" key="changeDoc">
+										<!--<Text text="Documents go here ..."/>-->
+										<HBox>
+											<SearchField ></SearchField>
+											<Switch state="false" change="onChnageLogSwitchERPPreview"></Switch>
+											<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
+										</HBox>
+										<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
+											adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+											singleContainerFullSize="true">
+											<form:content>
+												<core:Title text="General Data"/>
+												<Label text="Business Partner ID"/>
+												<Text text="{crAuditLogModel>/details/businessID}"></Text>
+												<Label text="Description"/>
+												<Text text="{crAuditLogModel>/details/desc}"></Text>
+												<Label text="Comments"/>
+												<Text text="{crAuditLogModel>/details/commentCount}"></Text>
+												<Label text="Attachement"/>
+												<Text text="{crAuditLogModel>/details/attachmentCount}"></Text>
+												<core:Title text="Change Type"/>
+												<Label text="Changed"/>
+												<Text text="{crAuditLogModel>/details/changedCount}"/>
+												<Label text="Delete"/>
+												<Text text="{crAuditLogModel>/details/deleteCount}"/>
+												<Label text="New"/>
+												<Text text="{crAuditLogModel>/details/newCount}"/>
+											</form:content>
+										</form:SimpleForm>
+										<List visible="false" id="idAuditLogListERPPreview" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
+											<CustomListItem>
+												<Panel width="auto">
+													<content>
+														<VBox>
+															<HBox alignItems="Center">
+																<f:Avatar initials="{crAuditLogModel>logBy}" displaySize="XS"></f:Avatar>
+																<Text text="{crAuditLogModel>logBy} added Changes"/>
+															</HBox>
+															<Table items="{path: 'crAuditLogModel>logs'}">
+																<columns>
+																	<Column>
+																		<Text text="Change Type"/>
+																	</Column>
+																	<Column>
+																		<Text text="Attribute"/>
+																	</Column>
+																	<Column >
+																		<Text text="Value"/>
+																	</Column>
+																</columns>
+																<items>
+																	<ColumnListItem>
+																		<cells>
+																			<Text text="{path:'crAuditLogModel>changeLogTypeId', formatter : '.changeTypeFormatter'}"/>
+																			<Text text="{crAuditLogModel>attributeName}"/>
+																			<VBox>
+																				<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
+																				<Text text="{ parts: [ 'crAuditLogModel>newValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogNewDateFormat' }"/>
+																			</VBox>
+																		</cells>
+																	</ColumnListItem>
+																</items>
+															</Table>
+														</VBox>
+													</content>
+												</Panel>
+											</CustomListItem>
+										</List>
+									</IconTabFilter>
 									<IconTabFilter text="Attachments" key="attachments">
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
