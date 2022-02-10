@@ -169,9 +169,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -183,25 +185,29 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "searchvendor",
-				"pattern": "",
-				"target": [
-					"searchvendor"
-				]
-			}, {
-				"name": "createVendor",
-				"pattern": "CreateVendor",
-				"target": [
-					"createVendor"
-				]
-			}, {
-				"name": "erpVendorPrev",
-				"pattern": "erpVendorPrev",
-				"target": [
-					"ERPVendorPreview"
-				]
-			}],
+			"routes": [
+				{
+					"name": "searchvendor",
+					"pattern": "",
+					"target": [
+						"searchvendor"
+					]
+				},
+				{
+					"name": "createVendor",
+					"pattern": "CreateVendor",
+					"target": [
+						"createVendor"
+					]
+				},
+				{
+					"name": "erpVendorPrev",
+					"pattern": "erpVendorPrev",
+					"target": [
+						"ERPVendorPreview"
+					]
+				}
+			],
 			"targets": {
 				"searchvendor": {
 					"viewType": "XML",

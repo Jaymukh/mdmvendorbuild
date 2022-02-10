@@ -811,14 +811,6 @@
 
 	],
 	"createMandtFields": [{
-		"id": "idERPPOBOXPOSTALCODE",
-		"Name": "PO Box Postal Code/ PO Box",
-		"Key": "PSTL2",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false
-	},{
 		"id": "idERPVendorCountry",
 		"Name": "Country",
 		"Key": "LAND1",
@@ -937,15 +929,7 @@
 		"panelMapping": "Purchasing Organization",
 		"isPRAData": false,
 		"isPurOrgData" : true
-	}, {
-		"id": "idAddrSearTerm1",
-		"Name": "Search Term 1",
-		"Key": "sort1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1",
-		"panelMapping": "PRA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	}, {
+	},  {
 		"id": "idAddrLangKey",
 		"Name": "Language Key",
 		"Key": "langu",
@@ -969,15 +953,7 @@
 		"panelMapping": "Address",
 		"isPRAData": false,
 		"isPurOrgData" : false
-	}, {
-		"id": "idAddrPostalCode",
-		"Name": "Postal Code",
-		"Key": "post_code1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false
-	}, {
+	},  {
 		"id": "idPRAAccResidentCountry",
 		"Name": "Resident Country",
 		"Key": "kglnd",
@@ -1015,70 +991,6 @@
 		"Key": "pay_frequency",
 		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency",
 		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	}, {
-		"id": "praDataAddrTabAddressTypeId",
-		"Name": "Address Type",
-		"Key": "addr_type",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "idPRAAddrName",
-		"Name": "Name",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1",
-		"key": "addr_type",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "idPRAAddrStreet",
-		"Name": "Street",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street",
-		"key": "street",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "idPRAAddrHouseNo",
-		"Name": "House No",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1",
-		"key": "house_num1",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "idPRAAddrCoutryKeyPart",
-		"Name": "Country Key",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1",
-		"key": "land1",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "idPRAAddrPostalCodepart",
-		"Name": "Postal Code",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1",
-		"key": "post_code1",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "PRAAddrRegionPartId",
-		"Name": "Region",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region",
-		"key": "region",
-		"panelMapping": "PRA DATA/Address",
-		"isPRAData": true,
-		"isPurOrgData" : false
-	},{
-		"id": "PRAADDRPOBOXId",
-		"Name": "PO BOX",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box",
-		"key": "po_box",
-		"panelMapping": "PRA DATA/Address",
 		"isPRAData": true,
 		"isPurOrgData" : false
 	}
