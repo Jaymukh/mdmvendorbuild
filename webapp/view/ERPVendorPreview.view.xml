@@ -396,7 +396,7 @@
 											<!--<Text/>-->
 											<Label text="Bank Detail ID"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}"/>
-											<Label text="Bank Account"/>
+											<Label text="Account Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}"/>
 											<Label text="Account Holder"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}"/>
@@ -406,7 +406,7 @@
 											<Text text=""></Text>
 											<Label text="IBAN-Generate Bank Details"/>
 											<Text text="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}"></Text>
-											<Label text="Account No."/>
+											<Label text="Bank Account Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"/>
 											<Label text="Control key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}"/>

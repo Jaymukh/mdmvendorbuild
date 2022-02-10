@@ -317,7 +317,7 @@ sap.ui.define([
 				sDate = sDate.length === 2 ? sDate : ('0' + sDate);
 				var sMonth = ((sResultDate.getMonth()) + 1).toString();
 				sMonth = sMonth.length === 2 ? sMonth : ('0' + sMonth);
-				sResultDate = sDate + '-' + sMonth + '-' + sResultDate.getFullYear();
+				sResultDate = sMonth + '-' + sDate + '-' + sResultDate.getFullYear();
 			}
 			return sResultDate;
 		},
