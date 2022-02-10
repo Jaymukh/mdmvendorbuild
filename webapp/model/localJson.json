@@ -953,15 +953,7 @@
 		"panelMapping": "Address",
 		"isPRAData": false,
 		"isPurOrgData" : false
-	}, {
-		"id": "idAddrPostalCode",
-		"Name": "Postal Code",
-		"Key": "post_code1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false
-	}, {
+	},  {
 		"id": "idPRAAccResidentCountry",
 		"Name": "Resident Country",
 		"Key": "kglnd",
