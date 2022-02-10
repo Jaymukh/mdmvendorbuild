@@ -1332,7 +1332,7 @@
 																<items>
 																	<ColumnListItem>
 																		<cells>
-																			<Text text="{path:'crAuditLogModel>changeLogTypeId', formatter : '.changeTypeFormatter'}"/>
+																			<Text text="{crAuditLogModel>changeLogType}"/>
 																			<Text text="{crAuditLogModel>attributeName}"/>
 																			<VBox>
 																				<Text text="{ parts: [ 'crAuditLogModel>oldValue', 'crAuditLogModel>attributeName'], formatter: '.auditLogOldDateFormat' }"/>
