@@ -1228,7 +1228,7 @@ sap.ui.define([
 								"businessEntity": {
 									"entity_id": sEntityID
 								},
-								"fileContent": sBase64
+								"fileContent": sResult
 							}]
 						}
 					};
