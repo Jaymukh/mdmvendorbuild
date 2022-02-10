@@ -833,7 +833,10 @@ sap.ui.define([
 				);
 				this.getView().getModel("crERPCommentedModel").setData(null);
 				this.getView().getModel("crERPAttachmentModel").setData(null);
-				this.getView().getModel("crAuditLogModel").setData(null);
+				this.getView().getModel("crAuditLogModel").setData({
+					"items": [],
+					"details": {}
+				});
 				this.getView().getModel("CreateVendorModel").refresh();
 			}.bind(this), function (oData) {
 				this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/entityId", "");
