@@ -131,7 +131,7 @@
 											<Label text="Natural person"/>
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STKZN} === 'X'}"></CheckBox>
 											<Label text="Search Terms"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
 											<Text text="">

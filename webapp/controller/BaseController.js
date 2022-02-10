@@ -50,6 +50,7 @@ sap.ui.define([
 							"NAME4": null,
 							"STKZN": null,
 							"SORTL": null,
+							"MCOD1":null,
 							"TELF1": null,
 							"TELF2": null,
 							"TELFX": null,

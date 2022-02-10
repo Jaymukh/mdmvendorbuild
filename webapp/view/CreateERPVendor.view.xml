@@ -120,7 +120,7 @@
 											</CheckBox>
 											<Label text="Search Terms"/>
 											<Input id="idERPVendorSearchTerms" required="true" liveChange="handleSearchTerms"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="20"/>
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1}" maxLength="20"/>
 											<core:Title text="Address"/>
 											<Label text="Street / House No."/>
 											<Input id="ERPAddrHouseNoId" required="ture" width="100%"

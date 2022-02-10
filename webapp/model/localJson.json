@@ -129,6 +129,7 @@
 						"NAME4": null,
 						"STKZN": null,
 						"SORTL": null,
+						"MCOD1":null,
 						"TELF1": null,
 						"TELF2": null,
 						"TELFX": null,
@@ -853,8 +854,8 @@
 	}, {
 		"id": "idERPVendorSearchTerms",
 		"Name": "Search Terms",
-		"Key": "SORTL",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL",
+		"Key": "MCOD1",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1",
 		"panelMapping": "ERP Vendor Details",
 		"isPRAData": false,
 		"isPurOrgData" : false
