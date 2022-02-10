@@ -509,17 +509,46 @@ sap.ui.define([
 		},
 
 		onCRSearch: function (oEvent) {
-			debugger;
+			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+			} else {
+				this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+				this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+			}
 			var oFromDate = oEvent.getParameter("selectionSet")[0].getFrom();
-			var sFromDate = oFromDate.getFullYear() + "-" + (((oFromDate.getMonth() + 1) + "").length > 1 ? (oFromDate.getMonth() + 1) : "0" +
-				(oFromDate.getMonth() + 1)) + "-" + (((oFromDate.getDate()) + "").length > 1 ? (oFromDate.getDate()) : "0" + (oFromDate.getDate()))
 			var oToDate = oEvent.getParameter("selectionSet")[0].getTo();
-			var sToDate = oToDate.getFullYear() + "-" + (((oToDate.getMonth() + 1) + "").length > 1 ? (oToDate.getMonth() + 1) : "0" + (oToDate
-				.getMonth() + 1)) + "-" + (((oToDate.getDate()) + "").length > 1 ? (oToDate.getDate()) : "0" + (oToDate.getDate()))
 			var sShow = oEvent.getParameter("selectionSet")[1].getSelectedKey();
 			var sVendor = oEvent.getParameter("selectionSet")[2].getValue();
 			var sCity = oEvent.getParameter("selectionSet")[3].getValue();
 			var sCompanyCode = oEvent.getParameter("selectionSet")[4].getValue();
+			var sFromDate, sToDate, sCreatedBy, bClaimed, bClosed;
+
+			if (oFromDate) {
+				sFromDate = oFromDate.getFullYear() + "-" + (((oFromDate.getMonth() + 1) + "").length > 1 ? (oFromDate.getMonth() + 1) : "0" +
+					(oFromDate.getMonth() + 1)) + "-" + (((oFromDate.getDate()) + "").length > 1 ? (oFromDate.getDate()) : "0" + (oFromDate.getDate()));
+			}
+			if (oToDate) {
+				sToDate = oToDate.getFullYear() + "-" + (((oToDate.getMonth() + 1) + "").length > 1 ? (oToDate.getMonth() + 1) : "0" + (oToDate
+					.getMonth() + 1)) + "-" + (((oToDate.getDate()) + "").length > 1 ? (oToDate.getDate()) : "0" + (oToDate.getDate()));
+			}
+			if (sShow === "01") {
+				sCreatedBy = "";
+				bClaimed = "";
+				bClosed = "";
+			} else if (sShow === "02") {
+				sCreatedBy = this.getView().getModel("userManagementModel").getProperty("/data/user_id");
+				bClaimed = "";
+				bClosed = "";
+			} else if (sShow === "03") {
+				sCreatedBy = this.getView().getModel("userManagementModel").getProperty("/data/user_id");
+				bClaimed = true;
+				bClosed = false;
+			} else if (sShow === "04") {
+				sCreatedBy = this.getView().getModel("userManagementModel").getProperty("/data/user_id");
+				bClaimed = true;
+				bClosed = true;
+			}
 
 			this.getView().setBusy(true);
 			var objParamSubmit = {
@@ -530,19 +559,73 @@ sap.ui.define([
 					"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
 					"currentPage": 1,
 					"changeRequestSearchDTO": {
-						"dateRangeFrom": sFromDate,
+						"createdBy": sCreatedBy,
 						"dateRangeTo": sToDate,
-						"approvedEntityId": "0050050182",
+						"dateRangeFrom": sFromDate,
+						"approvedEntityId": sVendor,
+						"companyCode": sCompanyCode,
+						"countryCode": sCity,
+						"isClaimed": bClaimed,
+						"isCrClosed": bClosed,
 						"entityType": "VENDOR",
 						"listOfCRSearchCondition": [
+							"GET_CR_BY_ADDRESS",
+							"GET_CR_CREATED_BY_USER_ID",
+							"GET_CR_BY_DATE_RANGE",
 							"GET_CR_BY_ENTITY",
-							"GET_CR_BY_DATE_RANGE"
+							"GET_CR_BY_COMPANY_CODE",
+							"GET_CR_PROCESSED_BY_USER_ID"
 						]
 					}
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
+				if (oData.result.currentPage === 1) {
+					var aPageJson = [];
+					for (var i = 0; i < oData.result.totalPageCount; i++) {
+						aPageJson.push({
+							key: i + 1,
+							text: i + 1
+						});
+					}
+					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+					}
+				}
+				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					////Total count 
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+					}
+
+				} else {
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+					this.getView().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+					if (oData.result.totalPageCount > oData.result.currentPage) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+					}
+					if (oData.result.currentPage > 1) {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+					} else {
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+					}
+				}
 				this.getView().setBusy(false);
+				
 
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
