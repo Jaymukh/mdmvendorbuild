@@ -18,14 +18,14 @@
 						<OverflowToolbarLayoutData priority="Low"/>
 					</layoutData>
 				</Title>
-				
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent>
-			<tnt:SideNavigation id="sideNavigation"  itemSelect=".onSideItemSelect">
+			<tnt:SideNavigation id="sideNavigation" itemSelect=".onSideItemSelect">
 				<tnt:NavigationList>
 					<tnt:NavigationListItem text="Search Vendor" icon="sap-icon://detail-view" key="srchVnd"/>
-					<tnt:NavigationListItem text="Create Vendor" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" icon="sap-icon://create" key="createERPVendorView"/>
+					<tnt:NavigationListItem text="Create Vendor" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }"
+						icon="sap-icon://create" key="createERPVendorView"/>
 					<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="changeRequestId">
 						<tnt:NavigationListItem text="All Change Request" key="changeRequestId"/>
 						<tnt:NavigationListItem text="Mass Change Request" key="changeRequestId-Mass"/>
@@ -111,14 +111,15 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft"  items="{SearchVendorModel>/searchAllModelData/vendorDTOs}" noDataText="No Vendor available, Please adjust filter or Try Again.">
+							<Table mode="SingleSelectLeft" items="{SearchVendorModel>/searchAllModelData/vendorDTOs}"
+								noDataText="No Vendor available, Please adjust filter or Try Again.">
 								<headerToolbar>
 									<Toolbar>
 										<Label id="idTableTitle" text="Business Partner Master List({SearchVendorModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
 										<ToolbarSpacer></ToolbarSpacer>
-										<Button text="Create ERP Vendor"
-										visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized" press="handleCreateERPVendor"></Button>
-										<Button text="Copy"  visible="false"></Button>
+										<Button text="Create ERP Vendor" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized"
+											press="handleCreateERPVendor"></Button>
+										<Button text="Copy" visible="false"></Button>
 										<Label text="Page No."/>
 										<Select id="searchAllVendorPageSelectID" items="{SearchVendorModel>/PageData}" selectedKey="{SearchVendorModel>/selectedPageKey}"
 											change="onSelectSearchAllVendorPage">
@@ -133,40 +134,59 @@
 								<columns>
 									<Column>
 										<header>
-											<Label text="Business Partner ID" design="Bold"></Label>
+											<Label text="Business Partner ID" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
 									<Column>
 										<header>
-											<Label text="Pending Request" design="Bold"></Label>
+											<Label text="Pending Request" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
 									<Column>
 										<header>
-											<Label text="Over due Date" design="Bold"></Label>
+											<Label text="Over due Date" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
 									<Column>
 										<header>
-											<Label text="Description" design="Bold"></Label>
+											<Label text="Description" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
 									<Column>
 										<header>
-											<Label text="Customer Contact" design="Bold"></Label>
+											<Label text="Customer Contact" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
-										<Column>
+									<Column>
 										<header>
-											<Label text="Country" design="Bold"></Label>
+											<Label text="Country" wrapping="true" design="Bold"></Label>
 										</header>
 									</Column>
-									<Column visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" >
+									<!--<Column>-->
+									<!--	<header>-->
+									<!--		<Label text="Changed By" wrapping="true" design="Bold"></Label>-->
+									<!--	</header>-->
+									<!--</Column>-->
+									<!--<Column>-->
+									<!--	<header>-->
+									<!--		<Label text="Created By" wrapping="true" design="Bold"></Label>-->
+									<!--	</header>-->
+									<!--</Column>-->
+									<!--<Column>-->
+									<!--	<header>-->
+									<!--		<Label text="Finalized By" wrapping="true" design="Bold"></Label>-->
+									<!--	</header>-->
+									<!--</Column>-->
+									<!--<Column>-->
+									<!--	<header>-->
+									<!--		<Label text="Finalized On" wrapping="true" design="Bold"></Label>-->
+									<!--	</header>-->
+									<!--</Column>-->
+									<Column visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }">
 										<header>
 											<Label text=" " design="Bold"></Label>
 										</header>
 									</Column>
-									
 								</columns>
 								<items>
 									<ColumnListItem>
@@ -179,7 +199,11 @@
 												text="{ parts:[ {path:'SearchVendorModel>customVendorLFA1DTO/name1'}, {path:'SearchVendorModel>customVendorLFA1DTO/name2'}, {path:'SearchVendorModel>customVendorLFA1DTO/name3'}, {path:'SearchVendorModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/vbund}"></Text>
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
-											<core:Icon src="sap-icon://overflow"  press=".handleOverFlowButton"></core:Icon>
+											<!--<Text text="{SearchVendorModel>changeRequestDTO/modified_by/firstname} {SearchVendorModel>changeRequestDTO/modified_by/lastname}"></Text>-->
+											<!--<Text text="{SearchVendorModel>changeRequestDTO/change_request_by/firstname} {SearchVendorModel>changeRequestDTO/change_request_by/lastname}"></Text>-->
+											<!--<Text text=""></Text>-->
+											<!--<Text text=""></Text>-->
+											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>
 								</items>
@@ -195,7 +219,7 @@
 					<!--<ScrollContainer id="allReq" horizontal="false" vertical="true" height="100%">-->
 					<!--	<Text text="This is All Request Page"/>-->
 					<!--</ScrollContainer>-->
-				<!--	<ScrollContainer id="copy" horizontal="false" vertical="true" height="100%">
+					<!--	<ScrollContainer id="copy" horizontal="false" vertical="true" height="100%">
 						<Text text="This is copy Page"/>
 					</ScrollContainer>-->
 				</pages>

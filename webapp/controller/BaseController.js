@@ -1350,7 +1350,6 @@ sap.ui.define([
 		},
 
 		changeTypeFormatter: function (nChangeType) {
-			debugger
 			var sChnageType = "";
 			if (nChangeType && nChangeType === 40001) {
 				sChnageType = "New";

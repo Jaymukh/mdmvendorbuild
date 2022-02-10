@@ -35,7 +35,7 @@
 											</Select>
 											<Label text="Due Date"/>
 											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
-											<Label text="Reason" required="true" />
+											<Label text="Reason" required="true"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
 												showSecondaryValues="true" items="{CreateVendorModel>/createCRDD/VENDOR_CR_REASON}">
@@ -148,8 +148,8 @@
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
-											<Input id="idERPVendorCity" liveChange="onHandleCityValue" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"
-												maxLength="35"/>
+											<Input id="idERPVendorCity" liveChange="onHandleCityValue" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35"/>
 											<Label text="Country"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" maxLength="3"/>-->
 											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -208,8 +208,7 @@
 											<Label text="PO Box Postal Code/ PO Box"/>
 											<Input  id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
-											<Input  liveChange="handleERPPOBOX"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
+											<Input liveChange="handleERPPOBOX" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox select="onSelectCheckBox"
 												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num} === 'X'}">
@@ -642,7 +641,7 @@
 											<Label text="Street"/>
 											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars}"/>
 											<Label text="City"/>
-											<Input editable="false"  value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01}"/>
+											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1619,7 +1618,8 @@
 											<!--</Input>-->
 											<Label text="Postal Code / City"/>
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
-											<Input liveChange="onHandleCityValue" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35">
+											<Input liveChange="onHandleCityValue" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"
+												maxLength="35">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
@@ -1713,7 +1713,8 @@
 											<Label text="Name 2"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
 											<Label text="Search Term 1"/>
-											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"/>
+											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"
+												/>
 											<Label text="Postal Code" />
 											<Input id="idAddrPostalCode" 
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
@@ -1731,7 +1732,8 @@
 												</customData>
 											</Input>
 											<Label text="City"/>
-											<Input id="idAddrCity1" liveChange="onHandleCityValue" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
+											<Input id="idAddrCity1" liveChange="onHandleCityValue" required="true"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
 											<Label text="Language Key"/>
 											<Input id="idAddrLangKey" required="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}" showValueHelp="true"
@@ -2236,7 +2238,7 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name2}"/>
 														<Label text="Search Term 1"/>
 														<Input required="true" id="idAddrSearTerm1"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1}"/>
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1}" maxLength="20"/>
 														<Label text="Street" required="true"/>
 														<Input id="idPRAAddrStreet" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street}"/>
 														<Label text="House No." required="true"/>
@@ -2260,7 +2262,8 @@
 															</customData>
 														</Input>
 														<Label text="City"/>
-														<Input id="PRAAddrCity1" liveChange="onHandleCityValue" required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1}"/>
+														<Input id="PRAAddrCity1" liveChange="onHandleCityValue" required="true"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1}"/>
 														<core:Title/>
 														<Label text="Region"/>
 														<Input id="PRAAddrRegionPartId" required="true"
