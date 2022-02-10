@@ -120,7 +120,7 @@
 											</CheckBox>
 											<Label text="Search Terms"/>
 											<Input id="idERPVendorSearchTerms" required="true" liveChange="handleSearchTerms"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="10"/>
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SORTL}" maxLength="20"/>
 											<core:Title text="Address"/>
 											<Label text="Street / House No."/>
 											<Input id="ERPAddrHouseNoId" required="ture" width="100%"
@@ -142,7 +142,7 @@
 											<Label text="Street 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
-											<Input id="idERPVendorPostalCode" required="true"
+											<Input id="idERPVendorPostalCode" required="true" 
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -206,7 +206,7 @@
 											</Input>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>-->
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Input required="true" id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
+											<Input  id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
 											<Input  liveChange="handleERPPOBOX"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
@@ -575,7 +575,7 @@
 											<!--<Input/>-->
 											<Label text="Bank Detail ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}" maxLength="4"/>
-											<Label text="Bank Account"/>
+											<Label text="Account Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="15"/>
 											<Label text="Account Holder"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}" maxLength="60"/>
@@ -597,12 +597,12 @@
 													<core:Item text="IBAN 3" key="3"/>
 												</items>
 											</Select>
-											<Label text="Account Name."/>
+											<Label text="Bank Account Number."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}" maxLength="18"/>
 											<Label text="Control key"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="2"/>
 											<core:Title text=""/>
-											<Label text="Reference Details"/>
+											<Label text="ReferenSece Details"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}" maxLength="20"/>
 											<Label text="Collection Authorization"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}" maxLength="1"/>

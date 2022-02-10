@@ -1015,6 +1015,15 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
+		},
+		
+		onERPVendorPostalCode : function(oEvent){
+			this.getView().getModel("CreateVendorModel").setProperty(
+			"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2", oEvent.getSource().getValue());
+				this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1", oEvent.getSource().getValue());
 		}
 
 		/**
