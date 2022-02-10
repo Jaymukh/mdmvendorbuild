@@ -186,9 +186,9 @@
 												<customData>
 													<core:CustomData key="title" value="Language"></core:CustomData>
 													<core:CustomData key="table" value="T002"></core:CustomData>
-													<core:CustomData key="inputKey" value="spras"></core:CustomData>
+													<core:CustomData key="inputKey" value="laiso"></core:CustomData>
 													<core:CustomData key="inputText" value="sptxt"></core:CustomData>
-													<core:CustomData key="spras" value="Key"></core:CustomData>
+													<core:CustomData key="laiso" value="Key"></core:CustomData>
 													<core:CustomData key="sptxt" value="Language"></core:CustomData>
 												</customData>
 											</Input>
@@ -1655,9 +1655,9 @@
 												<customData>
 													<core:CustomData key="title" value="LanguageAdrc"></core:CustomData>
 													<core:CustomData key="table" value="T002"></core:CustomData>
-													<core:CustomData key="inputKey" value="spras"></core:CustomData>
+													<core:CustomData key="inputKey" value="laiso"></core:CustomData>
 													<core:CustomData key="inputText" value="sptxt"></core:CustomData>
-													<core:CustomData key="spras" value="Key"></core:CustomData>
+													<core:CustomData key="laiso" value="Key"></core:CustomData>
 													<core:CustomData key="sptxt" value="Language"></core:CustomData>
 												</customData>
 											</Input>
@@ -1725,9 +1725,9 @@
 													<core:CustomData key="title" value="Country Key"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
 													<core:CustomData key="inputKey" value="land1"></core:CustomData>
-													<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
+													<core:CustomData key="inputText" value="landx50"></core:CustomData>
 													<core:CustomData key="land1" value="Country Code"></core:CustomData>
-													<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+													<core:CustomData key="landx50" value="Country"></core:CustomData>
 												</customData>
 											</Input>
 											<Label text="City"/>
@@ -1739,9 +1739,9 @@
 												<customData>
 													<core:CustomData key="title" value="Langauge Key"></core:CustomData>
 													<core:CustomData key="table" value="T002"></core:CustomData>
-													<core:CustomData key="inputKey" value="spras"></core:CustomData>
+													<core:CustomData key="inputKey" value="laiso"></core:CustomData>
 													<core:CustomData key="inputText" value="sptxt"></core:CustomData>
-													<core:CustomData key="spras" value="Key"></core:CustomData>
+													<core:CustomData key="laiso" value="Key"></core:CustomData>
 													<core:CustomData key="sptxt" value="Language"></core:CustomData>
 												</customData>
 											</Input>
@@ -2254,9 +2254,9 @@
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
 																<core:CustomData key="inputKey" value="land1"></core:CustomData>
-																<core:CustomData key="inputText" value="lkvrz"></core:CustomData>
+																<core:CustomData key="inputText" value="landx50"></core:CustomData>
 																<core:CustomData key="land1" value="Country Code"></core:CustomData>
-																<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+																<core:CustomData key="landx50" value="Country"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="City"/>
@@ -2289,9 +2289,9 @@
 															<customData>
 																<core:CustomData key="title" value="Langauge Key"></core:CustomData>
 																<core:CustomData key="table" value="T002"></core:CustomData>
-																<core:CustomData key="inputKey" value="spras"></core:CustomData>
+																<core:CustomData key="inputKey" value="laiso"></core:CustomData>
 																<core:CustomData key="inputText" value="sptxt"></core:CustomData>
-																<core:CustomData key="spras" value="Key"></core:CustomData>
+																<core:CustomData key="laiso" value="Key"></core:CustomData>
 																<core:CustomData key="sptxt" value="Language"></core:CustomData>
 															</customData>
 														</Input>

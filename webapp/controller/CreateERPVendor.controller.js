@@ -288,6 +288,8 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
+			}else if(oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null){
+				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 			}
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
