@@ -593,7 +593,7 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.laiso);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
