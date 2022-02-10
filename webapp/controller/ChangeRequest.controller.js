@@ -542,12 +542,12 @@ sap.ui.define([
 				bClosed = "";
 			} else if (sShow === "03") {
 				sCreatedBy = this.getView().getModel("userManagementModel").getProperty("/data/user_id");
-				bClaimed = 1;
-				bClosed = 0;
+				bClaimed = true;
+				bClosed = false;
 			} else if (sShow === "04") {
 				sCreatedBy = this.getView().getModel("userManagementModel").getProperty("/data/user_id");
-				bClaimed = 1;
-				bClosed = 1;
+				bClaimed = true;
+				bClosed = true;
 			}
 
 			this.getView().setBusy(true);
