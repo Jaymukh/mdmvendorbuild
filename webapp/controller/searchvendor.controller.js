@@ -971,6 +971,7 @@ sap.ui.define([
 					var sVendorNo = oVendorData.customVendorLFA1DTO.lifnr;
 					this.navigateTOVendorPages(sVendorNo, 'COPY');
 				}
+
 			}
 			// onSaveClick : function(oEvent){
 			// 	this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
