@@ -1121,15 +1121,15 @@ sap.ui.define([
 						// this.getView().getModel("crAuditLogModel").setData(oDataResp.result);
 						// this.getView().getModel("crAuditLogModel").refresh(true);
 						var nNewCount = oDataResp.result.changeRequestLogs.filter(function (e) {
-							return e.changeLogTypeId === 40001;
+							return e.changeLogType === "New";
 						}).length;
 
 						var nChangedCount = oDataResp.result.changeRequestLogs.filter(function (e) {
-							return e.changeLogTypeId === 40002;
+							return e.changeLogType === "Changed";
 						}).length;
 
 						var nDeleteCount = oDataResp.result.changeRequestLogs.filter(function (e) {
-							return e.changeLogTypeId === 40003;
+							return e.changeLogType === "Deleted";
 						}).length;
 
 						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
@@ -1150,7 +1150,8 @@ sap.ui.define([
 								logBy,
 								logDate,
 								newValue,
-								oldValue
+								oldValue,
+								changeLogType
 							}
 							of oDataResp.result.changeRequestLogs) {
 							if (!result[logBy]) result[logBy] = [];
@@ -1162,7 +1163,8 @@ sap.ui.define([
 								change_request_log_id,
 								logDate,
 								newValue,
-								oldValue
+								oldValue,
+								changeLogType
 							});
 						}
 
@@ -1349,17 +1351,17 @@ sap.ui.define([
 			return "New : " + ((sValue && sValue !== "null") ? sValue : "");
 		},
 
-		changeTypeFormatter: function (nChangeType) {
-			var sChnageType = "";
-			if (nChangeType && nChangeType === 40001) {
-				sChnageType = "New";
-			} else if (nChangeType && nChangeType === 40002) {
-				sChnageType = "Changed";
-			} else if (nChangeType && nChangeType === 40003) {
-				sChnageType = "Deleted";
-			}
-			return sChnageType;
-		},
+		// changeTypeFormatter: function (nChangeType) {
+		// 	var sChnageType = "";
+		// 	if (nChangeType && nChangeType === 40001) {
+		// 		sChnageType = "New";
+		// 	} else if (nChangeType && nChangeType === 40002) {
+		// 		sChnageType = "Changed";
+		// 	} else if (nChangeType && nChangeType === 40003) {
+		// 		sChnageType = "Deleted";
+		// 	}
+		// 	return sChnageType;
+		// },
 
 		getDateFromTime: function (sValue) {
 			var date = new Date(1970, 0, 1);

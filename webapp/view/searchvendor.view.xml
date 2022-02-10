@@ -111,7 +111,7 @@
 							</f:DynamicPageHeader>
 						</f:header>
 						<f:content>
-							<Table mode="SingleSelectLeft" items="{SearchVendorModel>/searchAllModelData/vendorDTOs}"
+							<Table id="searchVendorTable" mode="SingleSelectLeft" items="{SearchVendorModel>/searchAllModelData/vendorDTOs}"
 								noDataText="No Vendor available, Please adjust filter or Try Again.">
 								<headerToolbar>
 									<Toolbar>
@@ -119,7 +119,7 @@
 										<ToolbarSpacer></ToolbarSpacer>
 										<Button text="Create ERP Vendor" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized"
 											press="handleCreateERPVendor"></Button>
-										<Button text="Copy" visible="false"></Button>
+										<Button text="Copy" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" press="onPressCopyVendor"></Button>
 										<Label text="Page No."/>
 										<Select id="searchAllVendorPageSelectID" items="{SearchVendorModel>/PageData}" selectedKey="{SearchVendorModel>/selectedPageKey}"
 											change="onSelectSearchAllVendorPage">
