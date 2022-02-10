@@ -277,6 +277,7 @@ sap.ui.define([
 
 		_handleSaveWithLifnr: function (oData) {
 			oData = Object.assign({}, oData);
+			oData.parentDTO.customData.vnd_lfa1.SORTL =( oData.parentDTO.customData.vnd_lfa1.MCOD1 && oData.parentDTO.customData.vnd_lfa1.MCOD1.length > 10 ) ?   oData.parentDTO.customData.vnd_lfa1.MCOD1.slice(0,10) : oData.parentDTO.customData.vnd_lfa1.MCOD1;
 			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
@@ -1019,13 +1020,15 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		},
 		
-		onERPVendorPostalCode : function(oEvent){
+		handleERPVendorPostalCodeFix : function(oEvent){
 			this.getView().getModel("CreateVendorModel").setProperty(
 			"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2", oEvent.getSource().getValue());
-				this.getView().getModel("CreateVendorModel").setProperty(
+			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1", oEvent.getSource().getValue());
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH", oEvent.getSource().getValue());
 		}
 
 		/**
