@@ -816,6 +816,8 @@ sap.ui.define([
 								var lfb1ObjKey = Object.keys(oDataResp.result.parentDTO.customData.vnd_lfb1);
 								for (var j = 0; j < lfb1ObjKey.length; j++) {
 									var sKey = lfb1ObjKey[j];
+									oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS ===''?
+									 " ":  oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS;
 									if (addCompanyCodeRows[j]) {
 										addCompanyCodeRows[j].lfb1 = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey];
 									} else {
