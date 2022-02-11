@@ -598,17 +598,17 @@ sap.ui.define([
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.banka);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/BANKA', oVal.banka);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stars', oVal.stras);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STRAS', oVal.stras);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.ort01);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORT01', oVal.ort01);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.banks);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.laiso);
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
@@ -734,6 +734,16 @@ sap.ui.define([
 		},
 
 		onCheckClick: function () {
+			// updating the street/ house no.
+			var sHouseNo = this.getOwnerComponent().getModel("CreateVendorModel").getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1");
+			var sStreet = this.getOwnerComponent().getModel("CreateVendorModel").getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street");
+			sHouseNo = sHouseNo === null ? '' : sHouseNo;
+			sStreet = sStreet === null ? '' : " " + sStreet;
+			this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
+			
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");

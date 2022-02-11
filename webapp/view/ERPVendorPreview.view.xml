@@ -422,9 +422,9 @@
 											<Label text="Bank Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/BANKA}"/>
 											<Label text="Street"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STARS}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STRAS}"/>
 											<Label text="City"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORTO1}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORT01}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
