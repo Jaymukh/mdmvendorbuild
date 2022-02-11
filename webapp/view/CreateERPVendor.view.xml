@@ -1716,8 +1716,8 @@
 											<Label text="Search Term 1"/>
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"
 												maxLength="20"/>
-											<Label text="Postal Code" required="true"/>
-											<Input id="idAddrPostalCode" required="true"
+											<Label text="Postal Code"/>
+											<Input id="idAddrPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
 											<Input id="idAddrCountryKey" required="true"
