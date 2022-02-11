@@ -791,19 +791,19 @@
 												<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 												<Label text="Reconcillation Account" required="true"/>
 												<Select id="idCompCodesReconcillationAccunt" forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}">
-													<items>
-														<core:Item text="11590120-AR IC JV VENDOR" key="11590120"/>
-														<core:Item text="30000100-AP-TRADE" key="30000100"/>
-														<core:Item text="30000110-AP-JOINT VENTURE" key="30000110"/>
-														<core:Item text="30000111-CASH CALL DUE(NP)" key="30000111"/>
-														<core:Item text="30000112-CASH CALL OFFSET(NP)" key="30000112"/>
-														<core:Item text="30000114-Vendor 1099 Reconciliation Account" key="30000114"/>
-														<core:Item text="30000120-AP - EMPLOYEES" key="30000120"/>
-														<core:Item text="30000130-AP- LAND" key="30000130"/>
-														<core:Item text="30400100-AP IC auto postings" key="30400100"/>
-														<core:Item text="31000105-N_INACTIVE-Production/royalty payable(recon)" key="31000105"/>
-														<core:Item text="31000170-NGL MKTG PURCH PAY" key="31000170"/>
-														<core:Item text="30300000-Other ACCOUNTS PAY" key="30300000"/>
+													<items>                                                         
+														<core:Item text="0011590120-AR IC JV VENDOR" key="0011590120"/>
+														<core:Item text="0030000100-AP-TRADE" key="0030000100"/>
+														<core:Item text="0030000110-AP-JOINT VENTURE" key="0030000110"/>
+														<core:Item text="0030000111-CASH CALL DUE(NP)" key="0030000111"/>
+														<core:Item text="0030000112-CASH CALL OFFSET(NP)" key="0030000112"/>
+														<core:Item text="0030000114-Vendor 1099 Reconciliation Account" key="0030000114"/>
+														<core:Item text="0030000120-AP - EMPLOYEES" key="0030000120"/>
+														<core:Item text="0030000130-AP- LAND" key="0030000130"/>
+														<core:Item text="0030400100-AP IC auto postings" key="0030400100"/>
+														<core:Item text="0031000105-N_INACTIVE-Production/royalty payable(recon)" key="0031000105"/>
+														<core:Item text="0031000170-NGL MKTG PURCH PAY" key="0031000170"/>
+														<core:Item text="0030300000-Other ACCOUNTS PAY" key="0030300000"/>
 													</items>
 												</Select>
 												<Label text="Head Office"/>
@@ -1132,7 +1132,7 @@
 												<core:Title/>
 												<Label text="Payment Block" required="true"/>
 												<Select forceSelection="true" id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Select>
-												<Label text="House Bank"/>
+												<Label text="House Bank"/>                                              
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
 													valueHelpOnly="true">
 													<customData>
