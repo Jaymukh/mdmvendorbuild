@@ -386,7 +386,6 @@ sap.ui.define([
 							}
 							break;
 						case "vnd_lfb1":
-							debugger;
 							if (oDataResp.result.parentDTO.customData.vnd_lfb1) {
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/vnd_lfb1",
