@@ -748,25 +748,25 @@ sap.ui.define([
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
 			var oController = this;
-			if (!oData.getProperty("/addCompanyCodeRows").length) {
+			if (!oData.getProperty("/addCompanyCodeRows").length ) {
 				this.onAddCompanyCode("onCheck");
 			}
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
-				if (!oItem.isPRAData && !oItem.isPurOrgData && !oItem.isMNFData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
+			if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
 						"" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if ((oItem.isPRAData && !oItem.isPurOrgData && !oItem.isMNFData && (oData.getProperty(
+				} else if ((oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(
 						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "JVPR")) &&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if (oItem.isPurOrgData && !oItem.isMNFData && 
+				} else if (oItem.isPurOrgData &&
 					((oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") || (oData.getProperty(
 						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "GENV")) &&
 					(oData.getProperty(oItem
@@ -774,14 +774,7 @@ sap.ui.define([
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				}else if ((!oItem.isPRAData && !oItem.isPurOrgData && oItem.isMNFData && (oData.getProperty(
-						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "MNFR")) &&
-					(oData.getProperty(oItem
-							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
-						oData.getProperty(oItem.fieldMapping) === null)) {
-					aEmptyFields.push(oItem);
-					sValueState = "Error";
-				}  else {
+				} else {
 					if (oControl.getValueState() === sap.ui.core.ValueState.Error || oControl.getValueState() === "Error") {
 						sValueState = "Success";
 					}

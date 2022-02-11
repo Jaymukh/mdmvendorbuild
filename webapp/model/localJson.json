@@ -834,7 +834,7 @@
 			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01",
 			"panelMapping": "ERP Vendor Details",
 			"isPRAData": false,
-			"isMNFData": false,
+			"isMNFData": true,
 			"isPurOrgData": false
 		}, {
 			"id": "idERPVendorPostalCode",
