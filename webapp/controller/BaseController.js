@@ -825,8 +825,8 @@ sap.ui.define([
 
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
-						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
+					(oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
+						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())  + "-" +  oDate.getFullYear()
 				);
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/crTime",
@@ -1378,7 +1378,7 @@ sap.ui.define([
 			date.getMinutes();
 			var sSeconds = ("" + date.getSeconds()).length === 1 ? "0" + date.getSeconds() : date.getSeconds();
 			date.getSeconds();
-			return sDate + "-" + sMonth + "-" + sYear + " at " + sHour + ":" + sMinute + ":" + sSeconds;
+			return sMonth + "-" + sDate + "-" + sYear + " at " + sHour + ":" + sMinute + ":" + sSeconds;
 		},
 
 		getTelCountryNumber: function () {
