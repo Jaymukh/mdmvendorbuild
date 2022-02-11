@@ -34,7 +34,7 @@
 												</items>
 											</Select>
 											<Label text="Due Date"/>
-											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label text="Reason" required="true"/>
 											<!--<Input value="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idCreateERPVendorReason" enabled="true" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
@@ -415,7 +415,7 @@
 											<Label text="Credit information No."/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}" maxLength="11"/>
 											<Label text="Last External Review"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
 											<Label text="Statistics Group, Service agent"/>
 											<Select id="refDataStatGrpServiceAgntId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
@@ -426,7 +426,7 @@
 												</items>-->
 											</Select>
 											<Label text="QM System Valid to"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
 										</form:content>
 									</form:SimpleForm>
@@ -453,10 +453,10 @@
 												</customData>
 											</Input>-->
 											<Label text="Description"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
 											<core:Title text=""/>
 											<Label text="Tax Number"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -710,11 +710,11 @@
 											<Label text="Ariba Supplier Network ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZARIBA_NET}" maxLength="30"/>
 											<Label text="Validate From Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_FM}"/>
 											<core:Title/>
 											<Label text="Validate To Date"/>
-											<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_TO}"/>
 										</form:content>
 									</form:SimpleForm>
@@ -735,7 +735,7 @@
 											<headerToolbar>
 												<Toolbar>
 													<ToolbarSpacer></ToolbarSpacer>
-													<Button text="Add" press="onAddCompanyCode"></Button>
+													<Button id="companyCodeAddBtmID" text="Add" press="onAddCompanyCode"></Button>
 												</Toolbar>
 											</headerToolbar>
 											<columns>
@@ -761,8 +761,9 @@
 														<Text text="{CreateVendorModel>lfb1/bukrs}"></Text>
 														<Text text="{CreateVendorModel>lfb1/AKONT}"></Text>
 														<HBox>
-															<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanYCodeEditPress"/>
+															<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanyCodeEditPress"/>
 															<core:Icon src="sap-icon://delete" class="sapUiSmallMarginEnd" press="onCompanYCodeDeletePress"/>
+															<core:Icon src="sap-icon://save" color="green" class="sapUiSmallMarginEnd" press="onCompanyCodeSavePress" visible="false"/>
 														</HBox>
 													</cells>
 												</ColumnListItem>
@@ -861,7 +862,7 @@
 												</items>-->
 												</Select>
 												<Label text="Certification Date"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
 												<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
 												<Label text="Intrest Indicator"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -893,9 +894,9 @@
 													</items>
 												</Select>
 												<Label text="Last Key Date"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINDT}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINDT}"/>
 												<Label text="Last Key Run"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
 												<core:Title text="Withholding Tax"/>
 												<Label text="Withholding Tax Country"/>
 												<Input id="idWithHoldTaxCtry" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
@@ -950,7 +951,7 @@
 												<Label text="Exemption No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25"/>
 												<Label text="Valid Unit"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
 												<Label text="Exemption Authority"/>
 												<Select forceSelection="false" id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}">
 													<items>
@@ -999,7 +1000,7 @@
 												<Label text="Exemption Rate in %"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}" maxLength="5"/>
 												<Label text="Date on which exemption starts"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"/>
 												<core:Title/>
 												<Label text="Withholding Tax Code"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -1036,7 +1037,7 @@
 													</customData>
 												</Input>
 												<Label text="Date on which Exemption Ends"/>
-												<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"/>
 												<core:Title text="ERP Vendor Company Code : Reference data"/>
 												<Label text="Previous Account No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ALTKN}" maxLength="10"/>
@@ -2095,13 +2096,13 @@
 														<Label text="Tax ID"/>
 														<Input/>
 														<Label text="Tin match Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tin_match_date}"/>
 														<Label text="B Notice 1 Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bn1_date}"/>
 														<Label text="B Notice 2 Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bn2_date}"/>
 														<Label text="Backup Withholding"/>
 														<CheckBox select="onSelectCheckBox">
@@ -2126,14 +2127,14 @@
 															</items>
 														</Select>
 														<Label text="Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bn1_resp_date}"/>
 														<Label text="TIN Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tin_resp_date}"/>
 														<core:Title/>
 														<Label text="IRS Form Response Date"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/irs_resp_date}"/>
 														<Label text="NRA"/>
 														<CheckBox select="onSelectCheckBox">
@@ -2348,7 +2349,7 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_prefix}"
 															maxLength="10"/>
 														<Label text="Date Of Birth"/>
-														<DatePicker displayFormat="YYYYMMdd" valueFormat="YYYYMMdd"
+														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_dob}"/>
 														<Label text="Tax ID"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_taxid}"

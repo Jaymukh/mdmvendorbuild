@@ -54,7 +54,7 @@
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="dateRange" label="Date Range">
 												<filterbar:control>
-													<DateRangeSelection id="DRS2" change="handleDateRangeChange"/>
+													<DateRangeSelection id="DRS2" change="handleDateRangeChange" displayFormat="MM-dd-YYYY"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Show">

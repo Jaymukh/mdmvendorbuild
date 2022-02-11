@@ -551,86 +551,90 @@ sap.ui.define([
 			}
 
 			this.getView().setBusy(true);
-			var objParamSubmit = {
-				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/filters/get",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
-					"currentPage": 1,
-					"changeRequestSearchDTO": {
-						"createdBy": sCreatedBy,
-						"dateRangeTo": sToDate,
-						"dateRangeFrom": sFromDate,
-						"approvedEntityId": sVendor,
-						"companyCode": sCompanyCode,
-						"countryCode": sCity,
-						"isClaimed": bClaimed,
-						"isCrClosed": bClosed,
-						"entityType": "VENDOR",
-						"listOfCRSearchCondition": [
-							"GET_CR_BY_ADDRESS",
-							"GET_CR_CREATED_BY_USER_ID",
-							"GET_CR_BY_DATE_RANGE",
-							"GET_CR_BY_ENTITY",
-							"GET_CR_BY_COMPANY_CODE",
-							"GET_CR_PROCESSED_BY_USER_ID"
-						]
+			if (sCreatedBy || sToDate || sFromDate || sVendor || sCompanyCode || sCity || bClaimed || bClosed) {
+				var objParamSubmit = {
+					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/filters/get",
+					type: 'POST',
+					hasPayload: true,
+					data: {
+						"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
+						"currentPage": 1,
+						"changeRequestSearchDTO": {
+							"createdBy": sCreatedBy,
+							"dateRangeTo": sToDate,
+							"dateRangeFrom": sFromDate,
+							"approvedEntityId": sVendor,
+							"companyCode": sCompanyCode,
+							"countryCode": sCity,
+							"isClaimed": bClaimed,
+							"isCrClosed": bClosed,
+							"entityType": "VENDOR",
+							"listOfCRSearchCondition": [
+								"GET_CR_BY_ADDRESS",
+								"GET_CR_CREATED_BY_USER_ID",
+								"GET_CR_BY_DATE_RANGE",
+								"GET_CR_BY_ENTITY",
+								"GET_CR_BY_COMPANY_CODE",
+								"GET_CR_PROCESSED_BY_USER_ID"
+							]
+						}
 					}
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
-				if (oData.result.currentPage === 1) {
-					var aPageJson = [];
-					for (var i = 0; i < oData.result.totalPageCount; i++) {
-						aPageJson.push({
-							key: i + 1,
-							text: i + 1
-						});
+				};
+				this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
+					if (oData.result.currentPage === 1) {
+						var aPageJson = [];
+						for (var i = 0; i < oData.result.totalPageCount; i++) {
+							aPageJson.push({
+								key: i + 1,
+								text: i + 1
+							});
+						}
+						if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+						} else {
+							this.getView().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
+						}
 					}
 					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
-					} else {
-						this.getView().getModel("changeRequestGetAllModel").setProperty("/PageData", aPageJson);
-					}
-				}
-				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
-					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
-					////Total count 
-					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
-					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
-					if (oData.result.totalPageCount > oData.result.currentPage) {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
-					} else {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
-					}
-					if (oData.result.currentPage > 1) {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
-					} else {
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
-					}
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+						////Total count 
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+						if (oData.result.totalPageCount > oData.result.currentPage) {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+						} else {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+						}
+						if (oData.result.currentPage > 1) {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+						} else {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+						}
 
-				} else {
-					this.getView().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
-					this.getView().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
-					if (oData.result.totalPageCount > oData.result.currentPage) {
-						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
 					} else {
-						this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
+						this.getView().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
+						if (oData.result.totalPageCount > oData.result.currentPage) {
+							this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
+						} else {
+							this.getView().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
+						}
+						if (oData.result.currentPage > 1) {
+							this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
+						} else {
+							this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
+						}
 					}
-					if (oData.result.currentPage > 1) {
-						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", true);
-					} else {
-						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
-					}
-				}
-				this.getView().setBusy(false);
-				
+					this.getView().setBusy(false);
 
-			}.bind(this), function (oError) {
+				}.bind(this), function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Error in getting Change Requests");
+				}.bind(this));
+			} else {
+				this.handleGetAllChangeRequests();
 				this.getView().setBusy(false);
-				MessageToast.show("Error in getting Change Requests");
-			}.bind(this));
+			}
 		}
 
 		/**

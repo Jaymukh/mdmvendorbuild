@@ -198,15 +198,29 @@ sap.ui.define([
 							}
 
 							// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
+							if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1) {
+								oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+							}
+							if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1) {
+								oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
+							}
+							if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1) {
+								oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
+							}
+							if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1) {
+								oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
+							}
+							if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1) {
+								oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;
+							}
+							if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.gen_adrc_1) {
+								oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							}
+							if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.gen_adrc_2) {
+								oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+								oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+							}
 
-							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
-							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
-							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
-							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
-							oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;
-							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
 							this._handleSaveWithLifnr(oData);
 							/*	var objParamCreate = {
 									url: "/murphyCustom/mdm/entity-service/entities/entity/update",
@@ -277,7 +291,8 @@ sap.ui.define([
 
 		_handleSaveWithLifnr: function (oData) {
 			oData = Object.assign({}, oData);
-			oData.parentDTO.customData.vnd_lfa1.SORTL =( oData.parentDTO.customData.vnd_lfa1.MCOD1 && oData.parentDTO.customData.vnd_lfa1.MCOD1.length > 10 ) ?   oData.parentDTO.customData.vnd_lfa1.MCOD1.slice(0,10) : oData.parentDTO.customData.vnd_lfa1.MCOD1;
+			oData.parentDTO.customData.vnd_lfa1.SORTL = (oData.parentDTO.customData.vnd_lfa1.MCOD1 && oData.parentDTO.customData.vnd_lfa1.MCOD1
+				.length > 10) ? oData.parentDTO.customData.vnd_lfa1.MCOD1.slice(0, 10) : oData.parentDTO.customData.vnd_lfa1.MCOD1;
 			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
@@ -289,7 +304,7 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-			}else if(oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null){
+			} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 			}
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
@@ -820,12 +835,18 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1", oEvent.getSource().getValue());
 		},
 
-		onAddCompanyCode: function (sCheck) {
+		onAddCompanyCode: function (sCheck, oParam) {
 			var sPathForCompanyCodeMandatoryField = "/companyCodeMandateFields";
 			if (this._checkValidationforFields(sPathForCompanyCodeMandatoryField)) {
 				var aLFB1WFormData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData");
 				var aLFB1WTableData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeRows");
-				aLFB1WTableData.push(aLFB1WFormData);
+				if (oParam && oParam.index) {
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + oParam.index, aLFB1WFormData);
+					this.getView().byId("companyCodeAddBtmID").setEnabled(true);
+					sCheck.getSource().setVisible(false);
+				} else {
+					aLFB1WTableData.push(aLFB1WFormData);
+				}
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/addCompanyCodeFormData", {
 						"lfb1": {
@@ -931,8 +952,24 @@ sap.ui.define([
 
 		},
 
-		onCompanYCodeEditPress: function (oEvent) {
+		onCompanyCodeEditPress: function (oEvent) {
+			this.getView().byId("companyCodeAddBtmID").setEnabled(false);
+			oEvent.getSource().getParent().getItems()[2].setVisible(true);
+			var oData = Object.assign({}, oEvent.getSource().getBindingContext("CreateVendorModel").getObject());
+			var oTableItemData = Object.assign({}, {
+				lfb1: Object.assign({}, oData.lfb1),
+				lfbw: Object.assign({}, oData.lfbw)
+			});
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", Object.assign({}, oTableItemData));
+		},
 
+		onCompanyCodeSavePress: function (oEvent) {
+			var oFormData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData");
+			var nIndex = oEvent.getSource().getBindingContext("CreateVendorModel").getPath().split("/")[2];
+			// this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + nIndex, oFormData);
+			this.onAddCompanyCode(oEvent, {
+				index: nIndex
+			});
 		},
 
 		onCompanYCodeDeletePress: function (oEvent) {
@@ -1019,10 +1056,10 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		},
-		
-		handleERPVendorPostalCodeFix : function(oEvent){
+
+		handleERPVendorPostalCodeFix: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
-			"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2", oEvent.getSource().getValue());
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(

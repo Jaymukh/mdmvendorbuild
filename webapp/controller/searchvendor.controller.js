@@ -801,6 +801,7 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
+								// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
 							}
 							break;
 						case "vnd_lfb1":
@@ -933,7 +934,11 @@ sap.ui.define([
 					case 'DELETE':
 						sOperationKey = '50005';
 						break;
+					case 'COPY':
+						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
+						break;
 					}
+
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', sOperationKey);
 					if (operation === "DELETE" || operation === "BLOCK") {
 						this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
