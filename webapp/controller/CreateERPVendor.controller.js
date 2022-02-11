@@ -780,6 +780,7 @@ sap.ui.define([
 					}
 				}
 				oControl.setValueState(sValueState);
+
 			});
 			if (!oData.getProperty("/addCompanyCodeRows").length) {
 				aEmptyFields.push({
