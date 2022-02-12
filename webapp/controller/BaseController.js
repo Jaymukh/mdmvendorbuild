@@ -25,10 +25,10 @@ sap.ui.define([
 					"parentDTO": {
 						"customData": {
 							"business_entity": {
-								"entity_type_id": "1",
-								"created_by": "1",
-								"modified_by": "1",
-								"is_draft": "1"
+								"entity_type_id": "41001",
+								"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+								"modified_by":this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+								"is_draft": true
 							}
 						}
 					}
