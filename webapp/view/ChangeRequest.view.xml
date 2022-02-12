@@ -151,12 +151,12 @@
 														<items>
 															<IconTabFilter text="Workflow" key="workflow">
 																<!--<Label text="Workflow goes here..."/>-->
-																<commons:Timeline enableDoubleSided="true" groupBy="HireDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
-																	content="{CreateVendorModel>/workflow}" groupByType="Year" enableScroll="false">
+																<commons:Timeline enableDoubleSided="true" groupBy="changeDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
+																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Year" enableScroll="false">
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{CreateVendorModel>HireDate}" title="{CreateVendorModel>JobTitle}" userNameClickable="true"
-																			userNameClicked="onUserNameClick" userPicture="{CreateVendorModel>Photo}" text="{CreateVendorModel>JobResponsibilities}"
-																			userName="{CreateVendorModel>Name}" filterValue="{CreateVendorModel>JobTitle}" icon="{CreateVendorModel>Icon}"></commons:TimelineItem>
+																		<commons:TimelineItem dateTime="{crWorkflowLogModel>changeDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
+																			
+																			userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>

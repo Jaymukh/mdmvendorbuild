@@ -1,5 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
-	xmlns:f="sap.f" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:commons="sap.suite.ui.commons" xmlns:f="sap.f" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview"
+	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="VendorPreview" showHeader="false" showNavButton="false">
 		<content>
 			<Toolbar>
@@ -1276,10 +1277,18 @@
 						<l:sideContent>
 							<IconTabBar expanded="true">
 								<items>
-									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/preview} === false}">
-										<Text text="Workflow comes here"/>
+									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/approvalView} === true}">
+										<!--<Label text="Workflow goes here..."/>-->
+										<commons:Timeline enableDoubleSided="true" groupBy="changeDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
+											content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Year" enableScroll="false">
+											<commons:content>
+												<commons:TimelineItem dateTime="{crWorkflowLogModel>changeDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
+													userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+												<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+											</commons:content>
+										</commons:Timeline>
 									</IconTabFilter>
-									<IconTabFilter text="Change Documents" key="changeDoc">
+									<IconTabFilter text="Change Documents" key="changeDoc" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Text text="Documents go here ..."/>-->
 										<HBox>
 											<SearchField ></SearchField>
