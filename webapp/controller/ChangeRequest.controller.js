@@ -97,6 +97,8 @@ sap.ui.define([
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
 				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
 				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
+				oVendorModel.setProperty("/changeReq/genData/change_request_by", oChangeReq.change_request_by);
+				oVendorModel.setProperty("/changeReq/genData/modified_by", oChangeReq.modified_by);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
 				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
