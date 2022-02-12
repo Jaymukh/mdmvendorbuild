@@ -293,29 +293,30 @@ sap.ui.define([
 			oData = Object.assign({}, oData);
 			oData.parentDTO.customData.vnd_lfa1.SORTL = (oData.parentDTO.customData.vnd_lfa1.MCOD1 && oData.parentDTO.customData.vnd_lfa1.MCOD1
 				.length > 10) ? oData.parentDTO.customData.vnd_lfa1.MCOD1.slice(0, 10) : oData.parentDTO.customData.vnd_lfa1.MCOD1;
-			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
-				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
-				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
-			}
-			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
-				delete oData.parentDTO.customData.pra_bp_ad;
-				delete oData.parentDTO.customData.pra_bp_vend_esc;
-				delete oData.parentDTO.customData.pra_bp_cust_md;
-				delete oData.parentDTO.customData.pra_bp_vend_md;
-				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+					if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
+						"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
+						oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+					}
+					if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
+						delete oData.parentDTO.customData.pra_bp_ad;
+						delete oData.parentDTO.customData.pra_bp_vend_esc;
+						delete oData.parentDTO.customData.pra_bp_cust_md;
+						delete oData.parentDTO.customData.pra_bp_vend_md;
+						delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+		
+					} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
+						delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+					}
+					oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+					oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
+					oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+					oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
+					var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+					aLFB1Objs.forEach(function (key, index) {
+						var sProerty = 'vnd_lfbw_' + (index + 1);
+						oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+					});
 
-			} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
-				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
-			}
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
-			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
-			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
-			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-			aLFB1Objs.forEach(function (key, index) {
-				var sProerty = 'vnd_lfbw_' + (index + 1);
-				oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
-			});
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/update",
 				hasPayload: true,
@@ -754,7 +755,7 @@ sap.ui.define([
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
-			if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
+				if ( !oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
 						"" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
@@ -782,7 +783,7 @@ sap.ui.define([
 				oControl.setValueState(sValueState);
 
 			});
-			if (!oData.getProperty("/addCompanyCodeRows").length) {
+			if (!oData.getProperty("/addCompanyCodeRows").length && oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") !== "MNFR") {
 				aEmptyFields.push({
 					section: "Company Code"
 				})

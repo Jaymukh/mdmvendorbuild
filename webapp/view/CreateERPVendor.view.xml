@@ -54,7 +54,7 @@
 											<Label text="Current Work Item"/>
 											<Input value="{CreateVendorModel>/changeReq/genData/currWrkItem}" enabled="false"/>
 											<Label text="Created By"/>
-											<Input value="{CreateVendorModel>/changeReq/genData/createdBy}" enabled="false"/>
+											<Input value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}" enabled="false"/>
 											<Label text="Date/Time of Creation"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/crTime}" enabled="false">

@@ -52,12 +52,12 @@
 											<Label text="Current Work Item"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
 											<Label text="Created By"/>
-											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
 											<Label text="Date/Time of Creation"/>
 											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 										</form:content>
