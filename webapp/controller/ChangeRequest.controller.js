@@ -262,6 +262,9 @@ sap.ui.define([
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAuditLogsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
+
+					this.getWorkFlowForCR(sChangeRequestId);
+
 					if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
 						this.getView().getModel("crAuditLogModel").setProperty("/details", {});
 					}
@@ -361,6 +364,7 @@ sap.ui.define([
 			this.getAllCommentsForCR(sEntityID);
 			this.getAllDocumentsForCR(sEntityID);
 			this.getAuditLogsForCR(sEntityID);
+			this.getWorkFlowForCR(oEvent.getParameter("listItem").getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id);
 			if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
 				this.getView().getModel("crAuditLogModel").setProperty("/details", {});
 			}
