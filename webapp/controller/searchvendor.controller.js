@@ -38,7 +38,6 @@ sap.ui.define([
 			}
 		},
 		handleGo: function (oParameters) {
-			debugger;
 			if (this.getOwnerComponent().getModel("SearchVendorModel")) {
 				this.getOwnerComponent().getModel("SearchVendorModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("SearchVendorModel").setProperty("/rightEnabled", false);
@@ -133,7 +132,6 @@ sap.ui.define([
 		},
 
 		onSearchVendor: function () {
-			debugger;
 			var sVMSelectedKey = this.getView().byId('searchVendorVM').getSelectionKey();
 			var sName1 = this.getView().byId('fbName1').getValue();
 			var sName2 = this.getView().byId('fbName2').getValue();
