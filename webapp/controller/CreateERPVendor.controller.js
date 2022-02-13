@@ -307,9 +307,117 @@ sap.ui.define([
 					} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 						delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 					}
-					oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+					if (oData.parentDTO.customData.vnd_lfa1.KTOKK === "MNFR") {
+						if(Object.keys(oData.parentDTO.customData.vnd_lfb1).length === 0) {
+							oData.parentDTO.customData.vnd_lfb1 ={"vnd_lfb1_1" :{
+												"entity_id":oData.parentDTO.customData.vnd_lfa1.entity_id ,
+												"lifnr" :oData.parentDTO.customData.vnd_lfa1.lifnr,
+												"bukrs": "",
+												"AKONT": "",
+												"LNRZE": null,
+												"BEGRU": null,
+												"MINDK": null,
+												"ZUAWA": "",
+												"FDGRV": null,
+												"VZSKZ": null,
+												"ZINRT": null,
+												"ZINDT": null,
+												"DATLZ": null,
+												"ALTKN": null,
+												"PERNR": null,
+												"ZTERM": "",
+												"KULTG": null,
+												"REPRF": "",
+												"ZWELS": "",
+												"LNRZB": null,
+												"WEBTR": null,
+												"UZAWE": null,
+												"ZAHLS": " ",
+												"HBKID": null,
+												"XPORE": null,
+												"XVERR": null,
+												"TOGRU": null,
+												"ZSABE": null,
+												"EIKTO": null,
+												"XDEZV": null,
+												"KVERM": null,
+												"MGRUP": null,
+												"ZGRUP": null,
+												"QLAND": null,
+												"XEDIP": null,
+												"FRGRP": null,
+												"TOGRR": null,
+												"TLFXS": null,
+												"INTAD": null,
+												"XLFZB": null,
+												"GUZTE": null,
+												"GRICD": null,
+												"GRIDT": null,
+												"XAUSZ": null,
+												"CERDT": null,
+												"CONFS": null,
+												"UPDAT": null,
+												"UPTIM": null,
+												"NODEL": null,
+												"TLFNS": null,
+												"AVSND": null,
+												"AD_HASH": null,
+												"CVP_XBLCK_B": null,
+												"CIIUCODE": null,
+												"ZBOKD": null,
+												"ZQSSKZ": null,
+												"ZQSZDT": null,
+												"ZQSZNR": null,
+												"ZMINDAT": null,
+												"J_SC_SUBCONTYPE": null,
+												"J_SC_COMPDATE": null,
+												"J_SC_OFFSM": null,
+												"J_SC_OFFSR": null,
+												"BASIS_PNT": null,
+												"GMVKZK": null,
+												"INTERCOCD": null,
+												"RSTR_CHG_FL": null,
+												"CHECK_FLAG": null,
+												"OVRD_RCPMT": null,
+												"MIN_PAY": null,
+												"PAY_FRQ_CD": null,
+												"RECOUP_PC": null,
+												"ALLOT_MTH_CD": null,
+												"ESCH_CD": null,
+												"ESCHEAT_DT": null,
+												"PREPAY_RELEVANT": null,
+												"ASSIGN_TEST": null,
+												"ZZESTMA": null
+											}};
+						}
+						if(Object.keys(oData.parentDTO.customData.vnd_lfbw).length === 0) {
+							oData.parentDTO.customData.vnd_lfbw ={"vnd_lfbw_1" : {
+							"entity_id":oData.parentDTO.customData.vnd_lfa1.entity_id ,
+							"lifnr" :oData.parentDTO.customData.vnd_lfa1.lifnr,
+							"WT_WITHCD": null,
+							"QSREC": null,
+							"witht": "",
+							"WT_WTSTCD": null,
+							"WT_EXRT": null,
+							"WT_EXDF": null,
+							"WT_SUBJCT": null,
+							"WT_EXNR": null,
+							"WT_WTEXRS": null,
+							"WT_EXDT": null,
+							"bukrs": ""
+						}										
+					};
+						}
+					}
+					if(oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL){
+						oData.parentDTO.customData.gen_bnka.gen_bnka_1.bankl = 	oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL;
+					}
+					if(oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS){
+						oData.parentDTO.customData.gen_bnka.gen_bnka_1.banks = 	oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS;
+					}
+					/*oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 					oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
-					oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+					oData.parentDTO.customData.gen_bnka.gen_bnka_1.stras = "";*/
 					oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
 					var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
 					aLFB1Objs.forEach(function (key, index) {
@@ -599,11 +707,11 @@ sap.ui.define([
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/BANKA', oVal.banka);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.banka);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STRAS', oVal.stras);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stras', oVal.stras);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORT01', oVal.ort01);
+					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01', oVal.ort01);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.banks);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
