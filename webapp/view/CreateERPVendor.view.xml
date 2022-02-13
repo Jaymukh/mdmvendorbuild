@@ -56,7 +56,7 @@
 											<Label text="Created By"/>
 											<Input value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}" enabled="false"/>
 											<Label text="Date/Time of Creation"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/crTime}" enabled="false">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
