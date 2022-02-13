@@ -61,7 +61,7 @@
 						<f:header>
 							<f:DynamicPageHeader>
 								<f:content>
-									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true">
+									<filterbar:FilterBar id="filterBar" reset="onReset" search="onSearchVendor" useToolbar="false" showGoOnFB="true">
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="name1" label="Name 1">
 												<filterbar:control>
