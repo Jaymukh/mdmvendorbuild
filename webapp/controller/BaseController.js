@@ -50,7 +50,7 @@ sap.ui.define([
 							"NAME4": null,
 							"STKZN": null,
 							"SORTL": null,
-							"MCOD1":null,
+							"MCOD1": null,
 							"TELF1": null,
 							"TELF2": null,
 							"TELFX": null,
@@ -828,7 +828,7 @@ sap.ui.define([
 
 				oVendorModel.setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					 oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
 						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
 				);
 				oVendorModel.setProperty(
@@ -1070,6 +1070,8 @@ sap.ui.define([
 				}.bind(this),
 				function (oError) {
 					this.getView().setBusy(false);
+					this.getView().getModel("crERPCommentedModel").setData([]);
+					this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", 0);
 					MessageToast.show("Failed to get all Comment, Please Try after some time.");
 
 				}.bind(this)
@@ -1104,6 +1106,8 @@ sap.ui.define([
 				}.bind(this),
 				function (oError) {
 					this.getView().setBusy(false);
+					this.getView().getModel("crERPAttachmentModel").setData([]);
+					this.getView().getModel("crAuditLogModel").setProperty("/details/attachmentCount", 0);
 					MessageToast.show("Failed to get all Documents, Please Try after some time.");
 
 				}.bind(this)
@@ -1192,6 +1196,7 @@ sap.ui.define([
 				}.bind(this),
 				function (oError) {
 					this.getView().setBusy(false);
+					this.getView().getModel("crAuditLogModel").setProperty("/items", []);
 					MessageToast.show("Failed to get Audit Logs, Please Try after some time.");
 
 				}.bind(this)
@@ -1398,6 +1403,33 @@ sap.ui.define([
 					this.getOwnerComponent().getModel("valueHelps").setProperty("/TelCountryCodes", oDataResp.result.modelMap);
 				}
 			}.bind(this));
-		}
+		},
+
+		getWorkFlowForCR: function (sCRID) {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/workbox/changerequest/logs",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"changeRequestDTO": {
+						"change_request_id": sCRID
+					}
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result && oDataResp.result.workflowAuditLogDTO) {
+						this.getView().getModel("crWorkflowLogModel").setData(oDataResp.result.workflowAuditLogDTO);
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					this.getView().getModel("crWorkflowLogModel").setData([]);
+					MessageToast.show("Failed to get Workflow Status, Please Try after some time.");
+
+				}.bind(this)
+			);
+		},
 	});
 });
