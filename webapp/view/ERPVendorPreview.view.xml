@@ -137,40 +137,42 @@
 											<Label text="Telephone"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
 											<Text text=""/>
 											<Label text="Mobile"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
 											<Label text="E-mail Address"/>
 											<Text text=""/>
 											<Label text="Fax"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
-											<Text text=""/>
+											<Text text="">	<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData></Text>
 											<Label text="Web site"/>
 											<Text text=""/>
 											<core:Title/>
@@ -189,7 +191,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Label text="District"/>
@@ -205,7 +207,7 @@
 											<Label text="Postal Code / City"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
@@ -868,7 +870,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Label text="Country"/>
