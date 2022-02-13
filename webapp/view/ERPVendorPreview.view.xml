@@ -36,7 +36,7 @@
 												</items>
 											</Select>
 											<Label text="Due Date"/>
-											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label required="true" text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idERPVendorPreviewReason" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
@@ -55,7 +55,7 @@
 											<Label text="Created By"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
 											<Label text="Date/Time of Creation"/>
-											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
