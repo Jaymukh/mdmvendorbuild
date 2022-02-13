@@ -50,7 +50,7 @@ sap.ui.define([
 							"NAME4": null,
 							"STKZN": null,
 							"SORTL": null,
-							"MCOD1":null,
+							"MCOD1": null,
 							"TELF1": null,
 							"TELF2": null,
 							"TELFX": null,
@@ -343,8 +343,8 @@ sap.ui.define([
 								"mc_county": null,
 								"mc_township": null,
 								"xpcpt": null
-							},
-							"gen_adrc_2": {
+							}
+							/*"gen_adrc_2": {
 								"entity_id": null,
 								"addrnumber": null,
 								"date_from": "",
@@ -444,7 +444,7 @@ sap.ui.define([
 								"mc_county": null,
 								"mc_township": null,
 								"xpcpt": null
-							}
+							}*/
 						},
 						"gen_bnka": {
 							"gen_bnka_1": {
@@ -662,6 +662,8 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData",
 						oCustomData);
 					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows", []);
+					this.getView().getModel("praAddressModel").setProperty("/rows", []);
+					this.getView().getModel("praAddressModel").setProperty("/address", Object.assign({}, oCustomData.gen_adrc.gen_adrc_1));
 					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", {
 						"lfb1": {
 							"entity_id": null,
@@ -797,9 +799,10 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
-				this.getView().getModel("CreateVendorModel").setProperty(
+				//PRA Addresses are storing as table
+				/*this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/addrnumber",
-					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id) + "_1");
+					(oData.result.vendorDTOs[0].customVendorBusDTO.entity_id) + "_1");*/
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/entity_id",
 					oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
@@ -825,7 +828,7 @@ sap.ui.define([
 
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from",
-					 oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
+					oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + (oDate
 						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate())
 				);
 				this.getView().getModel("CreateVendorModel").setProperty(
