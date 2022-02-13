@@ -382,6 +382,8 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
+								var sSearchTerm = oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1 = sSearchTerm ? sSearchTerm : oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 							}
 							break;
 						case "vnd_lfb1":
@@ -467,8 +469,23 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1",
 									oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1);
+							}else{
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
+								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.house_num1 = sHouseNo;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.street = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.slice(sHouseNo.length);
+								oDataResp.parentDTO.customData.gen_adrc.gen_adrc_1.region = oDataResp.parentDTO.customData.vnd_lfa1.REGIO;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.langu = 'E';
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.po_box = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.post_code1 = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.city1 = oDataResp.result.parentDTO.customData.vnd_lfa1.ORT01;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.country = oDataResp.result.parentDTO.customData.vnd_lfa1.LAND1;
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
+									oDataResp.result.parentDTO.customData.gen_adrc);
 							}
-
 							break;
 						case "gen_bnka":
 							if (oDataResp.result.parentDTO.customData.gen_bnka) {
@@ -802,6 +819,7 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1",
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
+								debugger;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
 								// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
 							}
@@ -882,6 +900,22 @@ sap.ui.define([
 							break;
 						case "gen_adrc":
 							if (oDataResp.result.parentDTO.customData.gen_adrc) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
+									oDataResp.result.parentDTO.customData.gen_adrc);
+							}else{
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
+								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.house_num1 = sHouseNo;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.street = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.slice(sHouseNo.length);
+								oDataResp.parentDTO.customData.gen_adrc.gen_adrc_1.region = oDataResp.parentDTO.customData.vnd_lfa1.REGIO;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.langu = 'E';
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.po_box = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.post_code1 = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.city1 = oDataResp.result.parentDTO.customData.vnd_lfa1.ORT01;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.country = oDataResp.result.parentDTO.customData.vnd_lfa1.LAND1;
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
 									oDataResp.result.parentDTO.customData.gen_adrc);
