@@ -470,7 +470,7 @@ sap.ui.define([
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1",
 									oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1);
 							}else{
-								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc_1":{}};
 								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
 								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
@@ -819,8 +819,9 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1",
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
-								debugger;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
+								var sSearchTerm = oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1 = sSearchTerm ? sSearchTerm : oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 								// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
 							}
 							break;
@@ -903,7 +904,7 @@ sap.ui.define([
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
 									oDataResp.result.parentDTO.customData.gen_adrc);
 							}else{
-								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc_1":{}};
 								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
 								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
