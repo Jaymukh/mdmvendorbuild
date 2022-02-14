@@ -424,7 +424,17 @@ sap.ui.define([
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stras = "";*/
 			oPraAddress.rows.forEach(function (oItem, index) {
 				oItem.entityId = oData.parentDTO.customData.vnd_lfa1.entity_id + "_1";
-				oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 1)] = oItem;
+				oItem.adrnr = oData.parentDTO.customData.vnd_lfa1.entity_id + (index + 1);
+				oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
+				oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
+					"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id + "_1",
+					"addr_type": oItem.addr_type,
+					"adrnr": oItem.adrnr,
+					"custid": null,
+					"vendid": oData.parentDTO.customData.vnd_lfa1.lifnr,
+					"oiu_cruser": null,
+					"oiu_timestamp": null
+				};
 			});
 
 			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;

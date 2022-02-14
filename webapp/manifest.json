@@ -167,21 +167,21 @@
 					"defaultBindingMode": "TwoWay"
 				}
 			},
-<<<<<<< HEAD
 			"praAddressModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"rows": [],
 					"address": {}
-=======
+				}
+			},
 			"crWorkflowLogModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
->>>>>>> refs/heads/main
 				}
 			}
 		},
+
 		"resources": {
 			"css": [{
 				"uri": "css/style.css"
