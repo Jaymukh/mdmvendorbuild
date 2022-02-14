@@ -305,9 +305,25 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-			} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
-				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+			} else {
+				oPraAddress.rows.forEach(function (oItem, index) {
+					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id + "_1";
+					oItem.adrnr = oData.parentDTO.customData.vnd_lfa1.entity_id +""+ (index + 1);
+					oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
+					oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
+						"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id + "_1",
+						"addr_type": oItem.addr_type,
+						"adrnr": oItem.adrnr,
+						"custid": null,
+						"vendid": oData.parentDTO.customData.vnd_lfa1.lifnr,
+						"oiu_cruser": null,
+						"oiu_timestamp": null
+					};
+				});
 			}
+			/*else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
+				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+			}*/
 			if (oData.parentDTO.customData.vnd_lfa1.KTOKK === "MNFR") {
 				if (Object.keys(oData.parentDTO.customData.vnd_lfb1).length === 0) {
 					oData.parentDTO.customData.vnd_lfb1 = {
@@ -422,20 +438,6 @@ sap.ui.define([
 			/*oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stras = "";*/
-			oPraAddress.rows.forEach(function (oItem, index) {
-				oItem.entityId = oData.parentDTO.customData.vnd_lfa1.entity_id + "_1";
-				oItem.adrnr = oData.parentDTO.customData.vnd_lfa1.entity_id + (index + 1);
-				oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
-				oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
-					"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id + "_1",
-					"addr_type": oItem.addr_type,
-					"adrnr": oItem.adrnr,
-					"custid": null,
-					"vendid": oData.parentDTO.customData.vnd_lfa1.lifnr,
-					"oiu_cruser": null,
-					"oiu_timestamp": null
-				};
-			});
 
 			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
 			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
@@ -1227,7 +1229,7 @@ sap.ui.define([
 					oAddressData = oPraAddressModel.getData(),
 					oAddress = Object.assign({}, oAddressData.address),
 					aAddress = oAddressData.rows;
-				var oAddedAddress = aAddress.rows.find(function (oItem) {
+				var oAddedAddress = aAddress.find(function (oItem) {
 					return oItem.addr_type === oAddress.addr_type;
 				});
 
