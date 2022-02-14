@@ -51,29 +51,36 @@ sap.ui.define([
 			} else {
 				sPage = oParameters.sPageNo
 			}
-			delete oParameters.sPageNo;
+			// delete oParameters.sPageNo;
 			var oSearchVendorModel = this.getOwnerComponent().getModel("SearchVendorModel");
-			var oFilterParameters = {};
-			if (Object.keys(oParameters).length === 0) {
-				oFilterParameters = {
-					"vnd_lfa1": {}
-				};
-			} else {
-				oFilterParameters = oParameters;
-			}
+			// var oFilterParameters = {};
+			// if (Object.keys(oParameters).length === 0) {
+			// 	oFilterParameters = {
+			// 		"vnd_lfa1": {}
+			// 	};
+			// } else {
+			// 	oFilterParameters = oParameters;
+			// }
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/get",
 				type: 'POST',
 				hasPayload: true,
-				data: {
+				data: {}
+			};
+			if (oParameters.entitySearchType && oParameters.entitySearchType === "GET_BY_VENDOR_FILTERS") {
+				objParam.data = oParameters;
+			} else {
+				objParam.data = {
 					"entitySearchType": "GET_ALL_VENDOR",
 					"entityType": "VENDOR",
 					"currentPage": sPage,
 					"parentDTO": {
-						"customData": oFilterParameters
+						"customData": {
+							"vnd_lfa1": {}
+						}
 					}
-				}
-			};
+				};
+			}
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				var aResultDataArr = oData.result.vendorDTOs;
@@ -124,7 +131,7 @@ sap.ui.define([
 			});
 		},
 
-		onSearch: function () {
+		onSearchVendor: function () {
 			var sVMSelectedKey = this.getView().byId('searchVendorVM').getSelectionKey();
 			var sName1 = this.getView().byId('fbName1').getValue();
 			var sName2 = this.getView().byId('fbName2').getValue();
@@ -135,36 +142,28 @@ sap.ui.define([
 			var sBankKey = this.getView().byId('fbBankKey').getValue();
 			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
 			var oFilterBarParam = {
-				sPageNo: 1
+				"entitySearchType": "GET_BY_VENDOR_FILTERS",
+				"entityType": "VENDOR",
+				"vendorSearchDTO": {},
+				"currentPage": 1
 			};
 			if (sVMSelectedKey === "*standard*") {
-				oFilterBarParam.vnd_lfa1 = {};
-				if (sName1) {
-					oFilterBarParam['vnd_lfa1']['NAME1'] = sName1;
-				}
-				if (sName2) {
-					oFilterBarParam['vnd_lfa1']['NAME2'] = sName2;
-				}
-				if (sCity) {
-					oFilterBarParam['vnd_lfa1']['ORT01'] = sCity;
-				}
-				if (sStreet) {
-					oFilterBarParam['vnd_lfa1']['STREET'] = sStreet;
-				}
+				oFilterBarParam.vendorSearchDTO = {
+					"vendorSearchType": "SEARCH_BY_ADDRESS",
+					"name1": sName1,
+					"name2": sName2,
+					"city": sCity,
+					"street": sStreet
+				};
 			} else if (sVMSelectedKey === "bankDetails") {
-				oFilterBarParam.vnd_lfbk = {};
-				if (sBPId) {
-					oFilterBarParam['vnd_lfbk']['LIFNR'] = sBPId;
-				}
-				if (sBankAcc) {
-					oFilterBarParam['vnd_lfbk']['BKONT'] = sBankAcc;
-				}
-				if (sBankKey) {
-					oFilterBarParam['vnd_lfbk']['BANKL'] = sBankKey;
-				}
-				if (sBankStreet) {
-					oFilterBarParam['vnd_lfbk']['STRAS'] = sBankStreet;
-				}
+				oFilterBarParam.vendorSearchDTO = {
+					"vendorSearchType": "SEARCH_BY_BANK_DETAILS",
+					"lifnr": sBPId,
+					"bankAccount": sBankAcc,
+					"bankKey": sBankKey,
+					"bankStreet": sBankStreet
+				};
+
 			}
 			this.handleGo(oFilterBarParam);
 		},
@@ -383,6 +382,8 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
+								var sSearchTerm = oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1 = sSearchTerm ? sSearchTerm : oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 							}
 							break;
 						case "vnd_lfb1":
@@ -394,8 +395,9 @@ sap.ui.define([
 								var lfb1ObjKey = Object.keys(oDataResp.result.parentDTO.customData.vnd_lfb1);
 								for (var j = 0; j < lfb1ObjKey.length; j++) {
 									var sKey = lfb1ObjKey[j];
-									 oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS ===''?
-									 " ":  oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS;
+									oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS ===
+										'' ?
+										" " : oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS;
 									if (addCompanyCodeRows[j]) {
 										addCompanyCodeRows[j].lfb1 = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey];
 									} else {
@@ -467,8 +469,23 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1",
 									oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1);
+							}else{
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc_1":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
+								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.house_num1 = sHouseNo;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.street = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.slice(sHouseNo.length);
+								oDataResp.parentDTO.customData.gen_adrc.gen_adrc_1.region = oDataResp.parentDTO.customData.vnd_lfa1.REGIO;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.langu = 'E';
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.po_box = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.post_code1 = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.city1 = oDataResp.result.parentDTO.customData.vnd_lfa1.ORT01;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.country = oDataResp.result.parentDTO.customData.vnd_lfa1.LAND1;
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
+									oDataResp.result.parentDTO.customData.gen_adrc);
 							}
-
 							break;
 						case "gen_bnka":
 							if (oDataResp.result.parentDTO.customData.gen_bnka) {
@@ -803,6 +820,8 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.vnd_lfa1);
 								var sDTAMS = oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS;
 								oDataResp.result.parentDTO.customData.vnd_lfa1.DTAMS = sDTAMS ? sDTAMS : " ";
+								var sSearchTerm = oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1;
+								oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1 = sSearchTerm ? sSearchTerm : oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
 								// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
 							}
 							break;
@@ -815,8 +834,9 @@ sap.ui.define([
 								var lfb1ObjKey = Object.keys(oDataResp.result.parentDTO.customData.vnd_lfb1);
 								for (var j = 0; j < lfb1ObjKey.length; j++) {
 									var sKey = lfb1ObjKey[j];
-									oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS ===''?
-									 " ":  oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS;
+									oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS ===
+										'' ?
+										" " : oDataResp.result.parentDTO.customData.vnd_lfb1[sKey].ZAHLS;
 									if (addCompanyCodeRows[j]) {
 										addCompanyCodeRows[j].lfb1 = oDataResp.result.parentDTO.customData.vnd_lfb1[sKey];
 									} else {
@@ -884,6 +904,22 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
 									oDataResp.result.parentDTO.customData.gen_adrc);
+							}else{
+								oDataResp.result.parentDTO.customData.gen_adrc = {"gen_adrc_1":{}};
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oDataResp.result.parentDTO.customData.vnd_lfa1.NAME1;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.sort1 = oDataResp.result.parentDTO.customData.vnd_lfa1.SORTL;
+								var sHouseNo = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.split(' ')[0];
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.house_num1 = sHouseNo;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.street = oDataResp.result.parentDTO.customData.vnd_lfa1.STRAS.slice(sHouseNo.length);
+								oDataResp.parentDTO.customData.gen_adrc.gen_adrc_1.region = oDataResp.parentDTO.customData.vnd_lfa1.REGIO;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.langu = 'E';
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.po_box = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.post_code1 = oDataResp.result.parentDTO.customData.vnd_lfa1.PSTLZ;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.city1 = oDataResp.result.parentDTO.customData.vnd_lfa1.ORT01;
+								oDataResp.result.parentDTO.customData.gen_adrc.gen_adrc_1.country = oDataResp.result.parentDTO.customData.vnd_lfa1.LAND1;
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
+									oDataResp.result.parentDTO.customData.gen_adrc);
 							}
 							break;
 						case "gen_bnka":
@@ -939,7 +975,8 @@ sap.ui.define([
 						sOperationKey = '50005';
 						break;
 					case 'COPY':
-						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
+						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr",
+							"");
 						break;
 					}
 

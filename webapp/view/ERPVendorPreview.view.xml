@@ -1,5 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
-	xmlns:f="sap.f" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview" xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:commons="sap.suite.ui.commons" xmlns:f="sap.f" controllerName="murphy.mdm.vendor.murphymdmvendor.controller.ERPVendorPreview"
+	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="VendorPreview" showHeader="false" showNavButton="false">
 		<content>
 			<Toolbar>
@@ -35,7 +36,7 @@
 												</items>
 											</Select>
 											<Label text="Due Date"/>
-											<DatePicker displayFormat="YYYY-MM-dd" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/changeReq/genData/dueDate}"></DatePicker>
 											<Label required="true" text="Reason"/>
 											<!--<Text text="{CreateVendorModel>/changeReq/genData/reason}"/>-->
 											<Select id="idERPVendorPreviewReason" forceSelection="false" selectedKey="{CreateVendorModel>/changeReq/genData/reason}"
@@ -52,12 +53,12 @@
 											<Label text="Current Work Item"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
 											<Label text="Created By"/>
-											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/createdBy}"/>
+											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
 											<Label text="Date/Time of Creation"/>
-											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Input>
 										</form:content>
@@ -136,40 +137,42 @@
 											<Label text="Telephone"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
 											<Text text=""/>
 											<Label text="Mobile"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
 											<Label text="E-mail Address"/>
 											<Text text=""/>
 											<Label text="Fax"/>
 											<Text text="">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="">
-												<layoutData>
+												<!--<layoutData>
 													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>
+												</layoutData>-->
 											</Text>
-											<Text text=""/>
+											<Text text="">	<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData></Text>
 											<Label text="Web site"/>
 											<Text text=""/>
 											<core:Title/>
@@ -188,7 +191,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Label text="District"/>
@@ -204,7 +207,7 @@
 											<Label text="Postal Code / City"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
@@ -420,11 +423,11 @@
 											<Label text="Bank Key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
 											<Label text="Bank Name"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/BANKA}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
 											<Label text="Street"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/STRAS}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stras}"/>
 											<Label text="City"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ORT01}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01}"/>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -867,7 +870,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}">
 												<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
 											</Text>
 											<Label text="Country"/>
@@ -1292,10 +1295,18 @@
 						<l:sideContent>
 							<IconTabBar expanded="true">
 								<items>
-									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/preview} === false}">
-										<Text text="Workflow comes here"/>
+									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/approvalView} === true}">
+										<!--<Label text="Workflow goes here..."/>-->
+										<commons:Timeline enableDoubleSided="true" groupBy="changeDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
+											content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Year" enableScroll="false">
+											<commons:content>
+												<commons:TimelineItem dateTime="{crWorkflowLogModel>changeDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
+													userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+												<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+											</commons:content>
+										</commons:Timeline>
 									</IconTabFilter>
-									<IconTabFilter text="Change Documents" key="changeDoc">
+									<IconTabFilter text="Change Documents" key="changeDoc" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Text text="Documents go here ..."/>-->
 										<HBox>
 											<SearchField ></SearchField>

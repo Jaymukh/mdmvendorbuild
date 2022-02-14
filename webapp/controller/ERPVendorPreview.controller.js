@@ -102,7 +102,7 @@ sap.ui.define([
 						"crDTO": {
 							"entity_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							"change_request_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-							"entity_type_id": 1,
+							"entity_type_id": "41001",
 							"change_request_type_id": 1,
 							"change_request_priority_id": 1,
 							"change_request_due_date": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
@@ -606,7 +606,7 @@ sap.ui.define([
 					"modified_by": {
 						"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 					},
-					"entity_type_id": 1,
+					"entity_type_id": "41001",
 					"change_request_type_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/change_request_id"),
 					"change_request_priority_id": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/priority"),
 					"change_request_due_date": this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/dueDate"),
