@@ -66,7 +66,7 @@
 								</content>
 							</Panel>
 							<Panel expandable="true" expanded="true" headerText="Deletion Flags"
-								visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+								visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005}">
 								<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 									adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 									singleContainerFullSize="false">
@@ -77,14 +77,14 @@
 										<core:Title text="Deletion Flag"/>
 										<CheckBox useEntireWidth="true" width="100%" wrapping="true" text="Central Deletion Flag" select="onSelectERPCheckBox"
 											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM} === 'X'}"
-											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005}">
 											<customData>
 												<core:CustomData key="/vnd_lfa1/LOEVM" value="X"></core:CustomData>
 											</customData>
 										</CheckBox>
 										<CheckBox width="100%" useEntireWidth="true" wrapping="true" text="Central Block Flag" select="onSelectERPCheckBox"
 											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR} === 'X'}"
-											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
+											visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004}">
 											<customData>
 												<core:CustomData key="/vnd_lfa1/SPERR" value="X"></core:CustomData>
 											</customData>
@@ -486,12 +486,12 @@
 													<Label text="Reconcillation" design="Bold"></Label>
 												</header>
 											</Column>
-											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}">
+											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005}">
 												<header>
 													<Label text="Deletion Flag"></Label>
 												</header>
 											</Column>
-											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004'}">
+											<Column visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004}">
 												<header>
 													<Label text="Block Flag"></Label>
 												</header>
@@ -1426,11 +1426,11 @@
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
-					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50004' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50005'}"/>
+					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-					visible="{= ${CreateVendorModel>/changeReq/genData/change_request_id} === '50002' || ${CreateVendorModel>/changeReq/genData/change_request_id} === '50001' || ${userManagementModel>/role}.indexOf('approv') === -1 }"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp;  ${userManagementModel>/role}.indexOf('approv') === -1 }"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick"
-					visible="{= (${userManagementModel>/role}.indexOf('stew') === -1 || ${userManagementModel>/role}.indexOf('approv') === -1) &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
+					visible="{= ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"
 					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
