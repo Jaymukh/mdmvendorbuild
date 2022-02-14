@@ -304,7 +304,7 @@ sap.ui.define([
 						delete oData.parentDTO.customData.pra_bp_vend_md;
 						delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 		
-					} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
+					} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2 && oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 						delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 					}
 					if (oData.parentDTO.customData.vnd_lfa1.KTOKK === "MNFR") {
@@ -706,6 +706,14 @@ sap.ui.define([
 					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
+				if(oVal.bankl && oVal.bankl.length > 0){
+					var sDiff = 9- (oVal.bankl.length) ;
+					for(var i=0; i<sDiff; i++){
+						oVal.bankl = '0'+ oVal.bankl;
+					}
+				}
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL', oVal.bankl);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.banka);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
