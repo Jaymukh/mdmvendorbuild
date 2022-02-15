@@ -1036,22 +1036,7 @@
 			"modified_by":{}
 		}
 	},
-	"paymentMethodData": [{
-			"compCode": "0110",
-			"payMethod": [{
-				"key": "C",
-				"text": "Check"
-			}, {
-				"key": "D",
-				"text": "Bank transfer (ACH CTX)"
-			}, {
-				"key": "P",
-				"text": "Bank transfer (Payroll)"
-			}, {
-				"key": "T",
-				"text": "Bank transfer (ACH CTX)"
-			}]
-		}, {
+	"paymentMethodData": [ {
 			"compCode": "0101",
 			"payMethod": [{
 				"key": "C",
@@ -1081,7 +1066,157 @@
 				"key": "Z",
 				"text": "Foreign Wire-Other than CA/US"
 			}]
+		},  {
+			"compCode": "0105",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "E",
+				"text": "EDI"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "I",
+				"text": "EFT - Scotia bank"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "Y",
+				"text": "Domestic wire-Other than CA/US"
+			}, {
+				"key": "Z",
+				"text": "Foreign Wire-Other than CA/US"
+			}]
 		}, {
+			"compCode": "0109",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "E",
+				"text": "EDI"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "I",
+				"text": "EFT - Scotia bank"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "Y",
+				"text": "Domestic wire-Other than CA/US"
+			}, {
+				"key": "Z",
+				"text": "Foreign Wire-Other than CA/US"
+			}]
+		}, {
+			"compCode": "0110",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "E",
+				"text": "EDI"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "I",
+				"text": "EFT - Scotia bank"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "Y",
+				"text": "Domestic wire-Other than CA/US"
+			}, {
+				"key": "Z",
+				"text": "Foreign Wire-Other than CA/US"
+			}]
+		},{
+			"compCode": "0116",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "E",
+				"text": "EDI"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "I",
+				"text": "EFT - Scotia bank"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "Y",
+				"text": "Domestic wire-Other than CA/US"
+			}, {
+				"key": "Z",
+				"text": "Foreign Wire-Other than CA/US"
+			}]
+		}, {
+			"compCode": "0117",
+			"payMethod": [{
+				"key": "C",
+				"text": "Check"
+			}, {
+				"key": "D",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "E",
+				"text": "EDI"
+			}, {
+				"key": "F",
+				"text": "Foreign Wire"
+			}, {
+				"key": "I",
+				"text": "EFT - Scotia bank"
+			}, {
+				"key": "T",
+				"text": "Bank transfer (ACH CTX)"
+			}, {
+				"key": "W",
+				"text": "Domestic wire"
+			}, {
+				"key": "Y",
+				"text": "Domestic wire-Other than CA/US"
+			}, {
+				"key": "Z",
+				"text": "Foreign Wire-Other than CA/US"
+			}]
+		},{
 			"compCode": "0168",
 			"payMethod": [{
 				"key": "C",
