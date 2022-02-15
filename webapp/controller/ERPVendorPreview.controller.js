@@ -201,7 +201,7 @@ sap.ui.define([
 			this.getView().getParent().to(sID);
 
 			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
-				.getItems()[2]);
+				.getItems()[0]);
 			var titleID = this.getView().getParent().getParent().getHeader().getContent()[0];
 			titleID.setText(this.oBundle.getText("srchVnd-title"));
 
