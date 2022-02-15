@@ -2287,7 +2287,7 @@
 														<Label text="Postal Code"/>
 														<Input id="idPRAAddrPostalCodepart" required="true" value="{praAddressModel>/address/post_code1}"/>
 														<Label text="Country Key"/>
-														<Input id="idPRAAddrCoutryKeyPart" required="true" value="{praAddressModel>/address/land1}" showValueHelp="true"
+														<Input id="idPRAAddrCoutryKeyPart" required="true" value="{praAddressModel>/address/country}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
