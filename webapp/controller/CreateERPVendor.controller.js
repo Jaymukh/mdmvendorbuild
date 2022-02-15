@@ -905,6 +905,10 @@ sap.ui.define([
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
 			var oController = this;
+			var sBankKey =	oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL");
+			var sBankNumber = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN");
+			var oBankNumControl = oController.getView().byId("idBankNumber");
+				
 			if (!oData.getProperty("/addCompanyCodeRows").length) {
 				this.onAddCompanyCode("onCheck");
 			}
@@ -944,6 +948,22 @@ sap.ui.define([
 				aEmptyFields.push({
 					section: "Company Code"
 				})
+			}
+			
+			if(sBankKey && !sBankNumber){
+				aEmptyFields.push({
+					"id": "idBankNumber",
+					"Name": "Bank Account Number",
+					"Key": "BANKN",
+					"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN",
+					"panelMapping": "Bank Accounts",
+					"isPRAData": false,
+					"isPurOrgData" : false,
+					"isMNFRData" : false
+				});
+				oBankNumControl.setValueState("Error");
+			}else{
+					oBankNumControl.setValueStart("None");
 			}
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
