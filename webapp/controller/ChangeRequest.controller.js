@@ -120,6 +120,8 @@ sap.ui.define([
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
+				var aPraAddress = [],
+					oPraAddress = {};
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
@@ -212,9 +214,21 @@ sap.ui.define([
 							break;
 						case "gen_adrc":
 							if (oDataResp.result.parentDTO.customData.gen_adrc) {
-								this.getView().getModel("CreateVendorModel").setProperty(
-									"/createCRVendorData/formData/parentDTO/customData/gen_adrc",
-									oDataResp.result.parentDTO.customData.gen_adrc);
+								Object.keys(oDataResp.result.parentDTO.customData.gen_adrc).forEach(function (sAddrKey) {
+									if (sAddrKey === "gen_adrc_1") {
+										this.getView().getModel("CreateVendorModel").setProperty(
+											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", {
+												sAddrKey: oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]
+											});
+										oPraAddress = Object.assign({}, oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]);
+										Object.keys(oPraAddress).forEach(function (sPraAddrKey) {
+											oPraAddress[sPraAddrKey] = null;
+										});
+									} else {
+
+										aPraAddress.push(oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]);
+									}
+								}, this);
 							} else {
 								oDataResp.result.parentDTO.customData.gen_adrc = {
 									"gen_adrc_1": {}
@@ -275,6 +289,10 @@ sap.ui.define([
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
 						"/addCompanyCodeRows", addCompanyCodeRows);
+					this.getView().getModel("praAddressModel").setData({
+						address: oPraAddress,
+						rows: aPraAddress
+					});
 
 					// this.getView().getModel("CreateVendorModel").setProperty(
 					// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",

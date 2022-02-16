@@ -216,10 +216,10 @@ sap.ui.define([
 							if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.gen_adrc_1) {
 								oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 							}
-							if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.gen_adrc_2) {
+							/*if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.gen_adrc_2) {
 								oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 								oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-							}
+							}*/
 
 							this._handleSaveWithLifnr(oData);
 							/*	var objParamCreate = {
@@ -277,10 +277,10 @@ sap.ui.define([
 					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
 						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 					}
-					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
+					/*if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
 						oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 						oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-					}
+					}*/
 
 					this._handleSaveWithLifnr(oData);
 				}
@@ -290,6 +290,7 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
+			var oPraAddress = this.getView().getModel("praAddressModel").getData();
 			oData = Object.assign({}, oData);
 			oData.parentDTO.customData.vnd_lfa1.SORTL = (oData.parentDTO.customData.vnd_lfa1.MCOD1 && oData.parentDTO.customData.vnd_lfa1.MCOD1
 				.length > 10) ? oData.parentDTO.customData.vnd_lfa1.MCOD1.slice(0, 10) : oData.parentDTO.customData.vnd_lfa1.MCOD1;
@@ -1220,8 +1221,7 @@ sap.ui.define([
 		onHandleCityValue: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1", oEvent.getSource().getValue());
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1", oEvent.getSource().getValue());
+			this.getView().getModel("praAddressModel").setProperty("/address/city1", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		},
@@ -1235,33 +1235,73 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH", oEvent.getSource().getValue());
+		},
+
+		oAddPraAddress: function (oEvent) {
+			var oForm = this.byId("idPraAddressForm"),
+				bValid = true;
+			oForm.getContent().forEach(function (oItem) {
+				var sClass = oItem.getMetadata().getName();
+				if (sClass !== "sap.m.Label" && sClass !== "sap.ui.core.Title") {
+					var sValue = sClass === "sap.m.Input" ? oItem.getValue() : oItem.getSelectedKey();
+					if (oItem.getRequired() && !sValue) {
+						oItem.setValueState("Error");
+						bValid = false;
+					} else {
+						oItem.setValueState("None");
+					}
+				}
+			}, this);
+			if (bValid) {
+				var oPraAddressModel = this.getView().getModel("praAddressModel"),
+					oAddressData = oPraAddressModel.getData(),
+					oAddress = Object.assign({}, oAddressData.address),
+					aAddress = oAddressData.rows;
+				var oAddedAddress = aAddress.find(function (oItem) {
+					return oItem.addr_type === oAddress.addr_type;
+				});
+
+				if (oAddedAddress) {
+					MessageToast.show("Selected address type is already available in PRA Address table");
+					return;
+				}
+
+				aAddress.push(oAddress);
+				Object.keys(oAddressData.address).forEach(function (sKey) {
+					oAddressData.address[sKey] = null;
+				});
+				oPraAddressModel.setData({
+					rows: aAddress,
+					address: oAddressData.address
+				});
+			} else {
+				MessageToast.show("Please fill all Mandatory fields to add address");
+			}
+		},
+
+		onEditPraAddress: function (oEvent) {
+			var oAddrContext = oEvent.getSource().getBindingContext("praAddressModel"),
+				oPraModel = this.getView().getModel("praAddressModel"),
+				oAddressData = oPraModel.getData(),
+				sIndex = oAddrContext.getPath().replace("/rows/", ""),
+				oAddress = oAddressData.rows.splice(sIndex, 1);
+			oPraModel.setData({
+				rows: oAddressData.rows,
+				address: oAddress[0]
+			});
+		},
+
+		onDeletePraAddres: function (oEvent) {
+			var oAddrContext = oEvent.getSource().getBindingContext("praAddressModel"),
+				oPraModel = this.getView().getModel("praAddressModel"),
+				oAddressData = oPraModel.getData(),
+				sIndex = oAddrContext.getPath().replace("/rows/", "");
+			oAddressData.rows.splice(sIndex, 1);
+			oPraModel.setData({
+				rows: oAddressData.rows,
+				address: oAddressData.address
+			});
 		}
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
-		 */
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 

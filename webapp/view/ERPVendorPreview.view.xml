@@ -1163,23 +1163,39 @@
 													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 													singleContainerFullSize="false">
 													<form:content>
-														<!--<core:Title text="General Information"/>-->
-														<Label text="Address Type"/>
+														<Table items="{praAddressModel>/rows}">
+															<columns>
+																<Column>
+																	<header>
+																		<Label text="Address Type" design="Bold"></Label>
+																	</header>
+																</Column>
+																<Column>
+																	<header>
+																		<Label text="Name" design="Bold"></Label>
+																	</header>
+																</Column>
+																<Column>
+																	<header>
+																		<Label text="Address" design="Bold"></Label>
+																	</header>
+																</Column>
+															</columns>
+															<items>
+																<ColumnListItem>
+																	<cells>
+																		<Text text="{praAddressModel>addr_type}"></Text>
+																		<Text text="{praAddressModel>title} {praAddressModel>name1}"></Text>
+																		<Text text="{praAddressModel>street} {praAddressModel>house_num2} {praAddressModel>city1}"></Text>
+																	</cells>
+																</ColumnListItem>
+															</items>
+														</Table>
+														<!--<Label text="Address Type"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
-															<!--	<items>
-																<core:Item text="Add 1" key="1"/>
-																<core:Item text="Add 2" key="2"/>
-																<core:Item text="Add 3" key="3"/>
-															</items>-->
 														</Text>
 														<Label text="Title"/>
-														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
-															<!--<items>
-																<core:Item text="Title1" key="1"/>
-																<core:Item text="Title2" key="2"/>
-																<core:Item text="Title3" key="3"/>
-															</items>-->
 														</Text>
 														<Label text="Name"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
@@ -1221,7 +1237,7 @@
 														<Label text="Email"/>
 														<Text/>
 														<Label text="Comm Method"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/deflt_comm}"></Text>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/deflt_comm}"></Text>-->
 													</form:content>
 												</form:SimpleForm>
 											</IconTabFilter>

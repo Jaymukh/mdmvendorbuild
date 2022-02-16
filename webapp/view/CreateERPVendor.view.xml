@@ -206,7 +206,7 @@
 											</Input>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" maxLength="10"/>-->
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Input  id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
+											<Input id="idERPPOBOXPOSTALCODE" liveChange="handleERPPOBOXPostalCode"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
 											<Input liveChange="handleERPPOBOX" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
@@ -791,7 +791,7 @@
 												<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 												<Label text="Reconcillation Account" required="true"/>
 												<Select id="idCompCodesReconcillationAccunt" forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}">
-													<items>                                                         
+													<items>
 														<core:Item text="0011590120-AR IC JV VENDOR" key="0011590120"/>
 														<core:Item text="0030000100-AP-TRADE" key="0030000100"/>
 														<core:Item text="0030000110-AP-JOINT VENTURE" key="0030000110"/>
@@ -1132,7 +1132,7 @@
 												<core:Title/>
 												<Label text="Payment Block" required="true"/>
 												<Select forceSelection="true" id="compCodesPaymentBlockId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Select>
-												<Label text="House Bank"/>                                              
+												<Label text="House Bank"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
 													valueHelpOnly="true">
 													<customData>
@@ -1717,8 +1717,7 @@
 											<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"
 												maxLength="20"/>
 											<Label text="Postal Code"/>
-											<Input id="idAddrPostalCode"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+											<Input id="idAddrPostalCode" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
 											<Label text="Country Key"/>
 											<Input id="idAddrCountryKey" required="true"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country}" showValueHelp="true"
@@ -2205,24 +2204,65 @@
 												</form:SimpleForm>
 											</IconTabFilter>
 											<IconTabFilter text="Address" key="address">
-												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+												<Table items="{praAddressModel>/rows}">
+													<headerToolbar>
+														<Toolbar>
+															<ToolbarSpacer></ToolbarSpacer>
+															<Button id="idPraAddressButton" text="Add" press="oAddPraAddress"></Button>
+														</Toolbar>
+													</headerToolbar>
+													<columns>
+														<Column>
+															<header>
+																<Label text="Address Type" design="Bold"></Label>
+															</header>
+														</Column>
+														<Column>
+															<header>
+																<Label text="Name" design="Bold"></Label>
+															</header>
+														</Column>
+														<Column>
+															<header>
+																<Label text="Address" design="Bold"></Label>
+															</header>
+														</Column>
+														<Column>
+															<header>
+																<Label text=""></Label>
+															</header>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Text text="{praAddressModel>addr_type}"></Text>
+																<Text text="{praAddressModel>title} {praAddressModel>name1}"></Text>
+																<Text text="{praAddressModel>street} {praAddressModel>house_num2} {praAddressModel>city1}"></Text>
+																<HBox>
+																	<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onEditPraAddress"/>
+																	<core:Icon src="sap-icon://delete" class="sapUiSmallMarginEnd" press="onDeletePraAddres"/>
+																</HBox>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+												<form:SimpleForm id="idPraAddressForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+													labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 													singleContainerFullSize="false">
 													<form:content>
-														<!--<core:Title text="General Information"/>-->
-														<Label text="Address Type" required="true"/>
-														<Select forceSelection="false" id="praDataAddrTabAddressTypeId"
-															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
+														<Label text="Address Type"/>
+														<ComboBox required="true" id="praDataAddrTabAddressTypeId"
+															selectedKey="{praAddressModel>/address/addr_type}">
 															<!--	<items>
 																<core:Item text="Add 1" key="1"/>
 																<core:Item text="Add 2" key="2"/>
 																<core:Item text="Add 3" key="3"/>
 															</items>-->
-														</Select>
+														</ComboBox>
 														<Label text="Title"/>
-														<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
 														<Select forceSelection="false" id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}"
-															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/title}">
+															selectedKey="{praAddressModel>/address/title}">
 															<items>
 																<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
 															</items>
@@ -2233,25 +2273,21 @@
 															</items>-->
 														</Select>
 														<Label text="Name"/>
-														<Input id="idPRAAddrName" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
+														<Input id="idPRAAddrName" required="true" value="{praAddressModel>/address/name1}"/>
 														<Label text="Name 2"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name2}"/>
+														<Input value="{praAddressModel>/address/name2}"/>
 														<Label text="Search Term 1"/>
-														<Input required="true" id="idAddrSearTerm1"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1}" maxLength="20"/>
+														<Input required="true" id="idAddrSearTerm1" value="{praAddressModel>/address/sort1}" maxLength="20"/>
 														<Label text="Street" required="true"/>
-														<Input id="idPRAAddrStreet" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street}"/>
+														<Input id="idPRAAddrStreet" value="{praAddressModel>/address/street}"/>
 														<Label text="House No." required="true"/>
-														<Input id="idPRAAddrHouseNo" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1}"/>
+														<Input id="idPRAAddrHouseNo" value="{praAddressModel>/address/house_num1}"/>
 														<Label text="Supplement"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num2}"/>
+														<Input value="{praAddressModel>/address/house_num2}"/>
 														<Label text="Postal Code"/>
-														<Input id="idPRAAddrPostalCodepart" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1}"/>
+														<Input id="idPRAAddrPostalCodepart" required="true" value="{praAddressModel>/address/post_code1}"/>
 														<Label text="Country Key"/>
-														<Input id="idPRAAddrCoutryKeyPart" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1}" showValueHelp="true"
+														<Input id="idPRAAddrCoutryKeyPart" required="true" value="{praAddressModel>/address/country}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
@@ -2263,12 +2299,10 @@
 															</customData>
 														</Input>
 														<Label text="City"/>
-														<Input id="PRAAddrCity1" liveChange="onHandleCityValue" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1}"/>
+														<Input id="PRAAddrCity1" liveChange="onHandleCityValue" required="true" value="{praAddressModel>/address/city1}"/>
 														<core:Title/>
 														<Label text="Region"/>
-														<Input id="PRAAddrRegionPartId" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region}" showValueHelp="true"
+														<Input id="PRAAddrRegionPartId" required="true" value="{praAddressModel>/address/region}" showValueHelp="true"
 															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
@@ -2281,15 +2315,13 @@
 															</customData>
 														</Input>
 														<Label text="PO Box"/>
-														<Input id="PRAADDRPOBOXId" required="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
+														<Input id="PRAADDRPOBOXId" required="true" value="{praAddressModel>/address/po_box}"/>
 														<Label text="PO Box Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code2}"/>
+														<Input value="{praAddressModel>/address/post_code2}"/>
 														<Label text="Company Postal Code"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code3}"/>
+														<Input value="{praAddressModel>/address/post_code3}"/>
 														<Label text="Language Key"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/langu}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+														<Input value="{praAddressModel>/address/langu}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Langauge Key"></core:CustomData>
 																<core:CustomData key="table" value="T002"></core:CustomData>
@@ -2300,18 +2332,17 @@
 															</customData>
 														</Input>
 														<Label text="Telephone"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/tel_number}"/>
+														<Input value="{praAddressModel>/address/tel_number}"/>
 														<Label text="Ext."/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/tel_extens}"/>
+														<Input value="{praAddressModel>/address/tel_extens}"/>
 														<Label text="Mobile Phone"/>
 														<Input/>
 														<Label text="Fax"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/fax_number}"/>
+														<Input value="{praAddressModel>/address/fax_number}"/>
 														<Label text="Email"/>
 														<Input/>
 														<Label text="Comm Method"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/deflt_comm}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+														<Input value="{praAddressModel>/address/deflt_comm}" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 															<customData>
 																<core:CustomData key="title" value="Communication Method"></core:CustomData>
 																<core:CustomData key="table" value="TSAC"></core:CustomData>
