@@ -203,7 +203,7 @@ sap.ui.define([
 						"currWrkItem": "",
 						"timeCreation": "",
 						"dateCreation": "",
-						"change_request_id": "50001"
+						"change_request_id": 50001
 					}
 				};
 				this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
@@ -292,7 +292,7 @@ sap.ui.define([
 					"currWrkItem": "",
 					"timeCreation": "",
 					"dateCreation": "",
-					"change_request_id": "50001"
+					"change_request_id": 50001
 				}
 			};
 			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
@@ -966,13 +966,13 @@ sap.ui.define([
 					});
 					switch (operation) {
 					case 'EDIT':
-						sOperationKey = '50002';
+						sOperationKey = 50002;
 						break;
 					case 'BLOCK':
-						sOperationKey = '50004';
+						sOperationKey = 50004;
 						break;
 					case 'DELETE':
-						sOperationKey = '50005';
+						sOperationKey = 50005;
 						break;
 					case 'COPY':
 						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr",

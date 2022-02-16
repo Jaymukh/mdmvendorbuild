@@ -555,6 +555,7 @@ sap.ui.define([
 			} else {
 				oEventSource.setValueState(ValueState.Error);
 			}
+			this.getView().byId("searchChangeReqID").setValue("");
 		},
 
 		onCRSearch: function (oEvent) {
@@ -600,35 +601,57 @@ sap.ui.define([
 			}
 
 			this.getView().setBusy(true);
-			if (sCreatedBy || sToDate || sFromDate || sVendor || sCompanyCode || sCity || bClaimed || bClosed) {
-				var objParamSubmit = {
-					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/filters/get",
-					type: 'POST',
-					hasPayload: true,
-					data: {
-						"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
-						"currentPage": 1,
-						"changeRequestSearchDTO": {
-							"createdBy": sCreatedBy,
-							"dateRangeTo": sToDate,
-							"dateRangeFrom": sFromDate,
-							"approvedEntityId": sVendor,
-							"companyCode": sCompanyCode,
-							"countryCode": sCity,
-							"isClaimed": bClaimed,
-							"isCrClosed": bClosed,
-							"entityType": "VENDOR",
-							"listOfCRSearchCondition": [
-								"GET_CR_BY_ADDRESS",
-								"GET_CR_CREATED_BY_USER_ID",
-								"GET_CR_BY_DATE_RANGE",
-								"GET_CR_BY_ENTITY",
-								"GET_CR_BY_COMPANY_CODE",
-								"GET_CR_PROCESSED_BY_USER_ID"
-							]
+			if (sCreatedBy || sToDate || sFromDate || sVendor || sCompanyCode || sCity || bClaimed || bClosed || this.getView().byId(
+					"searchChangeReqID").getValue()) {
+				var objParamSubmit;
+				if (this.getView().byId("searchChangeReqID").getValue()) {
+					objParamSubmit = {
+						url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/filters/get",
+						type: 'POST',
+						hasPayload: true,
+						data: {
+							"crSearchType": "GET_CR_BY_VENDOR_GENERIC_TEXT",
+							"currentPage": 1,
+							"mapOfFilters": {
+								"changeRequestId": 100,
+								"change_request_desc": "",
+								"is_cr_closed": "",
+								"change_request_date": "",
+								"change_request_by": ""
+							}
 						}
-					}
-				};
+					};
+				} else {
+					objParamSubmit = {
+						url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/filters/get",
+						type: 'POST',
+						hasPayload: true,
+						data: {
+							"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
+							"currentPage": 1,
+							"changeRequestSearchDTO": {
+								"createdBy": sCreatedBy,
+								"dateRangeTo": sToDate,
+								"dateRangeFrom": sFromDate,
+								"approvedEntityId": sVendor,
+								"companyCode": sCompanyCode,
+								"countryCode": sCity,
+								"isClaimed": bClaimed,
+								"isCrClosed": bClosed,
+								"entityType": "VENDOR",
+								"listOfCRSearchCondition": [
+									"GET_CR_BY_ADDRESS",
+									"GET_CR_CREATED_BY_USER_ID",
+									"GET_CR_BY_DATE_RANGE",
+									"GET_CR_BY_ENTITY",
+									"GET_CR_BY_COMPANY_CODE",
+									"GET_CR_PROCESSED_BY_USER_ID"
+								]
+							}
+						}
+					};
+				}
+
 				this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 					if (oData.result.currentPage === 1) {
 						var aPageJson = [];
@@ -684,6 +707,23 @@ sap.ui.define([
 				this.handleGetAllChangeRequests();
 				this.getView().setBusy(false);
 			}
+		},
+
+		onChangeFilterCR: function () {
+			this.getView().byId("searchChangeReqID").setValue("");
+		},
+
+		onChangeSearchCR: function () {
+			this.getView().byId("fbChangeRequestId").fireClear();
+			for (var i = 0; i < this.getView().byId("fbChangeRequestId").getFilterGroupItems().length; i++) {
+				var oControl = this.getView().byId("fbChangeRequestId").getFilterGroupItems()[i].getControl();
+				if (oControl.getValue) {
+					oControl.setValue("");
+				} else if (oControl.getSelectedKey) {
+					oControl.setSelectedKey("01");
+				}
+			}
+
 		}
 
 		/**

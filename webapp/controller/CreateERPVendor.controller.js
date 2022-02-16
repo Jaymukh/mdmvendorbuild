@@ -305,32 +305,9 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-			} else {
-				var oDate = new Date();    
-				var sResultDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
-			/*	var oDate = new Date();
-				var sDate =( oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) + "-" + 
-							(oDate.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate());*/
-				oPraAddress.rows.forEach(function (oItem, index) {
-					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id ;
-					oItem.addrnumber = oData.parentDTO.customData.vnd_lfa1.entity_id +"_"+ (index + 1);
-					oItem.date_from  =  sResultDate;
-					oItem.nation  =  '';
-					oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
-					oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
-						"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id ,
-						"addr_type": oItem.addr_type,
-						"adrnr": oItem.addrnumber,
-						"custid": null,
-						"vendid": oData.parentDTO.customData.vnd_lfa1.lifnr,
-						"oiu_cruser": null,
-						"oiu_timestamp": null
-					};
-				});
-			}
-			/*else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
+			} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2 && oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
-			}*/
+			}
 			if (oData.parentDTO.customData.vnd_lfa1.KTOKK === "MNFR") {
 				if (Object.keys(oData.parentDTO.customData.vnd_lfb1).length === 0) {
 					oData.parentDTO.customData.vnd_lfb1 = {
@@ -445,7 +422,6 @@ sap.ui.define([
 			/*oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stras = "";*/
-
 			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
 			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
 			aLFB1Objs.forEach(function (key, index) {
@@ -572,6 +548,33 @@ sap.ui.define([
 
 				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					if (oDataResp.result && oDataResp.result.modelMap) {
+						var sProperty = this._oInput.getBindingInfo("value").parts[0].path.split("/").slice(-2).join("/");
+						if (sProperty === "vnd_lfa1/REGIO") {
+							var sCountry = this.getView().getModel("CreateVendorModel").getProperty(
+								"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1");
+							if (sCountry) {
+								oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
+									return e.land1 === sCountry;
+								})
+							}
+						} else if (sProperty === "gen_adrc_2/region") {
+							var sCountry = this.getView().getModel("CreateVendorModel").getProperty(
+								"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1");
+							if (sCountry) {
+								oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
+									return e.land1 === sCountry;
+								})
+							}
+						}
+						// var sCountryVndDetailAddress = this.byId("idERPVendorCountry").getValue();
+						// if (this._oInput.getId().indexOf("idERPVendorRegion") > -1) {
+						// 	if (sCountryVndDetailAddress) {
+						// 		oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
+						// 			return e.land1 === sCountryVndDetailAddress
+						// 		})
+						// 	}
+						// }
+
 						var obj = {};
 						obj[oData["key"]] = "";
 						obj[oData["text"]] = ""
@@ -734,6 +737,14 @@ sap.ui.define([
 					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
+				if (oVal.bankl && oVal.bankl.length > 0) {
+					var sDiff = 9 - (oVal.bankl.length);
+					for (var i = 0; i < sDiff; i++) {
+						oVal.bankl = '0' + oVal.bankl;
+					}
+				}
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL', oVal.bankl);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka', oVal.banka);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
@@ -745,13 +756,23 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.spras);
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.laiso);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oVal.land1);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
+
+			var sProperty = this._oInput.getBindingInfo("value").parts[0].path.split("/").slice(-2).join("/");
+			if (sProperty === "vnd_lfa1/LAND1") {
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO", "");
+			} else if (sProperty === "gen_adrc_2/land1") {
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region", "");
+			}
+
 			this._oValueHelpDialog.close();
 		},
 

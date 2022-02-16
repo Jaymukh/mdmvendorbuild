@@ -35,7 +35,7 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			}
 
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', "50002");
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', 50002);
 			this.getOwnerComponent().getModel("CreateVendorModel").refresh(true);
 			var sID = this.getView().getParent().getPages().find(function (e) {
 				return e.getId().indexOf("createERPVendorView") !== -1;
@@ -201,7 +201,7 @@ sap.ui.define([
 			this.getView().getParent().to(sID);
 
 			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
-				.getItems()[2]);
+				.getItems()[0]);
 			var titleID = this.getView().getParent().getParent().getHeader().getContent()[0];
 			titleID.setText(this.oBundle.getText("srchVnd-title"));
 

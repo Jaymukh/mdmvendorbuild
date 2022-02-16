@@ -46,7 +46,7 @@
 										</TileContent>
 									</FlexBox>
 									<Toolbar>
-										<SearchField/>
+										<SearchField id="searchChangeReqID" liveChange="onChangeSearchCR"/>
 										<!--<Button icon="sap-icon://filter"></Button>-->
 										<ToggleButton id="slideToggleButtonID" icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
 									</Toolbar>
@@ -59,7 +59,7 @@
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="createdBy" label="Show">
 												<filterbar:control>
-													<Select id="chngShowID">
+													<Select id="chngShowID" change="onChangeFilterCR">
 														<core:Item text="All" key="01"/>
 														<core:Item text="Created by Me" key="02"/>
 														<core:Item text="To be processed by Me" key="03"/>
@@ -70,17 +70,17 @@
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="vendor" label="Vendor">
 												<filterbar:control>
-													<Input/>
+													<Input liveChange="onChangeFilterCR"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="city" label="City">
 												<filterbar:control>
-													<Input/>
+													<Input liveChange="onChangeFilterCR"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="changeRequest" name="companyCode" label="Company Code">
 												<filterbar:control>
-													<Input/>
+													<Input liveChange="onChangeFilterCR"/>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
