@@ -305,9 +305,29 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-			} else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2 && oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
+			}else{
+				var oDate = new Date();    
+				var sResultDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+				oPraAddress.rows.forEach(function (oItem, index) {
+					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id ;
+					oItem.addrnumber = oData.parentDTO.customData.vnd_lfa1.entity_id +"_"+ (index + 1);
+					oItem.date_from  =  sResultDate;
+					oItem.nation  =  '';
+					oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
+					oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
+						"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id ,
+						"addr_type": oItem.addr_type,
+						"adrnr": oItem.addrnumber,
+						"custid": null,
+						"vendid": oData.parentDTO.customData.vnd_lfa1.lifnr,
+						"oiu_cruser": null,
+						"oiu_timestamp": null
+					};
+				});
+			} 
+			/*else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2 && oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
-			}
+			}*/
 			if (oData.parentDTO.customData.vnd_lfa1.KTOKK === "MNFR") {
 				if (Object.keys(oData.parentDTO.customData.vnd_lfb1).length === 0) {
 					oData.parentDTO.customData.vnd_lfb1 = {
