@@ -1442,11 +1442,11 @@
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
-					visible="{= ${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005)}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-					visible="{= ${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp;(${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp;  ${userManagementModel>/role}.indexOf('approv') === -1 }"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp;  ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick"
-					visible="{=${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
+					visible="{= ${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"
 					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1)) ? true : false}"/>
