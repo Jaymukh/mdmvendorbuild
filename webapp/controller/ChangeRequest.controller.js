@@ -99,6 +99,7 @@ sap.ui.define([
 				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
 				oVendorModel.setProperty("/changeReq/genData/change_request_by", oChangeReq.change_request_by);
 				oVendorModel.setProperty("/changeReq/genData/modified_by", oChangeReq.modified_by);
+				oVendorModel.setProperty("/changeReq/genData/isClaimable", oChangeReq.isClaimable);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
 				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
@@ -592,14 +593,22 @@ sap.ui.define([
 						type: 'POST',
 						hasPayload: true,
 						data: {
-							"crSearchType": "GET_CR_BY_VENDOR_GENERIC_TEXT",
+							"crSearchType": "GET_CR_BY_VENDOR_FILTERS",
 							"currentPage": 1,
-							"mapOfFilters": {
-								"changeRequestId": 100,
-								"change_request_desc": "",
-								"is_cr_closed": "",
-								"change_request_date": "",
-								"change_request_by": ""
+							"changeRequestSearchDTO": {
+								"createdBy": "",
+								"dateRangeTo": "",
+								"dateRangeFrom": "",
+								"approvedEntityId": "",
+								"companyCode": "",
+								"countryCode": "",
+								"isClaimed": "",
+								"isCrClosed": "",
+								"entityType": "VENDOR",
+								"freeTextToSearch": this.getView().byId("searchChangeReqID").getValue(),
+								"listOfCRSearchCondition": [
+									"GET_CR_BY_GENERIC_TEXT"
+								]
 							}
 						}
 					};
@@ -652,7 +661,13 @@ sap.ui.define([
 					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
 						////Total count 
-						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+						if(oData.result.parentCrDTOs && oData.result.parentCrDTOs.length) {
+													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+
+						} else {
+													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", 0);
+
+						}
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 						if (oData.result.totalPageCount > oData.result.currentPage) {
 							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", true);
