@@ -433,12 +433,16 @@ sap.ui.define([
 					};
 				}
 			}
-			if (oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL) {
+			
+			if (oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL){
 				oData.parentDTO.customData.gen_bnka.gen_bnka_1.bankl = oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL;
+				if (oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS) {
+					oData.parentDTO.customData.gen_bnka.gen_bnka_1.banks = oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS;
+				}
+			}else{
+				delete oData.parentDTO.customData.gen_bnka;
 			}
-			if (oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS) {
-				oData.parentDTO.customData.gen_bnka.gen_bnka_1.banks = oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS;
-			}
+
 			/*oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stras = "";*/
@@ -984,7 +988,7 @@ sap.ui.define([
 				});
 				oBankNumControl.setValueState("Error");
 			}else{
-					oBankNumControl.setValueStart("None");
+					oBankNumControl.setValueState("None");
 			}
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);

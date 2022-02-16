@@ -2261,7 +2261,7 @@
 															</items>-->
 														</ComboBox>
 														<Label text="Title"/>
-														<Select forceSelection="false" id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}"
+														<ComboBox  id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}"
 															selectedKey="{praAddressModel>/address/title}">
 															<items>
 																<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
@@ -2271,7 +2271,7 @@
 																<core:Item text="Title2" key="2"/>
 																<core:Item text="Title3" key="3"/>
 															</items>-->
-														</Select>
+														</ComboBox>
 														<Label text="Name"/>
 														<Input id="idPRAAddrName" required="true" value="{praAddressModel>/address/name1}"/>
 														<Label text="Name 2"/>
