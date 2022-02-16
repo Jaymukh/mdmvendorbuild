@@ -557,9 +557,9 @@ sap.ui.define([
 									return e.land1 === sCountry;
 								})
 							}
-						} else if (sProperty === "gen_adrc_2/region") {
-							var sCountry = this.getView().getModel("CreateVendorModel").getProperty(
-								"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1");
+						} else if (sProperty === "address/region") {
+							var sCountry = this.getView().getModel("praAddressModel").getProperty(
+								"/address/country");
 							if (sCountry) {
 								oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
 									return e.land1 === sCountry;
@@ -768,9 +768,9 @@ sap.ui.define([
 			if (sProperty === "vnd_lfa1/LAND1") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO", "");
-			} else if (sProperty === "gen_adrc_2/land1") {
-				this.getView().getModel("CreateVendorModel").setProperty(
-					"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region", "");
+			} else if (sProperty === "address/country") {
+				this.getView().getModel("praAddressModel").setProperty(
+					"/address/region", "");
 			}
 
 			this._oValueHelpDialog.close();
