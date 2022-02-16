@@ -1449,9 +1449,9 @@
 					visible="{= ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"
-					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1)) ? true : false}"/>
 				<Button text="Reject" type="Reject" press="onRejectClick"
-					visible="{= (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1) ? true : false}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${userManagementModel>/role}.indexOf('stew') !== -1 || ${userManagementModel>/role}.indexOf('approv') !== -1)) ? true : false}"/>
 				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onAllChangeReqClick"
 					visible="{= ${CreateVendorModel>/approvalView} === true}"/>
 				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToVendorListClick"
