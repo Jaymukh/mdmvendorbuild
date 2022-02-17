@@ -1343,6 +1343,11 @@ sap.ui.define([
 				rows: oAddressData.rows,
 				address: oAddressData.address
 			});
+		},
+		
+		handleAutoPopulatePurOrg : function(oEvent){
+			this.byId("idServiceBasedInvoice").setValueState("Error");
+			this.byId("idAutoPurOrder").setValueState("Error");
 		}
 
 	});

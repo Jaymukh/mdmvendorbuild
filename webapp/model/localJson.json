@@ -944,7 +944,25 @@
 		"isPRAData": false,
 		"isPurOrgData" : true,
 		"isMNFRData" : false
-	},  {
+	}, {
+		"id": "idAutoPurOrder",
+		"Name": "Automatic Purchase Order",
+		"Key": "KZAUT",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT",
+		"panelMapping": "Purchasing Organization",
+		"isPRAData": false,
+		"isPurOrgData" : true,
+		"isMNFRData" : false
+	}, {
+		"id": "idServiceBasedInvoice",
+		"Name": "Service Based Invoice Verification",
+		"Key": "LEBRE",
+		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE",
+		"panelMapping": "Purchasing Organization",
+		"isPRAData": false,
+		"isPurOrgData" : true,
+		"isMNFRData" : false
+	}, {
 		"id": "idAddrLangKey",
 		"Name": "Language Key",
 		"Key": "langu",

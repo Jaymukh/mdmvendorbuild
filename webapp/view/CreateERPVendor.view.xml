@@ -1237,7 +1237,7 @@
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
 											<Select forceSelection="false" id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
+											change="handleAutoPopulatePurOrg"	selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
 												<items>
 													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}"
 														key="{purOrgPurOrgModel>ekorg}"/>
@@ -1441,7 +1441,8 @@
 												</customData>
 											</CheckBox>
 											<Label text="Automatic Purchase Order Generation Allowed"/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" id="idAutoPurOrder"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/KZAUT" value="X"></core:CustomData>
 												</customData>
@@ -1471,7 +1472,8 @@
 												</customData>
 											</CheckBox>
 											<Label text="Service-Based Invoice Verification"/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" id="idServiceBasedInvoice"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/LEBRE" value="X"></core:CustomData>
 												</customData>
