@@ -150,7 +150,8 @@ sap.ui.define([
 				this.getView().setBusy(true);
 				var oModel = this.getView().getModel("CreateVendorModel");
 				var oData = oModel.getProperty("/createCRVendorData/formData"),
-					oLfm1Data = this.getView().getModel("vndLfm1");
+					oLfm1Model = this.getView().getModel("vndLfm1"),
+					oLfm1Data = oLfm1Model.getData();
 
 				var objFormationLfb1 = {};
 				var objFormationLfbw = {};
@@ -200,15 +201,14 @@ sap.ui.define([
 								oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLifnr;
 							}
 
-							/*if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1) {
-								oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
-							}*/
-							var iLfm1 = 1;
-							oLfm1Data.rows.forEach(oItem =>{
-								oItem.lifnr = sLifnr;
-								oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_"+ iLfm1] = oItem;
-							});
-							
+							if (oData.parentDTO.customData.vnd_lfm1) {
+								var iLfm1 = 1;
+								oLfm1Data.rows.forEach(oItem => {
+									oItem.lifnr = sLifnr;
+									oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
+								});
+							}
+
 							if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1) {
 								oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
 							}
@@ -267,8 +267,12 @@ sap.ui.define([
 					for (var j = 0; j < sKeylfbw.length; j++) {
 						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
 					}
-					if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
-						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+					if (oData.parentDTO.customData.vnd_lfm1 /*&& oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')*/ ) {
+						var iLfm1 = 1;
+						oLfm1Data.rows.forEach(oItem => {
+							oItem.lifnr = sLIFNR;
+							oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
+						});
 					}
 					if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
 						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
