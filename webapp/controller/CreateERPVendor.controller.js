@@ -761,12 +761,12 @@ sap.ui.define([
 					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 				}
 			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
-				if (oVal.bankl && oVal.bankl.length > 0) {
+				/*if (oVal.bankl && oVal.bankl.length > 0) {
 					var sDiff = 9 - (oVal.bankl.length);
 					for (var i = 0; i < sDiff; i++) {
 						oVal.bankl = '0' + oVal.bankl;
 					}
-				}
+				}*/
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL', oVal.bankl);
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
@@ -924,7 +924,7 @@ sap.ui.define([
 			sHouseNo = sHouseNo === null ? '' : sHouseNo;
 			sStreet = sStreet === null ? '' : " " + sStreet;
 			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet));
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet).slice(0,34));
 
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
@@ -1199,11 +1199,18 @@ sap.ui.define([
 			aMandateFieldJson.forEach(function (oItem) {
 				var oControl = oView.byId(oItem.id);
 				var sValueState = "None";
-				if (!oItem.isPRAData && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
+				var sAccountGroup = oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK");
+				if (!oItem.isPRAData  && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
 						oModel.getProperty(oItem.fieldMapping) === null)) {
 					// aEmptyFields.push(oItem);
-					sValueState = "Error";
-					bCheck = false;
+					if(oItem.Key ==='AKONT' && sAccountGroup === "MNFR")	{
+						sValueState = "None";
+						bCheck = true;
+					}else{
+						sValueState = "Error";
+						bCheck = false;
+					}
+					
 				} else if ((oItem.isPRAData && (oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
 						"JVPR")) &&
 					(oModel.getProperty(oItem
@@ -1217,6 +1224,7 @@ sap.ui.define([
 						sValueState = "Success";
 					}
 				}
+				
 				oControl.setValueState(sValueState);
 			});
 			return bCheck;
