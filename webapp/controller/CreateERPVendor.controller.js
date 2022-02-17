@@ -131,6 +131,8 @@ sap.ui.define([
 					that.getView().byId(sControlID).setModel(oJsonModel);
 					if (item.controlID === 'generalDataTitleId') {
 						that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
+					}else if (item.controlID === 'purOrgPurOrgId') {
+						that.getOwnerComponent().getModel('purOrgPurOrgModel').setData(data.result);
 					} else {
 						var oItemSelectTemplate1 = new sap.ui.core.Item({
 							key: "{" + item.controlField + "}",
@@ -950,9 +952,7 @@ sap.ui.define([
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if (oItem.isPurOrgData &&
-					((oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") || (oData.getProperty(
-						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "GENV")) &&
+				} else if (oItem.isPurOrgData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") &&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {

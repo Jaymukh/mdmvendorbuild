@@ -1236,13 +1236,12 @@
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
-											<Select forceSelection="false" id="purOrgPurOrgId"
+											<Select forceSelection="false" id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
-												<!--<items>
-													<core:Item text="Org 1" key="1"/>
-													<core:Item text="Org 2" key="2"/>
-													<core:Item text="Org 3" key="3"/>
-												</items>-->
+												<items>
+													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}"
+														key="{purOrgPurOrgModel>ekorg}"/>
+												</items>
 											</Select>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
