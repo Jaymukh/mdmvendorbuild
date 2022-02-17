@@ -1172,11 +1172,6 @@
 																</Column>
 																<Column>
 																	<header>
-																		<Label text="Name" design="Bold"></Label>
-																	</header>
-																</Column>
-																<Column>
-																	<header>
 																		<Label text="Address" design="Bold"></Label>
 																	</header>
 																</Column>
@@ -1184,7 +1179,6 @@
 															<items>
 																<ColumnListItem>
 																	<cells>
-																		<Text text="{praAddressModel>addr_type}"></Text>
 																		<Text text="{praAddressModel>title} {praAddressModel>name1}"></Text>
 																		<Text text="{praAddressModel>street} {praAddressModel>house_num2} {praAddressModel>city1}"></Text>
 																	</cells>

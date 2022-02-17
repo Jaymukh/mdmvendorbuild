@@ -1236,13 +1236,12 @@
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
-											<Select forceSelection="false" id="purOrgPurOrgId"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
-												<!--<items>
-													<core:Item text="Org 1" key="1"/>
-													<core:Item text="Org 2" key="2"/>
-													<core:Item text="Org 3" key="3"/>
-												</items>-->
+											<Select forceSelection="false" id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}"
+											change="handleAutoPopulatePurOrg"	selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
+												<items>
+													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}"
+														key="{purOrgPurOrgModel>ekorg}"/>
+												</items>
 											</Select>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
@@ -1442,7 +1441,8 @@
 												</customData>
 											</CheckBox>
 											<Label text="Automatic Purchase Order Generation Allowed"/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" id="idAutoPurOrder"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/KZAUT" value="X"></core:CustomData>
 												</customData>
@@ -1472,7 +1472,8 @@
 												</customData>
 											</CheckBox>
 											<Label text="Service-Based Invoice Verification"/>
-											<CheckBox select="onSelectCheckBox">
+											<CheckBox select="onSelectCheckBox" id="idServiceBasedInvoice"
+											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/LEBRE" value="X"></core:CustomData>
 												</customData>
