@@ -122,7 +122,12 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				var aPraAddress = [],
-					oPraAddress = {};
+					oPraAddress = {},
+					oLfm1 = {
+						rows: [],
+						lfm1: {}
+					};
+
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
@@ -178,12 +183,18 @@ sap.ui.define([
 							}
 							break;
 						case "vnd_lfm1":
-							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
-								this.getView().getModel("CreateVendorModel").setProperty(
-									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1",
-									oDataResp.result.parentDTO.customData.vnd_lfm1);
-							}
 
+							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
+								/*this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1",
+									oDataResp.result.parentDTO.customData.vnd_lfm1);*/
+								Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1).forEach((sLfm1Key) => {
+									oLfm1.rows.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]);
+									Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]).forEach(sLfm1SubKey => {
+										oLfm1.lfm1[sLfm1SubKey] = null;
+									});
+								});
+							}
 							break;
 						case "vnd_lfbw":
 							if (oDataResp.result.parentDTO.customData.vnd_lfbw) {
@@ -294,6 +305,7 @@ sap.ui.define([
 						address: oPraAddress,
 						rows: aPraAddress
 					});
+					this.getView().getModel("vndLfm1").setData(oLfm1);
 
 					// this.getView().getModel("CreateVendorModel").setProperty(
 					// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
@@ -679,11 +691,11 @@ sap.ui.define([
 					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
 						////Total count 
-						if(oData.result.parentCrDTOs && oData.result.parentCrDTOs.length) {
-													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+						if (oData.result.parentCrDTOs && oData.result.parentCrDTOs.length) {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
 
 						} else {
-													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", 0);
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", 0);
 
 						}
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);

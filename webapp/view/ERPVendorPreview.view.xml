@@ -1373,7 +1373,7 @@
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="Delete"
 											fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->
 											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
@@ -1391,7 +1391,7 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+													enableEdit="false" enableDelete="true" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
