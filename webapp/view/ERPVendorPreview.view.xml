@@ -53,9 +53,11 @@
 											<Label text="Current Work Item"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
 											<Label text="Created By"/>
-											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
+											<Input editable="false"
+												value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
 											<Label text="Date/Time of Creation"/>
-											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -170,9 +172,11 @@
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>-->
 											</Text>
-											<Text text="">	<layoutData>
+											<Text text="">
+												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
-												</layoutData></Text>
+												</layoutData>
+											</Text>
 											<Label text="Web site"/>
 											<Text text=""/>
 											<core:Title/>
@@ -662,134 +666,135 @@
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">
 								<content>
+									<Table items="{vndLfm1>/rows}">
+										<columns>
+											<Column >
+												<header>
+													<Label text="Purchasing Organization" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column>
+												<header>
+													<Label text="Purchasing Organization Description" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column width="10%">
+												<header>
+													<Label text=""></Label>
+												</header>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{vndLfm1>ekorg}"/>
+													<ComboBox showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}" selectedKey="{vndLfm1>ekorg}" editable="false">
+														<items>
+															<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}" key="{purOrgPurOrgModel>ekorg}"/>
+														</items>
+													</ComboBox>
+													<HBox>
+														<core:Icon src="sap-icon://detail-view" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd" press="onDetailsPurOrg"/>
+													</HBox>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 										singleContainerFullSize="false">
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
-												<!--<items>
-													<core:Item text="Org 1" key="1"/>
-													<core:Item text="Org 2" key="2"/>
-													<core:Item text="Org 3" key="3"/>
-												</items>-->
-											</Text>
+											<Text text="{vndLfm1>/lfm1/ekorg}"></Text>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS}"></Text>
+											<Text text="{vndLfm1>/lfm1/WAERS}"></Text>
 											<Label text="Minimum Order Value"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MINBW}"/>
+											<Text text="{vndLfm1>/lfm1/MINBW}"/>
 											<Label text="Schema Group (Vendor)"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KALSK}"></Text>
+											<Text text="{vndLfm1>/lfm1/KALSK}"></Text>
 											<Label text="LB Restriction Profile"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}"/>
+											<Text text="{vndLfm1>/lfm1/BOPNR}"/>
 											<Label text="Terms of Payment"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}"></Text>
-											<!--<Text    showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
-												<customData>
-													<core:CustomData key="title" text="Terms of Payment"></core:CustomData>
-													<core:CustomData key="table" text="LFM1"></core:CustomData>
-													<core:CustomData key="" text="Name"></core:CustomData>
-													<core:CustomData key="" text="Key"></core:CustomData>
-													<core:CustomData key="inputKey" text=""></core:CustomData>
-													<core:CustomData key="inputText" text=""></core:CustomData>
-												</customData>
-											</Text>-->
+											<Text text="{vndLfm1>/lfm1/ZTERM}"></Text>
 											<Label text="Incoterms"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}"></Text>
+											<Text text="{vndLfm1>/lfm1/INCO1}"></Text>
 											<Label text="Incoterms"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}"/>
+											<Text text="{vndLfm1>/lfm1/INCO2}"/>
 											<Label text="Pricing date Control"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEPRF}"></Text>
+											<Text text="{vndLfm1>/lfm1/MEPRF}"></Text>
 											<core:Title text="ERP Vendor Company Code : Sales Data"/>
 											<Label text="Sales Person"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VERKF}"/>
+											<Text text="{vndLfm1>/lfm1/VERKF}"/>
 											<core:Title/>
 											<Label text="Account with Vendor"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EIKTO}"/>
+											<Text text="{vndLfm1>/lfm1/EIKTO}"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
 											<Label text="ABC Indicator"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LFABC}"/>
+											<Text text="{vndLfm1>/lfm1/LFABC}"/>
 											<Label text="Mode of Transport-Border"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EXPVZ}"></Text>
+											<Text text="{vndLfm1>/lfm1/EXPVZ}"></Text>
 											<Label text="Customs Office"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZOLLA}"></Text>
+											<Text text="{vndLfm1>/lfm1/ZOLLA}"></Text>
 											<Label text="Sort Criterion"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/SKRIT}"></Text>
+											<Text text="{vndLfm1>/lfm1/SKRIT}"></Text>
 											<Label text="Proact Control Profile"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PAPRF}"></Text>
+											<Text text="{vndLfm1>/lfm1/PAPRF}"></Text>
 											<Label text="Shipping Conditions"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VSBED}"></Text>
+											<Text text="{vndLfm1>/lfm1/VSBED}"></Text>
 											<Label text="Revaluation Allowed"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/XNBWY} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/XNBWY} === 'X'}"></CheckBox>
 											<Label text="Qualifying for Discount in kind"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/NRGEW} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/NRGEW} === 'X'}"></CheckBox>
 											<Label text="Relevant for price determination"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PRFRE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/PRFRE} === 'X'}"></CheckBox>
 											<Label text="Relevant for Agency Business"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/AGREL} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/AGREL} === 'X'}"></CheckBox>
 											<Label text="Goods Receipt-Based Invoice Verification"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WEBRE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/WEBRE} === 'X'}"></CheckBox>
 											<Label text="Automatic Evaluated Receipt Settlement for Deliveries"/>
 											<CheckBox enabled="false"></CheckBox>
 											<core:Title/>
 											<Label text="Automatic Evaluated Receipt Settlement for Return Items"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/XERSR} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/XERSR} === 'X'}"></CheckBox>
 											<Label text="Acknowledgment Required"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZABS} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/KZABS} === 'X'}"></CheckBox>
 											<Label text="Automatic Purchase Order Generation Allowed"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/KZAUT} === 'X'}"></CheckBox>
 											<Label text="Subject to subsequent Settlement Accounting"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOLRE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/BOLRE} === 'X'}"></CheckBox>
 											<Label text="Index Compilation for Subsequent Settlement Active"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOIND} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/BOIND} === 'X'}"></CheckBox>
 											<Label text="Comparision/Agreement of Business Volume Required"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/UMSAE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/UMSAE} === 'X'}"></CheckBox>
 											<Label text="Document Index Active"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BLIND} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/BLIND} === 'X'}"></CheckBox>
 											<Label text="Service-Based Invoice Verification"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/LEBRE} === 'X'}"></CheckBox>
 											<core:Title text="Murphy Data"/>
 											<Label text="Qualified Supplier List Flag"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZZQUA_FLAG} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/ZZQUA_FLAG} === 'X'}"></CheckBox>
 											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
 											<Label text="Purchasing Group"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EKGRP}"></Text>
+											<Text text="{vndLfm1>/lfm1/EKGRP}"></Text>
 											<Label text="Confirmation Control"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BSTAE}"></Text>
+											<Text text="{vndLfm1>/lfm1/BSTAE}"></Text>
 											<Label text="Rounding profile"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/RDPRF}"/>
+											<Text text="{vndLfm1>/lfm1/RDPRF}"/>
 											<Label text="Planned delivery time in Days"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PLIFZ}"/>
+											<Text text="{vndLfm1>/lfm1/PLIFZ}"/>
 											<Label text="Unit of Measure Group"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEGRU}"/>
+											<Text text="{vndLfm1>/lfm1/MEGRU}"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
 											<Label text="Price Marketing Agreed"/>
 											<Text/>
 											<Label text="Vendor Service Level"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VENSL}"/>
+											<Text text="{vndLfm1>/lfm1/VENSL}"/>
 											<Label text="Rack Jobbing Agreement with Vendor Exists"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LISER} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/LISER} === 'X'}"></CheckBox>
 											<Label text="Order Entry by Vendor"/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LIBES} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${vndLfm1>/lfm1/LIBES} === 'X'}"></CheckBox>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1438,7 +1443,7 @@
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
 					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005)}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp;  ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp; ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick"
 					visible="{= ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->

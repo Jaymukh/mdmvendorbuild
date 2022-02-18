@@ -206,6 +206,7 @@ sap.ui.define([
 								oLfm1Data.rows.forEach(oItem => {
 									oItem.lifnr = sLifnr;
 									oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
+									iLfm1 = iLfm1 + 1;
 								});
 							}
 
