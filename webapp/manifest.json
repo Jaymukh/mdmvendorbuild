@@ -180,7 +180,7 @@
 					"defaultBindingMode": "TwoWay"
 				}
 			},
-			"purOrgPurOrgModel" :{
+			"purOrgPurOrgModel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {
 					"defaultBindingMode": "TwoWay"
