@@ -2,7 +2,7 @@
 	"preview": false,
 	"vndDetails": false,
 	"approvalView": false,
-	"SupportedFileType": ["jpg", "jpeg", "PNG", "pdf", "msg", "eml","xls","doc","xlsx","docx"],
+	"SupportedFileType": ["jpg", "jpeg", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx"],
 	"companyCode": {
 		"companyCode": null,
 		"accountingInfo": {
@@ -810,231 +810,186 @@
 
 	],
 	"createMandtFields": [{
-		"id": "idERPVendorCountry",
-		"Name": "Country",
-		"Key": "LAND1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idERPVendorName1",
-		"Name": "Name 1",
-		"Key": "NAME1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idERPVendorCity",
-		"Name": "City",
-		"Key": "ORT01",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idERPVendorPostalCode",
-		"Name": "Postal Code",
-		"Key": "PSTLZ",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idERPVendorRegion",
-		"Name": "Region",
-		"Key": "REGIO",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idERPVendorSearchTerms",
-		"Name": "Search Terms",
-		"Key": "MCOD1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "ERPAddrHouseNoId",
-		"Name": "House No",
-		"Key": "house_num1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1",
-		"panelMapping": "ERP Vendor Details/Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	},{
-		"id": "ERPAddrStreetId",
-		"Name": "Street",
-		"Key": "street",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street",
-		"panelMapping": "ERP Vendor Details/Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idAddrStreetHouseNumber",
-		"Name": "Street and House Number",
-		"Key": "STRAS",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-		
-	}, {
-		"id": "payTransDMEIndicatorId",
-		"Name": "DME Indicator",
-		"Key": "DTAMS",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS",
-		"panelMapping": "Payment Transactions",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "accountGrpID",
-		"Name": "Account Group",
-		"Key": "KTOKK",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	}, {
-		"id": "idPurOrgTermsOfPayment",
-		"Name": "Terms of Payment",
-		"Key": "ZTERM",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false,
-		"isPurOrgData" : true,
-		"isMNFRData" : false
-	}, {
-		"id": "idERPVendorLanguage",
-		"Name": "Language",
-		"Key": "SPRAS",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS",
-		"panelMapping": "ERP Vendor Details",
-		"isPRAData": false,
-		"isMNFRData" : true
-	}, {
-		"id": "idPurOrgOrderCurrency",
-		"Name": "Order Currency",
-		"Key": "WAERS",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false,
-		"isPurOrgData" : true,
-		"isMNFRData" : false
-	}, {
-		"id": "purOrgPurOrgId",
-		"Name": "Purchasing Organization",
-		"Key": "EKORG",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false,
-		"isPurOrgData" : true,
-		"isMNFRData" : false
-	}, {
-		"id": "idAutoPurOrder",
-		"Name": "Automatic Purchase Order",
-		"Key": "KZAUT",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false,
-		"isPurOrgData" : true,
-		"isMNFRData" : false
-	}, {
-		"id": "idServiceBasedInvoice",
-		"Name": "Service Based Invoice Verification",
-		"Key": "LEBRE",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE",
-		"panelMapping": "Purchasing Organization",
-		"isPRAData": false,
-		"isPurOrgData" : true,
-		"isMNFRData" : false
-	}, {
-		"id": "idAddrLangKey",
-		"Name": "Language Key",
-		"Key": "langu",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idAddrCountryKey",
-		"Name": "Country Key",
-		"Key": "land1",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idAddrRegion",
-		"Name": "Region",
-		"Key": "REGIO",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO",
-		"panelMapping": "Address",
-		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : true
-	},  {
-		"id": "idPRAAccResidentCountry",
-		"Name": "Resident Country",
-		"Key": "kglnd",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idPRAAccEntityType",
-		"Name": "Entity Type",
-		"Key": "enty_cd",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idPRAAccRegionResidence",
-		"Name": "Region of Residence",
-		"Key": "kgreg",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idPRAAccPaymentType",
-		"Name": "Payment Type",
-		"Key": "payment_type",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}, {
-		"id": "idPRAAccPayFreq",
-		"Name": "Pay Frequency",
-		"Key": "pay_frequency",
-		"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency",
-		"panelMapping": "PRA DATA/Accounting",
-		"isPRAData": true,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
-	}
+			"id": "idERPVendorCountry",
+			"Name": "Country",
+			"Key": "LAND1",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorName1",
+			"Name": "Name 1",
+			"Key": "NAME1",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorCity",
+			"Name": "City",
+			"Key": "ORT01",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorPostalCode",
+			"Name": "Postal Code",
+			"Key": "PSTLZ",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorRegion",
+			"Name": "Region",
+			"Key": "REGIO",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorSearchTerms",
+			"Name": "Search Terms",
+			"Key": "MCOD1",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "ERPAddrHouseNoId",
+			"Name": "House No",
+			"Key": "house_num1",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1",
+			"panelMapping": "ERP Vendor Details/Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "ERPAddrStreetId",
+			"Name": "Street",
+			"Key": "street",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street",
+			"panelMapping": "ERP Vendor Details/Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idAddrStreetHouseNumber",
+			"Name": "Street and House Number",
+			"Key": "STRAS",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS",
+			"panelMapping": "Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+
+		}, {
+			"id": "payTransDMEIndicatorId",
+			"Name": "DME Indicator",
+			"Key": "DTAMS",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DTAMS",
+			"panelMapping": "Payment Transactions",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "accountGrpID",
+			"Name": "Account Group",
+			"Key": "KTOKK",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idERPVendorLanguage",
+			"Name": "Language",
+			"Key": "SPRAS",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS",
+			"panelMapping": "ERP Vendor Details",
+			"isPRAData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idAddrLangKey",
+			"Name": "Language Key",
+			"Key": "langu",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu",
+			"panelMapping": "Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idAddrCountryKey",
+			"Name": "Country Key",
+			"Key": "land1",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country",
+			"panelMapping": "Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idAddrRegion",
+			"Name": "Region",
+			"Key": "REGIO",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO",
+			"panelMapping": "Address",
+			"isPRAData": false,
+			"isPurOrgData": false,
+			"isMNFRData": true
+		}, {
+			"id": "idPRAAccResidentCountry",
+			"Name": "Resident Country",
+			"Key": "kglnd",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd",
+			"panelMapping": "PRA DATA/Accounting",
+			"isPRAData": true,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idPRAAccEntityType",
+			"Name": "Entity Type",
+			"Key": "enty_cd",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd",
+			"panelMapping": "PRA DATA/Accounting",
+			"isPRAData": true,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idPRAAccRegionResidence",
+			"Name": "Region of Residence",
+			"Key": "kgreg",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg",
+			"panelMapping": "PRA DATA/Accounting",
+			"isPRAData": true,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idPRAAccPaymentType",
+			"Name": "Payment Type",
+			"Key": "payment_type",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type",
+			"panelMapping": "PRA DATA/Accounting",
+			"isPRAData": true,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}, {
+			"id": "idPRAAccPayFreq",
+			"Name": "Pay Frequency",
+			"Key": "pay_frequency",
+			"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency",
+			"panelMapping": "PRA DATA/Accounting",
+			"isPRAData": true,
+			"isPurOrgData": false,
+			"isMNFRData": false
+		}
 
 	],
 	"missingFields": [],
@@ -1050,11 +1005,11 @@
 			"timeCreation": "",
 			"dateCreation": "",
 			"change_request_id": "",
-			"change_request_by":{},
-			"modified_by":{}
+			"change_request_by": {},
+			"modified_by": {}
 		}
 	},
-	"paymentMethodData": [ {
+	"paymentMethodData": [{
 			"compCode": "0101",
 			"payMethod": [{
 				"key": "C",
@@ -1084,7 +1039,7 @@
 				"key": "Z",
 				"text": "Foreign Wire-Other than CA/US"
 			}]
-		},  {
+		}, {
 			"compCode": "0105",
 			"payMethod": [{
 				"key": "C",
@@ -1174,7 +1129,7 @@
 				"key": "Z",
 				"text": "Foreign Wire-Other than CA/US"
 			}]
-		},{
+		}, {
 			"compCode": "0116",
 			"payMethod": [{
 				"key": "C",
@@ -1234,7 +1189,7 @@
 				"key": "Z",
 				"text": "Foreign Wire-Other than CA/US"
 			}]
-		},{
+		}, {
 			"compCode": "0168",
 			"payMethod": [{
 				"key": "C",
@@ -2839,14 +2794,14 @@
 	},
 	"addCompanyCodeRows": [],
 	"companyCodeMandateFields": [{
-	"id": "idCompCodesReconcillationAccunt",
+		"id": "idCompCodesReconcillationAccunt",
 		"Name": "Reconcilliation Account",
 		"Key": "AKONT",
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/AKONT",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
 		"id": "idComCodesCompanyCode",
 		"Name": "Company Code",
@@ -2854,8 +2809,8 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/bukrs",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
 		"id": "idComCodesSortKey",
 		"Name": "Sort Key",
@@ -2863,17 +2818,17 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZUAWA",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
-	"id": "idCompCodePaymentMethod",
+		"id": "idCompCodePaymentMethod",
 		"Name": "Payment method",
 		"Key": "ZWELS",
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZWELS",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
 		"id": "idCompCodesTermsOfPayment",
 		"Name": "Terms of Payment",
@@ -2881,8 +2836,8 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZTERM",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
 		"id": "idCompCodeCheckDoubleInvoice",
 		"Name": "Check Double Invoice",
@@ -2890,8 +2845,8 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/REPRF",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}, {
 		"id": "compCodesPaymentBlockId",
 		"Name": "Payment Block",
@@ -2899,8 +2854,8 @@
 		"fieldMapping": "/addCompanyCodeFormData/lfb1/ZAHLS",
 		"panelMapping": "Company Codes",
 		"isPRAData": false,
-		"isPurOrgData" : false,
-		"isMNFRData" : false
+		"isPurOrgData": false,
+		"isMNFRData": false
 	}],
 	"accountGroupsData": [{
 		"text": "Employee/HR Related",
