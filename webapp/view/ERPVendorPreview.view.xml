@@ -1318,7 +1318,7 @@
 												<Text text="{crAuditLogModel>/details/desc}"></Text>
 												<Label text="Comments"/>
 												<Text text="{crAuditLogModel>/details/commentCount}"></Text>
-												<Label text="Attachement"/>
+												<Label text="Attachment"/>
 												<Text text="{crAuditLogModel>/details/attachmentCount}"></Text>
 												<core:Title text="Change Type"/>
 												<Label text="Changed"/>
