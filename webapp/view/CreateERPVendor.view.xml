@@ -225,49 +225,51 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="" placeholder="Number">
-												<!--<layoutData>
-													<l:GridData span="XL2 L3 M3 S4"/>
-												</layoutData>-->
-											</Input>
-											<Input type="Number" value="" placeholder="Ext">
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
+												placeholder="Number"></Input>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
+												placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="Mobile"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="" placeholder="Number">
-												<!--	<layoutData>
-													<l:GridData span="XL2 L4 M3 S4"/>
-												</layoutData>-->
-											</Input>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"
+												placeholder="Number"></Input>
 											<Label text="E-mail Address"/>
-											<Input type="Email" value=""/>
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
+												<tokens>
+													<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
+												</tokens>
+											</MultiInput>
 											<Label text="Fax"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input value="" placeholder="Number">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>-->
 											</Input>
-											<Input value="" placeholder="Ext">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
@@ -579,8 +581,10 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}" maxLength="4"/>
 											<!--<Label text="Account Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="15"/>
--->											<Label text="Bank Account(Account No.)"/>
-											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}" maxLength="18"/>
+-->
+											<Label text="Bank Account(Account No.)"/>
+											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"
+												maxLength="18"/>
 											<Label text="Account Holder"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}" maxLength="60"/>
 											<Label text="IBAN"/>
@@ -601,9 +605,6 @@
 													<core:Item text="IBAN 3" key="3"/>
 												</items>
 											</Select>
-											<Label text="Bank Account Number."/>
-											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"
-												maxLength="18"/>
 											<Label text="Control key"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="2"/>
 											<core:Title text=""/>

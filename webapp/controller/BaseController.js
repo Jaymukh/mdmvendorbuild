@@ -15,7 +15,7 @@ sap.ui.define([
 		},
 
 		_createCREntityID: function (oParam) {
-			//sap.ui.getCore().byId("idCreateVendorSubmitErrors").setVisible(false);
+			this.getView().getModel("emails").setData([]);
 			var objParam = {
 				url: "/murphyCustom/mdm/entity-service/entities/entity/create",
 				hasPayload: true,
@@ -36,7 +36,8 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-					var oDate = new Date();
+					var oDate = new Date(),
+						sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 					if (!oParam || (oParam && !oParam.vndDetails)) {
 						var oCustomData = {
 							"vnd_lfa1": {
@@ -600,6 +601,68 @@ sap.ui.define([
 									"recoup_pc": null,
 									"recip_code_1042s": null
 								}
+							},
+							"gen_adr2": {
+								"gen_adr2_1": {
+									"entity_id": null,
+									"addrnumber": null,
+									"persnumber": " ",
+									"date_from": sDate,
+									"consnumber": "1",
+									"country": null,
+									"flgdefault": "X",
+									"flg_nouse": null,
+									"home_flag": "X",
+									"tel_number": null,
+									"tel_extens": null,
+									"telnr_long": null,
+									"telnr_call": null,
+									"dft_receiv": null,
+									"r3_user": "1",
+									"valid_from": null,
+									"valid_to": null
+								},
+								"gen_adr2_2": {
+									"entity_id": null,
+									"addrnumber": null,
+									"persnumber": null,
+									"date_from": sDate,
+									"consnumber": "2",
+									"country": null,
+									"flgdefault": "X",
+									"flg_nouse": null,
+									"home_flag": "X",
+									"tel_number": null,
+									"tel_extens": null,
+									"telnr_long": null,
+									"telnr_call": null,
+									"dft_receiv": null,
+									"r3_user": "3",
+									"valid_from": null,
+									"valid_to": null
+								}
+							},
+							"gen_adr3": {
+								"gen_adr3_1": {
+									"entity_id": null,
+									"addrnumber": null,
+									"persnumber": null,
+									"date_from": sDate,
+									"consnumber": "1",
+									"country": null,
+									"flgdefault": "X",
+									"flg_nouse": null,
+									"home_flag": "X",
+									"fax_number": null,
+									"fax_extens": null,
+									"faxnr_long": null,
+									"faxnr_call": null,
+									"fax_group": null,
+									"dft_receiv": null,
+									"r3_user": null,
+									"valid_from": null,
+									"valid_to": null
+								}
 							}
 						};
 						this.getView().getModel("vndLfm1").setData({
@@ -832,6 +895,18 @@ sap.ui.define([
 						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 					oVendorModel.setProperty(
 						"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/entity_id",
+						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
+					oVendorModel.setProperty(
+						"/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/entity_id",
+						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
+					oVendorModel.setProperty(
+						"/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/entity_id",
+						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+
+					oVendorModel.setProperty(
+						"/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/entity_id",
 						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 
 					oVendorModel.setProperty(

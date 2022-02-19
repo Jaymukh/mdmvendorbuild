@@ -188,6 +188,9 @@
 			},
 			"vndLfm1": {
 				"type": "sap.ui.model.json.JSONModel"
+			},
+			"emails": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 		"resources": {

@@ -137,42 +137,48 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
-											<Text text="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" editable="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code">
+												<layoutData>
+													<l:GridData span="XL2 L2 M3 S4"/>
+												</layoutData>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+											</ComboBox>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Text>
-											<Text text="">
-												<!--<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>-->
-											</Text>
-											<Text text=""/>
 											<Label text="Mobile"/>
-											<Text text="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" editable="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-											</Text>
-											<Text text="">
-												<!--<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
-												</layoutData>-->
-											</Text>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+											</ComboBox>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"/>
 											<Label text="E-mail Address"/>
-											<Text text=""/>
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" editable="false">
+												<tokens>
+													<Token key="{emails>mail}" text="{emails>mail}" editable="false"/>
+												</tokens>
+											</MultiInput>
 											<Label text="Fax"/>
-											<Text text="">
+											<ComboBox items="{valueHelps>/TelCountryCodes}" editable="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-											</Text>
-											<Text text="">
-												<!--<layoutData>
-													<l:GridData span="XL2 L1 M3 S4"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+											</ComboBox>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}">
+												<!--	<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>-->
 											</Text>
-											<Text text="">
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
@@ -694,7 +700,8 @@
 														</items>
 													</ComboBox>
 													<HBox>
-														<core:Icon src="sap-icon://detail-view" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd" press="onDetailsPurOrg"/>
+														<core:Icon src="sap-icon://detail-view" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd"
+															press="onDetailsPurOrg"/>
 													</HBox>
 												</cells>
 											</ColumnListItem>

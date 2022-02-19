@@ -126,7 +126,8 @@ sap.ui.define([
 					oLfm1 = {
 						rows: [],
 						lfm1: {}
-					};
+					},
+					aEmails = [];
 
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
@@ -297,6 +298,27 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.pra_bp_vend_md);
 							}
 							break;
+						case "gen_adrc6":
+							if (oDataResp.result.parentDTO.customData.gen_adr6) {
+								Object.keys(oDataResp.result.parentDTO.customData.gen_adr6).forEach((sLfm1Key) => {
+									aEmails.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key].smtp_addr);
+								});
+							}
+							break;
+						case "gen_adr2":
+							if (oDataResp.result.parentDTO.customData.gen_adr2) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr2",
+									oDataResp.result.parentDTO.customData.gen_adr2);
+							}
+							break;
+						case "gen_adr3":
+							if (oDataResp.result.parentDTO.customData.gen_adr3) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr3",
+									oDataResp.result.parentDTO.customData.gen_adr3);
+							}
+							break;
 						}
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
@@ -306,6 +328,7 @@ sap.ui.define([
 						rows: aPraAddress
 					});
 					this.getView().getModel("vndLfm1").setData(oLfm1);
+					this.getView().getModel("emails").setData(aEmails);
 
 					// this.getView().getModel("CreateVendorModel").setProperty(
 					// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",

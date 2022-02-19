@@ -15,10 +15,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/m/List",
 	"sap/m/Button",
-	"sap/m/ButtonType",
+	"sap/m/ButtonType"
 ], function (BaseController, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment,
-	ServiceCall,
-	StandardListItem, Dialog, MessageToast, List, Button, ButtonType) {
+	ServiceCall, StandardListItem, Dialog, MessageToast, List, Button, ButtonType) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
@@ -28,7 +27,6 @@ sap.ui.define([
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.CreateERPVendor
 		 */
 		onInit: function () {
 			this._getTaxonomyData();
@@ -151,7 +149,9 @@ sap.ui.define([
 				var oModel = this.getView().getModel("CreateVendorModel");
 				var oData = oModel.getProperty("/createCRVendorData/formData"),
 					oLfm1Model = this.getView().getModel("vndLfm1"),
-					oLfm1Data = oLfm1Model.getData();
+					oLfm1Data = oLfm1Model.getData(),
+					oDate = new Date(),
+					sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 				var objFormationLfb1 = {};
 				var objFormationLfbw = {};
@@ -185,6 +185,7 @@ sap.ui.define([
 					};
 					this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
 						if (oDataResp.result) {
+
 							var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
 							oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
 							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
@@ -209,6 +210,62 @@ sap.ui.define([
 									iLfm1 = iLfm1 + 1;
 								});
 							}
+
+							//Handling Comunication data
+							oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
+								oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
+							oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+								oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+							oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
+
+							var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
+								oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+									.customData.gen_adr2.gen_adr2_1.country) : "",
+								oMobCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_2.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+									.customData.gen_adr2.gen_adr2_2.country) : "",
+								oFaxCtryCode = oData.parentDTO.customData.gen_adr3.gen_adr3_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+									.customData.gen_adr3.gen_adr3_1.country) : "";
+
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
+								.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
+								.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_long = oFaxCtryCode ? oFaxCtryCode.telefto + "" + oData.parentDTO.customData
+								.gen_adr3.gen_adr3_1.fax_number : oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
+							oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
+
+							//Add Emails
+							var aEmails = this.getView().getModel("emails").getData();
+							oData.parentDTO.customData.gen_adr6 = {};
+							aEmails.forEach((oEmail, iIndex) => {
+								oData.parentDTO.customData.gen_adr6["gen_adr6_" + (iIndex + 1)] = {
+									"entity_id": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
+									"addrnumber": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
+									"persnumber": null,
+									"date_from": sDate,
+									"consnumber": "3",
+									"flgdefault": "X",
+									"flg_nouse": null,
+									"home_flag": "X",
+									"smtp_addr": oEmail.mail,
+									"smtp_srch": oEmail.mail.toUpperCase(),
+									"dft_receiv": null,
+									"r3_user": null,
+									"encode": null,
+									"tnef": null,
+									"valid_from": null,
+									"valid_to": null,
+									"client": null,
+									"ttx_number": null
+								};
+							});
 
 							if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1) {
 								oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
@@ -275,6 +332,63 @@ sap.ui.define([
 							oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
 						});
 					}
+
+					//Handling Comunication data
+					oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
+						oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
+					oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+						oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+					oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
+						oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
+
+					var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
+						oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+							.customData.gen_adr2.gen_adr2_1.country) : "",
+						oMobCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_2.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+							.customData.gen_adr2.gen_adr2_2.country) : "",
+						oFaxCtryCode = oData.parentDTO.customData.gen_adr3.gen_adr3_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+							.customData.gen_adr3.gen_adr3_1.country) : "";
+
+					oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
+						.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+					oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
+						.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+					oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_long = oFaxCtryCode ? oFaxCtryCode.telefto + "" + oData.parentDTO.customData
+						.gen_adr3.gen_adr3_1.fax_number : oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+
+					oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+					oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+					oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+					oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
+					oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
+					oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
+
+					//Add Emails
+					var aEmails = this.getView().getModel("emails").getData();
+					oData.parentDTO.customData.gen_adr6 = {};
+					aEmails.forEach((oEmail, iIndex) => {
+						oData.parentDTO.customData.gen_adr6["gen_adr6_" + (iIndex + 1)] = {
+							"entity_id": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
+							"addrnumber": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
+							"persnumber": null,
+							"date_from": sDate,
+							"consnumber": "3",
+							"flgdefault": "X",
+							"flg_nouse": null,
+							"home_flag": "X",
+							"smtp_addr": oEmail.mail,
+							"smtp_srch": oEmail.mail.toUpperCase(),
+							"dft_receiv": null,
+							"r3_user": null,
+							"encode": null,
+							"tnef": null,
+							"valid_from": null,
+							"valid_to": null,
+							"client": null,
+							"ttx_number": null
+						};
+					});
+
 					if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
 						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
 					}
@@ -938,7 +1052,7 @@ sap.ui.define([
 			sHouseNo = sHouseNo === null ? '' : sHouseNo;
 			sStreet = sStreet === null ? '' : " " + sStreet;
 			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet).slice(0,34));
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet).slice(0, 34));
 
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
@@ -1215,17 +1329,17 @@ sap.ui.define([
 				var oControl = oView.byId(oItem.id);
 				var sValueState = "None";
 				var sAccountGroup = oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK");
-				if (!oItem.isPRAData  && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
+				if (!oItem.isPRAData && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
 						oModel.getProperty(oItem.fieldMapping) === null)) {
 					// aEmptyFields.push(oItem);
-					if(oItem.Key ==='AKONT' && sAccountGroup === "MNFR")	{
+					if (oItem.Key === 'AKONT' && sAccountGroup === "MNFR") {
 						sValueState = "None";
 						bCheck = true;
-					}else{
+					} else {
 						sValueState = "Error";
 						bCheck = false;
 					}
-					
+
 				} else if ((oItem.isPRAData && (oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
 						"JVPR")) &&
 					(oModel.getProperty(oItem
@@ -1239,7 +1353,7 @@ sap.ui.define([
 						sValueState = "Success";
 					}
 				}
-				
+
 				oControl.setValueState(sValueState);
 			});
 			return bCheck;
@@ -1430,6 +1544,30 @@ sap.ui.define([
 			oLfm1Data.lfm1 = Object.assign({}, oLfm1);
 			oLfm1Data.lfm1.ekorg = null;
 			oLfm1Model.setData(oLfm1Data);
+		},
+
+		onAddEmail: function (oEvent) {
+			var oEmailModel = this.getView().getModel("emails"),
+				aEmails = oEmailModel.getData(),
+				sText = oEvent.getParameter("value");
+			if (sText) {
+				aEmails.push({
+					mail: sText
+				});
+				oEmailModel.setData(aEmails);
+			}
+			oEvent.getSource().setValue("");
+		},
+
+		onDeleteEmail: function (oEvent) {
+			var oEmail = oEvent.getSource().getBindingContext("emails").getObject(),
+				oEmailModel = this.getView().getModel("emails"),
+				oEmailData = oEmailModel.getData(),
+				iIndex = oEmailData.findIndex(oItem => oItem.mail === oEmail.mail);
+			if (iIndex > -1) {
+				oEmailData.splice(iIndex, 1);
+				oEmailModel.setData(oEmailData);
+			}
 		}
 
 	});
