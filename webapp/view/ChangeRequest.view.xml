@@ -156,9 +156,9 @@
 																<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
 																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{crWorkflowLogModel>statusChangedDate}" title="{crWorkflowLogModel>statusTypeId}" userNameClickable="false"
+																		<commons:TimelineItem dateTime="{crWorkflowLogModel>statusChangedDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
 																			
-																			userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname} {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
