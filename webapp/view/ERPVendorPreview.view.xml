@@ -1291,14 +1291,15 @@
 								<items>
 									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Label text="Workflow goes here..."/>-->
-										<commons:Timeline enableDoubleSided="true" groupBy="changeDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
-											content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Year" enableScroll="false">
-											<commons:content>
-												<commons:TimelineItem dateTime="{crWorkflowLogModel>changeDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
-													userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
-												<!--iconInitials="{CreateVendorModel>IconInitial}"-->
-											</commons:content>
-										</commons:Timeline>
+										<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
+																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
+																	<commons:content>
+																		<commons:TimelineItem dateTime="{crWorkflowLogModel>statusChangedDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
+																			
+																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+																	</commons:content>
+																</commons:Timeline>
 									</IconTabFilter>
 									<IconTabFilter text="Change Documents" key="changeDoc" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Text text="Documents go here ..."/>-->
