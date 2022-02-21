@@ -582,7 +582,7 @@
 											<!--<Label text="Account Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="15"/>
 -->
-											<Label text="Bank Account(Account No.)"/>
+											<Label text="Bank Account(Account No.)" wrapping="true"/>
 											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"
 												maxLength="18"/>
 											<Label text="Account Holder"/>

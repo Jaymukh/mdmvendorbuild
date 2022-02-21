@@ -206,6 +206,7 @@ sap.ui.define([
 								var iLfm1 = 1;
 								oLfm1Data.rows.forEach(oItem => {
 									oItem.lifnr = sLifnr;
+									oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
 									oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
 									iLfm1 = iLfm1 + 1;
 								});
@@ -236,11 +237,13 @@ sap.ui.define([
 
 							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
 							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.client="";
 							oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
 							oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
 							oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
 							oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
-
+							oData.parentDTO.customData.gen_adr3.gen_adr3_1.client="";
 							//Add Emails
 							var aEmails = this.getView().getModel("emails").getData();
 							oData.parentDTO.customData.gen_adr6 = {};
@@ -248,7 +251,7 @@ sap.ui.define([
 								oData.parentDTO.customData.gen_adr6["gen_adr6_" + (iIndex + 1)] = {
 									"entity_id": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
 									"addrnumber": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
-									"persnumber": null,
+									"persnumber": "",
 									"date_from": sDate,
 									"consnumber": "3",
 									"flgdefault": "X",
@@ -262,7 +265,7 @@ sap.ui.define([
 									"tnef": null,
 									"valid_from": null,
 									"valid_to": null,
-									"client": null,
+									"client": "",
 									"ttx_number": null
 								};
 							});
@@ -329,6 +332,7 @@ sap.ui.define([
 						var iLfm1 = 1;
 						oLfm1Data.rows.forEach(oItem => {
 							oItem.lifnr = sLIFNR;
+							oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
 							oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
 						});
 					}
@@ -362,7 +366,9 @@ sap.ui.define([
 					oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
 					oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
 					oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
-
+					oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
+					oData.parentDTO.customData.gen_adr2.gen_adr2_2.client="";
+					oData.parentDTO.customData.gen_adr3.gen_adr3_1.client = "";
 					//Add Emails
 					var aEmails = this.getView().getModel("emails").getData();
 					oData.parentDTO.customData.gen_adr6 = {};
@@ -370,7 +376,7 @@ sap.ui.define([
 						oData.parentDTO.customData.gen_adr6["gen_adr6_" + (iIndex + 1)] = {
 							"entity_id": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
 							"addrnumber": oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id,
-							"persnumber": null,
+							"persnumber": "",
 							"date_from": sDate,
 							"consnumber": "3",
 							"flgdefault": "X",
@@ -384,7 +390,7 @@ sap.ui.define([
 							"tnef": null,
 							"valid_from": null,
 							"valid_to": null,
-							"client": null,
+							"client": "",
 							"ttx_number": null
 						};
 					});

@@ -609,7 +609,7 @@ sap.ui.define([
 									"persnumber": " ",
 									"date_from": sDate,
 									"consnumber": "1",
-									"country": null,
+									"country": " ",
 									"flgdefault": "X",
 									"flg_nouse": null,
 									"home_flag": "X",
@@ -620,15 +620,16 @@ sap.ui.define([
 									"dft_receiv": null,
 									"r3_user": "1",
 									"valid_from": null,
-									"valid_to": null
+									"valid_to": null,
+									"client": " "
 								},
 								"gen_adr2_2": {
 									"entity_id": null,
 									"addrnumber": null,
-									"persnumber": null,
+									"persnumber": " ",
 									"date_from": sDate,
 									"consnumber": "2",
-									"country": null,
+									"country": " ",
 									"flgdefault": "X",
 									"flg_nouse": null,
 									"home_flag": "X",
@@ -639,17 +640,18 @@ sap.ui.define([
 									"dft_receiv": null,
 									"r3_user": "3",
 									"valid_from": null,
-									"valid_to": null
+									"valid_to": null,
+									"client": " "
 								}
 							},
 							"gen_adr3": {
 								"gen_adr3_1": {
 									"entity_id": null,
 									"addrnumber": null,
-									"persnumber": null,
+									"persnumber": " ",
 									"date_from": sDate,
 									"consnumber": "1",
-									"country": null,
+									"country": " ",
 									"flgdefault": "X",
 									"flg_nouse": null,
 									"home_flag": "X",
@@ -661,7 +663,8 @@ sap.ui.define([
 									"dft_receiv": null,
 									"r3_user": null,
 									"valid_from": null,
-									"valid_to": null
+									"valid_to": null,
+									"client": " "
 								}
 							}
 						};
