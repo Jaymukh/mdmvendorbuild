@@ -94,6 +94,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function (oData) {
 				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
 				var oVendorModel = this.getView().getModel("CreateVendorModel");
+				oVendorModel.setProperty("/createCRVendorData/workflowID", oChangeReq.workflow_task_id);
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
 				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
 				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
