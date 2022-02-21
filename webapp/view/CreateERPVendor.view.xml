@@ -142,7 +142,7 @@
 											<Label text="Street 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
-											<Input id="idERPVendorPostalCode" required="true" liveChange="handleERPVendorPostalCodeFix"
+											<Input id="idERPVendorPostalCode" required="true" 
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
