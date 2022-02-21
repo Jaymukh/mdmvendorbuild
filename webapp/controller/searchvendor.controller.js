@@ -83,31 +83,35 @@ sap.ui.define([
 			}
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				var aResultDataArr = oData.result.vendorDTOs;
-				oData.result.totalRecords = aResultDataArr[0].totalCount;
-
-				if (aResultDataArr[0].currentPage === 1) {
-					var aPageJson = [];
-					for (var i = 0; i < aResultDataArr[0].totalPageCount; i++) {
-						aPageJson.push({
-							key: i + 1,
-							text: i + 1
-						});
+				if(oData.result){
+						var aResultDataArr = oData.result.vendorDTOs;
+						oData.result.totalRecords = aResultDataArr[0].totalCount;
+	
+					if (aResultDataArr[0].currentPage === 1) {
+						var aPageJson = [];
+						for (var i = 0; i < aResultDataArr[0].totalPageCount; i++) {
+							aPageJson.push({
+								key: i + 1,
+								text: i + 1
+							});
+						}
+						oSearchVendorModel.setProperty("/PageData", aPageJson);
 					}
-					oSearchVendorModel.setProperty("/PageData", aPageJson);
+					oSearchVendorModel.setProperty("/selectedPageKey", aResultDataArr[0].currentPage);
+	
+					if (aResultDataArr[0].totalPageCount > aResultDataArr[0].currentPage) {
+						oSearchVendorModel.setProperty("/rightEnabled", true);
+					} else {
+						oSearchVendorModel.setProperty("/rightEnabled", false);
+					}
+					if (aResultDataArr[0].currentPage > 1) {
+						oSearchVendorModel.setProperty("/leftEnabled", true);
+					} else {
+						oSearchVendorModel.setProperty("/leftEnabled", false);
+					}
+					oSearchVendorModel.setProperty("/searchAllModelData", oData.result);
 				}
-				oSearchVendorModel.setProperty("/selectedPageKey", aResultDataArr[0].currentPage);
-
-				if (aResultDataArr[0].totalPageCount > aResultDataArr[0].currentPage) {
-					oSearchVendorModel.setProperty("/rightEnabled", true);
-				} else {
-					oSearchVendorModel.setProperty("/rightEnabled", false);
-				}
-				if (aResultDataArr[0].currentPage > 1) {
-					oSearchVendorModel.setProperty("/leftEnabled", true);
-				} else {
-					oSearchVendorModel.setProperty("/leftEnabled", false);
-				}
+				
 				// aResultDataArr.forEach(oItem => {
 				// 	var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
 				// 	var sResultDate = '';
@@ -127,7 +131,7 @@ sap.ui.define([
 				// 	oItem.pendingRequest = sPendingRequest;
 				// })
 
-				oSearchVendorModel.setProperty("/searchAllModelData", oData.result);
+			
 			});
 		},
 
@@ -138,9 +142,12 @@ sap.ui.define([
 			var sCity = this.getView().byId('fbCity').getValue();
 			var sStreet = this.getView().byId('fbStreet').getValue();
 			var sBPId = this.getView().byId('fbBPId').getValue();
+			var sBPIdAddr = this.getView().byId('fbBPIdAddr').getValue();
 			var sBankAcc = this.getView().byId('fbBankAcc').getValue();
 			var sBankKey = this.getView().byId('fbBankKey').getValue();
 			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
+			var sCountry = this.getView().byId('fbCountry').getSelectedKey();
+			var sTaxNumber = this.getView().byId('fbTaxNumber').getSelectedKey();
 			var oFilterBarParam = {
 				"entitySearchType": "GET_BY_VENDOR_FILTERS",
 				"entityType": "VENDOR",
@@ -153,7 +160,10 @@ sap.ui.define([
 					"name1": sName1,
 					"name2": sName2,
 					"city": sCity,
-					"street": sStreet
+					"street": sStreet,
+					"country": sCountry,
+					"lifnr": sBPIdAddr,
+					"taxNumber":sTaxNumber
 				};
 			} else if (sVMSelectedKey === "bankDetails") {
 				oFilterBarParam.vendorSearchDTO = {
