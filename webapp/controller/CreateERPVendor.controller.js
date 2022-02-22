@@ -1738,9 +1738,11 @@ sap.ui.define([
 				oEmailData.splice(iIndex, 1);
 				oEmailModel.setData(oEmailData);
 			}
+
 			this.byId("idServiceBasedInvoice").setValueState("Error");
 			this.byId("idAutoPurOrder").setValueState("Error");
 		},
+
 		onWithHoldDataChanged: function () {
 			var sOperationKey = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
 			if (this.getView().getModel("CreateVendorModel").getProperty("/vndEdit") && sOperationKey && sOperationKey === 50002) {

@@ -186,6 +186,7 @@
 					"defaultBindingMode": "TwoWay"
 				}
 			},
+<<<<<<< HEAD
 			"vndLfm1": {
 				"type": "sap.ui.model.json.JSONModel"
 			},
@@ -200,6 +201,16 @@
 					"Region": {},
 					"RegionFiltered": {}
 
+=======
+			"countryRegionModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"Country": {},
+					"Region" : {},
+					"RegionFiltered" : {}
+					
+>>>>>>> refs/heads/Hemendra
 				}
 			}
 		},
