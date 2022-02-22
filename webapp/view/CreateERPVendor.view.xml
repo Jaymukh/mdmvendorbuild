@@ -155,11 +155,11 @@
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35"/>
 											<Label text="Country"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" maxLength="3"/>-->
-											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" suggestionItemSelected ="handleCountrySuggestion"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
 												suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
 												<suggestionItems>
-													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}" key="{countryRegionModel>land1}"/>
 												</suggestionItems>
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
