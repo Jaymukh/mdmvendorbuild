@@ -361,6 +361,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 					this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent()
 						.getItem()
 						.getItems()[1]);

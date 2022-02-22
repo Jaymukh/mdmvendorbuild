@@ -191,14 +191,22 @@
 			},
 			"emails": {
 				"type": "sap.ui.model.json.JSONModel"
+			},
+			"countryRegionModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"Country": {},
+					"Region": {},
+					"RegionFiltered": {}
+
+				}
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -210,29 +218,25 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "searchvendor",
-					"pattern": "",
-					"target": [
-						"searchvendor"
-					]
-				},
-				{
-					"name": "createVendor",
-					"pattern": "CreateVendor",
-					"target": [
-						"createVendor"
-					]
-				},
-				{
-					"name": "erpVendorPrev",
-					"pattern": "erpVendorPrev",
-					"target": [
-						"ERPVendorPreview"
-					]
-				}
-			],
+			"routes": [{
+				"name": "searchvendor",
+				"pattern": "",
+				"target": [
+					"searchvendor"
+				]
+			}, {
+				"name": "createVendor",
+				"pattern": "CreateVendor",
+				"target": [
+					"createVendor"
+				]
+			}, {
+				"name": "erpVendorPrev",
+				"pattern": "erpVendorPrev",
+				"target": [
+					"ERPVendorPreview"
+				]
+			}],
 			"targets": {
 				"searchvendor": {
 					"viewType": "XML",
