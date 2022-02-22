@@ -324,6 +324,67 @@ sap.ui.define([
 									oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
 									iLfm1 = iLfm1 + 1;
 								});
+								if (!oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
+									oData.parentDTO.customData.vnd_lfm1 = {
+										"vnd_lfm1_1": {
+											"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id,
+											"lifnr": sLifnr,
+											"ekorg": "",
+											"WAERS": null,
+											"MINBW": null,
+											"KALSK": null,
+											"ZTERM": null,
+											"INCO1": null,
+											"INCO2": null,
+											"MEPRF": null,
+											"VERKF": null,
+											"LFABC": null,
+											"EXPVZ": null,
+											"ZOLLA": null,
+											"SKRIT": null,
+											"NRGEW": null,
+											"PRFRE": null,
+											"WEBRE": null,
+											"KZABS": null,
+											"KZAUT": "X",
+											"BOIND": null,
+											"BLIND": null,
+											"ZZQUA_FLAG": null,
+											"EKGRP": null,
+											"BSTAE": null,
+											"RDPRF": null,
+											"PLIFZ": null,
+											"MEGRU": null,
+											"VENSL": null,
+											"LISER": null,
+											"LIBES": null,
+											"BOPNR": null,
+											"XERSR": null,
+											"EIKTO": null,
+											"ABUEB": null,
+											"PAPRF": null,
+											"AGREL": null,
+											"XNBWY": null,
+											"VSBED": null,
+											"LEBRE": "X",
+											"BOLRE": null,
+											"UMSAE": null,
+											"VENDOR_RMA_REQ": null,
+											"OIHANTYP": null,
+											"OIA_SPLTIV": null,
+											"OIHVGROUP": null,
+											"OIMATCYC": null,
+											"ACTIVITY_PROFIL": null,
+											"TRANSPORT_CHAIN": null,
+											"STAGING_TIME": null,
+											"INCOV": null,
+											"INCO2_I": null,
+											"INCO3_I": null,
+											"FSH_SC_CID": null,
+											"FSH_VAS_DETC": null
+										}
+									};
+								}
 							}
 
 							//Handling Comunication data
@@ -442,15 +503,75 @@ sap.ui.define([
 					for (var j = 0; j < sKeylfbw.length; j++) {
 						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
 					}
-					if (oData.parentDTO.customData.vnd_lfm1 /*&& oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')*/ ) {
+					if (oData.parentDTO.customData.vnd_lfm1 /*&& */ ) {
 						var iLfm1 = 1;
 						oLfm1Data.rows.forEach(oItem => {
 							oItem.lifnr = sLIFNR;
 							oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
 							oData.parentDTO.customData.vnd_lfm1["vnd_lfm1_" + iLfm1] = oItem;
 						});
+						if (!oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
+							oData.parentDTO.customData.vnd_lfm1 = {
+								"vnd_lfm1_1": {
+									"lifnr": sLIFNR,
+									"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id,
+									"ekorg": "",
+									"WAERS": null,
+									"MINBW": null,
+									"KALSK": null,
+									"ZTERM": null,
+									"INCO1": null,
+									"INCO2": null,
+									"MEPRF": null,
+									"VERKF": null,
+									"LFABC": null,
+									"EXPVZ": null,
+									"ZOLLA": null,
+									"SKRIT": null,
+									"NRGEW": null,
+									"PRFRE": null,
+									"WEBRE": null,
+									"KZABS": null,
+									"KZAUT": "X",
+									"BOIND": null,
+									"BLIND": null,
+									"ZZQUA_FLAG": null,
+									"EKGRP": null,
+									"BSTAE": null,
+									"RDPRF": null,
+									"PLIFZ": null,
+									"MEGRU": null,
+									"VENSL": null,
+									"LISER": null,
+									"LIBES": null,
+									"BOPNR": null,
+									"XERSR": null,
+									"EIKTO": null,
+									"ABUEB": null,
+									"PAPRF": null,
+									"AGREL": null,
+									"XNBWY": null,
+									"VSBED": null,
+									"LEBRE": "X",
+									"BOLRE": null,
+									"UMSAE": null,
+									"VENDOR_RMA_REQ": null,
+									"OIHANTYP": null,
+									"OIA_SPLTIV": null,
+									"OIHVGROUP": null,
+									"OIMATCYC": null,
+									"ACTIVITY_PROFIL": null,
+									"TRANSPORT_CHAIN": null,
+									"STAGING_TIME": null,
+									"INCOV": null,
+									"INCO2_I": null,
+									"INCO3_I": null,
+									"FSH_SC_CID": null,
+									"FSH_VAS_DETC": null
+								}
+							};
+						}
 					}
-
 					//Handling Comunication data
 					oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
 						oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
