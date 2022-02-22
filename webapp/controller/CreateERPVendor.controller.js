@@ -1489,8 +1489,19 @@ sap.ui.define([
 		},
 
 		handleAutoPopulatePurOrg: function (oEvent) {
-			this.byId("idServiceBasedInvoice").setValueState("Error");
-			this.byId("idAutoPurOrder").setValueState("Error");
+			var sServiceBasedInvoice = this.getView().getModel("vndLfm1").getProperty("/lfm1/LEBRE")
+			var sAutoPurOrder = this.getView().getModel("vndLfm1").getProperty("/lfm1/KZAUT")
+			if(sServiceBasedInvoice !=="X"){
+				this.byId("idServiceBasedInvoice").setValueState("Error");
+			}else{
+				this.byId("idServiceBasedInvoice").setValueState("None");
+			}
+			if(sAutoPurOrder !=="X"){
+				this.byId("idAutoPurOrder").setValueState("Error");
+			}else{
+				this.byId("idAutoPurOrder").setValueState("None");
+			}
+			
 		},
 
 		onAddPurOrg: function (oEvent) {
@@ -1507,8 +1518,10 @@ sap.ui.define([
 				} else {
 					oLfm1Data.rows.push(Object.assign({}, oLfm1));
 					Object.keys(oLfm1Data.lfm1).forEach(sKey => {
-						oLfm1Data.lfm1[sKey] = null;
+						oLfm1Data.lfm1[sKey] = null;	
 					});
+					oLfm1Data.lfm1["LEBRE"] = "X";
+					oLfm1Data.lfm1["KZAUT"] = "X";
 					oLfm1Model.setData(oLfm1Data);
 				}
 			} else {
