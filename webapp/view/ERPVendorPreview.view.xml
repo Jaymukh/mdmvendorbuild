@@ -1303,7 +1303,7 @@
 								<items>
 									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Label text="Workflow goes here..."/>-->
-										<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
+										<commons:Timeline enableDoubleSided="true" growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
 											content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
 											<commons:content>
 												<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}"
