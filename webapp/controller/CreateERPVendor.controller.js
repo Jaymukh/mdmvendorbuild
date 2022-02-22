@@ -1920,6 +1920,13 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData/" + aWithHoldingDataField[i], this.getView().getModel(
 					"CreateVendorModel").getProperty("/addCompanyCodeFormDataCurrent/" + aWithHoldingDataField[i]));
 			}
+		},
+		handleCountrySuggestion : function(oEvent){
+			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1',oEvent.getParameter('selectedItem').getKey() );
+			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country',oEvent.getParameter('selectedItem').getKey() );
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 		}
 
 	});
