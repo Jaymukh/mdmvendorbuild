@@ -281,6 +281,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 			var oChangeReq = {
 				"genData": {
 					"desc": "",
@@ -546,6 +547,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", true);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 					this.byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
 					var titleID = this.getView().byId("idTitle");
 					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
@@ -990,10 +992,12 @@ sap.ui.define([
 						this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 					} else if (operation === "EDIT" || operation === "COPY") {
 						this.getView().byId("pageContainer").to(this.createId("createERPVendorView"));
 						this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", true);
 						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 					}
 

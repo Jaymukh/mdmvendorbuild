@@ -33,6 +33,7 @@ sap.ui.define([
 					"vndDetails": true
 				});
 				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+				this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", true);
 			}
 
 			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', 50002);
@@ -192,6 +193,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 		},
 
 		onBackToVendorListClick: function () {
@@ -208,6 +210,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 		},
 
 		onSelectCompanyCodeItem: function (oEvent) {
@@ -416,6 +419,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);

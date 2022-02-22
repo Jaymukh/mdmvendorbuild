@@ -185,6 +185,16 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"countryRegionModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"Country": {},
+					"Region" : {},
+					"RegionFiltered" : {}
+					
+				}
 			}
 		},
 		"resources": {

@@ -53,9 +53,11 @@
 											<Label text="Current Work Item"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/currWrkItem}"/>
 											<Label text="Created By"/>
-											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
+											<Input editable="false"
+												value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"/>
 											<Label text="Date/Time of Creation"/>
-											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" editable="false"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}"/>
 											<Input editable="false" value="{CreateVendorModel>/changeReq/genData/timeCreation}">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -170,9 +172,11 @@
 													<l:GridData span="XL2 L1 M3 S4"/>
 												</layoutData>-->
 											</Text>
-											<Text text="">	<layoutData>
+											<Text text="">
+												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
-												</layoutData></Text>
+												</layoutData>
+											</Text>
 											<Label text="Web site"/>
 											<Text text=""/>
 											<core:Title/>
@@ -556,16 +560,16 @@
 											<core:Title text="Withholding Tax"/>
 											<Label text="Withholding Tax Code"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}"></Text>
-											<Label text="Withholding Tax Country"/>
-											<Text></Text>
+											<Label text="Withholding Tax Country" visible="false"/>
+											<Text visible="false"></Text>
 											<Label text="Recipient Type"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/QSREC}"></Text>
 											<Label text="Main Economic activity per CIIU Code"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}"/>
 											<Label text="Exemption No."/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}"/>
-											<Label text="Valid Unit"/>
-											<Text/>
+											<Label text="Valid Unit" visible="false"/>
+											<Text visible="false"/>
 											<Label text="Exemption Authority"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}"></Text>
 											<core:Title text="Extended Withholding Tax"/>
@@ -1291,15 +1295,15 @@
 								<items>
 									<IconTabFilter text="Workflow" key="workflow" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Label text="Workflow goes here..."/>-->
-										<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
-																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
-																	<commons:content>
-																		<commons:TimelineItem dateTime="{crWorkflowLogModel>statusChangedDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
-																			
-																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
-																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
-																	</commons:content>
-																</commons:Timeline>
+										<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
+											content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
+											<commons:content>
+												<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}"
+													title="{path:'crWorkflowLogModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
+													userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+												<!--iconInitials="{CreateVendorModel>IconInitial}"-->
+											</commons:content>
+										</commons:Timeline>
 									</IconTabFilter>
 									<IconTabFilter text="Change Documents" key="changeDoc" visible="{= ${CreateVendorModel>/approvalView} === true}">
 										<!--<Text text="Documents go here ..."/>-->
@@ -1439,7 +1443,7 @@
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
 					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005)}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp;  ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp; ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick"
 					visible="{= ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->

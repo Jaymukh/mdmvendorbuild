@@ -16,9 +16,9 @@ sap.ui.define([
 	"sap/m/List",
 	"sap/m/Button",
 	"sap/m/ButtonType",
+	"sap/m/MessageBox",
 ], function (BaseController, JSONModel, TypeString, ColumnListItem, Label, SearchField, Token, Filter, FilterOperator, Fragment,
-	ServiceCall,
-	StandardListItem, Dialog, MessageToast, List, Button, ButtonType) {
+	ServiceCall, StandardListItem, Dialog, MessageToast, List, Button, ButtonType, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.vendor.murphymdmvendor.controller.CreateERPVendor", {
@@ -111,6 +111,16 @@ sap.ui.define([
 					"controlTable": "OIUCM_ADDR_TYPE",
 					"controlField": "addr_TYPE",
 					"controlFieldName": "description"
+				}, {
+					"controlID": "Country",
+					"controlTable": "T005",
+					"controlField": "land1",
+					"controlFieldName": "landx"
+				}, {
+					"controlID": "Region",
+					"controlTable": "T005S",
+					"controlField": "bland",
+					"controlFieldName": "bezei"
 				}
 
 			];
@@ -126,23 +136,126 @@ sap.ui.define([
 				});
 
 				function searchCallback(data) {
-					var oJsonModel = new JSONModel(data.result);
 					var sControlID = item.controlID;
-					that.getView().byId(sControlID).setModel(oJsonModel);
-					if (item.controlID === 'generalDataTitleId') {
-						that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
-					}else if (item.controlID === 'purOrgPurOrgId') {
-						that.getOwnerComponent().getModel('purOrgPurOrgModel').setData(data.result);
+					if (sControlID === "Country" || sControlID === "Region") {
+						that.getView().getModel("countryRegionModel").setProperty("/" + sControlID, data.result);
+						if (sControlID === "Region") {
+							that.getView().getModel("countryRegionModel").setProperty("/RegionFiltered", Object.assign({}, data.result));
+							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAccounting", Object.assign({}, data.result));
+							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress", Object.assign({}, data.result));
+						}
 					} else {
-						var oItemSelectTemplate1 = new sap.ui.core.Item({
-							key: "{" + item.controlField + "}",
-							text: "{" + item.controlFieldName + "}"
-						});
-						that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+						var oJsonModel = new JSONModel(data.result);
+						that.getView().byId(sControlID).setModel(oJsonModel);
+						if (item.controlID === 'generalDataTitleId') {
+							that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
+						} else if (item.controlID === 'purOrgPurOrgId') {
+							that.getOwnerComponent().getModel('purOrgPurOrgModel').setData(data.result);
+						} else {
+							var oItemSelectTemplate1 = new sap.ui.core.Item({
+								key: "{" + item.controlField + "}",
+								text: "{" + item.controlFieldName + "}"
+							});
+							that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+						}
 					}
+
 				}
 			});
 			// });
+		},
+
+		onCountryChanged: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/Country/modelMap").filter(function (e) {
+				return e.land1 === sValueSelected
+			});
+			this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO", "");
+			if (oItemSelected[0]) {
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === sValueSelected;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFiltered/modelMap", aRegionSuggestion);
+			} else {
+				oEvent.getSource().setValue("");
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFiltered/modelMap", this.getView().getModel("countryRegionModel")
+					.getProperty("/Region/modelMap"));
+
+			}
+		},
+
+		onRegionChanged: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/RegionFiltered/modelMap").filter(function (e) {
+				return e.bland === sValueSelected
+			});
+			if (!oItemSelected[0]) {
+				oEvent.getSource().setValue("");
+			}
+		},
+
+		onCountryChangedPRAAccounting: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/Country/modelMap").filter(function (e) {
+				return e.land1 === sValueSelected
+			});
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg", "");
+			if (oItemSelected[0]) {
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === sValueSelected;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAccounting/modelMap", aRegionSuggestion);
+			} else {
+				oEvent.getSource().setValue("");
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAccounting/modelMap", this.getView().getModel(
+						"countryRegionModel")
+					.getProperty("/Region/modelMap"));
+
+			}
+		},
+
+		onRegionChangedPRAAccounting: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/RegionFilteredPRAAccounting/modelMap").filter(
+				function (e) {
+					return e.bland === sValueSelected
+				});
+			if (!oItemSelected[0]) {
+				oEvent.getSource().setValue("");
+			}
+		},
+
+		onCountryChangedPRAAddress: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/Country/modelMap").filter(function (e) {
+				return e.land1 === sValueSelected
+			});
+			this.getView().getModel("praAddressModel").setProperty(
+				"/address/region", "");
+			if (oItemSelected[0]) {
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === sValueSelected;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress/modelMap", aRegionSuggestion);
+			} else {
+				oEvent.getSource().setValue("");
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress/modelMap", this.getView().getModel(
+						"countryRegionModel")
+					.getProperty("/Region/modelMap"));
+
+			}
+		},
+
+		onRegionChangedPRAAddress: function (oEvent) {
+			var sValueSelected = oEvent.getParameter("value");
+			var oItemSelected = this.getView().getModel("countryRegionModel").getProperty("/RegionFilteredPRAAddress/modelMap").filter(
+				function (e) {
+					return e.bland === sValueSelected
+				});
+			if (!oItemSelected[0]) {
+				oEvent.getSource().setValue("");
+			}
 		},
 
 		onSaveClick: function (oEvent) {
@@ -307,17 +420,17 @@ sap.ui.define([
 				delete oData.parentDTO.customData.pra_bp_vend_md;
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-			}else{
-				var oDate = new Date();    
+			} else {
+				var oDate = new Date();
 				var sResultDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 				oPraAddress.rows.forEach(function (oItem, index) {
-					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id ;
-					oItem.addrnumber = oData.parentDTO.customData.vnd_lfa1.entity_id +"_"+ (index + 1);
-					oItem.date_from  =  sResultDate;
-					oItem.nation  =  '';
+					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
+					oItem.addrnumber = oData.parentDTO.customData.vnd_lfa1.entity_id + "_" + (index + 1);
+					oItem.date_from = sResultDate;
+					oItem.nation = '';
 					oData.parentDTO.customData.gen_adrc["gen_adrc_" + (index + 2)] = oItem;
 					oData.parentDTO.customData.pra_bp_ad["pra_bp_ad_" + (index + 1)] = {
-						"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id ,
+						"entity_id": oData.parentDTO.customData.vnd_lfa1.entity_id,
 						"addr_type": oItem.addr_type,
 						"adrnr": oItem.addrnumber,
 						"custid": null,
@@ -326,7 +439,7 @@ sap.ui.define([
 						"oiu_timestamp": null
 					};
 				});
-			} 
+			}
 			/*else if (oData.parentDTO.customData.gen_adrc.gen_adrc_2 && oData.parentDTO.customData.gen_adrc.gen_adrc_2.addr_type === null) {
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 			}*/
@@ -435,8 +548,9 @@ sap.ui.define([
 					};
 				}
 			}
-			
-			if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1') && oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL){
+
+			if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1') && oData.parentDTO.customData
+				.vnd_lfbk.vnd_lfbk_1.BANKL) {
 				oData.parentDTO.customData.gen_bnka.gen_bnka_1.bankl = oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKL;
 				if (oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS) {
 					oData.parentDTO.customData.gen_bnka.gen_bnka_1.banks = oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.BANKS;
@@ -476,6 +590,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
@@ -572,7 +687,8 @@ sap.ui.define([
 
 				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					if (oDataResp.result && oDataResp.result.modelMap) {
-						var sProperty = this._oInput.getBindingInfo("value").parts[0].path.split("/").slice(-2).join("/");
+						var sProperty = (this._oInput.getBindingInfo("value")) ? this._oInput.getBindingInfo("value").parts[0].path.split("/").slice(-
+							2).join("/") : "";
 						if (sProperty === "vnd_lfa1/REGIO") {
 							var sCountry = this.getView().getModel("CreateVendorModel").getProperty(
 								"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1");
@@ -584,6 +700,14 @@ sap.ui.define([
 						} else if (sProperty === "address/region") {
 							var sCountry = this.getView().getModel("praAddressModel").getProperty(
 								"/address/country");
+							if (sCountry) {
+								oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
+									return e.land1 === sCountry;
+								})
+							}
+						} else if (sProperty === "pra_bp_vend_md_1/kgreg") {
+							var sCountry = this.getView().getModel("CreateVendorModel").getProperty(
+								"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd");
 							if (sCountry) {
 								oDataResp.result.modelMap = oDataResp.result.modelMap.filter(function (e) {
 									return e.land1 === sCountry;
@@ -750,7 +874,8 @@ sap.ui.define([
 			} else {
 				this._oInput.setValue(oVal[this._sKey]);
 			}
-			if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Company Code") {
+			var sTitle = oEvent.getSource().getModel("oViewModel").getProperty("/title");
+			if (sTitle === "Company Code") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/addCompanyCodeFormData/vnd_lfbw/bukrs", oVal[this._sKey]);
 				var sSelectedKey = oVal[this._sKey];
@@ -760,7 +885,7 @@ sap.ui.define([
 					this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
 					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 				}
-			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Bank Key") {
+			} else if (sTitle === "Bank Key") {
 				/*if (oVal.bankl && oVal.bankl.length > 0) {
 					var sDiff = 9 - (oVal.bankl.length);
 					for (var i = 0; i < sDiff; i++) {
@@ -778,23 +903,41 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS', oVal.banks);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Language") {
+			} else if (sTitle === "Language") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu', oVal.laiso);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-			} else if (oEvent.getSource().getModel("oViewModel").getProperty("/title") === "Country") {
+			} else if (sTitle === "Country") {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oVal.land1);
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+			} else if (sTitle === "Withholding Tax Country" || sTitle === "Withholding Tax Type" || sTitle === "Withholding Tax Code" || sTitle ===
+				"Recipient Type" || sTitle === "Exemption Reason") {
+				this.onWithHoldDataChanged();
 			}
 
 			var sProperty = this._oInput.getBindingInfo("value").parts[0].path.split("/").slice(-2).join("/");
 			if (sProperty === "vnd_lfa1/LAND1") {
 				this.getView().getModel("CreateVendorModel").setProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO", "");
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === oVal.land1;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFiltered/modelMap", aRegionSuggestion);
 			} else if (sProperty === "address/country") {
 				this.getView().getModel("praAddressModel").setProperty(
 					"/address/region", "");
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === oVal.land1;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress/modelMap", aRegionSuggestion);
+			} else if (sProperty === "pra_bp_vend_md_1/kglnd") {
+				this.getView().getModel("CreateVendorModel").setProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg", "");
+				var aRegionSuggestion = this.getView().getModel("countryRegionModel").getProperty("/Region/modelMap").filter(function (e) {
+					return e.land1 === oVal.land1;
+				});
+				this.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAccounting/modelMap", aRegionSuggestion);
 			}
 
 			this._oValueHelpDialog.close();
@@ -913,6 +1056,9 @@ sap.ui.define([
 				}
 			}
 			this.getView().getModel("CreateVendorModel").refresh(true);
+			if (sKey === "/addCompanyCodeFormData/lfbw/WT_SUBJCT") {
+				this.onWithHoldDataChanged();
+			}
 		},
 
 		onCheckClick: function () {
@@ -924,16 +1070,16 @@ sap.ui.define([
 			sHouseNo = sHouseNo === null ? '' : sHouseNo;
 			sStreet = sStreet === null ? '' : " " + sStreet;
 			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet).slice(0,34));
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS", (sHouseNo + sStreet).slice(0, 34));
 
 			var aMandFields = this.getView().getModel("CreateVendorModel").getProperty("/createMandtFields");
 			var aEmptyFields = [];
 			var oData = this.getView().getModel("CreateVendorModel");
 			var oController = this;
-			var sBankKey =	oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL");
+			var sBankKey = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL");
 			var sBankNumber = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN");
 			var oBankNumControl = oController.getView().byId("idBankNumber");
-				
+
 			if (!oData.getProperty("/addCompanyCodeRows").length) {
 				this.onAddCompanyCode("onCheck");
 			}
@@ -952,7 +1098,8 @@ sap.ui.define([
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
 					sValueState = "Error";
-				} else if (oItem.isPurOrgData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") &&
+				} else if (oItem.isPurOrgData && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
+						"VEND") &&
 					(oData.getProperty(oItem
 							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
@@ -972,8 +1119,8 @@ sap.ui.define([
 					section: "Company Code"
 				})
 			}
-			
-			if(sBankKey && !sBankNumber){
+
+			if (sBankKey && !sBankNumber) {
 				aEmptyFields.push({
 					"id": "idBankNumber",
 					"Name": "Bank Account Number",
@@ -981,12 +1128,12 @@ sap.ui.define([
 					"fieldMapping": "/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN",
 					"panelMapping": "Bank Accounts",
 					"isPRAData": false,
-					"isPurOrgData" : false,
-					"isMNFRData" : false
+					"isPurOrgData": false,
+					"isMNFRData": false
 				});
 				oBankNumControl.setValueState("Error");
-			}else{
-					oBankNumControl.setValueState("None");
+			} else {
+				oBankNumControl.setValueState("None");
 			}
 
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
@@ -1173,6 +1320,11 @@ sap.ui.define([
 				lfbw: Object.assign({}, oData.lfbw)
 			});
 			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", Object.assign({}, oTableItemData));
+			var oTableItemDataCurrent = Object.assign({}, {
+				lfb1: Object.assign({}, oData.lfb1),
+				lfbw: Object.assign({}, oData.lfbw)
+			});
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormDataCurrent", Object.assign({}, oTableItemDataCurrent));
 		},
 
 		onCompanyCodeSavePress: function (oEvent) {
@@ -1200,17 +1352,17 @@ sap.ui.define([
 				var oControl = oView.byId(oItem.id);
 				var sValueState = "None";
 				var sAccountGroup = oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK");
-				if (!oItem.isPRAData  && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
+				if (!oItem.isPRAData && (oModel.getProperty(oItem.fieldMapping) === undefined || oModel.getProperty(oItem.fieldMapping) === "" ||
 						oModel.getProperty(oItem.fieldMapping) === null)) {
 					// aEmptyFields.push(oItem);
-					if(oItem.Key ==='AKONT' && sAccountGroup === "MNFR")	{
+					if (oItem.Key === 'AKONT' && sAccountGroup === "MNFR") {
 						sValueState = "None";
 						bCheck = true;
-					}else{
+					} else {
 						sValueState = "Error";
 						bCheck = false;
 					}
-					
+
 				} else if ((oItem.isPRAData && (oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
 						"JVPR")) &&
 					(oModel.getProperty(oItem
@@ -1224,7 +1376,7 @@ sap.ui.define([
 						sValueState = "Success";
 					}
 				}
-				
+
 				oControl.setValueState(sValueState);
 			});
 			return bCheck;
@@ -1352,10 +1504,68 @@ sap.ui.define([
 				address: oAddressData.address
 			});
 		},
-		
-		handleAutoPopulatePurOrg : function(oEvent){
+
+		handleAutoPopulatePurOrg: function (oEvent) {
 			this.byId("idServiceBasedInvoice").setValueState("Error");
 			this.byId("idAutoPurOrder").setValueState("Error");
+		},
+
+		onWithHoldDataChanged: function () {
+			var sOperationKey = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
+			if (this.getView().getModel("CreateVendorModel").getProperty("/vndEdit") && sOperationKey && sOperationKey === 50002) {
+				this.getView().setBusy(true);
+				var sVendor = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfb1/lifnr");
+				// var sVendor = "0080050019";
+				var sCompanyCode = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData/lfbw/bukrs");
+				// var sCompanyCode = "0329";
+				var oDate = new Date();
+				var sTime = (("" + a.getHours()).length > 1 ? a.getHours() : "0" + a.getHours()) + ":" + (("" + a.getMinutes()).length > 1 ? a.getMinutes() :
+					"0" + a.getMinutes()) + ":" + (("" + a.getSeconds()).length > 1 ? a.getSeconds() : "0" + a.getSeconds())
+				var sDateTime = oDate.getFullYear() + "-" + (oDate.getMonth() + 1 < 10 ? ("0" + (oDate.getMonth() + 1)) : oDate.getMonth() + 1) +
+					"-" + (oDate
+						.getDate() < 10 ? ("0" + oDate.getDate()) : oDate.getDate()) + "T" + sTime;
+				// var sDateTime = "2022-02-02T00:00:00"
+				// var sSystem = (window.location.href.includes("y3vg532z8f")) ? 200 : 100;
+				var sURL =
+					"/sap/opu/odata/sap/ZVENDOR_WITHHOLDING_LOOKUP_SRV/VENDOR_WITHHOLDINGSet?$filter=Companycode eq '" +
+					sCompanyCode + "' and Vendor eq '" + sVendor + "'and Keydate eq datetime'" + sDateTime + "'&$format=json"
+				var objParamFirstCall = {
+					url: "/MurphyECCOdataDest" + sURL,
+					hasPayload: false,
+					type: 'GET'
+				};
+				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+					var nBalance = 0;
+					if (oDataResp.d && oDataResp.d.results && oDataResp.d.results[0] && oDataResp.d.results[0].Keybalance && oDataResp.d.results[0]
+						.Keybalance.LcBal) {
+						nBalance = Number(oDataResp.d.results[0].Keybalance.LcBal);
+					}
+					if (nBalance) {
+						this._setPreviousWithHoldingData();
+						this.getView().setBusy(false);
+						var sMessage = oDataResp.d.results[0].Message;
+						MessageBox.error(sMessage);
+					} else {
+						this.getView().setBusy(false);
+					}
+				}.bind(this), function (oError) {
+					this._setPreviousWithHoldingData();
+					this.getView().setBusy(false);
+					MessageBox.error("Error In Getting Balace for Withholding, Changes in Withholding section are not allowed");
+				}.bind(this));
+
+			}
+		},
+
+		_setPreviousWithHoldingData: function () {
+			var aWithHoldingDataField = ["lfbw/witht", "lfbw/WT_WITHCD", "lfbw/QSREC", "lfb1/CIIUCODE", "lfbw/WT_EXNR", "lfb1/QSBGR",
+				"lfbw/witht", "lfbw/QSREC", "lfbw/WT_WTSTCD", "lfbw/WT_EXRT", "lfbw/WT_EXDF", "lfbw/WT_WITHCD", "lfbw/WT_SUBJCT", "lfbw/WT_EXNR",
+				"lfbw/WT_WTEXRS", "lfbw/WT_EXDT"
+			];
+			for (var i = 0; i < aWithHoldingDataField.length; i++) {
+				this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData/" + aWithHoldingDataField[i], this.getView().getModel(
+					"CreateVendorModel").getProperty("/addCompanyCodeFormDataCurrent/" + aWithHoldingDataField[i]));
+			}
 		}
 
 	});
