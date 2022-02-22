@@ -155,8 +155,12 @@
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35"/>
 											<Label text="Country"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" maxLength="3"/>-->
-											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}">
+											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
+												suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
+												<suggestionItems>
+													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+												</suggestionItems>
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
@@ -170,8 +174,29 @@
 											<!--<Label text="Region"/>-->
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" maxLength="3"/>-->
 											<Label text="Region"/>
-											<Input id="idERPVendorRegion" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
+											<Input id="idERPVendorRegion" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" showSuggestion="true"
+												suggestionRows="{countryRegionModel>/RegionFiltered/modelMap}" change="onRegionChanged">
+												<suggestionColumns>
+													<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+														<Label text="Region"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+														<Label text="Name"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+														<Label text="Country"/>
+													</Column>
+												</suggestionColumns>
+												<suggestionRows>
+													<ColumnListItem>
+														<cells>
+															<Label text="{countryRegionModel>bland}"/>
+															<Label text="{countryRegionModel>bezei}"/>
+															<Label text="{countryRegionModel>land1}"/>
+														</cells>
+													</ColumnListItem>
+												</suggestionRows>
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -905,8 +930,8 @@
 												<Label text="Last Key Run"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
 												<core:Title text="Withholding Tax"/>
-												<Label text="Withholding Tax Country"/>
-												<Input id="idWithHoldTaxCtry" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<Label text="Withholding Tax Country" visible="false"/>
+												<Input id="idWithHoldTaxCtry" visible="false" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 													<customData>
 														<core:CustomData key="title" value="Withholding Tax Country"></core:CustomData>
 														<core:CustomData key="table" value="T005"></core:CustomData>
@@ -932,6 +957,7 @@
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}">
 													<customData>
+														<core:CustomData key="title" value="Withholding Tax Code"></core:CustomData>
 														<core:CustomData key="table" value="T059Z"></core:CustomData>
 														<core:CustomData key="text40" value="Name"></core:CustomData>
 														<core:CustomData key="wt_WITHCD" value="Key"></core:CustomData>
@@ -954,13 +980,14 @@
 													</customData>
 												</Input>
 												<Label text="Main Economic activity per CIIU Code"/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}" maxLength="4"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}" maxLength="4" change="onWithHoldDataChanged"/>
 												<Label text="Exemption No."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25"/>
-												<Label text="Valid Unit"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25" change="onWithHoldDataChanged"/>
+												<Label text="Valid Unit" visible="false"/>
+												<DatePicker displayFormat="MM-dd-YYYY" visible="false" valueFormat="YYYYMMdd" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Authority"/>
-												<Select forceSelection="false" id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}">
+												<Select forceSelection="false" id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}"
+													change="onWithHoldDataChanged">
 													<items>
 														<core:Item text="No Exemption Reason Reported" key="0"/>
 														<core:Item text="Income Connected with a Company in the USA" key="1"/>
@@ -1003,11 +1030,12 @@
 													</customData>
 												</Input>
 												<Label text="Withholding Tax Identification No."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTSTCD}" maxLength="16"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTSTCD}" maxLength="16" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Rate in %"/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}" maxLength="5"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}" maxLength="5" change="onWithHoldDataChanged"/>
 												<Label text="Date on which exemption starts"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"
+													change="onWithHoldDataChanged"/>
 												<core:Title/>
 												<Label text="Withholding Tax Code"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -1029,7 +1057,7 @@
 													</customData>
 												</CheckBox>
 												<Label text="Exemption Cert. no."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Reason"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTEXRS}">
@@ -1044,7 +1072,8 @@
 													</customData>
 												</Input>
 												<Label text="Date on which Exemption Ends"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"
+													change="onWithHoldDataChanged"/>
 												<core:Title text="ERP Vendor Company Code : Reference data"/>
 												<Label text="Previous Account No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ALTKN}" maxLength="10"/>
@@ -1664,8 +1693,12 @@
 												</layoutData>
 											</Input>
 											<Label text="Country"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
+												suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
+												<suggestionItems>
+													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+												</suggestionItems>
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
@@ -1676,8 +1709,29 @@
 												</customData>
 											</Input>
 											<Label text="Region" required="true"/>
-											<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
+											<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" showSuggestion="true"
+												suggestionRows="{countryRegionModel>/RegionFiltered/modelMap}" change="onRegionChanged">
+												<suggestionColumns>
+													<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+														<Label text="Region"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+														<Label text="Name"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+														<Label text="Country"/>
+													</Column>
+												</suggestionColumns>
+												<suggestionRows>
+													<ColumnListItem>
+														<cells>
+															<Label text="{countryRegionModel>bland}"/>
+															<Label text="{countryRegionModel>bezei}"/>
+															<Label text="{countryRegionModel>land1}"/>
+														</cells>
+													</ColumnListItem>
+												</suggestionRows>
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -1992,8 +2046,12 @@
 														<Label text="Intercompany Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bukrs}" maxLength="4"/>
 														<Label text="Resident Country"/>
-														<Input id="idPRAAccResidentCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3">
+														<Input id="idPRAAccResidentCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"
+															showSuggestion="true" suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChangedPRAAccounting">
+															<suggestionItems>
+																<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+															</suggestionItems>
 															<customData>
 																<core:CustomData key="title" value="Country"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
@@ -2026,8 +2084,29 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/cdex_company}"
 															maxLength="2"/>
 														<Label text="Region"/>
-														<Input id="idPRAAccRegionResidence" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3">
+														<Input id="idPRAAccRegionResidence" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3"
+															showSuggestion="true" suggestionRows="{countryRegionModel>/RegionFilteredPRAAccounting/modelMap}" change="onRegionChangedPRAAccounting">
+															<suggestionColumns>
+																<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+																	<Label text="Region"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+																	<Label text="Name"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+																	<Label text="Country"/>
+																</Column>
+															</suggestionColumns>
+															<suggestionRows>
+																<ColumnListItem>
+																	<cells>
+																		<Label text="{countryRegionModel>bland}"/>
+																		<Label text="{countryRegionModel>bezei}"/>
+																		<Label text="{countryRegionModel>land1}"/>
+																	</cells>
+																</ColumnListItem>
+															</suggestionRows>
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -2035,6 +2114,7 @@
 																<core:CustomData key="inputText" value="bland"></core:CustomData>
 																<core:CustomData key="bland" value="Code"></core:CustomData>
 																<core:CustomData key="bezei" value="Region"></core:CustomData>
+																<core:CustomData key="land1" value="Country"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Tribe No."/>
@@ -2325,7 +2405,11 @@
 														<Input id="idPRAAddrPostalCodepart" required="true" value="{praAddressModel>/address/post_code1}"/>
 														<Label text="Country Key"/>
 														<Input id="idPRAAddrCoutryKeyPart" required="true" value="{praAddressModel>/address/country}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															valueHelpRequest=".onValueHelpRequested" showSuggestion="true" suggestionItems="{countryRegionModel>/Country/modelMap}"
+															change="onCountryChangedPRAAddress">
+															<suggestionItems>
+																<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+															</suggestionItems>
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
@@ -2340,7 +2424,28 @@
 														<core:Title/>
 														<Label text="Region"/>
 														<Input id="PRAAddrRegionPartId" required="true" value="{praAddressModel>/address/region}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															valueHelpRequest=".onValueHelpRequested" showSuggestion="true" suggestionRows="{countryRegionModel>/RegionFilteredPRAAddress/modelMap}"
+															change="onRegionChangedPRAAddress">
+															<suggestionColumns>
+																<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+																	<Label text="Region"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+																	<Label text="Name"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+																	<Label text="Country"/>
+																</Column>
+															</suggestionColumns>
+															<suggestionRows>
+																<ColumnListItem>
+																	<cells>
+																		<Label text="{countryRegionModel>bland}"/>
+																		<Label text="{countryRegionModel>bezei}"/>
+																		<Label text="{countryRegionModel>land1}"/>
+																	</cells>
+																</ColumnListItem>
+															</suggestionRows>
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>

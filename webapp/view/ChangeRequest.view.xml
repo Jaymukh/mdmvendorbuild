@@ -153,10 +153,10 @@
 														<items>
 															<IconTabFilter text="Workflow" key="workflow">
 																<!--<Label text="Workflow goes here..."/>-->
-																<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
+																<commons:Timeline enableDoubleSided="true" groupBy="statusChangedDate" growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
 																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{crWorkflowLogModel>statusChangedDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
+																		<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}" title="{path:'crWorkflowLogModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
 																			
 																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->

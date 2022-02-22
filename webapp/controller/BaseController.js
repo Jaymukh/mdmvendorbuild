@@ -1494,5 +1494,24 @@ sap.ui.define([
 				}.bind(this)
 			);
 		},
+
+		changeWorkflowDate: function (sDate) {
+			var sDateTime = ""
+			if (sDate) {
+				var dateTime = sDate.split("T");
+				var date = dateTime[0];
+				date = date.split("-");
+				var time = dateTime[1].split(".")[0];
+				sDateTime = date[1] + "-" + date[2] + "-" + date[0] + " at " + time;
+			}
+			return sDateTime;
+		},
+
+		changeWorkflowStatus: function (sStatus) {
+			if (sStatus === "UNCLAIMED") {
+				sStatus = "ASSIGNED";
+			}
+			return sStatus;
+		},
 	});
 });

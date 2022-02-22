@@ -54,6 +54,14 @@
       "description": "Destination"
     },
     {
+      "path": "/MurphyECCOdataDest",
+      "target": {
+        "type": "destination",
+        "name": "MDM_ECC_ODATA_DEST"
+      },
+      "description": "Destination"
+    },
+    {
       "path": "/services/userapi",
       "target": {
         "type": "service",
