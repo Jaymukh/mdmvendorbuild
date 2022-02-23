@@ -1496,7 +1496,7 @@ sap.ui.define([
 		},
 
 		changeWorkflowDate: function (sDate) {
-			var sDateTime = ""
+			var sDateTime = "";
 			if (sDate) {
 				var dateTime = sDate.split("T");
 				var date = dateTime[0];
@@ -1513,5 +1513,46 @@ sap.ui.define([
 			}
 			return sStatus;
 		},
+
+		onDeleteAttachment: function (oEvent) {
+			var oFileData = oEvent.getSource().getBindingContext("crERPAttachmentModel").getObject();
+			var sEntityID;
+			if (this.getView().getId().indexOf("changeRequestId") > -1) {
+				sEntityID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.entity_id;
+			} else {
+				sEntityID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
+			}
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/delete",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"documentInteractionDtos": [{
+						"attachmentEntity": {
+							"attachment_id": oFileData.attachmentEntity.attachment_id,
+							"dms_ref_id": oFileData.attachmentEntity.dms_ref_id
+						},
+						"entityType": "VENDOR",
+						"businessEntity": {
+							"entity_id": sEntityID
+						},
+						"fileContent": ""
+					}]
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.getAllDocumentsForCR(sEntityID);
+						MessageToast.show("Attachment Deleted Successfully.");
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to delete the attachment");
+				}.bind(this)
+			);
+		}
 	});
 });
