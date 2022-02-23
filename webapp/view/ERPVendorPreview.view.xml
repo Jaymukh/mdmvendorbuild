@@ -1402,7 +1402,7 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="true" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload"  deletePress="onDeleteAttachment" visibleDelete="true" >
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
