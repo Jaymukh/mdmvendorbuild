@@ -377,7 +377,7 @@ sap.ui.define([
 					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 				}
-				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
+				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR") {
 					delete oData.parentDTO.customData.pra_bp_ad;
 					delete oData.parentDTO.customData.pra_bp_vend_esc;
 					delete oData.parentDTO.customData.pra_bp_cust_md;

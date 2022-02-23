@@ -602,6 +602,24 @@
 											<core:Title text="Bank Accounts - Table"/>
 											<!--<Label text="Edit or Create New"/>-->
 											<!--<Input/>-->
+											<Label text="Bank Key"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Bank Key"></core:CustomData>
+													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
+													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
+													<core:CustomData key="inputText" value="bankl"></core:CustomData>
+													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>
+													<core:CustomData key="banka" value="Bank Name"></core:CustomData>
+													<core:CustomData key="brnch" value="Branch"></core:CustomData>
+													<core:CustomData key="swift" value="Swift Code"></core:CustomData>
+													<core:CustomData key="stras" value="Address"></core:CustomData>
+													<core:CustomData key="ort01" value="City"></core:CustomData>
+													<core:CustomData key="banks" value="Country"></core:CustomData>
+												</customData>
+											</Input>
+											
 											<Label text="Bank Detail ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}" maxLength="4"/>
 											<!--<Label text="Account Name"/>
@@ -651,23 +669,6 @@
 													<core:CustomData key="inputText" value="land1"></core:CustomData>
 												</customData>
 											</Input>-->
-											<Label text="Bank Key"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}" showValueHelp="true"
-												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
-												<customData>
-													<core:CustomData key="title" value="Bank Key"></core:CustomData>
-													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
-													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
-													<core:CustomData key="inputText" value="bankl"></core:CustomData>
-													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>
-													<core:CustomData key="banka" value="Bank Name"></core:CustomData>
-													<core:CustomData key="brnch" value="Branch"></core:CustomData>
-													<core:CustomData key="swift" value="Swift Code"></core:CustomData>
-													<core:CustomData key="stras" value="Address"></core:CustomData>
-													<core:CustomData key="ort01" value="City"></core:CustomData>
-													<core:CustomData key="banks" value="Country"></core:CustomData>
-												</customData>
-											</Input>
 											<Label text="Bank Name"/>
 											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
 											<Label text="Street"/>

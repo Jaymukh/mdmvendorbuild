@@ -407,6 +407,8 @@
 											<core:Title text="Bank Accounts - Table"/>
 											<!--<Label text="Edit or Create New"/>-->
 											<!--<Text/>-->
+											<Label text="Bank Key"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
 											<Label text="Bank Detail ID"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}"/>
 											<Label text="Bank Account(Account No.)" wrapping="true"/>
@@ -428,8 +430,6 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>
 											<Label text="Bank Country / Desc."/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS}"></Text>
-											<Label text="Bank Key"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
 											<Label text="Bank Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
 											<Label text="Street"/>
