@@ -2018,7 +2018,7 @@
 												<customData>
 													<core:CustomData key="title" value="Industry"></core:CustomData>
 													<core:CustomData key="table" value="T016T"></core:CustomData>
-													<core:CustomData key="inputKey" value="brtxt"></core:CustomData>
+													<core:CustomData key="inputKey" value="brsch"></core:CustomData>
 													<core:CustomData key="inputText" value="brsch"></core:CustomData>
 													<core:CustomData key="brsch" value="Code"></core:CustomData>
 													<core:CustomData key="brtxt" value="Type"></core:CustomData>
