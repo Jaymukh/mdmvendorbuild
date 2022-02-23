@@ -1341,7 +1341,15 @@ sap.ui.define([
 			aMandFields.forEach(function (oItem) {
 				var oControl = oController.getView().byId(oItem.id);
 				var sValueState = "None";
-				if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
+				  if (( oItem.id === "idAddrStreetHouseNumber" || oItem.id === "ERPAddrHouseNoId" || oItem.id === "ERPAddrStreetId") && (oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") ===
+						"MNFR") &&
+					(oData.getProperty(oItem
+							.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) === "" ||
+						oData.getProperty(oItem.fieldMapping) === null)) {
+					// 		debugger;
+					// aEmptyFields.push(oItem);
+					// sValueState = "Error";
+				} else if (!oItem.isPRAData && !oItem.isPurOrgData && (oData.getProperty(oItem.fieldMapping) === undefined || oData.getProperty(oItem.fieldMapping) ===
 						"" ||
 						oData.getProperty(oItem.fieldMapping) === null)) {
 					aEmptyFields.push(oItem);
