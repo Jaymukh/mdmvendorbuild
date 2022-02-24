@@ -230,10 +230,10 @@ sap.ui.define([
 							if (oDataResp.result.parentDTO.customData.gen_adrc) {
 								Object.keys(oDataResp.result.parentDTO.customData.gen_adrc).forEach(function (sAddrKey) {
 									if (sAddrKey === "gen_adrc_1") {
+										var adrc_1Data = {};
+											adrc_1Data[sAddrKey] = oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey];
 										this.getView().getModel("CreateVendorModel").setProperty(
-											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", {
-												sAddrKey: oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]
-											});
+											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", adrc_1Data);
 										oPraAddress = Object.assign({}, oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]);
 										Object.keys(oPraAddress).forEach(function (sPraAddrKey) {
 											oPraAddress[sPraAddrKey] = null;
@@ -299,10 +299,10 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.pra_bp_vend_md);
 							}
 							break;
-						case "gen_adrc6":
+						case "gen_adr6":
 							if (oDataResp.result.parentDTO.customData.gen_adr6) {
 								Object.keys(oDataResp.result.parentDTO.customData.gen_adr6).forEach((sLfm1Key) => {
-									aEmails.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key].smtp_addr);
+									aEmails.push({mail: oDataResp.result.parentDTO.customData.gen_adr6[sLfm1Key].smtp_addr});
 								});
 							}
 							break;

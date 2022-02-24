@@ -135,6 +135,53 @@
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STKZN} === 'X'}"></CheckBox>
 											<Label text="Search Terms"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/MCOD1}"/>
+											<core:Title text="Address"/>
+											<Label text="House No. / Steet"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
+												<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Label text="District"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city2}"/>
+											<Label text="Street 2"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl1}"/>
+											<Label text="Street 3"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
+											<Label text="Street 4"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl3}"/>
+											<Label text="Street 5"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
+											<Label text="Postal Code / City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
+												<layoutData>
+													<l:GridData span="XL2 L3 M3 S4"/>
+												</layoutData>
+											</Text>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
+											<Label text="Country"/>
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
+											<core:Title/>
+											<!--<Label text="Region"/>-->
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"  />-->
+											<Label text="Region"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"></Text>
+											<Label text="Language"/>
+											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"/>-->
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"></Text>
+											<Label text="Transportation Zone"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
+											<Label text="PO Box Postal Code/ PO Box"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
+											<Label text="PO Box Without No."/>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}==='X'}"></CheckBox>
+											<Label text="Company POstal Code"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+											<Label text="Supplement"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
 											<ComboBox items="{valueHelps>/TelCountryCodes}" editable="false"
@@ -196,53 +243,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="Undeliverable"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
-											<core:Title text="Address"/>
-											<Label text="House No. / Steet"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1}"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/street}">
-												<layoutData>
-													<l:GridData span="XL2 L3 M3 S4"/>
-												</layoutData>
-											</Text>
-											<Label text="District"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city2}"/>
-											<Label text="Street 2"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl1}"/>
-											<Label text="Street 3"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl2}"/>
-											<Label text="Street 4"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl3}"/>
-											<Label text="Street 5"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
-											<Label text="Postal Code / City"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}">
-												<layoutData>
-													<l:GridData span="XL2 L3 M3 S4"/>
-												</layoutData>
-											</Text>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
-											<Label text="Country"/>
-											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
-											<core:Title/>
-											<!--<Label text="Region"/>-->
-											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"  />-->
-											<Label text="Region"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"></Text>
-											<Label text="Language"/>
-											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"/>-->
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPRAS}"></Text>
-											<Label text="Transportation Zone"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
-											<Label text="PO Box Postal Code/ PO Box"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
-											<Label text="PO Box Without No."/>
-											<CheckBox enabled="false"
-												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}==='X'}"></CheckBox>
-											<Label text="Company POstal Code"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
-											<Label text="Supplement"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+											
 										</form:content>
 									</form:SimpleForm>
 								</content>
