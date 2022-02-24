@@ -1933,11 +1933,13 @@ sap.ui.define([
 			}
 		},
 		handleCountrySuggestion: function (oEvent) {
-			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+			if(oEvent.getParameter('selectedItem') && oEvent.getParameter('selectedItem').getKey()){
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 				'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1', oEvent.getParameter('selectedItem').getKey());
-			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-				'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oEvent.getParameter('selectedItem').getKey());
-			this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oEvent.getParameter('selectedItem').getKey());
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+			}
 		}
 
 	});
