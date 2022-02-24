@@ -321,7 +321,21 @@
 											<Label text="PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
+											<Select id="idUndeliverable" showSecondaryValues="true" forceSelection="false"
+													selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}">
+													<items>
+														<core:ListItem text="Unknown" key="0001" additionalText="0001"/>
+														<core:ListItem text="Moved w/o Forwarding" key="0002" additionalText="0002"/>
+														<core:ListItem text="Inadequate Address" key="0003" additionalText="0003"/>
+														<core:ListItem text="Illegible Address" key="0004" additionalText="0004"/>
+														<core:ListItem text="No Letter Box" key="0005" additionalText="0005"/>
+														<core:ListItem text="No PO Box" key="0006" additionalText="0006"/>
+														<core:ListItem text="Rejected" key="0007" additionalText="0007"/>
+														<core:ListItem text="Deceased" key="0008" additionalText="0008"/>
+														<core:ListItem text="Company wound-up" key="0009" additionalText="0009"/>
+													</items>
+												</Select>
+											
 										</form:content>
 									</form:SimpleForm>
 								</content>
