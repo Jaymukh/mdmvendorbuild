@@ -2,7 +2,7 @@
 	"preview": false,
 	"vndDetails": false,
 	"approvalView": false,
-	"SupportedFileType": ["jpg", "jpeg", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx"],
+	"SupportedFileType": ["jpg", "jpeg", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx", "MP3", "MP4"],
 	"companyCode": {
 		"companyCode": null,
 		"accountingInfo": {
