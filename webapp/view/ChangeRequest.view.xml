@@ -96,7 +96,7 @@
 												<VBox>
 													<Table id="crList" mode="SingleSelectLeft" columns="{ChangeRequestMetadataModel>/columns}"
 														items="{path:'changeRequestGetAllModel>/oChangeReq/parentCrDTOs', sorter: {path:'crDTO/change_request_id'}}"
-														selectionChange="onSelectChangeRequest" noDataText="No Chnage Request available, Please adjust filter or Try Again.">
+														selectionChange="onSelectChangeRequest" noDataText="No Change Request available, Please adjust filter or Try Again.">
 														<headerToolbar>
 															<Toolbar>
 																<Label id="idAllChangeRequest" text="All Change Request({changeRequestGetAllModel>/totalCount})" design="Bold"></Label>
@@ -139,7 +139,9 @@
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_desc}"></Text>
 																	<ObjectStatus text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
+																	<Text text="{changeRequestGetAllModel>crDTO/modified_by/firstname} {changeRequestGetAllModel>crDTO/modified_by/lastname}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by/firstname} {changeRequestGetAllModel>crDTO/change_request_by/lastname}"></Text>
+																	<Text text="{changeRequestGetAllModel>crDTO/statusChangeBy/firstname} {changeRequestGetAllModel>crDTO/statusChangeBy/lastname}"></Text>
 																	<!--<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>-->
 																</cells>
 															</ColumnListItem>
@@ -151,12 +153,11 @@
 														<items>
 															<IconTabFilter text="Workflow" key="workflow">
 																<!--<Label text="Workflow goes here..."/>-->
-																<commons:Timeline enableDoubleSided="true" groupBy="changeDate" growingThreshold="0" filterTitle="Job Title" sortOldestFirst="true"
-																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Year" enableScroll="false">
+																<commons:Timeline enableDoubleSided="true"  growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
+																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{crWorkflowLogModel>changeDate}" title="{crWorkflowLogModel>status}" userNameClickable="false"
-																			
-																			userName="{crWorkflowLogModel>changeBy/0/firstname} {crWorkflowLogModel>changeBy/0/lastname}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
+																		<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}" title="{path:'crWorkflowLogModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
+																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
@@ -234,7 +235,7 @@
 															<IconTabFilter text="Attachments" key="attachments">
 																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 																	typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="Delete"
 																	fileType="{CreateVendorModel>/SupportedFileType}">
 																	<!--showSeparators="{settings>/showSeparators}"-->
 																	<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
@@ -252,7 +253,7 @@
 																	<items>
 																		<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 																			fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-																			enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+																			enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload"  deletePress="onDeleteAttachment" visibleDelete="true" >
 																			<!-- attributes="{path : '/', templateShareable : false}"-->
 																			<!--statuses="{path : '/', templateShareable : false}" -->
 																			<attributes>

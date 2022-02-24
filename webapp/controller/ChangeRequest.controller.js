@@ -94,6 +94,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function (oData) {
 				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
 				var oVendorModel = this.getView().getModel("CreateVendorModel");
+				oVendorModel.setProperty("/createCRVendorData/workflowID", oChangeReq.workflow_task_id);
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
 				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
 				oVendorModel.setProperty("/changeReq/genData/reason", oChangeReq.change_request_reason_id);
@@ -122,7 +123,13 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				var aPraAddress = [],
-					oPraAddress = {};
+					oPraAddress = {},
+					oLfm1 = {
+						rows: [],
+						lfm1: {}
+					},
+					aEmails = [];
+
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
@@ -178,12 +185,18 @@ sap.ui.define([
 							}
 							break;
 						case "vnd_lfm1":
-							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
-								this.getView().getModel("CreateVendorModel").setProperty(
-									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1",
-									oDataResp.result.parentDTO.customData.vnd_lfm1);
-							}
 
+							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
+								/*this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1",
+									oDataResp.result.parentDTO.customData.vnd_lfm1);*/
+								Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1).forEach((sLfm1Key) => {
+									oLfm1.rows.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]);
+									Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]).forEach(sLfm1SubKey => {
+										oLfm1.lfm1[sLfm1SubKey] = null;
+									});
+								});
+							}
 							break;
 						case "vnd_lfbw":
 							if (oDataResp.result.parentDTO.customData.vnd_lfbw) {
@@ -217,10 +230,10 @@ sap.ui.define([
 							if (oDataResp.result.parentDTO.customData.gen_adrc) {
 								Object.keys(oDataResp.result.parentDTO.customData.gen_adrc).forEach(function (sAddrKey) {
 									if (sAddrKey === "gen_adrc_1") {
+										var adrc_1Data = {};
+											adrc_1Data[sAddrKey] = oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey];
 										this.getView().getModel("CreateVendorModel").setProperty(
-											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", {
-												sAddrKey: oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]
-											});
+											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", adrc_1Data);
 										oPraAddress = Object.assign({}, oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]);
 										Object.keys(oPraAddress).forEach(function (sPraAddrKey) {
 											oPraAddress[sPraAddrKey] = null;
@@ -286,6 +299,27 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.pra_bp_vend_md);
 							}
 							break;
+						case "gen_adr6":
+							if (oDataResp.result.parentDTO.customData.gen_adr6) {
+								Object.keys(oDataResp.result.parentDTO.customData.gen_adr6).forEach((sLfm1Key) => {
+									aEmails.push({mail: oDataResp.result.parentDTO.customData.gen_adr6[sLfm1Key].smtp_addr});
+								});
+							}
+							break;
+						case "gen_adr2":
+							if (oDataResp.result.parentDTO.customData.gen_adr2) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr2",
+									oDataResp.result.parentDTO.customData.gen_adr2);
+							}
+							break;
+						case "gen_adr3":
+							if (oDataResp.result.parentDTO.customData.gen_adr3) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr3",
+									oDataResp.result.parentDTO.customData.gen_adr3);
+							}
+							break;
 						}
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
@@ -294,6 +328,8 @@ sap.ui.define([
 						address: oPraAddress,
 						rows: aPraAddress
 					});
+					this.getView().getModel("vndLfm1").setData(oLfm1);
+					this.getView().getModel("emails").setData(aEmails);
 
 					// this.getView().getModel("CreateVendorModel").setProperty(
 					// 	"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/adrnr",
@@ -325,6 +361,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", true);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 					this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent()
 						.getItem()
 						.getItems()[1]);
@@ -679,11 +716,11 @@ sap.ui.define([
 					if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
 						////Total count 
-						if(oData.result.parentCrDTOs && oData.result.parentCrDTOs.length) {
-													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
+						if (oData.result.parentCrDTOs && oData.result.parentCrDTOs.length) {
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
 
 						} else {
-													this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", 0);
+							this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", 0);
 
 						}
 						this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);

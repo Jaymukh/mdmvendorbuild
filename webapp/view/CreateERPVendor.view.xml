@@ -54,9 +54,12 @@
 											<Label text="Current Work Item"/>
 											<Input value="{CreateVendorModel>/changeReq/genData/currWrkItem}" enabled="false"/>
 											<Label text="Created By"/>
-											<Input value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}" enabled="false"/>
+											<Input
+												value="{CreateVendorModel>/changeReq/genData/change_request_by/firstname} {CreateVendorModel>/changeReq/genData/change_request_by/lastname}"
+												enabled="false"/>
 											<Label text="Date/Time of Creation"/>
-											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
+											<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/date_from}" enabled="false"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/crTime}" enabled="false">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -152,8 +155,12 @@
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}" maxLength="35"/>
 											<Label text="Country"/>
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" maxLength="3"/>-->
-											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}">
+											<Input id="idERPVendorCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" suggestionItemSelected ="handleCountrySuggestion"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
+												suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
+												<suggestionItems>
+													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}" key="{countryRegionModel>land1}"/>
+												</suggestionItems>
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
@@ -167,8 +174,29 @@
 											<!--<Label text="Region"/>-->
 											<!--<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" maxLength="3"/>-->
 											<Label text="Region"/>
-											<Input id="idERPVendorRegion" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
+											<Input id="idERPVendorRegion" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" showSuggestion="true"
+												suggestionRows="{countryRegionModel>/RegionFiltered/modelMap}" change="onRegionChanged">
+												<suggestionColumns>
+													<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+														<Label text="Region"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+														<Label text="Name"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+														<Label text="Country"/>
+													</Column>
+												</suggestionColumns>
+												<suggestionRows>
+													<ColumnListItem>
+														<cells>
+															<Label text="{countryRegionModel>bland}"/>
+															<Label text="{countryRegionModel>bezei}"/>
+															<Label text="{countryRegionModel>land1}"/>
+														</cells>
+													</ColumnListItem>
+												</suggestionRows>
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -222,49 +250,51 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="" placeholder="Number">
-												<!--<layoutData>
-													<l:GridData span="XL2 L3 M3 S4"/>
-												</layoutData>-->
-											</Input>
-											<Input type="Number" value="" placeholder="Ext">
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
+												placeholder="Number"></Input>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
+												placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="Mobile"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="" placeholder="Number">
-												<!--	<layoutData>
-													<l:GridData span="XL2 L4 M3 S4"/>
-												</layoutData>-->
-											</Input>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"
+												placeholder="Number"></Input>
 											<Label text="E-mail Address"/>
-											<Input type="Email" value=""/>
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
+												<tokens>
+													<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
+												</tokens>
+											</MultiInput>
 											<Label text="Fax"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectedKey="" placeholder="Dailing Code">
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input value="" placeholder="Number">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>-->
 											</Input>
-											<Input value="" placeholder="Ext">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
@@ -291,7 +321,21 @@
 											<Label text="PO Box"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
+											<Select id="idUndeliverable" showSecondaryValues="true" forceSelection="false"
+													selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}">
+													<items>
+														<core:ListItem text="Unknown" key="0001" additionalText="0001"/>
+														<core:ListItem text="Moved w/o Forwarding" key="0002" additionalText="0002"/>
+														<core:ListItem text="Inadequate Address" key="0003" additionalText="0003"/>
+														<core:ListItem text="Illegible Address" key="0004" additionalText="0004"/>
+														<core:ListItem text="No Letter Box" key="0005" additionalText="0005"/>
+														<core:ListItem text="No PO Box" key="0006" additionalText="0006"/>
+														<core:ListItem text="Rejected" key="0007" additionalText="0007"/>
+														<core:ListItem text="Deceased" key="0008" additionalText="0008"/>
+														<core:ListItem text="Company wound-up" key="0009" additionalText="0009"/>
+													</items>
+												</Select>
+											
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -572,12 +616,32 @@
 											<core:Title text="Bank Accounts - Table"/>
 											<!--<Label text="Edit or Create New"/>-->
 											<!--<Input/>-->
+											<Label text="Bank Key"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Bank Key"></core:CustomData>
+													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
+													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
+													<core:CustomData key="inputText" value="bankl"></core:CustomData>
+													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>
+													<core:CustomData key="banka" value="Bank Name"></core:CustomData>
+													<core:CustomData key="brnch" value="Branch"></core:CustomData>
+													<core:CustomData key="swift" value="Swift Code"></core:CustomData>
+													<core:CustomData key="stras" value="Address"></core:CustomData>
+													<core:CustomData key="ort01" value="City"></core:CustomData>
+													<core:CustomData key="banks" value="Country"></core:CustomData>
+												</customData>
+											</Input>
+											
 											<Label text="Bank Detail ID"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}" maxLength="4"/>
 											<!--<Label text="Account Name"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}" maxLength="15"/>
--->											<Label text="Bank Account(Account No.)"/>
-											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}" maxLength="18"/>
+-->
+											<Label text="Bank Account(Account No.)" wrapping="true"/>
+											<Input id="idBankNumber" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"
+												maxLength="18"/>
 											<Label text="Account Holder"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}" maxLength="60"/>
 											<Label text="IBAN"/>
@@ -619,23 +683,6 @@
 													<core:CustomData key="inputText" value="land1"></core:CustomData>
 												</customData>
 											</Input>-->
-											<Label text="Bank Key"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}" showValueHelp="true"
-												valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
-												<customData>
-													<core:CustomData key="title" value="Bank Key"></core:CustomData>
-													<core:CustomData key="table" value="VW_BNKA"></core:CustomData>
-													<core:CustomData key="inputKey" value="bankl"></core:CustomData>
-													<core:CustomData key="inputText" value="bankl"></core:CustomData>
-													<core:CustomData key="bankl" value="Bank Key"></core:CustomData>
-													<core:CustomData key="banka" value="Bank Name"></core:CustomData>
-													<core:CustomData key="brnch" value="Branch"></core:CustomData>
-													<core:CustomData key="swift" value="Swift Code"></core:CustomData>
-													<core:CustomData key="stras" value="Address"></core:CustomData>
-													<core:CustomData key="ort01" value="City"></core:CustomData>
-													<core:CustomData key="banks" value="Country"></core:CustomData>
-												</customData>
-											</Input>
 											<Label text="Bank Name"/>
 											<Input editable="false" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
 											<Label text="Street"/>
@@ -898,8 +945,8 @@
 												<Label text="Last Key Run"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/DATLZ}"/>
 												<core:Title text="Withholding Tax"/>
-												<Label text="Withholding Tax Country"/>
-												<Input id="idWithHoldTaxCtry" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<Label text="Withholding Tax Country" visible="false"/>
+												<Input id="idWithHoldTaxCtry" visible="false" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
 													<customData>
 														<core:CustomData key="title" value="Withholding Tax Country"></core:CustomData>
 														<core:CustomData key="table" value="T005"></core:CustomData>
@@ -925,6 +972,7 @@
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}">
 													<customData>
+														<core:CustomData key="title" value="Withholding Tax Code"></core:CustomData>
 														<core:CustomData key="table" value="T059Z"></core:CustomData>
 														<core:CustomData key="text40" value="Name"></core:CustomData>
 														<core:CustomData key="wt_WITHCD" value="Key"></core:CustomData>
@@ -947,13 +995,14 @@
 													</customData>
 												</Input>
 												<Label text="Main Economic activity per CIIU Code"/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}" maxLength="4"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CIIUCODE}" maxLength="4" change="onWithHoldDataChanged"/>
 												<Label text="Exemption No."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25"/>
-												<Label text="Valid Unit"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25" change="onWithHoldDataChanged"/>
+												<Label text="Valid Unit" visible="false"/>
+												<DatePicker displayFormat="MM-dd-YYYY" visible="false" valueFormat="YYYYMMdd" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Authority"/>
-												<Select forceSelection="false" id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}">
+												<Select forceSelection="false" id="compCodesExemAuthorId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/QSBGR}"
+													change="onWithHoldDataChanged">
 													<items>
 														<core:Item text="No Exemption Reason Reported" key="0"/>
 														<core:Item text="Income Connected with a Company in the USA" key="1"/>
@@ -996,11 +1045,12 @@
 													</customData>
 												</Input>
 												<Label text="Withholding Tax Identification No."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTSTCD}" maxLength="16"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTSTCD}" maxLength="16" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Rate in %"/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}" maxLength="5"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXRT}" maxLength="5" change="onWithHoldDataChanged"/>
 												<Label text="Date on which exemption starts"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDF}"
+													change="onWithHoldDataChanged"/>
 												<core:Title/>
 												<Label text="Withholding Tax Code"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
@@ -1022,7 +1072,7 @@
 													</customData>
 												</CheckBox>
 												<Label text="Exemption Cert. no."/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25"/>
+												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}" maxLength="25" change="onWithHoldDataChanged"/>
 												<Label text="Exemption Reason"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WTEXRS}">
@@ -1037,7 +1087,8 @@
 													</customData>
 												</Input>
 												<Label text="Date on which Exemption Ends"/>
-												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"/>
+												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"
+													change="onWithHoldDataChanged"/>
 												<core:Title text="ERP Vendor Company Code : Reference data"/>
 												<Label text="Previous Account No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ALTKN}" maxLength="10"/>
@@ -1230,23 +1281,65 @@
 							</Panel>
 							<Panel expandable="true" expanded="false" headerText="Purchasing Organization*">
 								<content>
+									<Table items="{vndLfm1>/rows}">
+										<headerToolbar>
+											<Toolbar>
+												<ToolbarSpacer></ToolbarSpacer>
+												<Button text="Add" press="onAddPurOrg" type="Emphasized"/>
+											</Toolbar>
+										</headerToolbar>
+										<columns>
+											<Column >
+												<header>
+													<Label text="Purchasing Organization" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column>
+												<header>
+													<Label text="Purchasing Organization Description" design="Bold"></Label>
+												</header>
+											</Column>
+											<Column width="10%">
+												<header>
+													<Label text=""></Label>
+												</header>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{vndLfm1>ekorg}"/>
+													<ComboBox showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}" selectedKey="{vndLfm1>ekorg}" editable="false">
+														<items>
+															<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}" key="{purOrgPurOrgModel>ekorg}"/>
+														</items>
+													</ComboBox>
+													<HBox>
+														<core:Icon src="sap-icon://copy" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd" press="onCopyPurchaseOg"/>
+														<core:Icon src="sap-icon://edit" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd" press="onEditPurchaseOrg"/>
+														<core:Icon src="sap-icon://delete" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd"
+															press="onDeletePurchaseOrg"/>
+													</HBox>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
 									<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 										singleContainerFullSize="false">
 										<form:content>
 											<core:Title text="ERP Vendor Parchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
-											<Select forceSelection="false" id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}"
-											change="handleAutoPopulatePurOrg"	selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ekorg}">
+											<ComboBox id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}" change="handleAutoPopulatePurOrg"
+												selectedKey="{vndLfm1>/lfm1/ekorg}">
 												<items>
-													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}"
-														key="{purOrgPurOrgModel>ekorg}"/>
+													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}" key="{purOrgPurOrgModel>ekorg}"/>
 												</items>
-											</Select>
+											</ComboBox>
 											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
 											<Input id="idPurOrgOrderCurrency" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/WAERS}">
+												value="{vndLfm1>/lfm1/WAERS}">
 												<customData>
 													<core:CustomData key="title" value="Order Currency"></core:CustomData>
 													<core:CustomData key="table" value="TCURC"></core:CustomData>
@@ -1257,10 +1350,9 @@
 												</customData>
 											</Input>
 											<Label text="Minimum Order Value"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MINBW}" maxLength="13"/>
+											<Input value="{vndLfm1>/lfm1/MINBW}" maxLength="13"/>
 											<Label text="Schema Group (Vendor)"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KALSK}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/KALSK}">
 												<customData>
 													<core:CustomData key="title" value="Schema Group (Vendor)"></core:CustomData>
 													<core:CustomData key="table" value="TMKK"></core:CustomData>
@@ -1271,10 +1363,10 @@
 												</customData>
 											</Input>
 											<Label text="LB Restriction Profile"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BOPNR}" maxLength="4"/>
+											<Input value="{vndLfm1>/lfm1/BOPNR}" maxLength="4"/>
 											<Label text="Terms of Payment" required="true"/>
 											<!--<Select id="idPurOrgTermsOfPayment" forceSelection="false" 
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
+												selectedKey="{vndLfm1>/lfm1/ZTERM}">
 												<items>
 													<core:Item key="0001" text="Payable immediately Due net"/>
 													<core:Item key="0002" text="within 14 days 2 % cash discount;; within 30 days Due net"/>
@@ -1288,7 +1380,7 @@
 												</items>
 											</Select>-->
 											<Input id="idPurOrgTermsOfPayment" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZTERM}">
+												value="{vndLfm1>/lfm1/ZTERM}">
 												<customData>
 													<core:CustomData key="title" value="Terms of Payment"></core:CustomData>
 													<core:CustomData key="table" value="local"></core:CustomData>
@@ -1300,7 +1392,7 @@
 											</Input>
 											<Label text="Incoterms"/>
 											<Input id="idPurOrgIncoPart1" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO1}">
+												value="{vndLfm1>/lfm1/INCO1}">
 												<customData>
 													<core:CustomData key="title" value="Incoterms"></core:CustomData>
 													<core:CustomData key="table" value="TINC"></core:CustomData>
@@ -1311,11 +1403,9 @@
 												</customData>
 											</Input>
 											<Label text="Incoterms Description"/>
-											<Input id="idPurOrgIncoPart2" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/INCO2}"
-												maxLength="28"/>
+											<Input id="idPurOrgIncoPart2" value="{vndLfm1>/lfm1/INCO2}" maxLength="28"/>
 											<Label text="Pricing date Control"/>
-											<Select forceSelection="false" id="purOrgPricingDateContrId"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEPRF}">
+											<Select forceSelection="false" id="purOrgPricingDateContrId" selectedKey="{vndLfm1>/lfm1/MEPRF}">
 												<items>
 													<core:Item text="No Control" key=""/>
 													<core:Item text="Purchase Order Date" key="1"/>
@@ -1327,16 +1417,15 @@
 											</Select>
 											<core:Title text="ERP Vendor Company Code : Sales Data"/>
 											<Label text="Sales Person"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VERKF}" maxLength="30"/>
+											<Input value="{vndLfm1>/lfm1/VERKF}" maxLength="30"/>
 											<core:Title/>
 											<Label text="Account with Vendor"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EIKTO}" maxLength="12"/>
+											<Input value="{vndLfm1>/lfm1/EIKTO}" maxLength="12"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
 											<Label text="ABC Indicator"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LFABC}" maxLength="1"/>
+											<Input value="{vndLfm1>/lfm1/LFABC}" maxLength="1"/>
 											<Label text="Mode of Transport-Border"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EXPVZ}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/EXPVZ}">
 												<customData>
 													<core:CustomData key="title" value="Mode of Transport Border"></core:CustomData>
 													<core:CustomData key="table" value="T618"></core:CustomData>
@@ -1347,8 +1436,7 @@
 												</customData>
 											</Input>
 											<Label text="Customs Office"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/ZOLLA}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/ZOLLA}">
 												<customData>
 													<core:CustomData key="title" value="Customs Office"></core:CustomData>
 													<core:CustomData key="table" value="T615"></core:CustomData>
@@ -1360,8 +1448,7 @@
 												</customData>
 											</Input>
 											<Label text="Sort Criterion"/>
-											<Select forceSelection="false" id="purOrgSortCriterionId"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/SKRIT}">
+											<Select forceSelection="false" id="purOrgSortCriterionId" selectedKey="{vndLfm1>/lfm1/SKRIT}">
 												<items>
 													<core:Item text="By VSR sequence number" key=""/>
 													<core:Item text="By EAN" key="A"/>
@@ -1371,8 +1458,7 @@
 												</items>
 											</Select>
 											<Label text="Proact Control Profile"/>
-											<Select forceSelection="false" id="purOrgProactContrlProfileId"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PAPRF}">
+											<Select forceSelection="false" id="purOrgProactContrlProfileId" selectedKey="{vndLfm1>/lfm1/PAPRF}">
 												<items>
 													<core:Item text="Control 1" key="1"/>
 													<core:Item text="Control 2" key="2"/>
@@ -1380,8 +1466,7 @@
 												</items>
 											</Select>
 											<Label text="Shipping Conditions"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VSBED}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/VSBED}">
 												<customData>
 													<core:CustomData key="title" value="Shipping Conditions"></core:CustomData>
 													<core:CustomData key="table" value="TVSB"></core:CustomData>
@@ -1441,8 +1526,7 @@
 												</customData>
 											</CheckBox>
 											<Label text="Automatic Purchase Order Generation Allowed"/>
-											<CheckBox select="onSelectCheckBox" id="idAutoPurOrder"
-											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/KZAUT} === 'X'}">
+											<CheckBox select="onSelectCheckBox" id="idAutoPurOrder" selected="{= ${vndLfm1>/lfm1/KZAUT} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/KZAUT" value="X"></core:CustomData>
 												</customData>
@@ -1472,8 +1556,7 @@
 												</customData>
 											</CheckBox>
 											<Label text="Service-Based Invoice Verification"/>
-											<CheckBox select="onSelectCheckBox" id="idServiceBasedInvoice"
-											selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/LEBRE} === 'X'}">
+											<CheckBox select="onSelectCheckBox" id="idServiceBasedInvoice" selected="{= ${vndLfm1>/lfm1/LEBRE} === 'X'}">
 												<customData>
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/LEBRE" value="X"></core:CustomData>
 												</customData>
@@ -1487,8 +1570,7 @@
 											</CheckBox>
 											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
 											<Label text="Purchasing Group"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/EKGRP}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/EKGRP}">
 												<customData>
 													<core:CustomData key="title" value="Purchasing Group"></core:CustomData>
 													<core:CustomData key="table" value="T024"></core:CustomData>
@@ -1499,8 +1581,7 @@
 												</customData>
 											</Input>
 											<Label text="Confirmation Control"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/BSTAE}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/BSTAE}">
 												<customData>
 													<core:CustomData key="title" value="Confirmation Control"></core:CustomData>
 													<core:CustomData key="table" value="T163L"></core:CustomData>
@@ -1511,16 +1592,16 @@
 												</customData>
 											</Input>
 											<Label text="Rounding profile"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/RDPRF}" maxLength="4"/>
+											<Input value="{vndLfm1>/lfm1/RDPRF}" maxLength="4"/>
 											<Label text="Planned delivery time in Days"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/PLIFZ}" maxLength="3"/>
+											<Input value="{vndLfm1>/lfm1/PLIFZ}" maxLength="3"/>
 											<Label text="Unit of Measure Group"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/MEGRU}" maxLength="4"/>
+											<Input value="{vndLfm1>/lfm1/MEGRU}" maxLength="4"/>
 											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
 											<Label text="Price Marketing Agreed"/>
 											<Input/>
 											<Label text="Vendor Service Level"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/VENSL}" maxLength="4"/>
+											<Input value="{vndLfm1>/lfm1/VENSL}" maxLength="4"/>
 											<Label text="Rack Jobbing Agreement with Vendor Exists"/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -1627,8 +1708,12 @@
 												</layoutData>
 											</Input>
 											<Label text="Country"/>
-											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}">
+											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
+												suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
+												<suggestionItems>
+													<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+												</suggestionItems>
 												<customData>
 													<core:CustomData key="title" value="Country"></core:CustomData>
 													<core:CustomData key="table" value="T005"></core:CustomData>
@@ -1639,8 +1724,29 @@
 												</customData>
 											</Input>
 											<Label text="Region" required="true"/>
-											<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}">
+											<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" showSuggestion="true"
+												suggestionRows="{countryRegionModel>/RegionFiltered/modelMap}" change="onRegionChanged">
+												<suggestionColumns>
+													<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+														<Label text="Region"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+														<Label text="Name"/>
+													</Column>
+													<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+														<Label text="Country"/>
+													</Column>
+												</suggestionColumns>
+												<suggestionRows>
+													<ColumnListItem>
+														<cells>
+															<Label text="{countryRegionModel>bland}"/>
+															<Label text="{countryRegionModel>bezei}"/>
+															<Label text="{countryRegionModel>land1}"/>
+														</cells>
+													</ColumnListItem>
+												</suggestionRows>
 												<customData>
 													<core:CustomData key="title" value="Region"></core:CustomData>
 													<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -1927,7 +2033,7 @@
 												<customData>
 													<core:CustomData key="title" value="Industry"></core:CustomData>
 													<core:CustomData key="table" value="T016T"></core:CustomData>
-													<core:CustomData key="inputKey" value="brtxt"></core:CustomData>
+													<core:CustomData key="inputKey" value="brsch"></core:CustomData>
 													<core:CustomData key="inputText" value="brsch"></core:CustomData>
 													<core:CustomData key="brsch" value="Code"></core:CustomData>
 													<core:CustomData key="brtxt" value="Type"></core:CustomData>
@@ -1955,8 +2061,12 @@
 														<Label text="Intercompany Code"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bukrs}" maxLength="4"/>
 														<Label text="Resident Country"/>
-														<Input id="idPRAAccResidentCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3">
+														<Input id="idPRAAccResidentCountry" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}" maxLength="3"
+															showSuggestion="true" suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChangedPRAAccounting">
+															<suggestionItems>
+																<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+															</suggestionItems>
 															<customData>
 																<core:CustomData key="title" value="Country"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
@@ -1989,8 +2099,29 @@
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/cdex_company}"
 															maxLength="2"/>
 														<Label text="Region"/>
-														<Input id="idPRAAccRegionResidence" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3">
+														<Input id="idPRAAccRegionResidence" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}" maxLength="3"
+															showSuggestion="true" suggestionRows="{countryRegionModel>/RegionFilteredPRAAccounting/modelMap}" change="onRegionChangedPRAAccounting">
+															<suggestionColumns>
+																<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+																	<Label text="Region"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+																	<Label text="Name"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+																	<Label text="Country"/>
+																</Column>
+															</suggestionColumns>
+															<suggestionRows>
+																<ColumnListItem>
+																	<cells>
+																		<Label text="{countryRegionModel>bland}"/>
+																		<Label text="{countryRegionModel>bezei}"/>
+																		<Label text="{countryRegionModel>land1}"/>
+																	</cells>
+																</ColumnListItem>
+															</suggestionRows>
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -1998,6 +2129,7 @@
 																<core:CustomData key="inputText" value="bland"></core:CustomData>
 																<core:CustomData key="bland" value="Code"></core:CustomData>
 																<core:CustomData key="bezei" value="Region"></core:CustomData>
+																<core:CustomData key="land1" value="Country"></core:CustomData>
 															</customData>
 														</Input>
 														<Label text="Tribe No."/>
@@ -2254,8 +2386,7 @@
 													singleContainerFullSize="false">
 													<form:content>
 														<Label text="Address Type"/>
-														<ComboBox required="true" id="praDataAddrTabAddressTypeId"
-															selectedKey="{praAddressModel>/address/addr_type}">
+														<ComboBox required="true" id="praDataAddrTabAddressTypeId" selectedKey="{praAddressModel>/address/addr_type}">
 															<!--	<items>
 																<core:Item text="Add 1" key="1"/>
 																<core:Item text="Add 2" key="2"/>
@@ -2263,8 +2394,7 @@
 															</items>-->
 														</ComboBox>
 														<Label text="Title"/>
-														<ComboBox  id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}"
-															selectedKey="{praAddressModel>/address/title}">
+														<ComboBox id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}" selectedKey="{praAddressModel>/address/title}">
 															<items>
 																<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
 															</items>
@@ -2290,7 +2420,11 @@
 														<Input id="idPRAAddrPostalCodepart" required="true" value="{praAddressModel>/address/post_code1}"/>
 														<Label text="Country Key"/>
 														<Input id="idPRAAddrCoutryKeyPart" required="true" value="{praAddressModel>/address/country}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															valueHelpRequest=".onValueHelpRequested" showSuggestion="true" suggestionItems="{countryRegionModel>/Country/modelMap}"
+															change="onCountryChangedPRAAddress">
+															<suggestionItems>
+																<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+															</suggestionItems>
 															<customData>
 																<core:CustomData key="title" value="Country Key"></core:CustomData>
 																<core:CustomData key="table" value="T005"></core:CustomData>
@@ -2305,7 +2439,28 @@
 														<core:Title/>
 														<Label text="Region"/>
 														<Input id="PRAAddrRegionPartId" required="true" value="{praAddressModel>/address/region}" showValueHelp="true"
-															valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+															valueHelpRequest=".onValueHelpRequested" showSuggestion="true" suggestionRows="{countryRegionModel>/RegionFilteredPRAAddress/modelMap}"
+															change="onRegionChangedPRAAddress">
+															<suggestionColumns>
+																<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+																	<Label text="Region"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+																	<Label text="Name"/>
+																</Column>
+																<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+																	<Label text="Country"/>
+																</Column>
+															</suggestionColumns>
+															<suggestionRows>
+																<ColumnListItem>
+																	<cells>
+																		<Label text="{countryRegionModel>bland}"/>
+																		<Label text="{countryRegionModel>bezei}"/>
+																		<Label text="{countryRegionModel>land1}"/>
+																	</cells>
+																</ColumnListItem>
+															</suggestionRows>
 															<customData>
 																<core:CustomData key="title" value="Region"></core:CustomData>
 																<core:CustomData key="table" value="T005S"></core:CustomData>
@@ -2459,7 +2614,7 @@
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionCreateReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="SingleSelectMaster"
+											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="Delete"
 											fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->
 											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
@@ -2477,7 +2632,8 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="false" visibleDelete="false" visibleEdit="false" url="abc" press="onDocumentDownload">
+													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" deletePress="onDeleteAttachment" visibleDelete="true" 
+													press="onDocumentDownload">
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>

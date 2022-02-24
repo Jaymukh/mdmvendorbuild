@@ -48,8 +48,6 @@
 						<f:title>
 							<f:DynamicPageTitle>
 								<f:heading>
-									<!--	<sv:SmartVariantManagement id="__SVM01" persistencyKey="fiori.test.application2.view.S4.FilterBar" showShare="true"
-										showExecuteOnSelection="true"/> -->
 									<vm:VariantManagement id="searchVendorVM" select="handleSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 										<vm:variantItems>
 											<vm:VariantItem text="Bank Details" key="bankDetails"></vm:VariantItem>
@@ -73,14 +71,31 @@
 													<Input id="fbName2"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
+												<filterbar:control>
+													<Input id="fbStreet"></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="city" label="City">
 												<filterbar:control>
 													<Input id="fbCity"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="street" label="Street">
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="addressData" name="country" label="Country">
 												<filterbar:control>
-													<Input id="fbStreet"></Input>
+													<ComboBox id="fbCountry" items="{valueHelps>/Country}">
+														<core:ListItem key="{valueHelps>land1}" text="{valueHelps>landx}" additionalText="{valueHelps>land1}"/>
+													</ComboBox>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+											<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="addressData" name="taxNo" label="Tax Number">
+												<filterbar:control>
+													<Input id="fbTaxNumber" maxLength="18"></Input>
+												</filterbar:control>
+											</filterbar:FilterGroupItem>
+												<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="addressData" name="businessPartnerIDAddr" label="Business Partner ID">
+												<filterbar:control>
+													<Input id="fbBPIdAddr"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -105,6 +120,7 @@
 													<Input id="fbBankStreet"></Input>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
+											
 										</filterbar:filterGroupItems>
 									</filterbar:FilterBar>
 								</f:content>
@@ -167,16 +183,16 @@
 									<!--		<Label text="Changed By" wrapping="true" design="Bold"></Label>-->
 									<!--	</header>-->
 									<!--</Column>-->
-									<!--<Column>-->
-									<!--	<header>-->
-									<!--		<Label text="Created By" wrapping="true" design="Bold"></Label>-->
-									<!--	</header>-->
-									<!--</Column>-->
-									<!--<Column>-->
-									<!--	<header>-->
-									<!--		<Label text="Finalized By" wrapping="true" design="Bold"></Label>-->
-									<!--	</header>-->
-									<!--</Column>-->
+									<!--<Column>
+										<header>
+											<Label text="Created By" wrapping="true" design="Bold"></Label>
+										</header>
+									</Column>
+									<Column>
+										<header>
+											<Label text="Finalized By" wrapping="true" design="Bold"></Label>
+										</header>
+									</Column>-->
 									<!--<Column>-->
 									<!--	<header>-->
 									<!--		<Label text="Finalized On" wrapping="true" design="Bold"></Label>-->
@@ -201,8 +217,8 @@
 											<Text text="{SearchVendorModel>customVendorLFA1DTO/land1}"></Text>
 											<!--<Text text="{SearchVendorModel>changeRequestDTO/modified_by/firstname} {SearchVendorModel>changeRequestDTO/modified_by/lastname}"></Text>-->
 											<!--<Text text="{SearchVendorModel>changeRequestDTO/change_request_by/firstname} {SearchVendorModel>changeRequestDTO/change_request_by/lastname}"></Text>-->
-											<!--<Text text=""></Text>-->
-											<!--<Text text=""></Text>-->
+											<!--<Text text=""></Text>
+											<Text text=""></Text>-->
 											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>

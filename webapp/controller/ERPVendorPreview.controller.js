@@ -33,6 +33,7 @@ sap.ui.define([
 					"vndDetails": true
 				});
 				this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+				this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", true);
 			}
 
 			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', 50002);
@@ -192,6 +193,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 		},
 
 		onBackToVendorListClick: function () {
@@ -208,6 +210,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 			this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+			this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 		},
 
 		onSelectCompanyCodeItem: function (oEvent) {
@@ -374,7 +377,7 @@ sap.ui.define([
 					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 				}
-				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR") {
+				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR") {
 					delete oData.parentDTO.customData.pra_bp_ad;
 					delete oData.parentDTO.customData.pra_bp_vend_esc;
 					delete oData.parentDTO.customData.pra_bp_cust_md;
@@ -416,6 +419,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
@@ -902,33 +906,16 @@ sap.ui.define([
 		onChnageLogSwitchERPPreview: function(oEvent){
 			var oList = this.getView().byId("idAuditLogListERPPreview");
 			oList.setVisible(oEvent.getParameter("state"));
+		},
+		
+		onDetailsPurOrg: function(oEvent){
+			var oLfm1 = oEvent.getSource().getBindingContext("vndLfm1").getObject(),
+				oLfm1Model = this.getView().getModel("vndLfm1"),
+				oLfm1Data = oLfm1Model.getData();
+
+			oLfm1Data.lfm1 = Object.assign({}, oLfm1);
+			oLfm1Model.setData(oLfm1Data);
 		}
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf murphy.mdm.vendor.murphymdmvendor.view.ERPVendorPreview
-		 */
-		//	onExit: function() {
-		//
-		//	}
 
 	});
 

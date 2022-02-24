@@ -185,6 +185,21 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"vndLfm1": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"emails": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"countryRegionModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"Country": {},
+					"Region": {},
+					"RegionFiltered": {}
+				}
 			}
 		},
 		"resources": {
