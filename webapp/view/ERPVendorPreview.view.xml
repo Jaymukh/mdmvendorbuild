@@ -160,10 +160,11 @@
 												</layoutData>
 											</Text>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
+											<core:Title/>
 											<Label text="Country"/>
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
-											<core:Title/>
+											
 											<!--<Label text="Region"/>-->
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"  />-->
 											<Label text="Region"/>
@@ -410,14 +411,22 @@
 											<!--<Text/>-->
 											<Label text="Bank Key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
+										<Label text="Bank Country / Desc."/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS}"></Text>
+											<Label text="Bank Name"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
+											<Label text="Street"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stras}"/>
+											<Label text="City"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01}"/>
 											<Label text="Bank Detail ID"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}"/>
 											<Label text="Bank Account(Account No.)" wrapping="true"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"/>
+											<Text text=""/>
 											<Label text="Account Holder"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}"/>
 											<Label text="IBAN"/>
-											<Text text=""/>
 											<Label text="IBAN-Generate IBAN"/>
 											<Text text=""></Text>
 											<Label text="IBAN-Generate Bank Details"/>
@@ -429,14 +438,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}"/>
 											<Label text="Collection Authorization"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>
-											<Label text="Bank Country / Desc."/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS}"></Text>
-											<Label text="Bank Name"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
-											<Label text="Street"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/stras}"/>
-											<Label text="City"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/ort01}"/>
+											
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1068,14 +1070,14 @@
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/bukrs}"/>
 														<Label text="Resident Country"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kglnd}"/>
+														<Label text="Region"/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}"/>
 														<Label text="Entity Type"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}"></Text>
 														<Label text="Levy"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/levy}"/>
 														<Label text="CDEX Company"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/cdex_company}"/>
-														<Label text="Region"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}"/>
 														<Label text="Tribe No."/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}"/>
 														<core:Title text="Payment Information"/>
