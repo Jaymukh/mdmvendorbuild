@@ -2,7 +2,47 @@
 	"preview": false,
 	"vndDetails": false,
 	"approvalView": false,
-	"SupportedFileType": ["jpg", "jpeg", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx", "MP3", "MP4"],
+	"SupportedFileType": ["jpg", "jpeg","png", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx", "mp3", "MP3", "MP4"],
+	"SupportedMimeType": [{
+		"exten": "jpg",
+		"mimeType": "image/jpeg"
+	},{
+		"exten": "jpeg",
+		"mimeType": "image/jpeg"
+	},{
+		"exten": "png",
+		"mimeType": "image/png"
+	},{
+		"exten": "PNG",
+		"mimeType": "image/png"
+	},{
+		"exten": "pdf",
+		"mimeType": "application/pdf"
+	},{
+		"exten": "xls",
+		"mimeType": "application/vnd.ms-excel"
+	},{
+		"exten": "doc",
+		"mimeType": "application/msword"
+	},{
+		"exten": "xlsx",
+		"mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+	},{
+		"exten": "docx",
+		"mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+	},{
+		"exten": "MP3",
+		"mimeType": "audio/mpeg"
+	},{
+		"exten": "mp3",
+		"mimeType": "audio/mpeg"
+	},{
+		"exten": "MP4",
+		"mimeType": "video/mp4"
+	},{
+		"exten": "mp4",
+		"mimeType": "video/mp4"
+	}],
 	"companyCode": {
 		"companyCode": null,
 		"accountingInfo": {

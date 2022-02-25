@@ -1311,6 +1311,15 @@ sap.ui.define([
 
 				reader.onload = function (readerEvt) {
 					var sResult = `data:${file.type};base64,${btoa(event.target.result)}`;
+					var aSupportedMimeType = this.getView().getModel("CreateVendorModel").getProperty("/SupportedMimeType");
+					var aMimeType = aSupportedMimeType.filter(function (e) {
+						return e.exten === file.name.split(".")[1];
+					})[0];
+					if (!aMimeType) {
+						aMimeType = file.name.split(".")[1];
+					} else {
+						aMimeType = aMimeType.mimeType;
+					}
 					var objParamCreate = {
 						url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/documents/upload",
 						type: 'POST',
@@ -1321,7 +1330,7 @@ sap.ui.define([
 									"attachment_name": file.name,
 									"attachment_description": file.name,
 									"attachment_link": "",
-									"mime_type": "application/text",
+									"mime_type": aMimeType,
 									"file_name": file.name,
 									"attachment_type_id": "11001",
 									"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
@@ -1449,10 +1458,10 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
-						var obj = {};
-						obj["land1"] = " ";
-						obj["telefto"] = "";
-						oDataResp.result.modelMap.unshift(obj);
+					var obj = {};
+					obj["land1"] = " ";
+					obj["telefto"] = "";
+					oDataResp.result.modelMap.unshift(obj);
 					this.getOwnerComponent().getModel("valueHelps").setProperty("/TelCountryCodes", oDataResp.result.modelMap);
 				}
 			}.bind(this));
