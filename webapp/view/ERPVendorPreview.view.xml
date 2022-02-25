@@ -1432,7 +1432,7 @@
 										</Toolbar>
 										<!--</VBox>-->
 										<List headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
-											<FeedListItem sender="{crERPCommentedModel>note_by}" iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}"
+											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}"
 												text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
 												<FeedListItemAction text="{crERPCommentedModel>note_desc}" icon="{Icon}" key="{Key}"/>
 											</FeedListItem>

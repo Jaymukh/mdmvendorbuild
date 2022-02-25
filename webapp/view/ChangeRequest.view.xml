@@ -290,7 +290,7 @@
 																	<!--	<commons:Timeline enableDoubleSided="true" groupBy="note_date" growingThreshold="0" filterTitle="note_by" sortOldestFirst="false"-->
 																	<!--content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" groupByType="Year" enableScroll="false">-->
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by}" userNameClickable="false"
+																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" userNameClickable="false"
 																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
