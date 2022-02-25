@@ -1107,7 +1107,9 @@ sap.ui.define([
 						"crCommentDTOs": [{
 							"entity_id": oParam.sEntityID,
 							"note_desc": oParam.comment,
-							"note_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+							"note_by_user" : {
+								"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+							}
 						}]
 					}]
 				}

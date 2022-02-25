@@ -2647,7 +2647,7 @@
 										</Toolbar>
 										<!--</VBox>-->
 										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
-											<FeedListItem sender="{crERPCommentedModel>note_by}" senderActive="false" iconDensityAware="false" info="{Type}"
+											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" senderActive="false" iconDensityAware="false" info="{Type}"
 												timestamp="{crERPCommentedModel>note_date}" text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All"
 												actions="{path: 'Actions', templateShareable: false}">
 												<FeedListItemAction icon="{Icon}" key="{Key}"/>
