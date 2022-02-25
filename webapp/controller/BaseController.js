@@ -1319,7 +1319,7 @@ sap.ui.define([
 									"attachment_name": file.name,
 									"attachment_description": file.name,
 									"attachment_link": "",
-									"mime_type": "application/text",
+									"mime_type": file.name.split(".")[1],
 									"file_name": file.name,
 									"attachment_type_id": "11001",
 									"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
