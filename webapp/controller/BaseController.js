@@ -1447,6 +1447,10 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
+						var obj = {};
+						obj["land1"] = " ";
+						obj["telefto"] = "";
+						oDataResp.result.modelMap.unshift(obj);
 					this.getOwnerComponent().getModel("valueHelps").setProperty("/TelCountryCodes", oDataResp.result.modelMap);
 				}
 			}.bind(this));
