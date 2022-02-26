@@ -20,5 +20,8 @@
 	}, {
 		"header": "Finalized By",
 		"key": "crDTO/statusChangeBy/firstname"
+	}, {
+		"header": "Finalized On",
+		"key": "crDTO/statusChangeDate"
 	}]
 }
