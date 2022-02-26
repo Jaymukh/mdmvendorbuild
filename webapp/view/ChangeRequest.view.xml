@@ -64,7 +64,6 @@
 														<core:Item text="Created by Me" key="02"/>
 														<core:Item text="To be processed by Me" key="03"/>
 														<core:Item text="Processed by Me" key="04"/>
-														
 													</Select>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
@@ -155,10 +154,11 @@
 														<items>
 															<IconTabFilter text="Workflow" key="workflow">
 																<!--<Label text="Workflow goes here..."/>-->
-																<commons:Timeline enableDoubleSided="true"  growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
+																<commons:Timeline enableDoubleSided="true" growingThreshold="0" filterTitle="Status" sortOldestFirst="true"
 																	content="{crWorkflowLogModel>/workflowAuditItems}" groupByType="Month" enableScroll="false">
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}" title="{path:'crWorkflowLogModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
+																		<commons:TimelineItem dateTime="{path:'crWorkflowLogModel>statusChangedDate', formatter : '.changeWorkflowDate'}"
+																			title="{path:'crWorkflowLogModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
 																			userName="{crWorkflowLogModel>assignmentUserName} - {crWorkflowLogModel>assignmentStageName}" filterValue="{crWorkflowLogModel>status}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
@@ -255,7 +255,8 @@
 																	<items>
 																		<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 																			fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-																			enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload"  deletePress="onDeleteAttachment" visibleDelete="true" >
+																			enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload" deletePress="onDeleteAttachment"
+																			visibleDelete="true">
 																			<!-- attributes="{path : '/', templateShareable : false}"-->
 																			<!--statuses="{path : '/', templateShareable : false}" -->
 																			<attributes>
@@ -292,7 +293,8 @@
 																	<!--	<commons:Timeline enableDoubleSided="true" groupBy="note_date" growingThreshold="0" filterTitle="note_by" sortOldestFirst="false"-->
 																	<!--content="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}" groupByType="Year" enableScroll="false">-->
 																	<commons:content>
-																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}" title="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" userNameClickable="false"
+																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}"
+																			title="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" userNameClickable="false"
 																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"></commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
