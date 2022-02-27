@@ -676,7 +676,11 @@
 											<Label text="Reference Details"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}" maxLength="20"/>
 											<Label text="Collection Authorization"/>
-											<CheckBox></CheckBox>
+											<CheckBox select="onSelectCheckBox">
+												<customData>
+													<core:CustomData key="/vnd_lfbk/vnd_lfbk_1/XEZER" value="X"></core:CustomData>
+												</customData>
+											</CheckBox>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}" maxLength="1"/>-->
 										</form:content>
 									</form:SimpleForm>
@@ -1243,7 +1247,16 @@
 													</customData>
 												</CheckBox>
 												<Label text="Account Statement"/>
-												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}" maxLength="1"/>
+												<Select forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}">
+													<items>
+														<core:Item text="Weekly account statement" key="1"/>
+														<core:Item text="Monthly account statement" key="2"/>
+														<core:Item text="Quarterly account statement" key="3"/>
+														<core:Item text="Annual account statement" key="4"/>
+														<core:Item text="Semi-Annual account statement" key="5"/>
+													</items>
+												</Select>
+												<!--<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}" maxLength="1"/>-->
 												<Label text="Account Memo"/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERM}"/>
 												<Label text="Clerk's Fax no."/>
