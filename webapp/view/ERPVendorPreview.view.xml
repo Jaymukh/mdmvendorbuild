@@ -424,7 +424,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BVTYP}"/>
 											<Label text="Bank Account(Account No.)" wrapping="true"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN}"/>
-											<Text text=""/>
+											<core:Title text=""/>
 											<Label text="Account Holder"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}"/>
 											<Label text="IBAN"/>
@@ -434,11 +434,11 @@
 											<Text text="{CreateVendorModel>/changeReq/genData/ibanGenBankDet}"></Text>
 											<Label text="Control key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKONT}"/>
-											<core:Title text=""/>
 											<Label text="Reference Details"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}"/>
 											<Label text="Collection Authorization"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER} === 'X'}"></CheckBox>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>-->
 											
 										</form:content>
 									</form:SimpleForm>
@@ -656,7 +656,16 @@
 											<Label text="Local Processing"/>
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XDEZV} === 'X'}"></CheckBox>
 											<Label text="Account Statement"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>
+											<Select forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}" enabled="false">
+													<items>
+														<core:Item text="Weekly account statement" key="1"/>
+														<core:Item text="Monthly account statement" key="2"/>
+														<core:Item text="Quarterly account statement" key="3"/>
+														<core:Item text="Annual account statement" key="4"/>
+														<core:Item text="Semi-Annual account statement" key="5"/>
+													</items>
+											</Select>
+										<!--	<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>-->
 											<Label text="Account Memo"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERM}"/>
 											<Label text="Clerk's Fax no."/>
