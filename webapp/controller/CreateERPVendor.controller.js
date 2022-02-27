@@ -388,13 +388,18 @@ sap.ui.define([
 							}
 
 							//Handling Comunication data
-							oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
-								oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
-							oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
-								oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+							if(oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number){
+								oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
+									oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
+							}
+							if(oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number){
+									oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+									oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+							}
+							if(oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number){
 							oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
 								oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
-
+							}
 							var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
 								oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
 									.customData.gen_adr2.gen_adr2_1.country) : "",
@@ -1695,7 +1700,7 @@ sap.ui.define([
 		onHandleCityValue: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1", oEvent.getSource().getValue());
-			this.getView().getModel("praAddressModel").setProperty("/address/city1", oEvent.getSource().getValue());
+		//	this.getView().getModel("praAddressModel").setProperty("/address/city1", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		},
@@ -1758,7 +1763,17 @@ sap.ui.define([
 				oPraModel = this.getView().getModel("praAddressModel"),
 				oAddressData = oPraModel.getData(),
 				sIndex = oAddrContext.getPath().replace("/rows/", ""),
-				oAddress = oAddressData.rows.splice(sIndex, 1);
+				oAddress = oAddressData.rows.splice(sIndex, 1),
+				oPraBpAd = this.getView().getModel("CreateVendorModel").getProperty(
+									"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad");
+				var aKeys = Object.keys(oPraBpAd);
+				aKeys.forEach((key, index) => {
+    				if(oPraBpAd[key].adrnr ==oAddress[0].addrnumber){
+    					// this code is auto populate the Address type in the PRA address section.
+    					oAddress[0].addr_type = oPraBpAd[key].addr_type;
+    				}
+   				});
+				
 			oPraModel.setData({
 				rows: oAddressData.rows,
 				address: oAddress[0]
