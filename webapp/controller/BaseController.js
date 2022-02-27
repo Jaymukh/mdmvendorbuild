@@ -873,6 +873,9 @@ sap.ui.define([
 					oVendorModel.setProperty(
 						"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/addrnumber",
 						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
+					oVendorModel.setProperty(
+						"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/addrnumber",
+						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 					//PRA Addresses are storing as table
 					/*this.getView().getModel("CreateVendorModel").setProperty(
 						"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/addrnumber",

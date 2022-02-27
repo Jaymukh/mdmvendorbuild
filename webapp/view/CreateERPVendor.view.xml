@@ -145,7 +145,7 @@
 											<Label text="Street 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
-											<Input id="idERPVendorPostalCode" required="true" liveChange="handleERPVendorPostalCodeFix"
+											<Input id="idERPVendorPostalCode" required="true" liveChange="handleERPVendorPostalCodeFix" placeholder="should 5 or 10 digits" tooltip="Length should 5 or 10 digits"
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
@@ -312,8 +312,9 @@
 													<core:CustomData key="title" value="Type of Delivery Service"></core:CustomData>
 													<core:CustomData key="table" value="ADDRC_DELI_SERV"></core:CustomData>
 													<core:CustomData key="inputKey" value="deli_SERV_TYPE"></core:CustomData>
-													<core:CustomData key="inputText" value="deli_SERV_DSCR"></core:CustomData>
+													<core:CustomData key="inputText" value="deli_SERV_TEXT"></core:CustomData>
 													<core:CustomData key="deli_SERV_TYPE" value="Delivery Type"></core:CustomData>
+													<core:CustomData key="deli_SERV_TEXT" value="Text"></core:CustomData>
 													<core:CustomData key="deli_SERV_DSCR" value="Description"></core:CustomData>
 												</customData>
 											</Input>
@@ -370,7 +371,7 @@
 												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KUNNR}">
 												<customData>
 													<core:CustomData key="title" value="Customer"></core:CustomData>
-													<core:CustomData key="table" value="KNA1"></core:CustomData>
+													<core:CustomData key="table" value="VW_KNA1"></core:CustomData>
 													<core:CustomData key="Key1" value="Company code"></core:CustomData>
 													<core:CustomData key="Key2" value="Company Name"></core:CustomData>
 													<core:CustomData key="Key3" value="Country"></core:CustomData>
@@ -675,7 +676,8 @@
 											<Label text="Reference Details"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}" maxLength="20"/>
 											<Label text="Collection Authorization"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}" maxLength="1"/>
+											<CheckBox></CheckBox>
+											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}" maxLength="1"/>-->
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1101,7 +1103,7 @@
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/GUZTE}">
 													<customData>
 														<core:CustomData key="title" value="Credit Memo Payment Term"></core:CustomData>
-														<core:CustomData key="table" value="LFB1"></core:CustomData>
+														<core:CustomData key="table" value="VW_LFB1"></core:CustomData>
 														<core:CustomData key="" value="Name"></core:CustomData>
 														<core:CustomData key="" value="Key"></core:CustomData>
 														<core:CustomData key="inputKey" value=""></core:CustomData>
@@ -1113,7 +1115,7 @@
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}">
 													<customData>
 														<core:CustomData key="title" value="Tolerance Group"></core:CustomData>
-														<core:CustomData key="table" value="T043G"></core:CustomData>
+														<core:CustomData key="table" value="VM_T043G"></core:CustomData>
 														<core:CustomData key="text30" value="Tolerance Group Description"></core:CustomData>
 														<core:CustomData key="togru" value="Tolerance Group Key"></core:CustomData>
 														<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
@@ -1220,10 +1222,10 @@
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZSABE}">
 													<customData>
 														<core:CustomData key="title" value="Account Clerk"></core:CustomData>
-														<core:CustomData key="table" value="LFB1"></core:CustomData>
+														<core:CustomData key="table" value="VW_LFB1"></core:CustomData>
 														<core:CustomData key="" value="Name"></core:CustomData>
-														<core:CustomData key="" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value=""></core:CustomData>
+														<core:CustomData key="ZSABE" value="Key"></core:CustomData>
+														<core:CustomData key="inputKey" value="ZSABE"></core:CustomData>
 														<core:CustomData key="inputText" value=""></core:CustomData>
 													</customData>
 												</Input>
@@ -1418,6 +1420,7 @@
 													<core:CustomData key="table" value="T618"></core:CustomData>
 													<core:CustomData key="bezei" value="Name"></core:CustomData>
 													<core:CustomData key="expvz" value="Key"></core:CustomData>
+													<core:CustomData key="land1" value="Country"></core:CustomData>
 													<core:CustomData key="inputKey" value="expvz"></core:CustomData>
 													<core:CustomData key="inputText" value="bezei"></core:CustomData>
 												</customData>
@@ -2457,7 +2460,7 @@
 														</Input>
 														<core:Title/>
 														<Label text="City"/>
-														<Input id="PRAAddrCity1" liveChange="onHandleCityValue" required="true" value="{praAddressModel>/address/city1}"/>
+														<Input id="PRAAddrCity1" required="true" value="{praAddressModel>/address/city1}"/>
 														<Label text="PO Box"/>
 														<Input id="PRAADDRPOBOXId" required="true" value="{praAddressModel>/address/po_box}"/>
 														<Label text="PO Box Postal Code"/>

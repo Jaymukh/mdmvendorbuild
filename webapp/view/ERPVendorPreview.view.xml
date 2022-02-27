@@ -115,13 +115,14 @@
 											</Text>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
-												<!--	<items>
-													<core:Item text="Title1" key="1"/>
-													<core:Item text="Title2" key="2"/>
-													<core:Item text="Title3" key="3"/>
-												</items>-->
-											</Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
+											</Text>-->
+											<Select forceSelection="false"  items="{crERPTitleFilterModel>/modelMap}" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
+												<items>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+												</items>
+											</Select>
 											<Label text="Name1"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1}"/>
 											<Label text="Name2"/>
