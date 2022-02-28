@@ -1420,7 +1420,7 @@
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
-														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by}"/>
+														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
 														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on'}"/>
 													</attributes>
 													<!--<statuses>-->
