@@ -1421,7 +1421,7 @@
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
 														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by}"/>
-														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on', formatter : '.dateFormater'}"/>
+														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on'}"/>
 													</attributes>
 													<!--<statuses>-->
 													<!--	<ObjectStatus title="{title}" text="{text}" state="{state}"/>-->
