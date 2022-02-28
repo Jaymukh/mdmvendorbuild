@@ -428,6 +428,7 @@
 											<Label text="Account Holder"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/KOINH}"/>
 											<Label text="IBAN"/>
+											<Text text=""></Text>
 											<Label text="IBAN-Generate IBAN"/>
 											<Text text=""></Text>
 											<Label text="IBAN-Generate Bank Details"/>
