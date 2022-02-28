@@ -1336,7 +1336,7 @@ sap.ui.define([
 									"mime_type": aMimeType,
 									"file_name": file.name,
 									"attachment_type_id": "11001",
-									"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+									"created_by":{"user_id" : this.getView().getModel("userManagementModel").getProperty("/data/user_id")},
 									"file_name_with_extension": file.name
 								},
 								"entityType": "VENDOR",
