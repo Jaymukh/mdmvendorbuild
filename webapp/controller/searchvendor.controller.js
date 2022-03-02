@@ -541,6 +541,14 @@ sap.ui.define([
 
 							}
 							break;
+						case "gen_adr12":
+							if (oDataResp.result.parentDTO.customData.pra_bp_vend_md) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1",
+									oDataResp.result.parentDTO.customData.gen_adr12.gen_adr12_1);
+
+							}
+							break;	
 						}
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(

@@ -666,6 +666,23 @@ sap.ui.define([
 									"valid_to": null,
 									"client": " "
 								}
+							},
+							"gen_adr12": {
+								"gen_adr12_1": {
+									"entity_id": oData.result.vendorDTOs[0].customVendorBusDTO.entity_id,
+									"addrnumber": oData.result.vendorDTOs[0].customVendorBusDTO.entity_id,
+									"persnumber": "",
+									"date_from": sDate,
+									"consnumber": "1",
+									"flgdefault": "X",
+									"flg_nouse": "",
+									"home_flag": "X",
+									"uri_type": "HPG",
+									"uri_srch": "",
+									"dft_receiv": "",
+									"uri_length": "",
+									"uri_addr": ""
+								}
 							}
 						};
 						this.getView().getModel("vndLfm1").setData({
@@ -1110,7 +1127,7 @@ sap.ui.define([
 						"crCommentDTOs": [{
 							"entity_id": oParam.sEntityID,
 							"note_desc": oParam.comment,
-							"note_by_user" : {
+							"note_by_user": {
 								"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 							}
 						}]
@@ -1336,7 +1353,9 @@ sap.ui.define([
 									"mime_type": aMimeType,
 									"file_name": file.name,
 									"attachment_type_id": "11001",
-									"created_by":{"user_id" : this.getView().getModel("userManagementModel").getProperty("/data/user_id")},
+									"created_by": {
+										"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+									},
 									"file_name_with_extension": file.name
 								},
 								"entityType": "VENDOR",

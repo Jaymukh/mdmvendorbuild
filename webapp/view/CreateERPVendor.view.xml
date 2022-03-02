@@ -145,8 +145,9 @@
 											<Label text="Street 5"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/location}"/>
 											<Label text="Postal Code / City"/>
-											<Input id="idERPVendorPostalCode" required="true" liveChange="handleERPVendorPostalCodeFix" placeholder="should 5 or 10 digits" tooltip="Length should 5 or 10 digits"
-												value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10">
+											<Input id="idERPVendorPostalCode" required="true" liveChange="handleERPVendorPostalCodeFix" placeholder="should 5 or 10 digits"
+												tooltip="Length should 5 or 10 digits" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}"
+												maxLength="10">
 												<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>
@@ -301,7 +302,8 @@
 												</layoutData>
 											</Input>
 											<Label text="Web site"/>
-											<Input value=""/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"
+												liveChange="onChangeWebSite"/>
 											<core:Title/>
 											<Label text="PO Box Lobby"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
@@ -2640,7 +2642,8 @@
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
-														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
+														<ObjectAttribute title="Uploaded By"
+															text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
 														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on'}"/>
 													</attributes>
 													<!--<statuses>-->
@@ -2663,9 +2666,9 @@
 										</Toolbar>
 										<!--</VBox>-->
 										<List id="createERPVendorAddedCommentListId" headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
-											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" senderActive="false" iconDensityAware="false" info="{Type}"
-												timestamp="{crERPCommentedModel>note_date}" text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All"
-												actions="{path: 'Actions', templateShareable: false}">
+											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" senderActive="false"
+												iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}" text="{crERPCommentedModel>note_desc}"
+												convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
 												<FeedListItemAction icon="{Icon}" key="{Key}"/>
 											</FeedListItem>
 										</List>
