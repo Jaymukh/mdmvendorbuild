@@ -388,17 +388,17 @@ sap.ui.define([
 							}
 
 							//Handling Comunication data
-							if(oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number){
+							if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number) {
 								oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
 									oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
 							}
-							if(oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number){
-									oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+							if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
+								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
 									oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
 							}
-							if(oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number){
-							oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
-								oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
+							if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number) {
+								oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
+									oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
 							}
 							var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
 								oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
@@ -671,7 +671,7 @@ sap.ui.define([
 				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
 				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
 			}
-			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR" ) {
+			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR") {
 				delete oData.parentDTO.customData.pra_bp_ad;
 				delete oData.parentDTO.customData.pra_bp_vend_esc;
 				delete oData.parentDTO.customData.pra_bp_cust_md;
@@ -1391,11 +1391,11 @@ sap.ui.define([
 					section: "Company Code"
 				});
 			}
-			
-			if(this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
-					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND"){
+
+			if (this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") {
 				aEmptyFields.push({
-					section:"Purchasing Organization"
+					section: "Purchasing Organization"
 				});
 			}
 
@@ -1702,12 +1702,12 @@ sap.ui.define([
 		onHandleCityValue: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1", oEvent.getSource().getValue());
-		//	this.getView().getModel("praAddressModel").setProperty("/address/city1", oEvent.getSource().getValue());
+			//	this.getView().getModel("praAddressModel").setProperty("/address/city1", oEvent.getSource().getValue());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01", oEvent.getSource().getValue());
 		},
 
-	handleERPVendorPostalCodeFix: function (oEvent) {
+		handleERPVendorPostalCodeFix: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1", oEvent.getSource().getValue());
 			/*this.getView().getModel("CreateVendorModel").setProperty(
@@ -1767,15 +1767,15 @@ sap.ui.define([
 				sIndex = oAddrContext.getPath().replace("/rows/", ""),
 				oAddress = oAddressData.rows.splice(sIndex, 1),
 				oPraBpAd = this.getView().getModel("CreateVendorModel").getProperty(
-									"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad");
-				var aKeys = Object.keys(oPraBpAd);
-				aKeys.forEach((key, index) => {
-    				if(oPraBpAd[key].adrnr ==oAddress[0].addrnumber){
-    					// this code is auto populate the Address type in the PRA address section.
-    					oAddress[0].addr_type = oPraBpAd[key].addr_type;
-    				}
-   				});
-				
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad");
+			var aKeys = Object.keys(oPraBpAd);
+			aKeys.forEach((key, index) => {
+				if (oPraBpAd[key].adrnr == oAddress[0].addrnumber) {
+					// this code is auto populate the Address type in the PRA address section.
+					oAddress[0].addr_type = oPraBpAd[key].addr_type;
+				}
+			});
+
 			oPraModel.setData({
 				rows: oAddressData.rows,
 				address: oAddress[0]
@@ -1957,13 +1957,18 @@ sap.ui.define([
 			}
 		},
 		handleCountrySuggestion: function (oEvent) {
-			if(oEvent.getParameter('selectedItem') && oEvent.getParameter('selectedItem').getKey()){
+			if (oEvent.getParameter('selectedItem') && oEvent.getParameter('selectedItem').getKey()) {
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-				'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1', oEvent.getParameter('selectedItem').getKey());
+					'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1', oEvent.getParameter('selectedItem').getKey());
 				this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
 					'/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country', oEvent.getParameter('selectedItem').getKey());
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
+		},
+		onChangeWebSite: function (oEvent) {
+			let sEmail = oEvent.getSource().getValue();
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sEmail.toUpperCase());
 		}
 
 	});
