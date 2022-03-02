@@ -138,6 +138,7 @@
 																		press="onChangeReqLinkPress"></Link>
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_desc}"></Text>
 																	<ObjectStatus text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
+																	<ObjectStatus text="{parts :[{path:'changeRequestGetAllModel>crDTO/assigmentStatus'},{path:'changeRequestGetAllModel>crDTO/assignmentStage'}],formatter:'.handleStatus'}"/>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/modified_by/firstname} {changeRequestGetAllModel>crDTO/modified_by/lastname}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by/firstname} {changeRequestGetAllModel>crDTO/change_request_by/lastname}"></Text>
@@ -167,7 +168,7 @@
 																<!--<Text text="Documents go here ..."/>-->
 																<HBox>
 																	<SearchField ></SearchField>
-																	<Switch state="false" change="onChnageLogSwitchChangeReq"></Switch>
+																	<Switch state="true" change="onChnageLogSwitchChangeReq"></Switch>
 																	<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
 																</HBox>
 																<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
@@ -192,7 +193,7 @@
 																		<Text text="{crAuditLogModel>/details/newCount}"/>
 																	</form:content>
 																</form:SimpleForm>
-																<List visible="false" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
+																<List visible="true" id="idAuditLogListChangeRequest" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
 																	<CustomListItem>
 																		<Panel width="auto">
 																			<content>

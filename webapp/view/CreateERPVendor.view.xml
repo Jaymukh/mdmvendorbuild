@@ -903,12 +903,12 @@
 												</Select>
 												<Label text="Certification Date"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
-												<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
-												<Label text="Intrest Indicator"/>
+												<core:Title text="ERP Vendor Company Code : Interest Calculation"/>
+												<Label text="Inetrest Indicator"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/VZSKZ}">
 													<customData>
-														<core:CustomData key="title" value="Intrest Indicator"></core:CustomData>
+														<core:CustomData key="title" value="Inetrest Indicator"></core:CustomData>
 														<core:CustomData key="table" value="T056"></core:CustomData>
 														<core:CustomData key="vtext" value="Name"></core:CustomData>
 														<core:CustomData key="vzskz" value="Key"></core:CustomData>
@@ -916,7 +916,7 @@
 														<core:CustomData key="inputText" value="vtext"></core:CustomData>
 													</customData>
 												</Input>
-												<Label text="Intrest Calculation Frequency"/>
+												<Label text="Interest Calculation Frequency"/>
 												<Select forceSelection="false" id="compCodesIntrCalcuFequencyId" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINRT}">
 													<items>
 														<core:Item text="1 Month" key="01"/>
@@ -1281,7 +1281,7 @@
 									</VBox>
 								</content>
 							</Panel>
-							<Panel expandable="true" expanded="false" headerText="Purchasing Organization*">
+							<Panel expandable="true" expanded="false" headerText="Purchasing Organization">
 								<content>
 									<Table items="{vndLfm1>/rows}">
 										<headerToolbar>
