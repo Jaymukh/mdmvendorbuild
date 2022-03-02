@@ -851,6 +851,7 @@ sap.ui.define([
 					}
 					var oChangeReqData = oData.result.vendorDTOs[0].customVendorBusDTO;
 					var oVendorModel = this.getView().getModel("CreateVendorModel");
+					oVendorModel.setProperty("/createCRVendorData/crID", oChangeReqData.change_request_id);
 					oVendorModel.setProperty("/changeReq/genData/change_request_by", oChangeReqData.created_by);
 					oVendorModel.setProperty("/changeReq/genData/modified_by", oChangeReqData.modified_by);
 					this.getView().getModel("crERPCommentedModel").setData({});

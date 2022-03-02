@@ -1061,7 +1061,9 @@ sap.ui.define([
 					value: oData.table
 				}));
 				oFilterBar.setFilterBarExpanded(true);
-				oFilterBar.setBasicSearch(this._oBasicSearchField);
+				if(oData.table !=="VW_BNKA"){
+					oFilterBar.setBasicSearch(this._oBasicSearchField);
+				}
 				oFilterBar.setModel(this.oColModel, "columns");
 
 				this._oValueHelpDialog.getTableAsync().then(function (oTable) {
@@ -1220,7 +1222,7 @@ sap.ui.define([
 					"configType": sTableName,
 					"currentPage": 1,
 					"configFilters": {
-
+						
 					}
 				};
 				aSelectionSet.forEach(function (oItem) {

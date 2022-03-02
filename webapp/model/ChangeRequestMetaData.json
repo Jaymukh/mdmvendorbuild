@@ -8,6 +8,9 @@
 	}, {
 		"header": "Change Status",
 		"key": "crDTO/is_cr_closed"
+	},{
+		"header": "WorkFlow Status",
+		"key": "crDTO/assigmentStatus"
 	}, {
 		"header": "Change Request Date",
 		"key": "crDTO/change_request_date"

@@ -94,6 +94,7 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(oParamChangeReq).then(function (oData) {
 				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
 				var oVendorModel = this.getView().getModel("CreateVendorModel");
+				oVendorModel.setProperty("/createCRVendorData/crID", oChangeReq.change_request_id);
 				oVendorModel.setProperty("/createCRVendorData/workflowID", oChangeReq.workflow_task_id);
 				oVendorModel.setProperty("/changeReq/genData/priority", oChangeReq.change_request_priority_id);
 				oVendorModel.setProperty("/changeReq/genData/change_request_id", oChangeReq.change_request_type_id);
@@ -776,6 +777,23 @@ sap.ui.define([
 				}
 			}
 
+		},
+		
+		handleStatus : function(sValue1,sValue2){
+		 var sAssignment = sValue1.toLowerCase(),
+		     sResult =  sValue1;
+			 sValue2 = Number(sValue2);
+		   if(sAssignment === 'claimed' && sValue2 === 1){
+		   	sResult = 'Pending Steward Approval';
+		   }else if((sAssignment === 'approved' && sValue2 === 1) || (sAssignment === 'claimed' && sValue2 === 2)){
+		   		sResult = 'Pending Final Approval';
+		   }else if(sAssignment === 'approved' && sValue2 === 2){
+		   		sResult = 'Approved and Submitted to SAP';
+		   }else if(sAssignment === 'rejected') {
+		   	  sResult = 'Rejected';
+		   }
+		   return sResult;
+			
 		}
 
 		/**

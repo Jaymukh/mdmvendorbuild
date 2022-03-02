@@ -555,10 +555,10 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/FRGRP}"></Text>
 											<Label text="Certification Date"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
-											<core:Title text="ERP Vendor Company Code : Intrest Calculation"/>
-											<Label text="Intrest Indicator"/>
+											<core:Title text="ERP Vendor Company Code : Interest Calculation"/>
+											<Label text="Interest Indicator"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/VZSKZ}"></Text>
-											<Label text="Intrest Calculation Frequency"/>
+											<Label text="Interest Calculation Frequency"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINRT}"></Text>
 											<Label text="Last Key Date"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZINDT}"/>
@@ -1327,7 +1327,7 @@
 										<!--<Text text="Documents go here ..."/>-->
 										<HBox>
 											<SearchField ></SearchField>
-											<Switch state="false" change="onChnageLogSwitchERPPreview"></Switch>
+											<Switch state="true" change="onChnageLogSwitchERPPreview"></Switch>
 											<Label text="Show Attribute" class="sapUiSmallMarginTop"></Label>
 										</HBox>
 										<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="6"
@@ -1352,7 +1352,7 @@
 												<Text text="{crAuditLogModel>/details/newCount}"/>
 											</form:content>
 										</form:SimpleForm>
-										<List visible="false" id="idAuditLogListERPPreview" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
+										<List visible="true" id="idAuditLogListERPPreview" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
 											<CustomListItem>
 												<Panel width="auto">
 													<content>
