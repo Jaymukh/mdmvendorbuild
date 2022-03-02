@@ -680,7 +680,7 @@ sap.ui.define([
 									"uri_type": "HPG",
 									"uri_srch": "",
 									"dft_receiv": "",
-									"uri_length": "",
+									"uri_length": 0,
 									"uri_addr": ""
 								}
 							}
