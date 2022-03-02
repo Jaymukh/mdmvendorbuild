@@ -117,7 +117,7 @@
 											<Label text="Title"/>
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
 											</Text>-->
-											<Select forceSelection="false"  items="{crERPTitleFilterModel>/modelMap}" enabled="false"
+											<Select forceSelection="false" items="{crERPTitleFilterModel>/modelMap}" enabled="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ANRED}">
 												<items>
 													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
@@ -165,7 +165,6 @@
 											<Label text="Country"/>
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"></Text>
-											
 											<!--<Label text="Region"/>-->
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}"  />-->
 											<Label text="Region"/>
@@ -233,7 +232,7 @@
 												</layoutData>
 											</Text>
 											<Label text="Web site"/>
-											<Text text=""/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"/>
 											<core:Title/>
 											<Label text="PO Box Lobby"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
@@ -245,7 +244,6 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="Undeliverable"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}"/>
-											
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -412,7 +410,7 @@
 											<!--<Text/>-->
 											<Label text="Bank Key"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL}"></Text>
-										<Label text="Bank Country / Desc."/>
+											<Label text="Bank Country / Desc."/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKS}"></Text>
 											<Label text="Bank Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_bnka/gen_bnka_1/banka}"/>
@@ -438,9 +436,9 @@
 											<Label text="Reference Details"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BKREF}"/>
 											<Label text="Collection Authorization"/>
-											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER} === 'X'}"></CheckBox>
+											<CheckBox enabled="false"
+												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER} === 'X'}"></CheckBox>
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/XEZER}"/>-->
-											
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -658,15 +656,15 @@
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/XDEZV} === 'X'}"></CheckBox>
 											<Label text="Account Statement"/>
 											<Select forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}" enabled="false">
-													<items>
-														<core:Item text="Weekly account statement" key="1"/>
-														<core:Item text="Monthly account statement" key="2"/>
-														<core:Item text="Quarterly account statement" key="3"/>
-														<core:Item text="Annual account statement" key="4"/>
-														<core:Item text="Semi-Annual account statement" key="5"/>
-													</items>
+												<items>
+													<core:Item text="Weekly account statement" key="1"/>
+													<core:Item text="Monthly account statement" key="2"/>
+													<core:Item text="Quarterly account statement" key="3"/>
+													<core:Item text="Annual account statement" key="4"/>
+													<core:Item text="Semi-Annual account statement" key="5"/>
+												</items>
 											</Select>
-										<!--	<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>-->
+											<!--	<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XAUSZ}"/>-->
 											<Label text="Account Memo"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/XVERM}"/>
 											<Label text="Clerk's Fax no."/>
@@ -1416,11 +1414,13 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload"  deletePress="onDeleteAttachment" visibleDelete="true" >
+													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload" deletePress="onDeleteAttachment"
+													visibleDelete="true">
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
-														<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
+														<ObjectAttribute title="Uploaded By"
+															text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
 														<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on'}"/>
 													</attributes>
 													<!--<statuses>-->
@@ -1443,8 +1443,9 @@
 										</Toolbar>
 										<!--</VBox>-->
 										<List headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
-											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" iconDensityAware="false" info="{Type}" timestamp="{crERPCommentedModel>note_date}"
-												text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All" actions="{path: 'Actions', templateShareable: false}">
+											<FeedListItem sender="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" iconDensityAware="false"
+												info="{Type}" timestamp="{crERPCommentedModel>note_date}" text="{crERPCommentedModel>note_desc}" convertLinksToAnchorTags="All"
+												actions="{path: 'Actions', templateShareable: false}">
 												<FeedListItemAction text="{crERPCommentedModel>note_desc}" icon="{Icon}" key="{Key}"/>
 											</FeedListItem>
 										</List>
