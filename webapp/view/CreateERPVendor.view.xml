@@ -326,7 +326,7 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}" maxLength="10"/>
 											<Label text="Undeliverable"/>
 											<Select id="idUndeliverable" showSecondaryValues="true" forceSelection="false"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/DONT_USE_P}">
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}">
 												<items>
 													<core:ListItem text="Unknown" key="0001" additionalText="0001"/>
 													<core:ListItem text="Moved w/o Forwarding" key="0002" additionalText="0002"/>
