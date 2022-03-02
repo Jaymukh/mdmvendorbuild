@@ -906,11 +906,11 @@
 												<Label text="Certification Date"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
 												<core:Title text="ERP Vendor Company Code : Interest Calculation"/>
-												<Label text="Inetrest Indicator"/>
+												<Label text="Interest Indicator"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/VZSKZ}">
 													<customData>
-														<core:CustomData key="title" value="Inetrest Indicator"></core:CustomData>
+														<core:CustomData key="title" value="Interest Indicator"></core:CustomData>
 														<core:CustomData key="table" value="T056"></core:CustomData>
 														<core:CustomData key="vtext" value="Name"></core:CustomData>
 														<core:CustomData key="vzskz" value="Key"></core:CustomData>
