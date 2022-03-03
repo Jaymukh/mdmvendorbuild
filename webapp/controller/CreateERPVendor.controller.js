@@ -1392,7 +1392,7 @@ sap.ui.define([
 				});
 			}
 
-			if (this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
+			if (this.getView().getModel("vndLfm1").getProperty("/rows") && this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") {
 				aEmptyFields.push({
 					section: "Purchasing Organization"

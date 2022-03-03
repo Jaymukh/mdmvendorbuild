@@ -780,7 +780,7 @@ sap.ui.define([
 		},
 		
 		handleStatus : function(sValue1,sValue2){
-		 var sAssignment = sValue1.toLowerCase(),
+		 var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
 		     sResult =  sValue1;
 			 sValue2 = Number(sValue2);
 		   if(sAssignment === 'claimed' && sValue2 === 1){
