@@ -1906,6 +1906,8 @@ sap.ui.define([
 				oEmailModel.setData(aEmails);
 			}
 			oEvent.getSource().setValue("");
+			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
+				'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress', sText);
 		},
 
 		onDeleteEmail: function (oEvent) {
@@ -1989,12 +1991,39 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 		},
+		
 		onChangeWebSite: function (oEvent) {
-			let sEmail = oEvent.getSource().getValue();
+			let sWbSite = oEvent.getSource().getValue();
 			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sEmail.toUpperCase());
+				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sWbSite.toUpperCase());
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website", sWbSite);
+		},
+		onChgTelCtry: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry", oEvent.getParameter("selectedItem").getBindingContext(
+					"valueHelps").getObject().telefto);
+		},
+		onChgTelNum: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone", oEvent.getSource().getValue());
+		},
+		onChgTelExt: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension", oEvent.getSource().getValue());
+		},
+		onChgFaxCtry: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry", oEvent.getParameter("selectedItem").getBindingContext(
+					"valueHelps").getObject().telefto);
+		},
+		onChgFaxNum: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone", oEvent.getSource().getValue());
+		},
+		onChgFaxExt: function (oEvent) {
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention", oEvent.getSource().getValue());
 		}
-
 	});
-
 });
