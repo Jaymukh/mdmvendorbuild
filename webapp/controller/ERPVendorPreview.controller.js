@@ -318,7 +318,7 @@ sap.ui.define([
 				if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
 					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
 				}
-			
+
 				var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
 				for (var k = 0; k < sKeylfb1.length; k++) {
 					oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
@@ -340,7 +340,7 @@ sap.ui.define([
 					oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
 				}
 				if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
-						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+					oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
 				}
 				if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
 					oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
@@ -357,44 +357,44 @@ sap.ui.define([
 		},
 
 		_handleSaveWithLifnr: function (oData) {
-		//	var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
+			//	var sResoanId = this.getOwnerComponent().getModel("CreateVendorModel").getProperty('/changeReq/genData/change_request_id');
 			oData = Object.assign({}, oData);
-		/*	if (sResoanId === "50005" || sResoanId === "50004") {
-				delete oData.parentDTO.customData.pra_bp_ad;
-				delete oData.parentDTO.customData.pra_bp_vend_esc;
-				delete oData.parentDTO.customData.pra_bp_cust_md;
-				delete oData.parentDTO.customData.pra_bp_vend_md;
-				delete oData.parentDTO.customData.gen_adrc;
-				delete oData.parentDTO.customData.vnd_knvk;
-				delete oData.parentDTO.customData.vnd_lfb1;
-				delete oData.parentDTO.customData.vnd_lfbk;
-				delete oData.parentDTO.customData.vnd_lfbw;
-				delete oData.parentDTO.customData.vnd_lfm1;
-				delete oData.parentDTO.customData.gen_bnka;
-
-			} else {*/
-				if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
-					"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
-					oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
-				}
-				if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR") {
+			/*	if (sResoanId === "50005" || sResoanId === "50004") {
 					delete oData.parentDTO.customData.pra_bp_ad;
 					delete oData.parentDTO.customData.pra_bp_vend_esc;
 					delete oData.parentDTO.customData.pra_bp_cust_md;
 					delete oData.parentDTO.customData.pra_bp_vend_md;
-					delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
+					delete oData.parentDTO.customData.gen_adrc;
+					delete oData.parentDTO.customData.vnd_knvk;
+					delete oData.parentDTO.customData.vnd_lfb1;
+					delete oData.parentDTO.customData.vnd_lfbk;
+					delete oData.parentDTO.customData.vnd_lfbw;
+					delete oData.parentDTO.customData.vnd_lfm1;
+					delete oData.parentDTO.customData.gen_bnka;
 
-				}
+				} else {*/
+			if (oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === undefined || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 ===
+				"" || oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 === null) {
+				oData.parentDTO.customData.gen_adrc.gen_adrc_1.name1 = oData.parentDTO.customData.vnd_lfa1.Name1;
+			}
+			if (oData.parentDTO.customData.vnd_lfa1.KTOKK !== "JVPR" && oData.parentDTO.customData.vnd_lfa1.KTOKK !== "OGPR") {
+				delete oData.parentDTO.customData.pra_bp_ad;
+				delete oData.parentDTO.customData.pra_bp_vend_esc;
+				delete oData.parentDTO.customData.pra_bp_cust_md;
+				delete oData.parentDTO.customData.pra_bp_vend_md;
+				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
-				oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
-				oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
-				oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
-				oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
-				var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-				aLFB1Objs.forEach(function (key, index) {
-					var sProerty = 'vnd_lfbw_' + (index + 1);
-					oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
-				});
+			}
+
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
+			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
+			oData.parentDTO.customData.gen_adrc.gen_adrc_1.region = oData.parentDTO.customData.vnd_lfa1.REGIO;
+			var aLFB1Objs = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+			aLFB1Objs.forEach(function (key, index) {
+				var sProerty = 'vnd_lfbw_' + (index + 1);
+				oData.parentDTO.customData.vnd_lfbw[sProerty].bukrs = oData.parentDTO.customData.vnd_lfb1[key].bukrs;
+			});
 			//}
 
 			var objParamCreate = {
@@ -721,9 +721,9 @@ sap.ui.define([
 						this.handleChangeRequestStatistics();
 						this.onAllChangeReqClick();
 					}
-					
+
 					//Adding rejection reason to comment section
-					if (sAction.toLowerCase() === "reject") { 
+					if (sAction.toLowerCase() === "reject") {
 						this.onAddComment({
 							sEntityID: this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"),
 							comment: sReason,
@@ -902,19 +902,24 @@ sap.ui.define([
 				sControlID: "previewCRCommentBoxId"
 			});
 		},
-		
-		onChnageLogSwitchERPPreview: function(oEvent){
+
+		onChnageLogSwitchERPPreview: function (oEvent) {
 			var oList = this.getView().byId("idAuditLogListERPPreview");
 			oList.setVisible(oEvent.getParameter("state"));
 		},
-		
-		onDetailsPurOrg: function(oEvent){
+
+		onDetailsPurOrg: function (oEvent) {
 			var oLfm1 = oEvent.getSource().getBindingContext("vndLfm1").getObject(),
 				oLfm1Model = this.getView().getModel("vndLfm1"),
 				oLfm1Data = oLfm1Model.getData();
 
 			oLfm1Data.lfm1 = Object.assign({}, oLfm1);
 			oLfm1Model.setData(oLfm1Data);
+		},
+
+		onSelectPraAddress: function (oEvent) {
+			var oAddress = Object.assign({}, oEvent.getParameter("listItem").getBindingContext("praAddressModel").getObject());
+			this.getView().getModel("praAddressModel").setProperty("/address", oAddress);
 		}
 
 	});

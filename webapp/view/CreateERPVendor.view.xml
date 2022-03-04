@@ -253,16 +253,17 @@
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
 											<ComboBox items="{valueHelps>/TelCountryCodes}"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code">
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code"
+												selectionChange="onChgTelCtry">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
-												placeholder="Number"></Input>
+												placeholder="Number" liveChange="onChgTelNum"></Input>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
-												placeholder="Ext">
+												placeholder="Ext" liveChange="onChgTelExt">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
@@ -284,19 +285,20 @@
 												</tokens>
 											</MultiInput>
 											<Label text="Fax"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}"
+											<ComboBox items="{valueHelps>/TelCountryCodes}" selectionChange="onChgFaxCtry"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number"
+												liveChange="onChgFaxNum">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>-->
 											</Input>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext" 	liveChange="onChgFaxExt">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
