@@ -1123,7 +1123,7 @@
 														<CheckBox enabled="false"
 															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/do_not_recoup} === 'X'}"></CheckBox>
 														<Label text="Pay Frequency"/>
-														<Select id="idERPPRAAccPayFreq"  enabled="false"
+														<Select id="idERPPRAAccPayFreq" enabled="false"
 															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}">
 															<items>
 																<core:Item text="Normal" key="1"/>
@@ -1215,79 +1215,81 @@
 												</form:SimpleForm>
 											</IconTabFilter>
 											<IconTabFilter text="Address" key="address">
+												<Table items="{praAddressModel>/rows}" mode="SingleSelectLeft" selectionChange="onSelectPraAddress">
+													<columns>
+														<Column>
+															<header>
+																<Label text="Address Type" design="Bold"></Label>
+															</header>
+														</Column>
+														<Column>
+															<header>
+																<Label text="Address" design="Bold"></Label>
+															</header>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Text text="{praAddressModel>title} {praAddressModel>name1}"></Text>
+																<Text text="{praAddressModel>street} {praAddressModel>house_num2} {praAddressModel>city1}"></Text>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
 												<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 													adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 													singleContainerFullSize="false">
 													<form:content>
-														<Table items="{praAddressModel>/rows}">
-															<columns>
-																<Column>
-																	<header>
-																		<Label text="Address Type" design="Bold"></Label>
-																	</header>
-																</Column>
-																<Column>
-																	<header>
-																		<Label text="Address" design="Bold"></Label>
-																	</header>
-																</Column>
-															</columns>
-															<items>
-																<ColumnListItem>
-																	<cells>
-																		<Text text="{praAddressModel>title} {praAddressModel>name1}"></Text>
-																		<Text text="{praAddressModel>street} {praAddressModel>house_num2} {praAddressModel>city1}"></Text>
-																	</cells>
-																</ColumnListItem>
-															</items>
-														</Table>
-														<!--<Label text="Address Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/addr_type}">
-														</Text>
+														<Label text="Address Type"/>
+														<ComboBox editable="false" required="true" selectedKey="{praAddressModel>/address/addr_type}"></ComboBox>
 														<Label text="Title"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
-														</Text>
+														<ComboBox editable="false" items="{crERPTitleFilterModel>/modelMap}" selectedKey="{praAddressModel>/address/title}">
+															<items>
+																<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+															</items>
+														</ComboBox>
 														<Label text="Name"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name1}"/>
-														<Label text="Name2"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/name2}"/>
+														<Text text="{praAddressModel>/address/name1}"/>
+														<Label text="Name 2"/>
+														<Text text="{praAddressModel>/address/name2}"/>
 														<Label text="Search Term 1"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/sort1}"/>
-														<Label text="Street"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/street}"/>
-														<Label text="House No."/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num1}"/>
+														<Text text="{praAddressModel>/address/sort1}"/>
+														<Label text="Street" required="true"/>
+														<Text text="{praAddressModel>/address/street}"/>
+														<Label text="House No." required="true"/>
+														<Text text="{praAddressModel>/address/house_num1}"/>
 														<Label text="Supplement"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/house_num2}"/>
+														<Text text="{praAddressModel>/address/house_num2}"/>
 														<Label text="Postal Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code1}"/>
+														<Text text="{praAddressModel>/address/post_code1}"/>
 														<Label text="Country Key"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/land1}"></Text>
-														<Label text="City"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/city1}"/>
-														<core:Title/>
+														<Text text="{praAddressModel>/address/country}"/>
 														<Label text="Region"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/region}"></Text>
+														<Text text="{praAddressModel>/address/region}"/>
+														<core:Title/>
+														<Label text="City"/>
+														<Text text="{praAddressModel>/address/city1}"/>
 														<Label text="PO Box"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/po_box}"/>
+														<Text text="{praAddressModel>/address/po_box}"/>
 														<Label text="PO Box Postal Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code2}"/>
+														<Text text="{praAddressModel>/address/post_code2}"/>
 														<Label text="Company Postal Code"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/post_code3}"/>
+														<Text text="{praAddressModel>/address/post_code3}"/>
 														<Label text="Language Key"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/langu}"></Text>
+														<Text text="{praAddressModel>/address/langu}"/>
 														<Label text="Telephone"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/tel_number}"/>
+														<Text text="{praAddressModel>/address/tel_number}"/>
 														<Label text="Ext."/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/tel_extens}"/>
+														<Text text="{praAddressModel>/address/tel_extens}"/>
 														<Label text="Mobile Phone"/>
 														<Text/>
 														<Label text="Fax"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/fax_number}"/>
+														<Text text="{praAddressModel>/address/fax_number}"/>
 														<Label text="Email"/>
 														<Text/>
 														<Label text="Comm Method"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_2/deflt_comm}"></Text>-->
+														<Text text="{praAddressModel>/address/deflt_comm}"/>
 													</form:content>
 												</form:SimpleForm>
 											</IconTabFilter>
