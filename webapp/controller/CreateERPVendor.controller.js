@@ -840,7 +840,8 @@ sap.ui.define([
 					this.getAllCommentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAllDocumentsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
 					this.getAuditLogsForCR(this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId"));
-
+					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
+					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/isClaimable', true);
 					var sID = this.getView().getParent().getPages().find(function (e) {
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
@@ -849,6 +850,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
+					
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
@@ -1061,7 +1063,7 @@ sap.ui.define([
 					value: oData.table
 				}));
 				oFilterBar.setFilterBarExpanded(true);
-				if (oData.table !== "VW_BNKA") {
+				if(oData.table !=="VW_BNKA"){
 					oFilterBar.setBasicSearch(this._oBasicSearchField);
 				}
 				oFilterBar.setModel(this.oColModel, "columns");
@@ -1222,7 +1224,7 @@ sap.ui.define([
 					"configType": sTableName,
 					"currentPage": 1,
 					"configFilters": {
-
+						
 					}
 				};
 				aSelectionSet.forEach(function (oItem) {
@@ -1393,8 +1395,7 @@ sap.ui.define([
 				});
 			}
 
-			if (this.getView().getModel("vndLfm1").getProperty("/rows") && this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 &&
-				oData.getProperty(
+			if (this.getView().getModel("vndLfm1").getProperty("/rows") && this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") {
 				aEmptyFields.push({
 					section: "Purchasing Organization"
@@ -1420,7 +1421,7 @@ sap.ui.define([
 			 if(sCountry && sPostalCode ){
 			 	var sPostalCodeLength = sPostalCode.length;
 			 	var oPostalControl = oController.getView().byId("idERPVendorPostalCode");
-				if(sCountry.toLowerCase() === "us" && (sPostalCodeLength !== 5 || sPostalCodeLength !== 10)){
+				if(sCountry.toLowerCase() === "us" && (sPostalCodeLength !== 5 && sPostalCodeLength !== 10)){
 					aEmptyFields.push({
 						section: "PostalCodeCheck",
 						Name : "Postal Code should be 5 or 10 digits for USA."
@@ -1905,9 +1906,6 @@ sap.ui.define([
 				oEmailModel.setData(aEmails);
 			}
 			oEvent.getSource().setValue("");
-			this.getOwnerComponent().getModel('CreateVendorModel').setProperty(
-				'/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress', sText);
-
 		},
 
 		onDeleteEmail: function (oEvent) {
@@ -1992,44 +1990,11 @@ sap.ui.define([
 			}
 		},
 		onChangeWebSite: function (oEvent) {
-			let sWbSite = oEvent.getSource().getValue();
+			let sEmail = oEvent.getSource().getValue();
 			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sWbSite.toUpperCase());
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website", sWbSite);
-		},
-
-		onChgTelCtry: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry", oEvent.getParameter("selectedItem").getBindingContext(
-					"valueHelps").getObject().telefto);
-		},
-
-		onChgTelNum: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone", oEvent.getSource().getValue());
-		},
-
-		onChgTelExt: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension", oEvent.getSource().getValue());
-		},
-
-		onChgFaxCtry: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry", oEvent.getParameter("selectedItem").getBindingContext(
-					"valueHelps").getObject().telefto);
-		},
-
-		onChgFaxNum: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone", oEvent.getSource().getValue());
-		},
-
-		onChgFaxExt: function (oEvent) {
-			this.getView().getModel("CreateVendorModel").setProperty(
-				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention", oEvent.getSource().getValue());
+				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sEmail.toUpperCase());
 		}
+
 	});
 
 });
