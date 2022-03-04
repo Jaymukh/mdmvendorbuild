@@ -594,7 +594,7 @@
 											<Label text="Withholding Tax Code"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_WITHCD}"></Text>
 											<Label text="Sub. To Withholding Tax"/>
-											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_SUBJECT} === 'X'}"></CheckBox>
+											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_SUBJCT} === 'X'}"></CheckBox>
 											<Label text="Exemption Cert. no."/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXNR}"/>
 											<Label text="Exemption Reason"/>
@@ -649,7 +649,7 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/EIKTO}"/>
 											<Label text="Clerk's Telephone No."/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TLFNS}"/>
-											<Label text="Clerk's Internet Addredd"/>
+											<Label text="Clerk's Internet Address"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/INTAD}"/>
 											<!--<core:Title/>-->
 											<Label text="Local Processing"/>
@@ -1082,7 +1082,23 @@
 														<Label text="Region"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/kgreg}"/>
 														<Label text="Entity Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}"></Text>
+														<Select id="idERPPRAAccEntityType" forceSelection="false" enabled="false"
+															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}">
+															<items>
+																<core:Item text="Charitable" key="01"/>
+																<core:Item text="Federal" key="02"/>
+																<core:Item text="Indian" key="03"/>
+																<core:Item text="State" key="04"/>
+																<core:Item text="Other Exempt Entities" key="05"/>
+																<core:Item text="Not Applicable" key="06"/>
+																<core:Item text="Taxable Indians" key="07"/>
+																<core:Item text="Corporation" key="08"/>
+																<core:Item text="Individual" key="09"/>
+																<core:Item text="Partnership, Trust, or Estate" key="10"/>
+																<core:Item text="Trust or Fiduciary" key="11"/>
+															</items>
+														</Select>
+														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/enty_cd}"></Text>-->
 														<Label text="Levy"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/levy}"/>
 														<Label text="CDEX Company"/>
@@ -1091,14 +1107,32 @@
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/tribe_no}"/>
 														<core:Title text="Payment Information"/>
 														<Label text="Payment Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}"></Text>
+														<Select id="idERPPRAAccPaymentType" forceSelection="false" enabled="false"
+															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}">
+															<items>
+																<core:Item text="Check" key="C"/>
+																<core:Item text="EFT" key="E"/>
+																<core:Item text="Netout" key="N"/>
+																<core:Item text="Wire Transfer" key="W"/>
+															</items>
+														</Select>
+														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/payment_type}"></Text>-->
 														<Label text="Owner Minimum Pay"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/owner_min_pay}"/>
 														<Label text="Do Not Recoup"/>
 														<CheckBox enabled="false"
 															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/do_not_recoup} === 'X'}"></CheckBox>
 														<Label text="Pay Frequency"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}"></Text>
+														<Select id="idERPPRAAccPayFreq"  enabled="false"
+															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}">
+															<items>
+																<core:Item text="Normal" key="1"/>
+																<core:Item text="Quarterly" key="2"/>
+																<core:Item text="Semi-Annually" key="3"/>
+																<core:Item text="Annually" key="4"/>
+															</items>
+														</Select>
+														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/pay_frequency}"></Text>-->
 														<Label text="No Check Statement"/>
 														<CheckBox enabled="false"
 															selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md/pra_bp_vend_md_1/no_check_stmt} === 'X'}"></CheckBox>

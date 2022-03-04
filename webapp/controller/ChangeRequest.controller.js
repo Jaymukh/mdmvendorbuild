@@ -321,6 +321,13 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.gen_adr3);
 							}
 							break;
+						case "gen_adr12":
+							if (oDataResp.result.parentDTO.customData.gen_adr12) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr12",
+									oDataResp.result.parentDTO.customData.gen_adr12);
+							}
+							break;
 						}
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
