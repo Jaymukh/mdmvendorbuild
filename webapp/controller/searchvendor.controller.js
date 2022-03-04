@@ -542,14 +542,43 @@ sap.ui.define([
 							}
 							break;
 						case "gen_adr12":
-							if (oDataResp.result.parentDTO.customData.pra_bp_vend_md) {
+							if (oDataResp.result.parentDTO.customData.gen_adr12) {
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1",
 									oDataResp.result.parentDTO.customData.gen_adr12.gen_adr12_1);
 
 							}
 							break;	
+							
+						case "gen_adr6":
+							if (oDataResp.result.parentDTO.customData.gen_adr6) {
+								var aEmails = [];
+								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail=>{
+									aEmails.push({
+										mail: oDataResp.result.parentDTO.customData.gen_adr6[sMail].smtp_addr
+									});
+								});
+								this.getView().getModel("emails").setData(aEmails);	
+							}
+							break;
+							
+						 case "gen_adr2":
+							if (oDataResp.result.parentDTO.customData.gen_adr2) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr2",
+									oDataResp.result.parentDTO.customData.gen_adr2);
+							}
+							break;
+						case "gen_adr3":
+							if (oDataResp.result.parentDTO.customData.gen_adr3) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr3",
+									oDataResp.result.parentDTO.customData.gen_adr3);
+							}
+							break;
+			
 						}
+						
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
 						"/addCompanyCodeRows", addCompanyCodeRows);
@@ -982,6 +1011,41 @@ sap.ui.define([
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_md",
 									oDataResp.result.parentDTO.customData.pra_bp_vend_md);
+							}
+							break;
+						case "gen_adr12":
+							if (oDataResp.result.parentDTO.customData.gen_adr12) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1",
+									oDataResp.result.parentDTO.customData.gen_adr12.gen_adr12_1);
+
+							}
+							break;	
+							
+						case "gen_adr6":
+							if (oDataResp.result.parentDTO.customData.gen_adr6) {
+								var aEmails = [];
+								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail=>{
+									aEmails.push({
+										mail: oDataResp.result.parentDTO.customData.gen_adr6[sMail].smtp_addr
+									});
+								});
+								this.getView().getModel("emails").setData(aEmails);	
+							}
+							break;	
+							
+						case "gen_adr2":
+							if (oDataResp.result.parentDTO.customData.gen_adr2) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr2",
+									oDataResp.result.parentDTO.customData.gen_adr2);
+							}
+							break;
+						case "gen_adr3":
+							if (oDataResp.result.parentDTO.customData.gen_adr3) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr3",
+									oDataResp.result.parentDTO.customData.gen_adr3);
 							}
 							break;
 						}

@@ -321,6 +321,13 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.gen_adr3);
 							}
 							break;
+						case "gen_adr12":
+							if (oDataResp.result.parentDTO.customData.gen_adr12) {
+								this.getView().getModel("CreateVendorModel").setProperty(
+									"/createCRVendorData/formData/parentDTO/customData/gen_adr12",
+									oDataResp.result.parentDTO.customData.gen_adr12);
+							}
+							break;
 						}
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
@@ -780,7 +787,7 @@ sap.ui.define([
 		},
 		
 		handleStatus : function(sValue1,sValue2){
-		 var sAssignment = sValue1.toLowerCase(),
+		 var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
 		     sResult =  sValue1;
 			 sValue2 = Number(sValue2);
 		   if(sAssignment === 'claimed' && sValue2 === 1){
