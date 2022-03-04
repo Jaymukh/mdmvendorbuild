@@ -1072,6 +1072,7 @@ sap.ui.define([
 					}
 
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', sOperationKey);
+					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/isClaimable', true);
 					if (operation === "DELETE" || operation === "BLOCK") {
 						this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 						/*var sID = this.getView().getParent().getPages().find(function (e) {
