@@ -410,6 +410,7 @@ sap.ui.define([
 				if (oDataResp.result) {
 					MessageToast.show("Successfuly Saved");
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
+					if(this.getView().byId("idCreateVendorSubmit")){
 					this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
 					var sID = this.getView().getParent().getPages().find(function (e) {
@@ -420,6 +421,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
+					}
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);

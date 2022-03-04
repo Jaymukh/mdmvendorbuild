@@ -1341,7 +1341,8 @@ sap.ui.define([
 			var sBankKey = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKL");
 			var sBankNumber = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfbk/vnd_lfbk_1/BANKN");
 			var oBankNumControl = oController.getView().byId("idBankNumber");
-
+			var sCountry = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1");
+			var sPostalCode = oData.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ");
 			if (!oData.getProperty("/addCompanyCodeRows").length) {
 				this.onAddCompanyCode("onCheck");
 			}
@@ -1416,6 +1417,25 @@ sap.ui.define([
 				oBankNumControl.setValueState("None");
 			}
 
+			 if(sCountry && sPostalCode ){
+			 	var sPostalCodeLength = sPostalCode.length;
+			 	var oPostalControl = oController.getView().byId("idERPVendorPostalCode");
+				if(sCountry.toLowerCase() === "us" && (sPostalCodeLength !== 5 || sPostalCodeLength !== 10)){
+					aEmptyFields.push({
+						section: "PostalCodeCheck",
+						Name : "Postal Code should be 5 or 10 digits for USA."
+					});
+					oPostalControl.setValueState("Error");
+				}else if(sCountry.toLowerCase() === "ca" &&  sPostalCodeLength !== 6 ){
+					aEmptyFields.push({
+						section: "PostalCodeCheck",
+						Name : "Postal Code should be 6 digits for Canada "
+					});
+					oPostalControl.setValueState("Error");
+				}else{
+					oPostalControl.setValueState("None");
+				} 
+			 }
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
 				if (!this.oDefaultDialog) {
@@ -1458,7 +1478,9 @@ sap.ui.define([
 			var sMsg = "";
 			if (!sSection) {
 				sMsg = sName + " field is missing in " + sPanel + " Section";
-			} else {
+			}else if(sSection === "PostalCodeCheck"){
+				sMsg = sName;
+			}else {
 				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
 			}
 			return sMsg;
