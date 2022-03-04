@@ -1998,6 +1998,7 @@ sap.ui.define([
 				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sWbSite.toUpperCase());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website", sWbSite);
+	
 		},
 		onChgTelCtry: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
