@@ -1498,7 +1498,7 @@
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
-					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50004 || Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50005))}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50004 || Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50005)) &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1 )}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
 					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50002 || Number(${CreateVendorModel>/changeReq/genData/change_request_id}) === 50001) &amp;&amp; ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
 				<Button text="Submit" type="Transparent" press="onSubmitClick"
