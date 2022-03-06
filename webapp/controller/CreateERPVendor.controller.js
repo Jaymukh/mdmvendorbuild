@@ -1436,10 +1436,10 @@ sap.ui.define([
 						Name : "Postal Code should be 5 or 10 digits for USA."
 					});
 					oPostalControl.setValueState("Error");
-				}else if(sCountry.toLowerCase() === "ca" &&  sPostalCodeLength !== 6 ){
+				}else if(sCountry.toLowerCase() === "ca" &&  sPostalCodeLength !== 7 ){
 					aEmptyFields.push({
 						section: "PostalCodeCheck",
-						Name : "Postal Code should be 6 digits for Canada "
+						Name : "Postal Code should be 7 digits for Canada "
 					});
 					oPostalControl.setValueState("Error");
 				}else{
