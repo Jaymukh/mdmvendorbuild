@@ -1389,6 +1389,8 @@ sap.ui.define([
 		},
 
 		onDocumentDownload: function (oEvent) {
+			var oBusyIndicator = new sap.m.BusyDialog();
+			oBusyIndicator.open();
 			var sDocID = oEvent.getSource().getProperty("documentId");
 			var sDocName = oEvent.getSource().getProperty("fileName");
 			var sMimeType = sDocName.split(".")[1];
@@ -1406,6 +1408,7 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
+					oBusyIndicator.close();
 					if (oDataResp) {
 						var a = document.createElement("a");
 						a.href = oDataResp;
@@ -1414,6 +1417,7 @@ sap.ui.define([
 					}
 				}.bind(this),
 				function (oError) {
+					oBusyIndicator.close();
 					this.getView().setBusy(false);
 					MessageToast.show("Error in File Downloading");
 				}.bind(this)
