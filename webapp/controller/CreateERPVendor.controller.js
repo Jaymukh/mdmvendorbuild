@@ -2001,15 +2001,15 @@ sap.ui.define([
 			}
 		},
 		
-		onChangeWebSite: function (oEvent) {
+		/*onChangeWebSite: function (oEvent) {
 			let sWbSite = oEvent.getSource().getValue();
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_srch", sWbSite.toUpperCase());
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website", sWbSite);
 	
-		},
-		onChgTelCtry: function (oEvent) {
+		},*/
+		/*onChgTelCtry: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry", oEvent.getParameter("selectedItem").getBindingContext(
 					"valueHelps").getObject().telefto);
@@ -2034,6 +2034,6 @@ sap.ui.define([
 		onChgFaxExt: function (oEvent) {
 			this.getView().getModel("CreateVendorModel").setProperty(
 				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention", oEvent.getSource().getValue());
-		}
+		}*/
 	});
 });

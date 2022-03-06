@@ -939,30 +939,40 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}"></Text>
 											<core:Title text="Telephone No's."/>
 											<Label text="Country"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>
+											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code" editable="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}">
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+											</ComboBox>
 											<Label text="Telephone"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
 											<Label text="Extention"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"/>
 											<Label text="Standard"/>
 											<CheckBox enabled="false"/>
 											<core:Title text="Fax No."/>
 											<Label text="Country"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>
+											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code" editable="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}">
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+											</ComboBox>
 											<Label text="Telephone"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}"/>
 											<Label text="Extention"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}"/>
 											<Label text="Standard"/>
 											<CheckBox enabled="false"/>
 											<core:Title text="Email Address"/>
 											<Label text="Email Address"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" editable="false">
+												<tokens>
+													<Token key="{emails>mail}" text="{emails>mail}" editable="false"/>
+												</tokens>
+											</MultiInput>
 											<Label text="Standard"/>
 											<CheckBox enabled="false"/>
 											<core:Title text="Website"/>
 											<Label text="URL"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"/>
 											<core:Title text="International Versions"/>
 											<Label text="Address Version"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internalVersionsAddressVersion}"/>

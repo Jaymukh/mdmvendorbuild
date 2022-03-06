@@ -253,17 +253,16 @@
 											<core:Title text="Communication Data"/>
 											<Label text="Telephone"/>
 											<ComboBox items="{valueHelps>/TelCountryCodes}"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code"
-												selectionChange="onChgTelCtry">
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
-												placeholder="Number" liveChange="onChgTelNum"></Input>
+												placeholder="Number"></Input>
 											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
-												placeholder="Ext" liveChange="onChgTelExt">
+												placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
@@ -285,27 +284,25 @@
 												</tokens>
 											</MultiInput>
 											<Label text="Fax"/>
-											<ComboBox items="{valueHelps>/TelCountryCodes}" selectionChange="onChgFaxCtry"
+											<ComboBox items="{valueHelps>/TelCountryCodes}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}" placeholder="Dailing Code">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number"
-												liveChange="onChgFaxNum">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}" placeholder="Number">
 												<!--	<layoutData>
 													<l:GridData span="XL2 L3 M3 S4"/>
 												</layoutData>-->
 											</Input>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext" 	liveChange="onChgFaxExt">
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}" placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
 												</layoutData>
 											</Input>
 											<Label text="Web site"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"
-												liveChange="onChangeWebSite"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"/>
 											<core:Title/>
 											<Label text="PO Box Lobby"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_lobby}"/>
@@ -1865,13 +1862,13 @@
 											<Label text="Country"/>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>-->
 											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}">
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}">
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telephone}"/>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
 											<Label text="Extention"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/telExtension}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"/>
 											<Label text="Standard"/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -1882,13 +1879,13 @@
 											<Label text="Country"/>
 											<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>-->
 											<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
-												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}">
-												<core:Item key="{valueHelps>telefto}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}">
+												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxTelephone}"/>
+											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}"/>
 											<Label text="Extention"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxExtention}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}"/>
 											<Label text="Standard"/>
 											<CheckBox select="onSelectCheckBox">
 												<customData>
@@ -1897,12 +1894,16 @@
 											</CheckBox>
 											<core:Title text="Email Address"/>
 											<Label text="Email Address"/>
-											<Input type="Email" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/emailAddress}"/>
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
+												<tokens>
+													<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
+												</tokens>
+											</MultiInput>
 											<Label text="Standard"/>
 											<CheckBox/>
 											<core:Title text="Website"/>
 											<Label text="URL"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/website}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"/>
 											<core:Title text="International Versions"/>
 											<Label text="Address Version"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internalVersionsAddressVersion}"/>
