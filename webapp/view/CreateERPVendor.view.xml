@@ -2640,7 +2640,7 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" deletePress="onDeleteAttachment" visibleDelete="true"
+													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" deletePress="onDeleteAttachment" visibleDelete="{= (${CreateVendorModel>/createCRVendorData/crID} ? false : true)}"
 													press="onDocumentDownload">
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
