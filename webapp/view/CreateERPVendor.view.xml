@@ -829,7 +829,7 @@
 														<core:CustomData key="inputText" value="bukrs"></core:CustomData>
 													</customData>
 												</Input>
-												<core:Title text="ERP Vendor Company Code : Accounting Information"/>
+												<core:Title text="ERP Vendor Company Code : Accounting Information" tooltip="ERP Vendor Company Code : Accounting Information"/>
 												<Label text="Reconcillation Account" required="true"/>
 												<Select id="idCompCodesReconcillationAccunt" forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}">
 													<items>
@@ -904,8 +904,8 @@
 												</Select>
 												<Label text="Certification Date"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/CERDT}"/>
-												<core:Title text="ERP Vendor Company Code : Interest Calculation"/>
-												<Label text="Interest Indicator"/>
+												<core:Title text="ERP Vendor Company Code : Intrest Calculation" tooltip="ERP Vendor Company Code : Intrest Calculation"/>
+												<Label text="Intrest Indicator"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/VZSKZ}">
 													<customData>
@@ -1083,12 +1083,12 @@
 												<Label text="Date on which Exemption Ends"/>
 												<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd" value="{CreateVendorModel>/addCompanyCodeFormData/lfbw/WT_EXDT}"
 													change="onWithHoldDataChanged"/>
-												<core:Title text="ERP Vendor Company Code : Reference data"/>
+												<core:Title text="ERP Vendor Company Code : Reference data" tooltip="ERP Vendor Company Code : Reference data"/>
 												<Label text="Previous Account No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ALTKN}" maxLength="10"/>
 												<Label text="Personnel No."/>
 												<Input value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/PERNR}" maxLength="8"/>
-												<core:Title text="ERP Vendor Company Code : Payment data"/>
+												<core:Title text="ERP Vendor Company Code : Payment data" tooltip="ERP Vendor Company Code : Payment data"/>
 												<Label text="Payment terms"/>
 												<Input id="idCompCodesTermsOfPayment" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZTERM}">
@@ -1135,7 +1135,7 @@
 														<core:CustomData key="/addCompanyCodeFormData/lfb1/REPRF" value="addComp"></core:CustomData>
 													</customData>
 												</CheckBox>
-												<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
+												<core:Title text="ERP Vendor Company Code : Automatic Payment transaction" tooltip="ERP Vendor Company Code : Automatic Payment transaction"/>
 												<Label text="Payment Method" required="true"/>
 												<Select id="idCompCodePaymentMethod" showSecondaryValues="true" forceSelection="false" items="{CreateVendorModel>/paymentMehtodBinding}"
 													selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZWELS}">
@@ -1207,7 +1207,7 @@
 														<core:CustomData key="/vnd_lfb1/XVERR" value="X"></core:CustomData>
 													</customData>
 												</CheckBox>
-												<core:Title text="ERP Vendor Company Code : Invoice Verification"/>
+												<core:Title text="ERP Vendor Company Code : Invoice Verification" tooltip="ERP Vendor Company Code : Invoice Verification"/>
 												<Label text="Delivery Tolerance Group"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}">
@@ -1339,7 +1339,7 @@
 													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}" key="{purOrgPurOrgModel>ekorg}"/>
 												</items>
 											</ComboBox>
-											<core:Title text="ERP Vendor Parchasing Organization : Conditions"/>
+											<core:Title text="ERP Vendor Parchasing Organization : Conditions" tooltip="ERP Vendor Parchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
 											<Input id="idPurOrgOrderCurrency" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{vndLfm1>/lfm1/WAERS}">
@@ -1424,7 +1424,7 @@
 											<core:Title/>
 											<Label text="Account with Vendor"/>
 											<Input value="{vndLfm1>/lfm1/EIKTO}" maxLength="12"/>
-											<core:Title text="ERP Vendor Purchasing Organization: Control Data"/>
+											<core:Title text="ERP Vendor Purchasing Organization: Control Data" tooltip="ERP Vendor Purchasing Organization: Control Data"/>
 											<Label text="ABC Indicator"/>
 											<Input value="{vndLfm1>/lfm1/LFABC}" maxLength="1"/>
 											<Label text="Mode of Transport-Border"/>
@@ -1572,7 +1572,7 @@
 													<core:CustomData key="/vnd_lfm1/vnd_lfm1_1/ZZQUA_FLAG" value="X"></core:CustomData>
 												</customData>
 											</CheckBox>
-											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material"/>
+											<core:Title text="ERP Vendor Purchasing Organization: Default Data Material" tooltip="ERP Vendor Purchasing Organization: Default Data Material"/>
 											<Label text="Purchasing Group"/>
 											<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{vndLfm1>/lfm1/EKGRP}">
 												<customData>
@@ -1601,7 +1601,7 @@
 											<Input value="{vndLfm1>/lfm1/PLIFZ}" maxLength="3"/>
 											<Label text="Unit of Measure Group"/>
 											<Input value="{vndLfm1>/lfm1/MEGRU}" maxLength="4"/>
-											<core:Title text="ERP Vendor Purchasing Organization: Service Data"/>
+											<core:Title text="ERP Vendor Purchasing Organization: Service Data" tooltip="ERP Vendor Purchasing Organization: Service Data"/>
 											<Label text="Price Marketing Agreed"/>
 											<Input/>
 											<Label text="Vendor Service Level"/>
@@ -2640,7 +2640,7 @@
 											<items>
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
-													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" deletePress="onDeleteAttachment" visibleDelete="true"
+													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" deletePress="onDeleteAttachment" visibleDelete="{= (${CreateVendorModel>/createCRVendorData/crID} ? false : true)}"
 													press="onDocumentDownload">
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
