@@ -2048,8 +2048,8 @@
 												</customData>
 											</Input>
 											<Label text="Description"/>
-											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRTXT}"/>
-											<!--<core:Title/>-->
+											<Select id="industryDesID" enabled="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}">
+											</Select>
 											<!--<Label text="Standard Industry"/>-->
 											<!--<CheckBox/>-->
 										</form:content>
@@ -2687,7 +2687,7 @@
 			<Toolbar>
 				<ToolbarSpacer/>
 				<Button text="Save" type="Transparent" press="onSaveClick"/>
-				<Button id="idCreateVendorSubmit" text="Submit" visible="false" type="Transparent" press="onSubmitClick"/>
+				<Button text="Submit" visible="false" type="Transparent" press="onSubmitClick"/>
 				<Button text="Check" type="Transparent" press="onCheckClick"/>
 				<Button icon="sap-icon://undo" type="Transparent" press="onUndoClick" visible="false"/>
 				<Button icon="sap-icon://redo" type="Transparent" press="onRedoClick" visible="false"/>

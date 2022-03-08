@@ -5,7 +5,7 @@
 		<content>
 			<Toolbar>
 				<Title
-					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ'], formatter: '.formatCR_Org_Name' }"
+					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr'], formatter: '.formatCR_Org_Name' }"
 					level="H2"></Title>
 			</Toolbar>
 			<Page showHeader="false" showNavButton="false" showFooter="true">
@@ -1067,10 +1067,16 @@
 											<Label text="Industry"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"></Text>
 											<Label text="Description"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRTXT}"/>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>-->
+											<ComboBox editable="false" items="{crERPIndustryModel>/modelMap}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}">
+												<items>
+													<core:Item text="{crERPIndustryModel>brtxt}" key="{crERPIndustryModel>brsch}"/>
+												</items>
+											</ComboBox>
 											<!--<core:Title/>-->
 											<!--<Label text="Standard Industry"/>-->
-											<!--<CheckBox enabled="false" visible="false"/>-->
+											<!--<CheckBox enabled="false"/>-->
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -1508,10 +1514,10 @@
 				<Button id="idCreateVendorSubmitErrors" visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
 				<ToolbarSpacer/>
 				<Button id="idERPSAVECLICK" text="Save" type="Transparent" press="onERPSaveClick"
-					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005)}"/>
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/changeReq/genData/change_request_id} === 50004 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50005)}"/>
 				<Button text="Edit" type="Transparent" press="onEditClick"
-					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001) &amp;&amp; ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
-				<Button text="Submit" type="Transparent" press="onSubmitClick"
+					visible="{= (${CreateVendorModel>/changeReq/genData/isClaimable} &amp;&amp; (${CreateVendorModel>/changeReq/genData/change_request_id} === 50002 || ${CreateVendorModel>/changeReq/genData/change_request_id} === 50001 || ${userManagementModel>/role}.indexOf('stew') !== -1) &amp;&amp; ${userManagementModel>/role}.indexOf('approv') === -1 )}"/>
+				<Button text="Submit" type="Transparent" press="onSubmitClick" id="idCreateVendorSubmit"
 					visible="{= ${userManagementModel>/role}.indexOf('req') !== -1 &amp;&amp; ${CreateVendorModel>/preview} === true ? true : false}"/>
 				<!--<Button text="Check" type="Transparent" press="onCheckClick" visible="{= ${CreateVendorModel>/vndDetails} === true}"/>-->
 				<Button text="Approve" type="Accept" press="onApproveClick"

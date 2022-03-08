@@ -120,6 +120,11 @@ sap.ui.define([
 					"controlTable": "T005S",
 					"controlField": "bland",
 					"controlFieldName": "bezei"
+				}, {
+					"controlID": "industryDesID",
+					"controlTable": "T016T",
+					"controlField": "brsch",
+					"controlFieldName": "brtxt"
 				}
 
 			];
@@ -144,6 +149,10 @@ sap.ui.define([
 							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress", Object.assign({}, data.result));
 						}
 					} else {
+						if(item.controlID === 'industryDesID') {
+							data.result.modelMap.unshift({});
+							that.getOwnerComponent().getModel('crERPIndustryModel').setData(data.result);
+						}
 						var oJsonModel = new JSONModel(data.result);
 						that.getView().byId(sControlID).setModel(oJsonModel);
 						if (item.controlID === 'generalDataTitleId') {
