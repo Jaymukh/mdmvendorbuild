@@ -5,7 +5,7 @@
 		<content>
 			<Toolbar>
 				<Title
-					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ'], formatter: '.formatCR_Org_Name' }"
+					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr'], formatter: '.formatCR_Org_Name' }"
 					level="H2"></Title>
 			</Toolbar>
 			<Page showHeader="false" showNavButton="false" showFooter="true">
@@ -1067,17 +1067,16 @@
 											<Label text="Industry"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"></Text>
 											<Label text="Description"/>
-<<<<<<< Upstream, based on origin/main
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRTXT}"/>
-											<!--<core:Title/>-->
-											<!--<Label text="Standard Industry"/>-->
-											<!--<CheckBox enabled="false" visible="false"/>-->
-=======
-											<Text/>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>-->
+											<ComboBox editable="false" items="{crERPIndustryModel>/modelMap}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}">
+												<items>
+													<core:Item text="{crERPIndustryModel>brtxt}" key="{crERPIndustryModel>brsch}"/>
+												</items>
+											</ComboBox>
 											<!--<core:Title/>-->
 											<!--<Label text="Standard Industry"/>-->
 											<!--<CheckBox enabled="false"/>-->
->>>>>>> 70ce5f0 change
 										</form:content>
 									</form:SimpleForm>
 								</content>

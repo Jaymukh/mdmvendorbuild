@@ -151,6 +151,7 @@ sap.ui.define([
 					} else {
 						if(item.controlID === 'industryDesID') {
 							data.result.modelMap.unshift({});
+							that.getOwnerComponent().getModel('crERPIndustryModel').setData(data.result);
 						}
 						var oJsonModel = new JSONModel(data.result);
 						that.getView().byId(sControlID).setModel(oJsonModel);
