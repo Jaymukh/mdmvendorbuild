@@ -413,10 +413,10 @@ sap.ui.define([
 					if(this.getView().byId("idCreateVendorSubmit")){
 					this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
-					var sID = this.getView().getParent().getPages().find(function (e) {
-						return e.getId().indexOf("erpVendorPreview") !== -1;
-					}).getId();
-					this.getView().getParent().to(sID);
+					// var sID = this.getView().getParent().getPages().find(function (e) {
+					// 	return e.getId().indexOf("erpVendorPreview") !== -1;
+					// }).getId();
+					// this.getView().getParent().to(sID);
 					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);

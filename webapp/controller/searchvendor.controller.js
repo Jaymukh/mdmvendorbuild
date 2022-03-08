@@ -1079,7 +1079,7 @@ sap.ui.define([
 						return e.getId().indexOf("erpVendorPreview") !== -1;
 					}).getId();
 					this.getView().getParent().to(sID);*/
-						this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
+						this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
