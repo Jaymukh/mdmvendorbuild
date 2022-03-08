@@ -1067,10 +1067,17 @@
 											<Label text="Industry"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"></Text>
 											<Label text="Description"/>
+<<<<<<< Upstream, based on origin/main
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRTXT}"/>
 											<!--<core:Title/>-->
 											<!--<Label text="Standard Industry"/>-->
 											<!--<CheckBox enabled="false" visible="false"/>-->
+=======
+											<Text/>
+											<!--<core:Title/>-->
+											<!--<Label text="Standard Industry"/>-->
+											<!--<CheckBox enabled="false"/>-->
+>>>>>>> 70ce5f0 change
 										</form:content>
 									</form:SimpleForm>
 								</content>

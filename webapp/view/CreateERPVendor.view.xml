@@ -2048,7 +2048,8 @@
 												</customData>
 											</Input>
 											<Label text="Description"/>
-											<Input/>
+											<Select id="industryDesID" enabled="false" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}">
+											</Select>
 											<!--<Label text="Standard Industry"/>-->
 											<!--<CheckBox/>-->
 										</form:content>
