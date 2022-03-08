@@ -1500,7 +1500,7 @@ sap.ui.define([
 			}else if(sSection === "PostalCodeCheck"){
 				sMsg = sName;
 			}else {
-				sMsg = "No " + sSection + " is maintained in " + sSection + " table";
+				sMsg = "No " + sSection + " is maintained in " + sSection + " table, check mandatory fields.";
 			}
 			return sMsg;
 		},
