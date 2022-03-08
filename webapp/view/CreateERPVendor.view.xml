@@ -2048,10 +2048,10 @@
 												</customData>
 											</Input>
 											<Label text="Description"/>
-											<Input/>
-											<core:Title/>
-											<Label text="Standard Industry"/>
-											<CheckBox/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRTXT}"/>
+											<!--<core:Title/>-->
+											<!--<Label text="Standard Industry"/>-->
+											<!--<CheckBox/>-->
 										</form:content>
 									</form:SimpleForm>
 								</content>
