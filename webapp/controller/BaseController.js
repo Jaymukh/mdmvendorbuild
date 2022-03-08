@@ -1093,7 +1093,7 @@ sap.ui.define([
 			var sText = "";
 			if (sOrgNo) {
 				// sText = "Organization: " + sOrgNo + ", (no description available)";
-				sText = "Organization: " + sOrgNo + "/" + name + "/" + city  + "/" + reg + "/" + postcode;
+				sText = "Organization: " + sOrgNo + " / " + name + " / " + city  + " / " + reg + " / " + postcode;
 			} else {
 				sText = "Organization: (no description available)";
 			}

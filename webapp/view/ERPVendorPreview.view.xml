@@ -5,7 +5,7 @@
 		<content>
 			<Toolbar>
 				<Title
-					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr'], formatter: '.formatCR_Org_Name' }"
+					text="{ parts: [ 'CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO','CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ'], formatter: '.formatCR_Org_Name' }"
 					level="H2"></Title>
 			</Toolbar>
 			<Page showHeader="false" showNavButton="false" showFooter="true">
