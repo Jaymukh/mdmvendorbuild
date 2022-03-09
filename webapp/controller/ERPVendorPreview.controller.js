@@ -920,8 +920,18 @@ sap.ui.define([
 		},
 
 		onSelectPraAddress: function (oEvent) {
-			var oAddress = Object.assign({}, oEvent.getParameter("listItem").getBindingContext("praAddressModel").getObject());
+			var oAddress = Object.assign({}, oEvent.getParameter("listItem").getBindingContext("praAddressModel").getObject()),
+			oPraBpAd = this.getView().getModel("CreateVendorModel").getProperty(
+					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad"),
+			 aKeys = Object.keys(oPraBpAd);
+			aKeys.forEach((key, index) => {
+				if (oPraBpAd[key].adrnr == oAddress.addrnumber) {
+					// this code is auto populate the Address type in the PRA address section.
+					oAddress.addr_type = oPraBpAd[key].addr_type;
+				}
+			});
 			this.getView().getModel("praAddressModel").setProperty("/address", oAddress);
+			
 		}
 
 	});

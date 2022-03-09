@@ -1258,7 +1258,11 @@
 													singleContainerFullSize="false">
 													<form:content>
 														<Label text="Address Type"/>
-														<ComboBox editable="false" required="true" selectedKey="{praAddressModel>/address/addr_type}"></ComboBox>
+														<ComboBox editable="false" required="true" items="{praAddrTypeModel>/modelMap}" selectedKey="{praAddressModel>/address/addr_type}">
+															<items>
+																<core:Item text="{praAddrTypeModel>description}" key="{praAddrTypeModel>addr_TYPE}"/>
+															</items>
+														</ComboBox>
 														<Label text="Title"/>
 														<ComboBox editable="false" items="{crERPTitleFilterModel>/modelMap}" selectedKey="{praAddressModel>/address/title}">
 															<items>

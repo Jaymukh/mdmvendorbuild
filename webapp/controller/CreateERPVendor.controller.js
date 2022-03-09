@@ -157,6 +157,8 @@ sap.ui.define([
 						that.getView().byId(sControlID).setModel(oJsonModel);
 						if (item.controlID === 'generalDataTitleId') {
 							that.getOwnerComponent().getModel('crERPTitleFilterModel').setData(data.result);
+						} else if (item.controlID === 'praDataAddrTabAddressTypeId') {
+							that.getOwnerComponent().getModel('praAddrTypeModel').setData(data.result);
 						} else if (item.controlID === 'purOrgPurOrgId') {
 							that.getOwnerComponent().getModel('purOrgPurOrgModel').setData(data.result);
 						} else {

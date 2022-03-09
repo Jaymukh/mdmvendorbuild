@@ -2394,12 +2394,10 @@
 													singleContainerFullSize="false">
 													<form:content>
 														<Label text="Address Type"/>
-														<ComboBox required="true" id="praDataAddrTabAddressTypeId" selectedKey="{praAddressModel>/address/addr_type}">
-															<!--	<items>
-																<core:Item text="Add 1" key="1"/>
-																<core:Item text="Add 2" key="2"/>
-																<core:Item text="Add 3" key="3"/>
-															</items>-->
+														<ComboBox required="true" id="praDataAddrTabAddressTypeId" items="{praAddrTypeModel>/modelMap}" selectedKey="{praAddressModel>/address/addr_type}">
+															<items>
+																<core:Item text="{praAddrTypeModel>description}" key="{praAddrTypeModel>addr_TYPE}"/>
+															</items>
 														</ComboBox>
 														<Label text="Title"/>
 														<ComboBox id="praDataAddrTabTitleId" items="{crERPTitleFilterModel>/modelMap}" selectedKey="{praAddressModel>/address/title}">
