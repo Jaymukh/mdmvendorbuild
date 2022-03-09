@@ -102,6 +102,7 @@ sap.ui.define([
 				oVendorModel.setProperty("/changeReq/genData/change_request_by", oChangeReq.change_request_by);
 				oVendorModel.setProperty("/changeReq/genData/modified_by", oChangeReq.modified_by);
 				oVendorModel.setProperty("/changeReq/genData/isClaimable", oChangeReq.isClaimable);
+				oVendorModel.setProperty("/changeReq/genData/is_cr_closed", oChangeReq.is_cr_closed);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
 				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);

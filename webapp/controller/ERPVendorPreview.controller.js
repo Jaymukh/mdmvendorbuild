@@ -410,17 +410,17 @@ sap.ui.define([
 				if (oDataResp.result) {
 					MessageToast.show("Successfuly Saved");
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRDDResp", oDataResp.result);
-					if(this.getView().byId("idCreateVendorSubmit")){
-					this.getView().byId("idCreateVendorSubmit").setVisible(true);
+					if (this.getView().byId("idCreateVendorSubmit")) {
+						this.getView().byId("idCreateVendorSubmit").setVisible(true);
 
-					// var sID = this.getView().getParent().getPages().find(function (e) {
-					// 	return e.getId().indexOf("erpVendorPreview") !== -1;
-					// }).getId();
-					// this.getView().getParent().to(sID);
-					this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
-					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
-					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
-					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
+						// var sID = this.getView().getParent().getPages().find(function (e) {
+						// 	return e.getId().indexOf("erpVendorPreview") !== -1;
+						// }).getId();
+						// this.getView().getParent().to(sID);
+						this.getView().getModel("CreateVendorModel").setProperty("/preview", true);
+						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
+						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
 					}
 				}
 			}.bind(this), function (oError) {
@@ -931,7 +931,37 @@ sap.ui.define([
 				}
 			});
 			this.getView().getModel("praAddressModel").setProperty("/address", oAddress);
-			
+		},
+
+		onWithdrawClick: function () {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/withdraw",
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crDTO": {
+							"change_request_id": this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID")
+						}
+					}],
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				},
+				type: 'POST'
+			};
+
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				this.getView().setBusy(false);
+				if (oDataResp.result) {
+					MessageToast.show("CR Withdrawal is completed");
+					this.nPageNo = 1;
+					this.handleGetAllChangeRequests(this.nPageNo);
+					this.handleChangeRequestStatistics();
+					this.onAllChangeReqClick();
+				}
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+				MessageToast.show("Error In Withdraw CR");
+			}.bind(this));
 		}
 
 	});
