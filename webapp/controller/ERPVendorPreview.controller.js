@@ -953,6 +953,9 @@ sap.ui.define([
 				this.getView().setBusy(false);
 				if (oDataResp.result) {
 					MessageToast.show("CR Withdrawal is completed");
+					this.nPageNo = 1;
+					this.handleGetAllChangeRequests(this.nPageNo);
+					this.handleChangeRequestStatistics();
 					this.onAllChangeReqClick();
 				}
 			}.bind(this), function (oError) {
