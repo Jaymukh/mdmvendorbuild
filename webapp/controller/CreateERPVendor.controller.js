@@ -1453,6 +1453,19 @@ sap.ui.define([
 						Name : "Postal Code should be 7 digits for Canada "
 					});
 					oPostalControl.setValueState("Error");
+				}else if(sCountry.toLowerCase() === "us" && sPostalCodeLength == 10){
+					var oSplitValue = sPostalCode.split("");
+					
+					if(oSplitValue[5] !== "-"){
+					aEmptyFields.push({
+						section: "PostalCodeCheck",
+						Name : "A '-' must be in the 6 place of the postal code"
+					});
+					oPostalControl.setValueState("Error");	
+					}else {
+						oPostalControl.setValueState("None");
+					}
+				
 				}else{
 					oPostalControl.setValueState("None");
 				} 
