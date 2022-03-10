@@ -1157,13 +1157,13 @@ sap.ui.define([
 		getAllCommentsForCR: function (sEntityID) {
 			this.getView().setBusy(true);
 			var sCRID, sIsclaimable;
-			if (this.getView().getId().indexOf("changeRequestId") > -1) {
-				sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
-				sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
-			} else {
+			// if (this.getView().getId().indexOf("changeRequestId") > -1) {
+			// 	sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
+			// 	sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
+			// } else {
 				sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
 				sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
-			}
+			// }
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
 				type: 'POST',
