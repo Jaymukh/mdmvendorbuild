@@ -1089,11 +1089,11 @@ sap.ui.define([
 			return sID;
 		},
 
-		formatCR_Org_Name: function (sOrgNo,name,city,reg,postcode) {
+		formatCR_Org_Name: function (sOrgNo, name, city, reg, postcode) {
 			var sText = "";
 			if (sOrgNo) {
 				// sText = "Organization: " + sOrgNo + ", (no description available)";
-				sText = "Organization: " + sOrgNo + " / " + name + " / " + city  + " / " + reg + " / " + postcode;
+				sText = "Organization: " + sOrgNo + " / " + name + " / " + city + " / " + reg + " / " + postcode;
 			} else {
 				sText = "Organization: (no description available)";
 			}
@@ -1156,6 +1156,14 @@ sap.ui.define([
 
 		getAllCommentsForCR: function (sEntityID) {
 			this.getView().setBusy(true);
+			var sCRID, sIsclaimable;
+			// if (this.getView().getId().indexOf("changeRequestId") > -1) {
+			// 	sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
+			// 	sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
+			// } else {
+				sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
+				sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
+			// }
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
 				type: 'POST',
@@ -1170,7 +1178,35 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
-					if (oDataResp.result) {
+					if (oDataResp.result && oDataResp.result.parentCrDTOs && oDataResp.result.parentCrDTOs[0] && oDataResp.result.parentCrDTOs[0].crCommentDTOs) {
+						oDataResp.result.parentCrDTOs[0].crCommentDTOs.forEach(function (currentValue, index) {
+							if (currentValue.note_by_user.user_id === this.getView().getModel("userManagementModel").getProperty("/data/user_id")) {
+								var aRole = this.getView().getModel("userManagementModel").getProperty("/role");
+								if ((aRole.indexOf('stew') !== -1 || aRole.indexOf('approv') !== -1) && sIsclaimable) {
+									currentValue.actions = [{
+										"Text": "Edit",
+										"Icon": "sap-icon://edit",
+										"Key": "edit"
+									}, {
+										"Text": "Delete",
+										"Icon": "sap-icon://delete",
+										"Key": "delete"
+									}];
+								} else if (aRole.indexOf('req') !== -1 && !sCRID) {
+									currentValue.actions = [{
+										"Text": "Edit",
+										"Icon": "sap-icon://edit",
+										"Key": "edit"
+									}, {
+										"Text": "Delete",
+										"Icon": "sap-icon://delete",
+										"Key": "delete"
+									}];
+
+								}
+
+							}
+						}.bind(this));
 						this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
 						this.getView().getModel("crERPCommentedModel").refresh(true);
 						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
@@ -1180,6 +1216,9 @@ sap.ui.define([
 							0;
 						this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", nCommentCount);
 
+					} else {
+						this.getView().getModel("crERPCommentedModel").setData(null);
+						this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", 0);
 					}
 				}.bind(this),
 				function (oError) {
@@ -1594,6 +1633,119 @@ sap.ui.define([
 				function (oError) {
 					this.getView().setBusy(false);
 					MessageToast.show("Failed to delete the attachment");
+				}.bind(this)
+			);
+		},
+
+		onCommentActionPressed: function (oEvent) {
+			var sAction = oEvent.getSource().getKey();
+			var OItem = oEvent.getParameter("item");
+			if (sAction === "delete") {
+				this._deleteComment(OItem.getBindingContext("crERPCommentedModel").getObject());
+			} else {
+				this._updateComment(OItem.getBindingContext("crERPCommentedModel").getObject());
+			}
+		},
+
+		_deleteComment: function (oParam) {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/delete",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crCommentDTOs": [{
+							"note_id": oParam.note_id,
+							"note_by_user": {
+								"user_id": oParam.note_by_user.user_id
+							}
+						}]
+					}]
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.getAllCommentsForCR(oParam.entity_id);
+						MessageToast.show("Comment Deleted Successfully.");
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to delete the Comment");
+				}.bind(this)
+			);
+		},
+
+		_updateComment: function (oParam) {
+			this.oUpdateCommentDailog = new sap.m.Dialog({
+				title: "Update Comment",
+				type: "Message",
+				state: "None",
+				content: [
+					new sap.m.VBox({
+						items: [
+							new sap.m.TextArea({
+								width: "100%",
+								value: oParam.note_desc
+							})
+						]
+					})
+				],
+				beginButton: new sap.m.Button({
+					text: "Ok",
+					press: function (oEvent) {
+						var sNewComment = oEvent.getSource().getParent().getContent()[0].getItems()[0].getValue();
+						if (sNewComment) {
+							this._UpdateCommentCall(oParam, sNewComment);
+						} else {
+							MessageToast.show("Please update the comment to continoue");
+						}
+					}.bind(this)
+				}),
+				endButton: new sap.m.Button({
+					text: "Cancel",
+					press: function () {
+						this.oUpdateCommentDailog.close();
+					}.bind(this)
+				})
+			});
+
+			this.getView().addDependent(this.oUpdateCommentDailog);
+			this.oUpdateCommentDailog.open();
+		},
+
+		_UpdateCommentCall: function (oParam, sNewComment) {
+			this.getView().setBusy(true);
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/update",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"parentCrDTOs": [{
+						"crCommentDTOs": [{
+							"entity_id": oParam.entity_id,
+							"note_id": oParam.note_id,
+							"note_desc": sNewComment,
+							"note_by_user": {
+								"user_id": oParam.note_by_user.user_id
+							}
+						}]
+					}]
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						this.oUpdateCommentDailog.close();
+						this.getAllCommentsForCR(oParam.entity_id);
+						MessageToast.show("Comment Updated Successfully.");
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to update the Comment");
 				}.bind(this)
 			);
 		}
