@@ -802,6 +802,24 @@ sap.ui.define([
 		   }
 		   return sResult;
 			
+		},
+		
+		onLinkPressEdit: function(oEvent){
+			var oParam = oEvent.getSource().getBindingContext("crERPCommentedModel").getObject();
+			this._updateComment(oParam);
+		},
+		
+		onLinkPressDelete: function(oEvent) {
+			var oParam = oEvent.getSource().getBindingContext("crERPCommentedModel").getObject();
+			this._deleteComment(oParam);
+		},
+		
+		handleCommentActionViisbility: function(action){
+			if(action && action.length) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		/**

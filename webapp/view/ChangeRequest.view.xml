@@ -137,7 +137,8 @@
 																		press="onChangeReqLinkPress"></Link>
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_desc}"></Text>
 																	<ObjectStatus text="{path:'changeRequestGetAllModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
-																	<ObjectStatus text="{parts :[{path:'changeRequestGetAllModel>crDTO/assigmentStatus'},{path:'changeRequestGetAllModel>crDTO/assignmentStage'}],formatter:'.handleStatus'}"/>
+																	<ObjectStatus
+																		text="{parts :[{path:'changeRequestGetAllModel>crDTO/assigmentStatus'},{path:'changeRequestGetAllModel>crDTO/assignmentStage'}],formatter:'.handleStatus'}"/>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/modified_by/firstname} {changeRequestGetAllModel>crDTO/modified_by/lastname}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by/firstname} {changeRequestGetAllModel>crDTO/change_request_by/lastname}"></Text>
@@ -260,7 +261,8 @@
 																			<!-- attributes="{path : '/', templateShareable : false}"-->
 																			<!--statuses="{path : '/', templateShareable : false}" -->
 																			<attributes>
-																				<ObjectAttribute title="Uploaded By" text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
+																				<ObjectAttribute title="Uploaded By"
+																					text="{crERPAttachmentModel>attachmentEntity/created_by/firstname} {crERPAttachmentModel>attachmentEntity/created_by/lastname}"/>
 																				<ObjectAttribute title="Uploaded On" text="{path:'crERPAttachmentModel>attachmentEntity/created_on'}"/>
 																			</attributes>
 																			<!--<statuses>-->
@@ -295,7 +297,21 @@
 																	<commons:content>
 																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}"
 																			title="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" userNameClickable="false"
-																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}"></commons:TimelineItem>
+																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}">
+																			<commons:embeddedControl>
+																				<List>
+																					<items>
+																						<CustomListItem>
+																							<VBox>
+																								<Text text="{crERPCommentedModel>note_desc}"/>
+																								<Link text="Edit" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressEdit"/>
+																								<Link text="Delete" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressDelete"/>
+																							</VBox>
+																						</CustomListItem>
+																					</items>
+																				</List>
+																			</commons:embeddedControl>
+																		</commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
 																</commons:Timeline>
