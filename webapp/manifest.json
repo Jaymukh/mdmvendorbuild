@@ -212,6 +212,12 @@
 				"settings": {
 					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"genDropdownModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
 			}
 		},
 		"resources": {

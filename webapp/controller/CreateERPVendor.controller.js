@@ -63,7 +63,7 @@ sap.ui.define([
 				}, {
 					"controlID": "taxTypeId",
 					"controlTable": "J_1AFITPV",
-					"controlField": "j_1afitp",
+					"controlField": "j_1AFITP",
 					"controlFieldName": "text60"
 				}, {
 					"controlID": "taxInfoSocialInsuCodeId",
@@ -167,6 +167,8 @@ sap.ui.define([
 								text: "{" + item.controlFieldName + "}"
 							});
 							that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
+							that.getOwnerComponent().getModel("genDropdownModel").setProperty('/'+item.controlID , data.result.modelMap);
+							that.getOwnerComponent().getModel("genDropdownModel").refresh();
 						}
 					}
 

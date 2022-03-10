@@ -128,7 +128,7 @@
 											<Label text="Name2"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME2}"/>
 											<Label text="Name3"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/Name3}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME3}"/>
 											<core:Title/>
 											<Label text="Legal Name (Name4)"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME4}"/>
@@ -175,7 +175,8 @@
 											<Label text="Transportation Zone"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PO_BOX}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox enabled="false"
 												selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}==='X'}"></CheckBox>
@@ -243,7 +244,21 @@
 											<Label text="PO Box"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="Undeliverable"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}"/>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}"/>-->
+											<Select  showSecondaryValues="true" forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}">
+												<items>
+													<core:ListItem text="Unknown" key="0001" additionalText="0001"/>
+													<core:ListItem text="Moved w/o Forwarding" key="0002" additionalText="0002"/>
+													<core:ListItem text="Inadequate Address" key="0003" additionalText="0003"/>
+													<core:ListItem text="Illegible Address" key="0004" additionalText="0004"/>
+													<core:ListItem text="No Letter Box" key="0005" additionalText="0005"/>
+													<core:ListItem text="No PO Box" key="0006" additionalText="0006"/>
+													<core:ListItem text="Rejected" key="0007" additionalText="0007"/>
+													<core:ListItem text="Deceased" key="0008" additionalText="0008"/>
+													<core:ListItem text="Company wound-up" key="0009" additionalText="0009"/>
+												</items>
+											</Select>
 										</form:content>
 									</form:SimpleForm>
 								</content>
@@ -282,18 +297,57 @@
 											<Label text="External Manufaturer"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}"/>
 											<Label text="Relevant for POD"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}"></Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}"></Text>-->
+											<Select forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
+												<items>
+													<core:Item text="Do Not send POD" key="1"/>
+													<core:Item text="Always Send POD" key="A"/>
+													<core:Item text="Only Send POD if any Changes" key="B"/>
+												</items>
+											</Select>
 											<Label text="SCAC"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}"/>
 											<Label text="Actual QM System"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}"></Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}"></Text>-->
+											<Select forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
+												<items>
+													<core:Item text="ISO 9001,w/out cert.,audit score >80" key="1080"/>
+													<core:Item text="ISO 9001,w/out cert.,audit score >99" key="1099"/>
+													<core:Item text="ISO 9001,w/cert.,audit score >80" key="1180"/>
+													<core:Item text="ISO 9001,w/cert.,audit score >99" key="1199"/>
+													<core:Item text="ISO 9001,with cert.,skip" key="1299"/>
+													<core:Item text="ISO 9002,w/out cert.,audit score >80" key="2080"/>
+													<core:Item text="ISO 9002,w/out cert.,audit score >99" key="2099"/>
+													<core:Item text="ISO 9002,w/cert.,audit score >80" key="2180"/>
+													<core:Item text="ISO 9002,w/cert.,audit score >99" key="2199"/>
+													<core:Item text="ISO 9002,with cert.,skip" key="2299"/>
+													<core:Item text="ISO 9003,w/out cert.,audit score >80" key="3080"/>
+													<core:Item text="ISO 9003,w/out cert.,audit score >99" key="3099"/>
+													<core:Item text="ISO 9003,w/cert.,audit score >80" key="3180"/>
+													<core:Item text="ISO 9003,w/cert.,audit score >99" key="3199"/>
+													<core:Item text="ISO 9003,with cert.,skip" key="3299"/>
+												</items>
+											</Select>
 											<Label text="Carrier Freight Group"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}"/>
 											<core:Title text=""/>
 											<Label text="Industry"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}"/>
 											<Label text="Service agent procedure group"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}"></Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}"></Text>-->
+											<Select forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
+												<items>
+													<core:Item text="Street" key="0001"/>
+													<core:Item text="Post and Package services" key="0002"/>
+													<core:Item text="Rail" key="0003"/>
+													<core:Item text="Sea" key="0004"/>
+													<core:Item text="Load transfer point" key="0005"/>
+													<core:Item text="Customs" key="0006"/>
+												</items>
+											</Select>
 											<Label text="Credit information No."/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}"/>
 											<Label text="Last External Review"/>
@@ -363,15 +417,22 @@
 											<Label text="Tax No."/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}"/>
 											<Label text="Tax Base"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}"></Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}"></Text>-->
+											<Select forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
+												<items>
+													<core:Item text="80%" key="1"/>
+												</items>
+											</Select>
 											<Label text="Tax Type"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
-												<!--<items>-->
-												<!--	<core:Item text="TaxType 1" key="1"/>-->
-												<!--	<core:Item text="TaxType 2" key="2"/>-->
-												<!--	<core:Item text="TaxType 3" key="3"/>-->
-												<!--</items>-->
-											</Text>
+										<!--	<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}"> 	</Text>-->
+											<Select  forceSelection="false" enabled="false" items="{genDropdownModel>/taxTypeId}"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
+												<items>
+													<core:Item text="{genDropdownModel>text60}" key="{genDropdownModel>j_1AFITP}"/>
+												</items>
+											</Select>
+										
 											<Label text="Type of Business"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}"/>
 											<Label text="Name of Representative"/>
@@ -386,13 +447,14 @@
 											<Label text="Social Insurance"/>
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGSS}==='X'}"></CheckBox>
 											<Label text="Social Insurance Code"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
-												<!--<items>
-													<core:Item text="Code 1" key="1"/>
-													<core:Item text="Code 2" key="2"/>
-													<core:Item text="Code 3" key="3"/>
-												</items>-->
-											</Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+											</Text>-->
+											<Select forceSelection="false" enabled="false" items="{genDropdownModel>/taxInfoSocialInsuCodeId}"
+											selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+												<items>
+													<core:Item text="{genDropdownModel>actss}" key="{genDropdownModel>actss}"/>
+												</items>
+											</Select>
 											<Label text="Type of Industry"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}"/>
 										</form:content>
@@ -915,14 +977,13 @@
 											<Label text="Supplement"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<Label text="Title"/>
-											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
-												<!--<items>
-																<core:Item text="Title1" key="1"/>
-																<core:Item text="Title2" key="2"/>
-																<core:Item text="Title3" key="3"/>
-															</items>-->
-											</Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"></Text>-->
+											<Select forceSelection="false"  items="{crERPTitleFilterModel>/modelMap}" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
+												<items>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+												</items>
+											</Select>
 											<Label text="Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
 											<Label text="Name2"/>
@@ -998,7 +1059,13 @@
 											<Text text=""/>
 											<core:Title text="General Data"/>
 											<Label text="Title"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}"></Text>
+											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}"></Text>-->
+											<Select items="{crERPTitleFilterModel>/modelMap}" forceSelection="false" enabled="false"
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/ANRED}">
+												<items>
+													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+												</items>
+											</Select>
 											<Label text="Last Name"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_knvk/vnd_knvk_1/NAME1}"/>
 											<Label text="First Name"/>
@@ -1320,7 +1387,15 @@
 													<form:content>
 														<!--<core:Title text="General Information"/>-->
 														<Label text="Owner Type"/>
-														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/name_id}"></Text>
+														<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/name_id}"></Text>-->
+														<Select forceSelection="false" enabled="false"
+															selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/mame_id}">
+															<items>
+																<core:Item text="Company" key="C"/>
+																<core:Item text="Individual" key=""/>
+																<core:Item text="Trust" key="T"/>
+															</items>
+														</Select>
 														<Label text="Title"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_nm_title}"/>
 														<Label text="First Name"/>
