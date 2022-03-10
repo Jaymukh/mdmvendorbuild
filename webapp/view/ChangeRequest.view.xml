@@ -298,19 +298,19 @@
 																		<commons:TimelineItem dateTime="{crERPCommentedModel>note_date}"
 																			title="{crERPCommentedModel>note_by_user/firstname} {crERPCommentedModel>note_by_user/lastname}" userNameClickable="false"
 																			text="{crERPCommentedModel>note_desc}" userName="{crERPCommentedModel>note_by}" filterValue="{crERPCommentedModel>note_by}">
-																			<commons:embeddedControl>
-																				<List>
-																					<items>
-																						<CustomListItem>
-																							<VBox>
-																								<Text text="{crERPCommentedModel>note_desc}"/>
-																								<Link text="Edit" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressEdit"/>
-																								<Link text="Delete" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressDelete"/>
-																							</VBox>
-																						</CustomListItem>
-																					</items>
-																				</List>
-																			</commons:embeddedControl>
+																			<!--<commons:embeddedControl>-->
+																			<!--	<List>-->
+																			<!--		<items>-->
+																			<!--			<CustomListItem>-->
+																			<!--				<VBox>-->
+																			<!--					<Text text="{crERPCommentedModel>note_desc}"/>-->
+																			<!--					<Link text="Edit" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressEdit"/>-->
+																			<!--					<Link text="Delete" visible="{path:'crERPCommentedModel>actions', formatter : '.handleCommentActionViisbility'}" press = "onLinkPressDelete"/>-->
+																			<!--				</VBox>-->
+																			<!--			</CustomListItem>-->
+																			<!--		</items>-->
+																			<!--	</List>-->
+																			<!--</commons:embeddedControl>-->
 																		</commons:TimelineItem>
 																		<!--iconInitials="{CreateVendorModel>IconInitial}"-->
 																	</commons:content>
