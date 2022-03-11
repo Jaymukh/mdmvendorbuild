@@ -829,6 +829,13 @@
 														<core:CustomData key="inputText" value="bukrs"></core:CustomData>
 													</customData>
 												</Input>
+												<Label text="Company Name"/>
+												<ComboBox placeholder="Company Name" editable="false" items="{genDropdownModel>/idComCodesCompanyCode}"
+													selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}">
+													<items>
+														<core:ListItem text="{genDropdownModel>butxt}" key="{genDropdownModel>bukrs}"/>
+													</items>
+												</ComboBox>
 												<core:Title text="ERP Vendor Company Code : Accounting Information" tooltip="ERP Vendor Company Code : Accounting Information"/>
 												<Label text="Reconcillation Account" required="true"/>
 												<Select id="idCompCodesReconcillationAccunt" forceSelection="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}">
@@ -2548,8 +2555,7 @@
 														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_dob}"/>
 														<Label text="Tax ID"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}"
-															maxLength="9"/>
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}" maxLength="9"/>
 														<Label text="Address Line 1"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_address1}"
 															maxLength="30"/>
