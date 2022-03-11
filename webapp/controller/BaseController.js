@@ -4,8 +4,9 @@ sap.ui.define([
 	'sap/ui/core/Fragment',
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, ServiceCall, Fragment, MessageToast, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/ui/export/Spreadsheet"
+], function (Controller, ServiceCall, Fragment, MessageToast, Filter, FilterOperator, Spreadsheet) {
 	"use strict";
 
 	return Controller.extend("murphy.mdm.vendor.murphymdmvendor.controller.BaseController", {
@@ -1161,8 +1162,8 @@ sap.ui.define([
 			// 	sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
 			// 	sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
 			// } else {
-				sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
-				sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
+			sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
+			sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
 			// }
 			var objParamCreate = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
@@ -1299,6 +1300,10 @@ sap.ui.define([
 						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
 							this.getView().getModel("crAuditLogModel").setProperty("/details", {});
 						}
+						if (!this.getView().getModel("crAuditLogModel").getProperty("/allLogs")) {
+							this.getView().getModel("crAuditLogModel").setProperty("/allLogs", []);
+						}
+						this.getView().getModel("crAuditLogModel").setProperty("/allLogs", oDataResp.result.changeRequestLogs);
 						this.getView().getModel("crAuditLogModel").setProperty("/details/newCount", nNewCount);
 						this.getView().getModel("crAuditLogModel").setProperty("/details/changedCount", nChangedCount);
 						this.getView().getModel("crAuditLogModel").setProperty("/details/deleteCount", nDeleteCount);
@@ -1748,6 +1753,62 @@ sap.ui.define([
 					MessageToast.show("Failed to update the Comment");
 				}.bind(this)
 			);
+		},
+
+		createColumnConfig: function () {
+			return [{
+					label: 'Change Request ID',
+					property: 'changeRequestId'
+				}, {
+					label: 'Attribute ID',
+					property: 'attributeCategoryId',
+				}, {
+					label: 'Attribute Name',
+					property: 'attributeName',
+				}, {
+					label: 'Change Log Type',
+					property: 'changeLogType',
+				}, {
+					label: 'CR Log ID',
+					property: 'change_request_log_id',
+				}, {
+					label: 'Log By',
+					property: 'logBy',
+				},
+				// {
+				// 	label: 'Log Date',
+				// 	property: 'logDate',
+				// 	type: 'date'
+				// },
+				{
+					label: 'Old Value',
+					property: 'oldValue',
+				}, {
+					label: 'New Value',
+					property: 'newValue',
+				}
+			];
+		},
+
+		onExportAttributes: function () {
+			var aCols, aProducts, oSettings;
+
+			aCols = this.createColumnConfig();
+			aProducts = this.getView().getModel("crAuditLogModel").getProperty("/allLogs");
+
+			oSettings = {
+				workbook: {
+					columns: aCols
+				},
+				dataSource: aProducts,
+				fileName: "Attributes.xlsx"
+			};
+
+			new Spreadsheet(oSettings)
+				.build()
+				.then(function () {
+					MessageToast.show("Spreadsheet export has finished");
+				});
 		}
 	});
 });
