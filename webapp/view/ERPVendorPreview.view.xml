@@ -245,7 +245,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="Undeliverable"/>
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}"/>-->
-											<Select  showSecondaryValues="true" forceSelection="false" enabled="false"
+											<Select showSecondaryValues="true" forceSelection="false" enabled="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/dont_use_p}">
 												<items>
 													<core:ListItem text="Unknown" key="0001" additionalText="0001"/>
@@ -425,14 +425,13 @@
 												</items>
 											</Select>
 											<Label text="Tax Type"/>
-										<!--	<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}"> 	</Text>-->
-											<Select  forceSelection="false" enabled="false" items="{genDropdownModel>/taxTypeId}"
+											<!--	<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}"> 	</Text>-->
+											<Select forceSelection="false" enabled="false" items="{genDropdownModel>/taxTypeId}"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
 												<items>
 													<core:Item text="{genDropdownModel>text60}" key="{genDropdownModel>j_1AFITP}"/>
 												</items>
 											</Select>
-										
 											<Label text="Type of Business"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}"/>
 											<Label text="Name of Representative"/>
@@ -450,7 +449,7 @@
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
 											</Text>-->
 											<Select forceSelection="false" enabled="false" items="{genDropdownModel>/taxInfoSocialInsuCodeId}"
-											selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
 												<items>
 													<core:Item text="{genDropdownModel>actss}" key="{genDropdownModel>actss}"/>
 												</items>
@@ -599,10 +598,34 @@
 										<form:content>
 											<core:Title text="ERP Vendor Company Code"/>
 											<Label text="Company Code"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}"></Text>
+											<!--<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}"></Text>-->
+											
+											<ComboBox placeholder="Company Code" editable="false" items="{genDropdownModel>/idComCodesCompanyCode}"
+												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}">
+												<items>
+													<core:ListItem text="{genDropdownModel>butxt} {genDropdownModel>bukrs}" key="{genDropdownModel>bukrs}"/>
+												</items>
+											</ComboBox>
+											
 											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 											<Label text="Reconcillation Account"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}"></Text>
+											<!--<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}"></Text>-->
+											<ComboBox placeholder="Reconcillation" editable="false" selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}">
+												<items>
+													<core:Item text="0011590120-AR IC JV VENDOR" key="0011590120"/>
+													<core:Item text="0030000100-AP-TRADE" key="0030000100"/>
+													<core:Item text="0030000110-AP-JOINT VENTURE" key="0030000110"/>
+													<core:Item text="0030000111-CASH CALL DUE(NP)" key="0030000111"/>
+													<core:Item text="0030000112-CASH CALL OFFSET(NP)" key="0030000112"/>
+													<core:Item text="0030000114-Vendor 1099 Reconciliation Account" key="0030000114"/>
+													<core:Item text="0030000120-AP - EMPLOYEES" key="0030000120"/>
+													<core:Item text="0030000130-AP- LAND" key="0030000130"/>
+													<core:Item text="0030400100-AP IC auto postings" key="0030400100"/>
+													<core:Item text="0031000105-N_INACTIVE-Production/royalty payable(recon)" key="0031000105"/>
+													<core:Item text="0031000170-NGL MKTG PURCH PAY" key="0031000170"/>
+													<core:Item text="0030300000-Other ACCOUNTS PAY" key="0030300000"/>
+												</items>
+											</ComboBox>
 											<Label text="Head Office"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/LNRZE}"></Text>
 											<Label text="Authorization Group"/>
@@ -670,7 +693,13 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/PERNR}"/>
 											<core:Title text="ERP Vendor Company Code : Payment data"/>
 											<Label text="Payment terms"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZTERM}"></Text>
+											<!--<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZTERM}"></Text>-->
+											<ComboBox placeholder="Payment Terms" editable="false" items="{CreateVendorModel>/paymentTermsData}"
+												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZTERM}">
+												<items>
+													<core:ListItem text="{CreateVendorModel>text} {CreateVendorModel>key}" key="{CreateVendorModel>key}"/>
+												</items>
+											</ComboBox>
 											<Label text="Check Cashing Times"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/KULTG}"/>
 											<Label text="Credit Memo Payment Term"/>
@@ -681,7 +710,12 @@
 											<CheckBox enabled="false" selected="{= ${CreateVendorModel>/addCompanyCodeFormData/lfb1/REPRF} === 'X'}"></CheckBox>
 											<core:Title text="ERP Vendor Company Code : Automatic Payment transaction"/>
 											<Label text="Payment Method"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZWELS}"></Text>
+											<ComboBox placeholder="Payment Method" editable="false" items="{CreateVendorModel>/paymentMehtodBinding}"
+												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZWELS}">
+												<items>
+													<core:ListItem text="{CreateVendorModel>text} {CreateVendorModel>key}" key="{CreateVendorModel>key}"/>
+												</items>
+											</ComboBox>
 											<Label text="Alternative Payee"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/LNRZB}"></Text>
 											<Label text="Grouping Key"/>
@@ -692,7 +726,14 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/UZAWE}"></Text>
 											<core:Title/>
 											<Label text="Payment Block"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}"></Text>
+											
+											<ComboBox placeholder="Payment Block" editable="false" items="{genDropdownModel>/compCodesPaymentBlockId}"
+												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}">
+												<items>
+													<core:ListItem text="{genDropdownModel>textl} {genDropdownModel>zahls}" key="{genDropdownModel>zahls}"/>
+												</items>
+											</ComboBox>
+											
 											<Label text="House Bank"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}"></Text>
 											<Label text="Individual Payment"/>
@@ -978,7 +1019,7 @@
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
 											<Label text="Title"/>
 											<!--<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"></Text>-->
-											<Select forceSelection="false"  items="{crERPTitleFilterModel>/modelMap}" enabled="false"
+											<Select forceSelection="false" items="{crERPTitleFilterModel>/modelMap}" enabled="false"
 												selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
 												<items>
 													<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
@@ -1247,7 +1288,6 @@
 														<core:Title text="Tax Information"/>
 														<Label text="Tax ID"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}"/>
-													
 														<Label text="Tin match Date"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_match_date}"/>
 														<Label text="B Notice 1 Date"/>
