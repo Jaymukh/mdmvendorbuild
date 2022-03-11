@@ -215,6 +215,13 @@ sap.ui.define([
 
 		onSelectCompanyCodeItem: function (oEvent) {
 			var oData = oEvent.getParameter("listItem").getBindingContext("CreateVendorModel").getObject();
+			var sSelectedKey = oData.lfb1.bukrs;
+				var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
+				if (obj && obj.payMethod) {
+					this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
+					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+				}
 			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", oData);
 
 		},
