@@ -175,7 +175,7 @@
 											<Label text="Transportation Zone"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}"/>
 											<Label text="PO Box Postal Code/ PO Box"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}}"/>
+											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}"/>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PFACH}"/>
 											<Label text="PO Box Without No."/>
 											<CheckBox enabled="false"
