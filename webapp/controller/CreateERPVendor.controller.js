@@ -125,6 +125,11 @@ sap.ui.define([
 					"controlTable": "T016T",
 					"controlField": "brsch",
 					"controlFieldName": "brtxt"
+				}, {
+					"controlID": "idComCodesCompanyCode",
+					"controlTable": "T001",
+					"controlField": "bukrs",
+					"controlFieldName": "butxt"
 				}
 
 			];
@@ -148,8 +153,10 @@ sap.ui.define([
 							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAccounting", Object.assign({}, data.result));
 							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress", Object.assign({}, data.result));
 						}
+					} else if (sControlID === "idComCodesCompanyCode") {
+							that.getOwnerComponent().getModel("genDropdownModel").setProperty('/' + sControlID, data.result.modelMap);
 					} else {
-						if(item.controlID === 'industryDesID') {
+						if (item.controlID === 'industryDesID') {
 							data.result.modelMap.unshift({});
 							that.getOwnerComponent().getModel('crERPIndustryModel').setData(data.result);
 						}
@@ -167,7 +174,7 @@ sap.ui.define([
 								text: "{" + item.controlFieldName + "}"
 							});
 							that.getView().byId(sControlID).bindAggregation("items", "/modelMap", oItemSelectTemplate1);
-							that.getOwnerComponent().getModel("genDropdownModel").setProperty('/'+item.controlID , data.result.modelMap);
+							that.getOwnerComponent().getModel("genDropdownModel").setProperty('/' + item.controlID, data.result.modelMap);
 							that.getOwnerComponent().getModel("genDropdownModel").refresh();
 						}
 					}
@@ -408,7 +415,7 @@ sap.ui.define([
 							if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
 								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
 									oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
-							}else if(oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number){
+							} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
 								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
 							}
 							if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
@@ -449,11 +456,11 @@ sap.ui.define([
 									"persnumber": "",
 									"date_from": sDate,
 									"consnumber": iIndex + 1,
-									"flgdefault": iIndex + 1 <=1 ? "X" : "",
+									"flgdefault": iIndex + 1 <= 1 ? "X" : "",
 									"flg_nouse": null,
 									"home_flag": iIndex + 1 <= 1 ? "X" : "",
-									"smtp_addr": oEmail.mail, 
-									"smtp_srch": oEmail.mail.toUpperCase().slice(0,20),
+									"smtp_addr": oEmail.mail,
+									"smtp_srch": oEmail.mail.toUpperCase().slice(0, 20),
 									"dft_receiv": null,
 									"r3_user": null,
 									"encode": null,
@@ -593,17 +600,17 @@ sap.ui.define([
 						}
 					}
 					//Handling Comunication data
-					if(oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens){
+					if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens) {
 						oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
 							oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
 					}
-					if(oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens ){
+					if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
 						oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
 							oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
-					}else if(oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number){
-							oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+					} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
+						oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
 					}
-					if(oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens){
+					if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
 						oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
 							oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
 					}
@@ -641,11 +648,11 @@ sap.ui.define([
 							"persnumber": "",
 							"date_from": sDate,
 							"consnumber": iIndex + 1,
-							"flgdefault": iIndex + 1 <=1 ? "X" : "",
+							"flgdefault": iIndex + 1 <= 1 ? "X" : "",
 							"flg_nouse": null,
-							"home_flag": iIndex + 1 <=1 ? "X" : "",
+							"home_flag": iIndex + 1 <= 1 ? "X" : "",
 							"smtp_addr": oEmail.mail,
-							"smtp_srch": oEmail.mail.toUpperCase().slice(0,20), 
+							"smtp_srch": oEmail.mail.toUpperCase().slice(0, 20),
 							"dft_receiv": null,
 							"r3_user": null,
 							"encode": null,
@@ -872,7 +879,7 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 					this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
-					
+
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
@@ -1085,7 +1092,7 @@ sap.ui.define([
 					value: oData.table
 				}));
 				oFilterBar.setFilterBarExpanded(true);
-				if(oData.table !=="VW_BNKA"){
+				if (oData.table !== "VW_BNKA") {
 					oFilterBar.setBasicSearch(this._oBasicSearchField);
 				}
 				oFilterBar.setModel(this.oColModel, "columns");
@@ -1246,7 +1253,7 @@ sap.ui.define([
 					"configType": sTableName,
 					"currentPage": 1,
 					"configFilters": {
-						
+
 					}
 				};
 				aSelectionSet.forEach(function (oItem) {
@@ -1417,7 +1424,8 @@ sap.ui.define([
 				});
 			}
 
-			if (this.getView().getModel("vndLfm1").getProperty("/rows") && this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 && oData.getProperty(
+			if (this.getView().getModel("vndLfm1").getProperty("/rows") && this.getView().getModel("vndLfm1").getProperty("/rows").length === 0 &&
+				oData.getProperty(
 					"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KTOKK") === "VEND") {
 				aEmptyFields.push({
 					section: "Purchasing Organization"
@@ -1440,38 +1448,38 @@ sap.ui.define([
 				oBankNumControl.setValueState("None");
 			}
 
-			 if(sCountry && sPostalCode ){
-			 	var sPostalCodeLength = sPostalCode.length;
-			 	var oPostalControl = oController.getView().byId("idERPVendorPostalCode");
-				if(sCountry.toLowerCase() === "us" && (sPostalCodeLength !== 5 && sPostalCodeLength !== 10)){
+			if (sCountry && sPostalCode) {
+				var sPostalCodeLength = sPostalCode.length;
+				var oPostalControl = oController.getView().byId("idERPVendorPostalCode");
+				if (sCountry.toLowerCase() === "us" && (sPostalCodeLength !== 5 && sPostalCodeLength !== 10)) {
 					aEmptyFields.push({
 						section: "PostalCodeCheck",
-						Name : "Postal Code should be 5 or 10 digits for USA."
+						Name: "Postal Code should be 5 or 10 digits for USA."
 					});
 					oPostalControl.setValueState("Error");
-				}else if(sCountry.toLowerCase() === "ca" &&  sPostalCodeLength !== 7 ){
+				} else if (sCountry.toLowerCase() === "ca" && sPostalCodeLength !== 7) {
 					aEmptyFields.push({
 						section: "PostalCodeCheck",
-						Name : "Postal Code should be 7 digits for Canada "
+						Name: "Postal Code should be 7 digits for Canada "
 					});
 					oPostalControl.setValueState("Error");
-				}else if(sCountry.toLowerCase() === "us" && sPostalCodeLength == 10){
+				} else if (sCountry.toLowerCase() === "us" && sPostalCodeLength == 10) {
 					var oSplitValue = sPostalCode.split("");
-					
-					if(oSplitValue[5] !== "-"){
-					aEmptyFields.push({
-						section: "PostalCodeCheck",
-						Name : "A '-' must be in the 6 place of the postal code"
-					});
-					oPostalControl.setValueState("Error");	
-					}else {
+
+					if (oSplitValue[5] !== "-") {
+						aEmptyFields.push({
+							section: "PostalCodeCheck",
+							Name: "A '-' must be in the 6 place of the postal code"
+						});
+						oPostalControl.setValueState("Error");
+					} else {
 						oPostalControl.setValueState("None");
 					}
-				
-				}else{
+
+				} else {
 					oPostalControl.setValueState("None");
-				} 
-			 }
+				}
+			}
 			this.getView().getModel("CreateVendorModel").setProperty("/missingFields", aEmptyFields);
 			if (aEmptyFields.length) {
 				if (!this.oDefaultDialog) {
@@ -1506,6 +1514,7 @@ sap.ui.define([
 				return false;
 			} else {
 				MessageToast.show("Validation Successful'");
+				// this._checkAddress();
 				return true;
 			}
 		},
@@ -1514,9 +1523,9 @@ sap.ui.define([
 			var sMsg = "";
 			if (!sSection) {
 				sMsg = sName + " field is missing in " + sPanel + " Section";
-			}else if(sSection === "PostalCodeCheck"){
+			} else if (sSection === "PostalCodeCheck") {
 				sMsg = sName;
-			}else {
+			} else {
 				sMsg = "No " + sSection + " is maintained in " + sSection + " table, check mandatory fields.";
 			}
 			return sMsg;
@@ -2026,7 +2035,100 @@ sap.ui.define([
 				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
 			}
 		},
-		
+
+		_checkAddress: function () {
+			this.getView().setBusy(true);
+			var oAddrDet = this.getView().getModel("CreateVendorModel").getProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1");
+			var objParamCreate = {
+				url: "/murphyCustom/mdm/proxy-service/dqm/address",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"addressInput": {
+						"country": "US",
+						"mixed": "45501 12 Mile street",
+						"locality": "NOVI",
+						"locality2": "",
+						"locality3": "",
+						"region": "MI",
+						"region2": "",
+						"postcode": "",
+						"firm": ""
+					},
+					"outputFields": [
+						"std_addr_prim_address",
+						"std_addr_sec_address",
+						"std_addr_locality_full",
+						"std_addr_region_full",
+						"std_addr_postcode_full",
+						"std_addr_country_2char",
+						"addr_asmt_info",
+						"std_addr_address_delivery",
+						"std_addr_locality_full",
+						"std_addr_region_full",
+						"std_addr_postcode_full",
+						"std_addr_country_2char",
+						"addr_latitude",
+						"addr_longitude",
+						"addr_asmt_level",
+						"addr_info_code",
+						"addr_info_code_msg",
+						"geo_asmt_level",
+						"geo_info_code",
+						"geo_info_code_msg"
+					],
+					"addressSettings": {
+						"casing": "mixed",
+						"diacritics": "include",
+						"streetFormat": "countryCommonStyle",
+						"postalFormat": "countryCommonStyle",
+						"regionFormat": "countryCommonStyle",
+						"scriptConversion": "none"
+					}
+				}
+			};
+			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+					this.getView().setBusy(false);
+					if (oDataResp.result) {
+						oDataResp.result = {
+							"std_addr_locality_full": "Novi",
+							"addr_longitude": "-83.493800",
+							"addr_info_code_msg": "",
+							"addr_info_code": "",
+							"std_addr_postcode_full": "48377-2403",
+							"geo_asmt_level": "PRI",
+							"addr_asmt_level": "PR",
+							"addr_latitude": "42.494970",
+							"addr_asmt_info": "C",
+							"geo_info_code": "",
+							"std_addr_prim_address": "45501 W 12 Mile Rd",
+							"std_addr_sec_address": "",
+							"std_addr_region_full": "MI",
+							"std_addr_country_2char": "US",
+							"std_addr_address_delivery": "45501 W 12 Mile Rd",
+							"geo_info_code_msg": ""
+						};
+						this._getAddressCompareDialog();
+					}
+				}.bind(this),
+				function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Failed to get the Address");
+				}.bind(this)
+			);
+
+		},
+
+		_getAddressCompareDialog: function () {
+			if (!this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.AddressCompare", this);
+				this._oDialog.setModel(this.getView().getModel());
+			}
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+			this._oDialog.open();
+		}
+
 		/*onChangeWebSite: function (oEvent) {
 			let sWbSite = oEvent.getSource().getValue();
 			this.getView().getModel("CreateVendorModel").setProperty(
