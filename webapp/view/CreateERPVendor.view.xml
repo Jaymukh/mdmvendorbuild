@@ -2548,7 +2548,7 @@
 														<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
 															value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_dob}"/>
 														<Label text="Tax ID"/>
-														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_taxid}"
+														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}"
 															maxLength="9"/>
 														<Label text="Address Line 1"/>
 														<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_vend_esc/pra_bp_vend_esc_1/owner_address1}"

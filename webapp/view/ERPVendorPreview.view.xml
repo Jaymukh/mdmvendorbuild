@@ -1246,7 +1246,8 @@
 														<Text/>
 														<core:Title text="Tax Information"/>
 														<Label text="Tax ID"/>
-														<Text/>
+														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}"/>
+													
 														<Label text="Tin match Date"/>
 														<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/pra_bp_cust_md/pra_bp_cust_md_1/tin_match_date}"/>
 														<Label text="B Notice 1 Date"/>
