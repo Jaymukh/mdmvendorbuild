@@ -85,7 +85,7 @@ sap.ui.define([
 					}.bind(this));
 				}.bind(this));
 			}.bind(this));
-
+			this.getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "");
 		},
 
 		getContentDensityClass: function () {

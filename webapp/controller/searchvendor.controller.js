@@ -217,6 +217,8 @@ sap.ui.define([
 				};
 				this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
 				this._createCREntityID();
+				this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "CREATE");
+				this._filteringReason();
 			}
 			if (sKey === "changeRequestId" || sKey === "changeRequestId-Mass") {
 				this.nPageNo = 1;
@@ -308,6 +310,8 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq', oChangeReq);
 
 			this._createCREntityID();
+			this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "CREATE");
+			this._filteringReason();
 		},
 
 		handleSelect: function (oEvent) {
@@ -643,6 +647,8 @@ sap.ui.define([
 							this.getView().setBusy(false);
 							MessageToast.show("Delete Action Failed, try after some time");
 						}.bind(this))*/
+						this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "DELETE");
+						this._filteringReason();
 					}
 				}.bind(this)
 			});
@@ -682,6 +688,8 @@ sap.ui.define([
 							this.getView().setBusy(false);
 							MessageToast.show("Block Action Failed, try after some time");
 						}.bind(this))*/
+						this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "BLOCK");
+				this._filteringReason();
 					}
 				}.bind(this)
 			});
@@ -834,6 +842,9 @@ sap.ui.define([
 					this.getView().setBusy(false);
 					MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
 				}.bind(this));*/
+				
+			this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "EDIT");
+				this._filteringReason();
 		},
 
 		navigateTOVendorPages: function (sVendorNo, operation) {
@@ -1110,6 +1121,9 @@ sap.ui.define([
 					var oVendorData = oTable.getSelectedItem().getBindingContext("SearchVendorModel").getObject();
 					var sVendorNo = oVendorData.customVendorLFA1DTO.lifnr;
 					this.navigateTOVendorPages(sVendorNo, 'COPY');
+					
+					this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "COPY");
+					this._filteringReason();
 				}
 			}
 			// onSaveClick : function(oEvent){

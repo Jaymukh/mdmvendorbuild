@@ -49,10 +49,13 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
+					this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/VendorRasons",  oDataResp.result.modelMap[0].VENDOR_CR_REASON);
+					this._filteringReason();
+					
 				}
 			}.bind(this));
 		},
-
+		
 		_getDropDownData: function () {
 			var that = this;
 			var aConfigDD = [{
