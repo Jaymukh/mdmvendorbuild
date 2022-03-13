@@ -161,6 +161,9 @@
 												</layoutData>
 											</Text>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
+											<Label text="Tax Jurisdiction"/>
+											<Tex text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/taxjurcode}" maxLength="15"/>
+											
 											<core:Title/>
 											<Label text="Country"/>
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
