@@ -14,6 +14,17 @@ sap.ui.define([
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
 		},
+		_filteringReason:function(){
+			var oreasonFlag = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty('/reasonFlag');
+			var oVendor_cr_reason = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty("/VendorRasons");
+			if(oreasonFlag !== ""){
+			var newArray = oVendor_cr_reason.filter(function (el) {
+			 return el.group_name === oreasonFlag;
+         
+			});
+			this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD/VENDOR_CR_REASON",newArray);
+			}
+		},
 
 		_createCREntityID: function (oParam) {
 			this.getView().getModel("emails").setData([]);
