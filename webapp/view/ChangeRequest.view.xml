@@ -244,8 +244,8 @@
 															<IconTabFilter text="Attachments" key="attachments">
 																<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 																	typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="Delete"
-																	fileType="{CreateVendorModel>/SupportedFileType}">
+																	numberOfAttachmentsText="Uploaded Documents" uploadEnabled="{= ${userManagementModel>/role}.indexOf('req') === -1}"
+																	uploadButtonInvisible="false" mode="Delete" fileType="{CreateVendorModel>/SupportedFileType}">
 																	<!--showSeparators="{settings>/showSeparators}"-->
 																	<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
 																	<!--maximumFileSize="{settings>/maximumFileSize}" -->
@@ -263,7 +263,7 @@
 																		<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 																			fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
 																			enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload" deletePress="onDeleteAttachment"
-																			visibleDelete="false">
+																			visibleDelete="{= (${userManagementModel>/role}.indexOf('stew') !== -1 &amp;&amp; ${userManagementModel>/data/user_id} === ${crERPAttachmentModel>attachmentEntity/created_by/user_id}) ? true : false}">
 																			<!-- attributes="{path : '/', templateShareable : false}"-->
 																			<!--statuses="{path : '/', templateShareable : false}" -->
 																			<attributes>
@@ -282,7 +282,7 @@
 																<!--<Label text="Comments go here..."/>-->
 																<Toolbar>
 																	<SearchField></SearchField>
-																	<Button text="Add Comment" press="onPressAddComment"></Button>
+																	<Button text="Add Comment" press="onPressAddComment" enabled="{= ${userManagementModel>/role}.indexOf('req') === -1}"></Button>
 																</Toolbar>
 																<VBox id="commentVBoxID" visible="false">
 																	<Label text="Write a Comment:"/>
