@@ -820,6 +820,10 @@ sap.ui.define([
 			} else {
 				return false;
 			}
+		},
+		
+		handleForwardButton: function(oEvent){
+			debugger;
 		}
 
 		/**
