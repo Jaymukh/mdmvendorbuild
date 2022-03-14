@@ -808,6 +808,8 @@
 															<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onCompanyCodeEditPress"/>
 															<core:Icon src="sap-icon://delete" class="sapUiSmallMarginEnd" press="onCompanYCodeDeletePress"/>
 															<core:Icon src="sap-icon://save" color="green" class="sapUiSmallMarginEnd" press="onCompanyCodeSavePress" visible="false"/>
+															<core:Icon src="sap-icon://copy" class="sapUiSmallMarginEnd" press="onCompanyCodeCopyPress"/>
+															
 														</HBox>
 													</cells>
 												</ColumnListItem>
