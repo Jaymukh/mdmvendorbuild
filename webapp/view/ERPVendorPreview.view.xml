@@ -1568,7 +1568,7 @@
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="true" uploadButtonInvisible="false" mode="Delete"
+											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}" uploadButtonInvisible="false" mode="Delete"
 											fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->
 											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
@@ -1607,11 +1607,11 @@
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
 											<!--<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
-											<TextArea id="previewCRCommentBoxId" width="164%"></TextArea>
+											<TextArea id="previewCRCommentBoxId" width="164%" enabled = "{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"></TextArea>
 										</HBox>
 										<Toolbar>
 											<ToolbarSpacer/>
-											<Button text="Add" press="onAddCommentCRPreview"/>
+											<Button text="Add" press="onAddCommentCRPreview" enabled = "{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"/>
 										</Toolbar>
 										<!--</VBox>-->
 										<List headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">
