@@ -1676,6 +1676,20 @@ sap.ui.define([
 			});
 			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormDataCurrent", Object.assign({}, oTableItemDataCurrent));
 		},
+		onCompanyCodeCopyPress: function (oEvent) {
+			
+		
+			var oData = Object.assign({}, oEvent.getSource().getBindingContext("CreateVendorModel").getObject());
+			// oData.lfb1.bukrs = "";
+			// oData.lfb1.ZWELS = "";
+			var oTableItemData = Object.assign({}, {
+				lfb1: Object.assign({}, oData.lfb1),
+				lfbw: Object.assign({}, oData.lfbw)
+			});
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", Object.assign({}, oTableItemData));
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData/lfb1/bukrs", "");
+			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData/lfb1/ZWELS", "");
+		},
 
 		onCompanyCodeSavePress: function (oEvent) {
 			var oFormData = this.getView().getModel("CreateVendorModel").getProperty("/addCompanyCodeFormData");
