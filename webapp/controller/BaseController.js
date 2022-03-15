@@ -1832,26 +1832,6 @@ sap.ui.define([
 			} else {
 				return true;
 			}
-		},
-		
-		_getAllUsers: function(sStartIndex){
-		var objParamFirstCall = {
-					url: "/MurphyCloudIdPDest/service/scim/Users?startIndex=" + sStartIndex,
-					hasPayload: false,
-					type: 'GET'
-				};
-				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
-					debugger;
-					var aUsers = this.getView().getModel("userManagementModel").getProperty('/users');
-					this.getView().getModel("userManagementModel").setProperty('/users', aUsers.concat(oDataResp.Resources));
-					var nRemainingUser = oDataResp.totalResults - (sStartIndex + 100);
-					if(nRemainingUser > 0) {
-						this._getAllUsers(sStartIndex + 100);
-					}
-				}.bind(this), function (oError) {
-					this.getView().setBusy(false);
-					MessageToast.show("Error In Getting All Users");
-				}.bind(this));
 		}
 	});
 });
