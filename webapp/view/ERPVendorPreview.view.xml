@@ -1593,7 +1593,8 @@
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
 													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload" deletePress="onDeleteAttachment"
-													visibleDelete="{= (${CreateVendorModel>/createCRVendorData/crID} ? false : true)}">
+													visibleDelete="{= (${userManagementModel>/role}.indexOf('stew') !== -1 &amp;&amp; ${userManagementModel>/data/user_id} === ${crERPAttachmentModel>attachmentEntity/created_by/user_id}) ? true :  ${CreateVendorModel>/createCRVendorData/crID} ? false: true}">
+													<!--{= (${userManagementModel>/role}.indexOf('stew') !== -1 &amp;&amp; ${userManagementModel>/data/user_id} === ${crERPAttachmentModel>attachmentEntity/created_by/user_id}) || ${CreateVendorModel>/createCRVendorData/crID} === 'undefined' ? true : false}-->
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>

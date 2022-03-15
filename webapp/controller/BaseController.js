@@ -14,15 +14,15 @@ sap.ui.define([
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
 		},
-		_filteringReason:function(){
+		_filteringReason: function () {
 			var oreasonFlag = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty('/reasonFlag');
 			var oVendor_cr_reason = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty("/VendorRasons");
-			if(oreasonFlag !== ""){
-			var newArray = oVendor_cr_reason.filter(function (el) {
-			 return el.group_name === oreasonFlag;
-         
-			});
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD/VENDOR_CR_REASON",newArray);
+			if (oreasonFlag !== "") {
+				var newArray = oVendor_cr_reason.filter(function (el) {
+					return el.group_name === oreasonFlag;
+
+				});
+				this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD/VENDOR_CR_REASON", newArray);
 			}
 		},
 
@@ -1820,6 +1820,38 @@ sap.ui.define([
 				.then(function () {
 					MessageToast.show("Spreadsheet export has finished");
 				});
+		},
+
+		changeRequestTableAdmitColumn: function (sColumnName, aRole) {
+			if (sColumnName === "") {
+				if (aRole.indexOf('admin') !== -1) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		},
+		
+		_getAllUsers: function(sStartIndex){
+		var objParamFirstCall = {
+					url: "/MurphyCloudIdPDest/service/scim/Users?startIndex=" + sStartIndex,
+					hasPayload: false,
+					type: 'GET'
+				};
+				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+					debugger;
+					var aUsers = this.getView().getModel("userManagementModel").getProperty('/users');
+					this.getView().getModel("userManagementModel").setProperty('/users', aUsers.concat(oDataResp.Resources));
+					var nRemainingUser = oDataResp.totalResults - (sStartIndex + 100);
+					if(nRemainingUser > 0) {
+						this._getAllUsers(sStartIndex + 100);
+					}
+				}.bind(this), function (oError) {
+					this.getView().setBusy(false);
+					MessageToast.show("Error In Getting All Users");
+				}.bind(this));
 		}
 	});
 });

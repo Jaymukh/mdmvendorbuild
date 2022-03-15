@@ -121,7 +121,7 @@
 														</headerToolbar>
 														<columns>
 															<Column>
-																<header>
+																<header visible="{ parts: [ 'ChangeRequestMetadataModel>header', 'userManagementModel>/role'], formatter: '.changeRequestTableAdmitColumn' }">
 																	<Label text="{ChangeRequestMetadataModel>header}" design="Bold"></Label>
 																</header>
 															</Column>
@@ -144,7 +144,9 @@
 																	<Text text="{changeRequestGetAllModel>crDTO/change_request_by/firstname} {changeRequestGetAllModel>crDTO/change_request_by/lastname}"></Text>
 																	<Text text="{changeRequestGetAllModel>crDTO/statusChangeBy/firstname} {changeRequestGetAllModel>crDTO/statusChangeBy/lastname}"></Text>
 																	<Text text="{path:'changeRequestGetAllModel>crDTO/statusChangeDate',formatter:'.handleChangeReqDate'}"></Text>
+																	<core:Icon src="sap-icon://action" tooltip="Forward" press=".handleForwardButton" visible="{ parts: [ 'changeRequestGetAllModel>crDTO/is_cr_closed', 'changeRequestGetAllModel>crDTO/assigmentStatus','changeRequestGetAllModel>crDTO/assignmentStage', 'userManagementModel>/role'], formatter: '.showForwardBtn' }"></core:Icon>
 																	<!--<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>-->
+																
 																</cells>
 															</ColumnListItem>
 														</items>
