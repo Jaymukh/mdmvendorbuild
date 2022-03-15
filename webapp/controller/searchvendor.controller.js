@@ -146,7 +146,7 @@ sap.ui.define([
 			var sBankKey = this.getView().byId('fbBankKey').getValue();
 			var sBankStreet = this.getView().byId('fbBankStreet').getValue();
 			var sCountry = this.getView().byId('fbCountry').getSelectedKey();
-			var sTaxNumber = this.getView().byId('fbTaxNumber').getSelectedKey();
+			var sTaxNumber = this.getView().byId('fbTaxNumber').getValue();
 			var oFilterBarParam = {
 				"entitySearchType": "GET_BY_VENDOR_FILTERS",
 				"entityType": "VENDOR",
