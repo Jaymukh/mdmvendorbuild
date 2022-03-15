@@ -2124,12 +2124,12 @@ sap.ui.define([
 		},
 
 		_getAddressCompareDialog: function () {
-			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.AddressCompare", this);
-				this._oDialog.setModel(this.getView().getModel());
+			if (!this._oDialogAddress) {
+				this._oDialogAddress = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.AddressCompare", this);
+				this._oDialogAddress.setModel(this.getView().getModel());
 			}
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-			this._oDialog.open();
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogAddress);
+			this._oDialogAddress.open();
 		}
 
 		/*onChangeWebSite: function (oEvent) {
