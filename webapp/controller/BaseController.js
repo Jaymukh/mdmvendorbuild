@@ -14,15 +14,15 @@ sap.ui.define([
 		constructor: function () {
 			this.serviceCall = new ServiceCall();
 		},
-		_filteringReason:function(){
+		_filteringReason: function () {
 			var oreasonFlag = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty('/reasonFlag');
 			var oVendor_cr_reason = this.getOwnerComponent().getModel("reasonDropdownfilterModel").getProperty("/VendorRasons");
-			if(oreasonFlag !== ""){
-			var newArray = oVendor_cr_reason.filter(function (el) {
-			 return el.group_name === oreasonFlag;
-         
-			});
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD/VENDOR_CR_REASON",newArray);
+			if (oreasonFlag !== "") {
+				var newArray = oVendor_cr_reason.filter(function (el) {
+					return el.group_name === oreasonFlag;
+
+				});
+				this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD/VENDOR_CR_REASON", newArray);
 			}
 		},
 
@@ -1829,6 +1829,18 @@ sap.ui.define([
 				.then(function () {
 					MessageToast.show("Spreadsheet export has finished");
 				});
+		},
+
+		changeRequestTableAdmitColumn: function (sColumnName, aRole) {
+			if (sColumnName === "") {
+				if (aRole.indexOf('admin') !== -1) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
 		}
 	});
 });

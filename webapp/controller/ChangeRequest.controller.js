@@ -251,7 +251,7 @@ sap.ui.define([
 								Object.keys(oDataResp.result.parentDTO.customData.gen_adrc).forEach(function (sAddrKey) {
 									if (sAddrKey === "gen_adrc_1") {
 										var adrc_1Data = {};
-											adrc_1Data[sAddrKey] = oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey];
+										adrc_1Data[sAddrKey] = oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey];
 										this.getView().getModel("CreateVendorModel").setProperty(
 											"/createCRVendorData/formData/parentDTO/customData/gen_adrc", adrc_1Data);
 										oPraAddress = Object.assign({}, oDataResp.result.parentDTO.customData.gen_adrc[sAddrKey]);
@@ -322,7 +322,9 @@ sap.ui.define([
 						case "gen_adr6":
 							if (oDataResp.result.parentDTO.customData.gen_adr6) {
 								Object.keys(oDataResp.result.parentDTO.customData.gen_adr6).forEach((sLfm1Key) => {
-									aEmails.push({mail: oDataResp.result.parentDTO.customData.gen_adr6[sLfm1Key].smtp_addr});
+									aEmails.push({
+										mail: oDataResp.result.parentDTO.customData.gen_adr6[sLfm1Key].smtp_addr
+									});
 								});
 							}
 							break;
@@ -807,37 +809,84 @@ sap.ui.define([
 			}
 
 		},
-		
-		handleStatus : function(sValue1,sValue2){
-		 var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
-		     sResult =  sValue1;
-			 sValue2 = Number(sValue2);
-		   if(sAssignment === 'claimed' && sValue2 === 1){
-		   	sResult = 'Pending Steward Approval';
-		   }else if((sAssignment === 'approved' && sValue2 === 1) || (sAssignment === 'claimed' && sValue2 === 2)){
-		   		sResult = 'Pending Final Approval';
-		   }else if(sAssignment === 'approved' && sValue2 === 2){
-		   		sResult = 'Approved and Submitted to SAP';
-		   }else if(sAssignment === 'rejected') {
-		   	  sResult = 'Rejected';
-		   }
-		   return sResult;
-			
+
+		handleStatus: function (sValue1, sValue2) {
+			var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
+				sResult = sValue1;
+			sValue2 = Number(sValue2);
+			if (sAssignment === 'claimed' && sValue2 === 1) {
+				sResult = 'Pending Steward Approval';
+			} else if ((sAssignment === 'approved' && sValue2 === 1) || (sAssignment === 'claimed' && sValue2 === 2)) {
+				sResult = 'Pending Final Approval';
+			} else if (sAssignment === 'approved' && sValue2 === 2) {
+				sResult = 'Approved and Submitted to SAP';
+			} else if (sAssignment === 'rejected') {
+				sResult = 'Rejected';
+			}
+			return sResult;
+
 		},
-		
-		onLinkPressEdit: function(oEvent){
+
+		onLinkPressEdit: function (oEvent) {
 			var oParam = oEvent.getSource().getBindingContext("crERPCommentedModel").getObject();
 			this._updateComment(oParam);
 		},
-		
-		onLinkPressDelete: function(oEvent) {
+
+		onLinkPressDelete: function (oEvent) {
 			var oParam = oEvent.getSource().getBindingContext("crERPCommentedModel").getObject();
 			this._deleteComment(oParam);
 		},
-		
-		handleCommentActionViisbility: function(action){
-			if(action && action.length) {
+
+		handleCommentActionViisbility: function (action) {
+			if (action && action.length) {
 				return true;
+			} else {
+				return false;
+			}
+		},
+
+		handleForwardButton: function (oEvent) {
+			var oSelectedItem = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject();
+			var aUsers = this.getView().getModel("userManagementModel").getProperty("/users");
+			var aSelUser = [];
+			if (oSelectedItem.crDTO.assignmentStage === 1) {
+				aSelUser = aUsers.filter(function (e, i) {
+					var aGRP = (e.groups) ? e.groups.filter(function(o){
+						return o.value.split("DA_MDM_VEND_STEW_").length > 1;
+					}) : [];
+					if(aGRP.length > 0) {
+						var a = "";
+					}
+					return aGRP.length > 0;
+				});
+			} else if (oSelectedItem.crDTO.assignmentStage === 2) {
+				aSelUser = aUsers.filter(function (e) {
+					var aGRP = (e.groups) ? e.groups.filter(function(o){
+						return o.value.split("DA_MDM_VEND_APPROV").length > 1;
+					}) : [];
+					return aGRP.length > 0;
+				});
+			}
+			debugger;
+			var oJSONModel = new sap.ui.model.json.JSONModel({
+				crDara: oSelectedItem,
+				aSelUser:aSelUser
+			});
+			// if (!this._oDialogForward) {
+			// 	this._oDialogForward = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.forwardCR", this);
+			// 	this._oDialogForward.setModel(oJSONModel);
+			// }
+			// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogForward);
+			// this._oDialogForward.open();
+		},
+
+		showForwardBtn: function (sStatus, workflowStatus, assignmentStage, aRole) {
+			if (aRole.indexOf('admin') !== -1) {
+				if (sStatus === false) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}

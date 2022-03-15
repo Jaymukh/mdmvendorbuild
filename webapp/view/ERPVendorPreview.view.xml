@@ -161,9 +161,6 @@
 												</layoutData>
 											</Text>
 											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"/>
-											<Label text="Tax Jurisdiction"/>
-											<Text text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/taxjurcode}"/>
-											
 											<core:Title/>
 											<Label text="Country"/>
 											<!--<Text   text="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}"  />-->
@@ -602,14 +599,12 @@
 											<core:Title text="ERP Vendor Company Code"/>
 											<Label text="Company Code"/>
 											<!--<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}"></Text>-->
-											
 											<ComboBox placeholder="Company Code" editable="false" items="{genDropdownModel>/idComCodesCompanyCode}"
 												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/bukrs}">
 												<items>
 													<core:ListItem text="{genDropdownModel>butxt} {genDropdownModel>bukrs}" key="{genDropdownModel>bukrs}"/>
 												</items>
 											</ComboBox>
-											
 											<core:Title text="ERP Vendor Company Code : Accounting Information"/>
 											<Label text="Reconcillation Account"/>
 											<!--<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/AKONT}"></Text>-->
@@ -729,14 +724,12 @@
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/UZAWE}"></Text>
 											<core:Title/>
 											<Label text="Payment Block"/>
-											
 											<ComboBox placeholder="Payment Block" editable="false" items="{genDropdownModel>/compCodesPaymentBlockId}"
 												selectedKey="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZAHLS}">
 												<items>
 													<core:ListItem text="{genDropdownModel>textl} {genDropdownModel>zahls}" key="{genDropdownModel>zahls}"/>
 												</items>
 											</ComboBox>
-											
 											<Label text="House Bank"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/HBKID}"></Text>
 											<Label text="Individual Payment"/>
@@ -1528,6 +1521,12 @@
 											</form:content>
 										</form:SimpleForm>
 										<List visible="true" id="idAuditLogListERPPreview" items="{path: 'crAuditLogModel>/items'}" noDataText="No Audit log available">
+											<headerToolbar>
+												<Toolbar>
+													<ToolbarSpacer/>
+													<Button type="Transparent" icon="sap-icon://download" press="onExportAttributes"/>
+												</Toolbar>
+											</headerToolbar>
 											<CustomListItem>
 												<Panel width="auto">
 													<content>
@@ -1571,8 +1570,9 @@
 										<!--<Text text="Attachments go here ..."/>-->
 										<UploadCollection id="UploadCollectionChangeReq" multiple="false" change="onChangeFileUpload" selectionChange="onSelectionDocumentChange"
 											typeMissmatch="onTypeMissmatch" items="{ path: 'crERPAttachmentModel>/documentInteractionDtos', templateShareable: false }"
-											numberOfAttachmentsText="Uploaded Documents" uploadEnabled="{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}" uploadButtonInvisible="false" mode="Delete"
-											fileType="{CreateVendorModel>/SupportedFileType}">
+											numberOfAttachmentsText="Uploaded Documents"
+											uploadEnabled="{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"
+											uploadButtonInvisible="false" mode="Delete" fileType="{CreateVendorModel>/SupportedFileType}">
 											<!--showSeparators="{settings>/showSeparators}"-->
 											<!-- maximumFilenameLength="50" filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" fileType="{fileTypes>/selected}"-->
 											<!--maximumFileSize="{settings>/maximumFileSize}" -->
@@ -1590,7 +1590,8 @@
 												<UploadCollectionItem documentId="{crERPAttachmentModel>attachmentEntity/dms_ref_id}"
 													fileName="{crERPAttachmentModel>attachmentEntity/attachment_name}" mimeType="{crERPAttachmentModel>attachmentEntity/mime_type}"
 													enableEdit="false" enableDelete="true" visibleEdit="false" url="abc" press="onDocumentDownload" deletePress="onDeleteAttachment"
-													visibleDelete="{= (${CreateVendorModel>/createCRVendorData/crID} ? false : true)}">
+													visibleDelete="{= (${userManagementModel>/role}.indexOf('stew') !== -1 &amp;&amp; ${userManagementModel>/data/user_id} === ${crERPAttachmentModel>attachmentEntity/created_by/user_id}) ? true :  ${CreateVendorModel>/createCRVendorData/crID} ? false: true}">
+													<!--{= (${userManagementModel>/role}.indexOf('stew') !== -1 &amp;&amp; ${userManagementModel>/data/user_id} === ${crERPAttachmentModel>attachmentEntity/created_by/user_id}) || ${CreateVendorModel>/createCRVendorData/crID} === 'undefined' ? true : false}-->
 													<!-- attributes="{path : '/', templateShareable : false}"-->
 													<!--statuses="{path : '/', templateShareable : false}" -->
 													<attributes>
@@ -1610,11 +1611,13 @@
 										<Label text="Write a Comment:"/>
 										<HBox width="100%">
 											<!--<Avatar initials="SD" displaySize="XS" backgroundColor="Green"/>-->
-											<TextArea id="previewCRCommentBoxId" width="164%" enabled = "{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"></TextArea>
+											<TextArea id="previewCRCommentBoxId" width="164%"
+												enabled="{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"></TextArea>
 										</HBox>
 										<Toolbar>
 											<ToolbarSpacer/>
-											<Button text="Add" press="onAddCommentCRPreview" enabled = "{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"/>
+											<Button text="Add" press="onAddCommentCRPreview"
+												enabled="{= (${CreateVendorModel>/createCRVendorData/crID} &amp;&amp; ${userManagementModel>/role}.indexOf('req') !== -1? false : true)}"/>
 										</Toolbar>
 										<!--</VBox>-->
 										<List headerText="Added Comments" items="{crERPCommentedModel>/parentCrDTOs/0/crCommentDTOs}">

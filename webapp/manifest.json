@@ -134,7 +134,8 @@
 					"defaultBindingMode": "TwoWay",
 					"role": [],
 					"accountGroups": [],
-					"data": {}
+					"data": {},
+					"users" : []
 				}
 			},
 			"crERPCommentedModel": {

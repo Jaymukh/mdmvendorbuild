@@ -17,7 +17,7 @@ sap.ui.define([
 		 * @public
 		 * @override
 		 */
-		init: function () {
+		init: function () {var that = this;
 
 			this.serviceCall = new ServiceCall();
 
@@ -40,6 +40,7 @@ sap.ui.define([
 					var aAccountGrps = [];
 					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_VEND', value:'DA_MDM_VEND_REQ_VEND'});
 					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_JVPR', value:'DA_MDM_VEND_REQ_JVPR'});
+					// oUserModelResources.groups.push({display:'DA_MDM_ADMIN', value:'DA_MDM_ADMIN'});
 					oUserModelResources.groups.forEach(function (oItem) {
 						if (oItem.value.split("DA_MDM_VEND_")[1]) {
 							var aResultArr = oItem.value.split("DA_MDM_VEND_")[1].split('_');
@@ -54,6 +55,10 @@ sap.ui.define([
 								aAccountGrps.push(obj);
 							}
 
+						}
+						if(oItem.value === "DA_MDM_ADMIN"){
+							aRoles.push("admin");
+							that._getAllUsers(1);
 						}
 					});
 					this.getModel("userManagementModel").setProperty('/role', aRoles);
@@ -86,6 +91,25 @@ sap.ui.define([
 				}.bind(this));
 			}.bind(this));
 			this.getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "");
+		},
+		
+		_getAllUsers: function(sStartIndex){
+		var objParamFirstCall = {
+					url: "/MurphyCloudIdPDest/service/scim/Users?startIndex=" + sStartIndex,
+					hasPayload: false,
+					type: 'GET'
+				};
+				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+					var aUsers = this.getModel("userManagementModel").getProperty('/users');
+					this.getModel("userManagementModel").setProperty('/users', aUsers.concat(oDataResp.Resources));
+					var nRemainingUser = oDataResp.totalResults - (sStartIndex + 100);
+					if(nRemainingUser > 0) {
+						this._getAllUsers(sStartIndex + 100);
+					}
+				}.bind(this), function (oError) {
+					this.setBusy(false);
+					// MessageToast.show("Error In Getting All Users");
+				}.bind(this));
 		},
 
 		getContentDensityClass: function () {
