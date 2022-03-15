@@ -995,8 +995,9 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		handleGetAllChangeRequests: function (nPageNo, sSearchType) {
+		handleGetAllChangeRequests: function (nPageNo, sSearchType, oTaxonomy_id) {
 			var oDataResources = this.getView().getModel("userManagementModel").getData();
+			
 			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
@@ -1010,6 +1011,7 @@ sap.ui.define([
 			if (!sSearchType) {
 				sSearchType = "GET_ALL_CR";
 			}
+			
 			var objParam = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				hasPayload: true,
@@ -1022,6 +1024,13 @@ sap.ui.define([
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 			// "userId": oDataResources.data.user_id
+			
+			
+			if (oTaxonomy_id) {
+				objParam.data.parentCrDTOs = [{"crDTO": {
+        			"workflow_type_id":oTaxonomy_id
+    				}}];
+			}
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 				if (oData.result.currentPage === 1) {

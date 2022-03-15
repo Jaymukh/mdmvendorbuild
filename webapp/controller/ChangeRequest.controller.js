@@ -21,6 +21,24 @@ sap.ui.define([
 			// this.handleGetAllChangeRequests();
 			// this.handleChangeRequestStatistics();
 			this.oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+			this.oTileClickFlag = "";
+			this.oTaxonomy_id = "";
+		},
+		onPressChngReqTile:function(oEvent){
+			this.oTileClickFlag = "X";
+			var oPage = undefined;
+			var sSearchType = undefined;
+			var oTaxonomy_id;
+			var oData = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRDD");
+			var oflag = oEvent.getSource().data("flag");
+				oData.CR_STATUS_TYPE.forEach(oItem => {
+								if(oItem.taxonomy_name === oflag){
+								oTaxonomy_id= oItem.taxonomy_id;
+								this.oTaxonomy_id = oItem.taxonomy_id;
+								this.handleGetAllChangeRequests(oPage,sSearchType,oTaxonomy_id);
+								}	
+								});
+			
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -424,29 +442,32 @@ sap.ui.define([
 
 		onSelectChnageReqPage: function () {
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
-			if (this.getView().byId("SB1").getSelectedKey() === "02") {
+			var sSearchType = undefined;
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
 				this.handleGetAllChangeRequests(oSelectedPage, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage);
+				this.handleGetAllChangeRequests(oSelectedPage,sSearchType,this.oTaxonomy_id);
 			}
 		},
 
 		onSelectChnageReqPageLeft: function () {
+			var wSearchType = undefined;
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
-			if (this.getView().byId("SB1").getSelectedKey() === "02") {
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
 				this.handleGetAllChangeRequests(oSelectedPage - 1, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage - 1);
+				this.handleGetAllChangeRequests(oSelectedPage - 1,wSearchType,this.oTaxonomy_id);
 			}
 			// this.handleGetAllChangeRequests(oSelectedPage - 1);
 		},
 
 		onSelectChnageReqPageRight: function () {
+			var aSearchType = undefined;
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
-			if (this.getView().byId("SB1").getSelectedKey() === "02") {
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
 				this.handleGetAllChangeRequests(oSelectedPage + 1, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage + 1);
+				this.handleGetAllChangeRequests(oSelectedPage + 1,aSearchType,this.oTaxonomy_id);
 			}
 			// this.handleGetAllChangeRequests(oSelectedPage + 1);
 		},
