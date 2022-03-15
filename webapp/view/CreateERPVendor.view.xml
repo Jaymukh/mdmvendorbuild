@@ -262,9 +262,9 @@
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"
 												placeholder="Number"></Input>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"
 												placeholder="Ext">
 												<layoutData>
 													<l:GridData span="XL2 L2 M3 S4"/>
@@ -278,7 +278,7 @@
 												</layoutData>
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"
 												placeholder="Number"></Input>
 											<Label text="E-mail Address"/>
 											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
@@ -1879,7 +1879,7 @@
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
 											<Label text="Extention"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"/>
 											<Label text="Standard"/>
@@ -1896,7 +1896,7 @@
 												<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
 											</ComboBox>
 											<Label text="Telephone"/>
-											<Input type="Number" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}"/>
+											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}"/>
 											<Label text="Extention"/>
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}"/>
 											<Label text="Standard"/>
