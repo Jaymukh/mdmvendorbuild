@@ -29,6 +29,7 @@ sap.ui.define([
 			var oPage = undefined;
 			var sSearchType = undefined;
 			var oTaxonomy_id;
+			this.oTaxonomy_id = "";
 			var oData = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRDD");
 			var oflag = oEvent.getSource().data("flag");
 				oData.CR_STATUS_TYPE.forEach(oItem => {
@@ -38,6 +39,9 @@ sap.ui.define([
 								this.handleGetAllChangeRequests(oPage,sSearchType,oTaxonomy_id);
 								}	
 								});
+			if(this.oTaxonomy_id === ""){
+				this.handleGetAllChangeRequests(oPage,sSearchType,this.oTaxonomy_id);
+			}
 			
 		},
 
