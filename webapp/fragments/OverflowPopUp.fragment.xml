@@ -3,14 +3,15 @@
 		<content>
 			<List id="list">
 				<!--type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"-->
-				<StandardListItem title="Edit" type="Active"
-					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://edit"
+				<StandardListItem title="Edit" 
+					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://edit"
+					type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}"
 					press="onEditVendorPress"/>
-				<StandardListItem title="Block" type="Active"
-					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
+				<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}"
+					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
 					press="onBlockVendorPress"/>
-				<StandardListItem title="Delete" type="Active" press="onDeleteVendorPress"
-					info="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+				<StandardListItem title="Delete" type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}" press="onDeleteVendorPress"
+					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
 			</List>
 		</content>
 	</Popover>

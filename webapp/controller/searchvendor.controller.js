@@ -263,7 +263,7 @@ sap.ui.define([
 
 		handleOverFlowButton: function (oEvent) {
 			var oBindingObj = oEvent.getSource().getBindingContext('SearchVendorModel').getObject();
-			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oBindingObj);
+			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oBindingObj.customVendorLFA1DTO);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
 

@@ -219,7 +219,7 @@
 											<!--<Text text="{SearchVendorModel>changeRequestDTO/change_request_by/firstname} {SearchVendorModel>changeRequestDTO/change_request_by/lastname}"></Text>-->
 											<!--<Text text=""></Text>
 											<Text text=""></Text>-->
-											<core:Icon src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
+											<core:Icon  src="sap-icon://overflow" press=".handleOverFlowButton"></core:Icon>
 										</cells>
 									</ColumnListItem>
 								</items>

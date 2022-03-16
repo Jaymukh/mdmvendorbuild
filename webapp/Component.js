@@ -81,7 +81,7 @@ sap.ui.define([
 								"external_id": oUserModelResources.id,
 								"created_by": 1,
 								"modified_by": 1,
-								"roles": [{"role_code_btp" : "DA_MDM_ADMIN"}],
+								"roles": aTotalRoles,
 								"is_active": true
 							}]
 						}
