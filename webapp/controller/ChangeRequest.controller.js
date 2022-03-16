@@ -818,9 +818,9 @@ sap.ui.define([
 			var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
 				sResult = sValue1;
 			sValue2 = Number(sValue2);
-			if (sAssignment === 'claimed' && sValue2 === 1) {
+			if ((sAssignment === 'claimed' || sAssignment === 'unclaimed') && sValue2 === 1) {
 				sResult = 'Pending Steward Approval';
-			} else if ((sAssignment === 'approved' && sValue2 === 1) || (sAssignment === 'claimed' && sValue2 === 2)) {
+			} else if ((sAssignment === 'approved' && sValue2 === 1) || ((sAssignment === 'claimed' || sAssignment === 'unclaimed') && sValue2 === 2)) {
 				sResult = 'Pending Final Approval';
 			} else if (sAssignment === 'approved' && sValue2 === 2) {
 				sResult = 'Approved and Submitted to SAP';

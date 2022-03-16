@@ -745,8 +745,8 @@
 											<Label text="Delivery Tolerance Group"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/TOGRU}"></Text>
 											<core:Title text="ERP Vendor Company Code : Correspondance"/>
-											<Label text="Account Clerk"/>
-											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZSABE}"></Text>
+											<Label text="Accounting Clerk"/>
+											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/BUSAB}"></Text>
 											<Label text="Account With Vendor"/>
 											<Text text="{CreateVendorModel>/addCompanyCodeFormData/lfb1/EIKTO}"/>
 											<Label text="Clerk's Telephone No."/>

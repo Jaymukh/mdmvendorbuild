@@ -281,7 +281,7 @@
 											<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/tel_number}"
 												placeholder="Number"></Input>
 											<Label text="E-mail Address"/>
-											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail"  tooltip = "Please press enter after you enter email" placeholder = "Please press enter after you enter email">
 												<tokens>
 													<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
 												</tokens>
@@ -1234,16 +1234,17 @@
 													</customData>
 												</Input>
 												<core:Title text="ERP Vendor Company Code : Correspondance"/>
-												<Label text="Account Clerk"/>
+												<Label text="Accounting Clerk"/>
 												<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/ZSABE}">
+													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/BUSAB}">
 													<customData>
 														<core:CustomData key="title" value="Account Clerk"></core:CustomData>
-														<core:CustomData key="table" value="VW_LFB1"></core:CustomData>
-														<core:CustomData key="" value="Name"></core:CustomData>
-														<core:CustomData key="ZSABE" value="Key"></core:CustomData>
-														<core:CustomData key="inputKey" value="ZSABE"></core:CustomData>
-														<core:CustomData key="inputText" value=""></core:CustomData>
+														<core:CustomData key="table" value="T001S"></core:CustomData>
+														<core:CustomData key="busab" value="Accouning Clerk"></core:CustomData>
+														<core:CustomData key="sname" value="Clerk Abbrivation"></core:CustomData>
+														<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+														<core:CustomData key="inputKey" value="busab"></core:CustomData>
+														<core:CustomData key="inputText" value="busab"></core:CustomData>
 													</customData>
 												</Input>
 												<Label text="Account With Vendor"/>
@@ -1907,7 +1908,7 @@
 											</CheckBox>
 											<core:Title text="Email Address"/>
 											<Label text="Email Address"/>
-											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail">
+											<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail" tooltip = "Please press enter after you enter email" placeholder = "Please press enter after you enter email">
 												<tokens>
 													<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
 												</tokens>

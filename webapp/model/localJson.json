@@ -2,7 +2,7 @@
 	"preview": false,
 	"vndDetails": false,
 	"approvalView": false,
-	"SupportedFileType": ["jpg", "jpeg","png", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx", "mp3", "MP3", "MP4"],
+	"SupportedFileType": ["jpg", "jpeg","png", "PNG", "pdf", "msg", "eml", "xls", "doc", "xlsx", "docx", "mp3", "MP3", "MP4","mp4"],
 	"SupportedMimeType": [{
 		"exten": "jpg",
 		"mimeType": "image/jpeg"

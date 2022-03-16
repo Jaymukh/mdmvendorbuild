@@ -38,10 +38,14 @@ sap.ui.define([
 					var aRoles = [];
 					var aTempAccountGrps = [];
 					var aAccountGrps = [];
+					var aTotalRoles = [];
 					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_VEND', value:'DA_MDM_VEND_REQ_VEND'});
 					// oUserModelResources.groups.push({display:'DA_MDM_VEND_REQ_JVPR', value:'DA_MDM_VEND_REQ_JVPR'});
 					// oUserModelResources.groups.push({display:'DA_MDM_ADMIN', value:'DA_MDM_ADMIN'});
 					oUserModelResources.groups.forEach(function (oItem) {
+						if(oItem.display.indexOf("DA_MDM") !== -1){
+							aTotalRoles.push({"role_code_btp" : oItem.value});
+						}
 						if (oItem.value.split("DA_MDM_VEND_")[1]) {
 							var aResultArr = oItem.value.split("DA_MDM_VEND_")[1].split('_');
 							if (aRoles.indexOf(aResultArr[0].toLowerCase()) === -1) {
@@ -54,7 +58,7 @@ sap.ui.define([
 								});
 								aAccountGrps.push(obj);
 							}
-
+							
 						}
 						if(oItem.value === "DA_MDM_ADMIN"){
 							aRoles.push("admin");
@@ -65,7 +69,7 @@ sap.ui.define([
 					this.getModel("userManagementModel").setProperty('/accountGroups', aAccountGrps);
 					this.getModel("userManagementModel").refresh(true);
 					var oObjParam = {
-						url: "/murphyCustom/mdm/usermgmt-service/users/user/create",
+						url: "/murphyCustom/mdm/usermgmt-service/users/user/update",
 						hasPayload: true,
 						type: 'POST',
 						data: {
@@ -77,9 +81,7 @@ sap.ui.define([
 								"external_id": oUserModelResources.id,
 								"created_by": 1,
 								"modified_by": 1,
-								"roles": [{
-									"role_code_btp": "DA_MDM_ADMIN"
-								}],
+								"roles": [{"role_code_btp" : "DA_MDM_ADMIN"}],
 								"is_active": true
 							}]
 						}
