@@ -1239,12 +1239,12 @@
 													value="{CreateVendorModel>/addCompanyCodeFormData/lfb1/BUSAB}">
 													<customData>
 														<core:CustomData key="title" value="Account Clerk"></core:CustomData>
-														<core:CustomData key="table" value="T001S"></core:CustomData>
-														<core:CustomData key="busab" value="Accouning Clerk"></core:CustomData>
-														<core:CustomData key="sname" value="Clerk Abbrivation"></core:CustomData>
-														<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
-														<core:CustomData key="inputKey" value="busab"></core:CustomData>
-														<core:CustomData key="inputText" value="busab"></core:CustomData>
+														<core:CustomData key="table" value="local"></core:CustomData>
+														<core:CustomData key="BUSAB" value="Accouning Clerk"></core:CustomData>
+														<core:CustomData key="SNAME" value="Clerk Abbrivation"></core:CustomData>
+														<core:CustomData key="BUKRS" value="Company Code"></core:CustomData>
+														<core:CustomData key="inputKey" value="BUSAB"></core:CustomData>
+														<core:CustomData key="inputText" value="BUSAB"></core:CustomData>
 													</customData>
 												</Input>
 												<Label text="Account With Vendor"/>

@@ -2938,6 +2938,1394 @@
 		"text": "General Vendors (no PO)",
 		"additionalText": "GENV",
 		"key": "GENV"
-	}]
+	}],
+    "T001S": [
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "100",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "168",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "171",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "190",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "195",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "198",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "199",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "200",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "302",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "309",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "311",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "312",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "328",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "329",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "330",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "331",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "334",
+            "BUSAB": "N",
+            "SNAME": "Non-Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "334",
+            "BUSAB": "R",
+            "SNAME": "Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "335",
+            "BUSAB": "N",
+            "SNAME": "Non-Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "335",
+            "BUSAB": "R",
+            "SNAME": "Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "337",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "338",
+            "BUSAB": "N",
+            "SNAME": "Non-Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "338",
+            "BUSAB": "R",
+            "SNAME": "Resident",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "343",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "350",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "356",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "357",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "358",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "362",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "365",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "367",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "378",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "388",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "389",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "390",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "391",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "399",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "CM",
+            "SNAME": "CASH MANAGEMENT",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "GA",
+            "SNAME": "GENERAL ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "IA",
+            "SNAME": "INVESTMENT ACCOUNTING",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "IJ",
+            "SNAME": "INTERNATIONAL-JV",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "JV",
+            "SNAME": "JOINT VENTURE - US",
+            "USNAM": null
+        },
+        {
+            "MANDT": "100",
+            "BUKRS": "501",
+            "BUSAB": "RV",
+            "SNAME": "REVENUE ACCOUNTING",
+            "USNAM": null
+        }
+    ]
 
 }

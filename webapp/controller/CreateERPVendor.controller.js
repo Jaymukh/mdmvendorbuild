@@ -930,6 +930,9 @@ sap.ui.define([
 				case "Payment terms":
 					aData = oModel.getProperty("/paymentTermsData");
 					break;
+				case "Account Clerk" :
+					aData = oModel.getProperty("/T001S");
+					break;
 					/*case "Bank Key":
 						aData = oModel.getProperty("/BankKeyData");
 						break;*/
