@@ -24,21 +24,21 @@ sap.ui.define([
 			this.oTileClickFlag = "";
 			this.oTaxonomy_id = "";
 		},
-		onPressChngReqTile:function(oEvent){
+		onPressChngReqTile: function (oEvent) {
 			this.oTileClickFlag = "X";
 			var oPage = undefined;
 			var sSearchType = undefined;
 			var oTaxonomy_id;
 			var oData = this.getOwnerComponent().getModel("CreateVendorModel").getProperty("/createCRDD");
 			var oflag = oEvent.getSource().data("flag");
-				oData.CR_STATUS_TYPE.forEach(oItem => {
-								if(oItem.taxonomy_name === oflag){
-								oTaxonomy_id= oItem.taxonomy_id;
-								this.oTaxonomy_id = oItem.taxonomy_id;
-								this.handleGetAllChangeRequests(oPage,sSearchType,oTaxonomy_id);
-								}	
-								});
-			
+			oData.CR_STATUS_TYPE.forEach(oItem => {
+				if (oItem.taxonomy_name === oflag) {
+					oTaxonomy_id = oItem.taxonomy_id;
+					this.oTaxonomy_id = oItem.taxonomy_id;
+					this.handleGetAllChangeRequests(oPage, sSearchType, oTaxonomy_id);
+				}
+			});
+
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -445,20 +445,20 @@ sap.ui.define([
 		onSelectChnageReqPage: function () {
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
 			var sSearchType = undefined;
-			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag === "") {
 				this.handleGetAllChangeRequests(oSelectedPage, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage,sSearchType,this.oTaxonomy_id);
+				this.handleGetAllChangeRequests(oSelectedPage, sSearchType, this.oTaxonomy_id);
 			}
 		},
 
 		onSelectChnageReqPageLeft: function () {
 			var wSearchType = undefined;
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
-			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag === "") {
 				this.handleGetAllChangeRequests(oSelectedPage - 1, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage - 1,wSearchType,this.oTaxonomy_id);
+				this.handleGetAllChangeRequests(oSelectedPage - 1, wSearchType, this.oTaxonomy_id);
 			}
 			// this.handleGetAllChangeRequests(oSelectedPage - 1);
 		},
@@ -466,10 +466,10 @@ sap.ui.define([
 		onSelectChnageReqPageRight: function () {
 			var aSearchType = undefined;
 			var oSelectedPage = this.getView().getModel("changeRequestGetAllModel").getProperty("/selectedPageKey");
-			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag  === "") {
+			if (this.getView().byId("SB1").getSelectedKey() === "02" && this.oTileClickFlag === "") {
 				this.handleGetAllChangeRequests(oSelectedPage + 1, "GET_ALL_BY_USER_ID");
 			} else {
-				this.handleGetAllChangeRequests(oSelectedPage + 1,aSearchType,this.oTaxonomy_id);
+				this.handleGetAllChangeRequests(oSelectedPage + 1, aSearchType, this.oTaxonomy_id);
 			}
 			// this.handleGetAllChangeRequests(oSelectedPage + 1);
 		},
@@ -851,26 +851,25 @@ sap.ui.define([
 			var aSelUser = [];
 			if (oSelectedItem.crDTO.assignmentStage === 1) {
 				aSelUser = aUsers.filter(function (e, i) {
-					var aGRP = (e.groups) ? e.groups.filter(function(o){
+					var aGRP = (e.groups) ? e.groups.filter(function (o) {
 						return o.value.split("DA_MDM_VEND_STEW_").length > 1;
 					}) : [];
-					if(aGRP.length > 0) {
-						var a = "";
-					}
+					// if(aGRP.length > 0 || i === 483) {
+					// 	var a = "";
+					// }
 					return aGRP.length > 0;
 				});
 			} else if (oSelectedItem.crDTO.assignmentStage === 2) {
 				aSelUser = aUsers.filter(function (e) {
-					var aGRP = (e.groups) ? e.groups.filter(function(o){
-						return o.value.split("DA_MDM_VEND_APPROV").length > 1;
+					var aGRP = (e.groups) ? e.groups.filter(function (o) {
+						return o.value.split("DA_MDM_VEND_APPROV_").length > 1;
 					}) : [];
 					return aGRP.length > 0;
 				});
 			}
-			debugger;
 			var oJSONModel = new sap.ui.model.json.JSONModel({
 				crDara: oSelectedItem,
-				aSelUser:aSelUser
+				aSelUser: aSelUser
 			});
 			// if (!this._oDialogForward) {
 			// 	this._oDialogForward = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.forwardCR", this);
@@ -878,19 +877,80 @@ sap.ui.define([
 			// }
 			// jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogForward);
 			// this._oDialogForward.open();
+
+			Fragment.load({
+				name: "murphy.mdm.vendor.murphymdmvendor.fragments.forwardCR",
+				controller: this
+			}).then(function name(oFragment) {
+				this._oDialogForward = oFragment;
+				this.getView().addDependent(this._oDialogForward);
+				this._oDialogForward.setModel(oJSONModel);
+
+				this._oDialogForward.open();
+				this.getView().setBusy(false);
+			}.bind(this));
 		},
 
-		showForwardBtn: function (sStatus, workflowStatus, assignmentStage, aRole) {
-			if (aRole.indexOf('admin') !== -1) {
-				if (sStatus === false) {
-					return true;
-				} else {
-					return false;
+		onForwardActionPress: function (oEvent) {
+			this.getView().setBusy(true);
+			var oSelectedUser = oEvent.getSource().getParent().getContent()[0].getContent()[1].getSelectedItem().getBindingContext().getObject();
+			var objParamSubmit = {
+				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/task/forward",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"workboxTaskForwardActionRequestDTO": {
+						"isChatBot": false,
+						"userId": 72,
+						"userDisplay": "Murphy1 User1",
+						"task": [{
+							"instanceId": "848b8b239da2466db374b5b0f0876ba41",
+							"origin": "Ad-hoc",
+							"actionType": "Forward",
+							"isAdmin": false,
+							"platform": "Web",
+							"signatureVerified": "NO",
+							"sendToUser": 73,
+							"sendToUserName": "Murphy2 User2",
+							"sendToEmailId": "murphy_nyc@yahoo.com",
+							"userId": "78",
+							"userName": "David Richardson",
+							"emailId": "DAVID_RICHARDSON@CONTRACTOR.MURPHYOILCORP.COM"
+						}]
+					}
 				}
+			};
+			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
+				this.getView().setBusy(false);
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+				MessageToast.show("Error in Forwarding Request");
+			}.bind(this));
+			this._oDialogForward.close();
+		},
+
+		onPressCancelForward: function () {
+			this._oDialogForward.close();
+		},
+
+		showForwardBtn: function (sValue1, sValue2, aRole) {
+			if (aRole.indexOf('admin') !== -1) {
+				var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
+					sResult = sValue1;
+				sValue2 = Number(sValue2);
+				if (sAssignment === 'claimed' && sValue2 === 1) {
+					sResult = true;
+				} else if ((sAssignment === 'approved' && sValue2 === 1) || (sAssignment === 'claimed' && sValue2 === 2)) {
+					sResult = true;
+				} else {
+					sResult = false;
+				}
+				return sResult;
 			} else {
 				return false;
 			}
-		}
+
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
