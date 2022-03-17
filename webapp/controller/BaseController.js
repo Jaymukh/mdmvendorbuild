@@ -957,8 +957,7 @@ sap.ui.define([
 					);
 					this.getView().getModel("crERPCommentedModel").setData(null);
 					this.getView().getModel("crERPAttachmentModel").setData(null);
-					this
-						.getView().getModel("crAuditLogModel").setData({
+					this.getView().getModel("crAuditLogModel").setData({
 							"items": [],
 							"details": {}
 						});

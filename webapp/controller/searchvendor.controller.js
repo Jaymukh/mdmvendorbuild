@@ -379,6 +379,67 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
+				var oLfm1Model = this.getView().getModel("vndLfm1"),
+					oLfm1Data = ({
+						rows: [],
+						lfm1: {
+							"entity_id": null,
+							"ekorg": "",
+							"WAERS": null,
+							"MINBW": null,
+							"KALSK": null,
+							"ZTERM": null,
+							"INCO1": null,
+							"INCO2": null,
+							"MEPRF": null,
+							"VERKF": null,
+							"LFABC": null,
+							"EXPVZ": null,
+							"ZOLLA": null,
+							"SKRIT": null,
+							"NRGEW": null,
+							"PRFRE": null,
+							"WEBRE": null,
+							"KZABS": null,
+							"KZAUT": "X",
+							"BOIND": null,
+							"BLIND": null,
+							"ZZQUA_FLAG": null,
+							"EKGRP": null,
+							"BSTAE": null,
+							"RDPRF": null,
+							"PLIFZ": null,
+							"MEGRU": null,
+							"VENSL": null,
+							"LISER": null,
+							"LIBES": null,
+							"BOPNR": null,
+							"XERSR": null,
+							"EIKTO": null,
+							"ABUEB": null,
+							"PAPRF": null,
+							"AGREL": null,
+							"XNBWY": null,
+							"VSBED": null,
+							"LEBRE": "X",
+							"BOLRE": null,
+							"UMSAE": null,
+							"VENDOR_RMA_REQ": null,
+							"OIHANTYP": null,
+							"OIA_SPLTIV": null,
+							"OIHVGROUP": null,
+							"OIMATCYC": null,
+							"ACTIVITY_PROFIL": null,
+							"TRANSPORT_CHAIN": null,
+							"STAGING_TIME": null,
+							"INCOV": null,
+							"INCO2_I": null,
+							"INCO3_I": null,
+							"FSH_SC_CID": null,
+							"FSH_VAS_DETC": null
+						}
+					});
+				oLfm1Model.setData(oLfm1Data);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
@@ -443,11 +504,11 @@ sap.ui.define([
 							break;
 						case "vnd_lfm1":
 							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
-								this.getView().getModel("CreateVendorModel").setProperty(
-									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1",
-									oDataResp.result.parentDTO.customData.vnd_lfm1.vnd_lfm1_1);
+								Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1).forEach(sLfm1Key => {
+									oLfm1Data.rows.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]);
+								});
 							}
-
+							oLfm1Model.setData(oLfm1Data);
 							break;
 						case "vnd_lfbw":
 							if (oDataResp.result.parentDTO.customData.vnd_lfbw) {
@@ -552,21 +613,21 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.gen_adr12.gen_adr12_1);
 
 							}
-							break;	
-							
+							break;
+
 						case "gen_adr6":
 							if (oDataResp.result.parentDTO.customData.gen_adr6) {
 								var aEmails = [];
-								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail=>{
+								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail => {
 									aEmails.push({
 										mail: oDataResp.result.parentDTO.customData.gen_adr6[sMail].smtp_addr
 									});
 								});
-								this.getView().getModel("emails").setData(aEmails);	
+								this.getView().getModel("emails").setData(aEmails);
 							}
 							break;
-							
-						 case "gen_adr2":
+
+						case "gen_adr2":
 							if (oDataResp.result.parentDTO.customData.gen_adr2) {
 								this.getView().getModel("CreateVendorModel").setProperty(
 									"/createCRVendorData/formData/parentDTO/customData/gen_adr2",
@@ -580,9 +641,9 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.gen_adr3);
 							}
 							break;
-			
+
 						}
-						
+
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
 						"/addCompanyCodeRows", addCompanyCodeRows);
@@ -689,7 +750,7 @@ sap.ui.define([
 							MessageToast.show("Block Action Failed, try after some time");
 						}.bind(this))*/
 						this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "BLOCK");
-				this._filteringReason();
+						this._filteringReason();
 					}
 				}.bind(this)
 			});
@@ -842,9 +903,9 @@ sap.ui.define([
 					this.getView().setBusy(false);
 					MessageToast.show("Not able to fetch the Vendor Details, Please try after some time");
 				}.bind(this));*/
-				
+
 			this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "EDIT");
-				this._filteringReason();
+			this._filteringReason();
 		},
 
 		navigateTOVendorPages: function (sVendorNo, operation) {
@@ -868,6 +929,67 @@ sap.ui.define([
 			};
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
+				var oLfm1Model = this.getView().getModel("vndLfm1"),
+					oLfm1Data = ({
+						rows: [],
+						lfm1: {
+							"entity_id": null,
+							"ekorg": "",
+							"WAERS": null,
+							"MINBW": null,
+							"KALSK": null,
+							"ZTERM": null,
+							"INCO1": null,
+							"INCO2": null,
+							"MEPRF": null,
+							"VERKF": null,
+							"LFABC": null,
+							"EXPVZ": null,
+							"ZOLLA": null,
+							"SKRIT": null,
+							"NRGEW": null,
+							"PRFRE": null,
+							"WEBRE": null,
+							"KZABS": null,
+							"KZAUT": "X",
+							"BOIND": null,
+							"BLIND": null,
+							"ZZQUA_FLAG": null,
+							"EKGRP": null,
+							"BSTAE": null,
+							"RDPRF": null,
+							"PLIFZ": null,
+							"MEGRU": null,
+							"VENSL": null,
+							"LISER": null,
+							"LIBES": null,
+							"BOPNR": null,
+							"XERSR": null,
+							"EIKTO": null,
+							"ABUEB": null,
+							"PAPRF": null,
+							"AGREL": null,
+							"XNBWY": null,
+							"VSBED": null,
+							"LEBRE": "X",
+							"BOLRE": null,
+							"UMSAE": null,
+							"VENDOR_RMA_REQ": null,
+							"OIHANTYP": null,
+							"OIA_SPLTIV": null,
+							"OIHVGROUP": null,
+							"OIMATCYC": null,
+							"ACTIVITY_PROFIL": null,
+							"TRANSPORT_CHAIN": null,
+							"STAGING_TIME": null,
+							"INCOV": null,
+							"INCO2_I": null,
+							"INCO3_I": null,
+							"FSH_SC_CID": null,
+							"FSH_VAS_DETC": null
+						}
+					});
+				oLfm1Model.setData(oLfm1Data);
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
@@ -930,10 +1052,11 @@ sap.ui.define([
 							break;
 						case "vnd_lfm1":
 							if (oDataResp.result.parentDTO.customData.vnd_lfm1) {
-								this.getView().getModel("CreateVendorModel").setProperty(
-									"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1",
-									oDataResp.result.parentDTO.customData.vnd_lfm1);
+								Object.keys(oDataResp.result.parentDTO.customData.vnd_lfm1).forEach(sLfm1Key => {
+									oLfm1Data.rows.push(oDataResp.result.parentDTO.customData.vnd_lfm1[sLfm1Key]);
+								});
 							}
+							oLfm1Model.setData(oLfm1Data);
 							break;
 						case "vnd_lfbw":
 							if (oDataResp.result.parentDTO.customData.vnd_lfbw) {
@@ -1031,20 +1154,20 @@ sap.ui.define([
 									oDataResp.result.parentDTO.customData.gen_adr12.gen_adr12_1);
 
 							}
-							break;	
-							
+							break;
+
 						case "gen_adr6":
 							if (oDataResp.result.parentDTO.customData.gen_adr6) {
 								var aEmails = [];
-								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail=>{
+								oDataResp.result.parentDTO.customData.gen_adr6.forEach(sMail => {
 									aEmails.push({
 										mail: oDataResp.result.parentDTO.customData.gen_adr6[sMail].smtp_addr
 									});
 								});
-								this.getView().getModel("emails").setData(aEmails);	
+								this.getView().getModel("emails").setData(aEmails);
 							}
-							break;	
-							
+							break;
+
 						case "gen_adr2":
 							if (oDataResp.result.parentDTO.customData.gen_adr2) {
 								this.getView().getModel("CreateVendorModel").setProperty(
@@ -1121,7 +1244,7 @@ sap.ui.define([
 					var oVendorData = oTable.getSelectedItem().getBindingContext("SearchVendorModel").getObject();
 					var sVendorNo = oVendorData.customVendorLFA1DTO.lifnr;
 					this.navigateTOVendorPages(sVendorNo, 'COPY');
-					
+
 					this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/reasonFlag", "COPY");
 					this._filteringReason();
 				}
