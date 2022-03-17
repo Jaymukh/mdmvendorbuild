@@ -1,12 +1,7 @@
-<core:FragmentDefinition xmlns:l="sap.ui.layout" 
-	xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m">
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns="sap.m">
 	<Dialog title="Forward">
 		<content>
-			<!--<Select items="{/aSelUser}">-->
-			<!--	<items>-->
-			<!--		<core:Item text="{name/givenName} {name/familyName} - {id}" key="{id}"/>-->
-			<!--	</items>-->
-			<!--</Select>-->
 			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
 				adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
 				singleContainerFullSize="false">

@@ -49,13 +49,13 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				if (oDataResp.result) {
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty("/createCRDD", oDataResp.result.modelMap[0]);
-					this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/VendorRasons",  oDataResp.result.modelMap[0].VENDOR_CR_REASON);
+					this.getOwnerComponent().getModel("reasonDropdownfilterModel").setProperty("/VendorRasons", oDataResp.result.modelMap[0].VENDOR_CR_REASON);
 					this._filteringReason();
-					
+
 				}
 			}.bind(this));
 		},
-		
+
 		_getDropDownData: function () {
 			var that = this;
 			var aConfigDD = [{
@@ -157,7 +157,7 @@ sap.ui.define([
 							that.getView().getModel("countryRegionModel").setProperty("/RegionFilteredPRAAddress", Object.assign({}, data.result));
 						}
 					} else if (sControlID === "idComCodesCompanyCode") {
-							that.getOwnerComponent().getModel("genDropdownModel").setProperty('/' + sControlID, data.result.modelMap);
+						that.getOwnerComponent().getModel("genDropdownModel").setProperty('/' + sControlID, data.result.modelMap);
 					} else {
 						if (item.controlID === 'industryDesID') {
 							data.result.modelMap.unshift({});
@@ -930,7 +930,7 @@ sap.ui.define([
 				case "Payment terms":
 					aData = oModel.getProperty("/paymentTermsData");
 					break;
-				case "Account Clerk" :
+				case "Account Clerk":
 					aData = oModel.getProperty("/T001S");
 					break;
 					/*case "Bank Key":
@@ -1360,7 +1360,7 @@ sap.ui.define([
 			}
 		},
 
-		onCheckClick: function () {
+		onCheckClick: function (oEvent) {
 			// updating the street/ house no.
 			var sHouseNo = this.getOwnerComponent().getModel("CreateVendorModel").getProperty(
 				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num1");
@@ -1520,7 +1520,9 @@ sap.ui.define([
 				return false;
 			} else {
 				MessageToast.show("Validation Successful'");
-				// this._checkAddress();
+				if (oEvent) {
+					this._checkAddress();
+				}
 				return true;
 			}
 		},
@@ -1680,8 +1682,7 @@ sap.ui.define([
 			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormDataCurrent", Object.assign({}, oTableItemDataCurrent));
 		},
 		onCompanyCodeCopyPress: function (oEvent) {
-			
-		
+
 			var oData = Object.assign({}, oEvent.getSource().getBindingContext("CreateVendorModel").getObject());
 			// oData.lfb1.bukrs = "";
 			// oData.lfb1.ZWELS = "";
@@ -2066,15 +2067,19 @@ sap.ui.define([
 				hasPayload: true,
 				data: {
 					"addressInput": {
-						"country": "US",
-						"mixed": "45501 12 Mile street",
-						"locality": "NOVI",
-						"locality2": "",
-						"locality3": "",
-						"region": "MI",
+						"country": this.getView().getModel("CreateVendorModel").getProperty(
+							"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1"),
+						"mixed": oAddrDet.house_num1 + " " + oAddrDet.street,
+						"locality": oAddrDet.city2,
+						"locality2": oAddrDet.str_suppl1,
+						"locality3": oAddrDet.str_suppl2,
+						"region": this.getView().getModel("CreateVendorModel").getProperty(
+							"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO"),
 						"region2": "",
-						"postcode": "",
-						"firm": ""
+						"postcode": this.getView().getModel("CreateVendorModel").getProperty(
+							"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ"),
+						"firm": this.getView().getModel("CreateVendorModel").getProperty(
+							"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/NAME1")
 					},
 					"outputFields": [
 						"std_addr_prim_address",
@@ -2111,25 +2116,8 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 					this.getView().setBusy(false);
 					if (oDataResp.result) {
-						oDataResp.result = {
-							"std_addr_locality_full": "Novi",
-							"addr_longitude": "-83.493800",
-							"addr_info_code_msg": "",
-							"addr_info_code": "",
-							"std_addr_postcode_full": "48377-2403",
-							"geo_asmt_level": "PRI",
-							"addr_asmt_level": "PR",
-							"addr_latitude": "42.494970",
-							"addr_asmt_info": "C",
-							"geo_info_code": "",
-							"std_addr_prim_address": "45501 W 12 Mile Rd",
-							"std_addr_sec_address": "",
-							"std_addr_region_full": "MI",
-							"std_addr_country_2char": "US",
-							"std_addr_address_delivery": "45501 W 12 Mile Rd",
-							"geo_info_code_msg": ""
-						};
-						this._getAddressCompareDialog();
+						var oJsonModel = new sap.ui.model.json.JSONModel(oDataResp.result);
+						this._getAddressCompareDialog(oJsonModel);
 					}
 				}.bind(this),
 				function (oError) {
@@ -2140,14 +2128,38 @@ sap.ui.define([
 
 		},
 
-		_getAddressCompareDialog: function () {
-			if (!this._oDialogAddress) {
-				this._oDialogAddress = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.AddressCompare", this);
-				this._oDialogAddress.setModel(this.getView().getModel());
-			}
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogAddress);
-			this._oDialogAddress.open();
-		}
+		_getAddressCompareDialog: function (oJsonModel) {
+			Fragment.load({
+				name: "murphy.mdm.vendor.murphymdmvendor.fragments.AddressCompare",
+				controller: this
+			}).then(function name(oFragment) {
+				this._oDialogAddress = oFragment;
+				this.getView().addDependent(this._oDialogAddress);
+				this._oDialogAddress.setModel(oJsonModel);
+				this._oDialogAddress.setModel(this.getView().getModel("CreateVendorModel"), "CreateVendorModel");
+				this._oDialogAddress.open();
+				this.getView().setBusy(false);
+			}.bind(this));
+		},
+
+		onAcceptAddressPress: function (oEvent) {
+			var oNewData = this._oDialogAddress.getModel().getData();
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city2", oNewData.std_addr_locality_full);
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ", oNewData.std_addr_postcode_full);
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/str_suppl1", oNewData.std_addr_sec_address);
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO", oNewData.std_addr_region_full);
+			this.getView().getModel("CreateVendorModel").setProperty(
+				"/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1", oNewData.std_addr_country_2char);
+			this._oDialogAddress.close();
+		},
+
+		onPressCancelAddress: function () {
+			this._oDialogAddress.close();
+		},
 
 		/*onChangeWebSite: function (oEvent) {
 			let sWbSite = oEvent.getSource().getValue();
