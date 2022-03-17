@@ -39,7 +39,9 @@ sap.ui.define([
 					this.handleGetAllChangeRequests(oPage, sSearchType, oTaxonomy_id);
 				}
 			});
-
+			if (this.oTaxonomy_id === "") {
+				this.handleGetAllChangeRequests(oPage, sSearchType, this.oTaxonomy_id);
+			}
 		},
 
 		handlePendingRequest: function (sValue) {
@@ -817,7 +819,8 @@ sap.ui.define([
 			sValue2 = Number(sValue2);
 			if ((sAssignment === 'claimed' || sAssignment === 'unclaimed') && sValue2 === 1) {
 				sResult = 'Pending Steward Approval';
-			} else if ((sAssignment === 'approved' && sValue2 === 1) || ((sAssignment === 'claimed' || sAssignment === 'unclaimed') && sValue2 === 2)) {
+			} else if ((sAssignment === 'approved' && sValue2 === 1) || ((sAssignment === 'claimed' || sAssignment === 'unclaimed') && sValue2 ===
+					2)) {
 				sResult = 'Pending Final Approval';
 			} else if (sAssignment === 'approved' && sValue2 === 2) {
 				sResult = 'Approved and Submitted to SAP';
