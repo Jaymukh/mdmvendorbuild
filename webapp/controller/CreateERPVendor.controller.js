@@ -411,44 +411,50 @@ sap.ui.define([
 							}
 
 							//Handling Comunication data
-							if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens) {
-								oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
-									oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
-							}
-							if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
-								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
-									oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
-							} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
-								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-							}
-							if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
-								oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
-									oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
-							}
 							var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
+								oTelCtryCode, oMobCtryCode, oFaxCtryCode;
+							if (oData.parentDTO.customData.gen_adr2) {
+								if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens) {
+									oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
+										oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
+								}
+								if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
+									oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+										oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+								} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
+									oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+								}
 								oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
-									.customData.gen_adr2.gen_adr2_1.country) : "",
+									.customData.gen_adr2.gen_adr2_1.country) : "";
 								oMobCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_2.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
-									.customData.gen_adr2.gen_adr2_2.country) : "",
+									.customData.gen_adr2.gen_adr2_2.country) : "";
+								oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
+									.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+								oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
+									.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+
+								oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+								oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+								oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
+								oData.parentDTO.customData.gen_adr2.gen_adr2_2.client = "";
+								oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
+								oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
+
+							}
+
+							if (oData.parentDTO.customData.gen_adr3) {
+								if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
+									oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
+										oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
+								}
 								oFaxCtryCode = oData.parentDTO.customData.gen_adr3.gen_adr3_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
 									.customData.gen_adr3.gen_adr3_1.country) : "";
-
-							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
-								.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
-							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
-								.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-							oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_long = oFaxCtryCode ? oFaxCtryCode.telefto + "" + oData.parentDTO.customData
-								.gen_adr3.gen_adr3_1.fax_number : oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
-
-							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
-							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-							oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
-							oData.parentDTO.customData.gen_adr2.gen_adr2_2.client = "";
-							oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
-							oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
-							oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
-							oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
-							oData.parentDTO.customData.gen_adr3.gen_adr3_1.client = "";
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.client = "";
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_long = oFaxCtryCode ? oFaxCtryCode.telefto + "" + oData.parentDTO.customData
+									.gen_adr3.gen_adr3_1.fax_number : oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+							}
 							//Add Emails
 							var aEmails = this.getView().getModel("emails").getData();
 							oData.parentDTO.customData.gen_adr6 = {};
@@ -600,47 +606,55 @@ sap.ui.define([
 									"FSH_VAS_DETC": null
 								}
 							};
+						}else{
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id =  oData.parentDTO.customData.vnd_lfa1.entity_id;
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR ;
 						}
 					}
 					//Handling Comunication data
-					if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens) {
-						oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
-							oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
-					}
-					if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
-						oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
-							oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
-					} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
-						oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-					}
-					if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
-						oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
-							oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
-					}
 					var aCodes = this.getView().getModel("valueHelps").getProperty("/TelCountryCodes"),
-						oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
-							.customData.gen_adr2.gen_adr2_1.country) : "",
-						oMobCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_2.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
-							.customData.gen_adr2.gen_adr2_2.country) : "",
+					oTelCtryCode,oMobCtryCode,oFaxCtryCode;
+						if (oData.parentDTO.customData.gen_adr2) {
+							if (oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens) {
+								oData.parentDTO.customData.vnd_lfa1.TELF1 = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number + "-" +
+									oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_extens;
+							}
+							if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number && oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens) {
+								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number + "-" +
+									oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_extens;
+							} else if (oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number) {
+								oData.parentDTO.customData.vnd_lfa1.TELF2 = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							}
+							oTelCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+								.customData.gen_adr2.gen_adr2_1.country) : "";
+							oMobCtryCode = oData.parentDTO.customData.gen_adr2.gen_adr2_2.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
+								.customData.gen_adr2.gen_adr2_2.country) : "";
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
+								.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
+								.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
+							oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
+							oData.parentDTO.customData.gen_adr2.gen_adr2_2.client = "";
+
+						}
+					if (oData.parentDTO.customData.gen_adr3) {
+						if (oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number && oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens) {
+							oData.parentDTO.customData.vnd_lfa1.TELFX = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number + "-" +
+								oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_extens;
+
+						}
 						oFaxCtryCode = oData.parentDTO.customData.gen_adr3.gen_adr3_1.country ? aCodes.find(oItem => oItem.land1 === oData.parentDTO
 							.customData.gen_adr3.gen_adr3_1.country) : "";
 
-					oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_long = oTelCtryCode ? oTelCtryCode.telefto + "" + oData.parentDTO.customData
-						.gen_adr2.gen_adr2_1.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
-					oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_long = oMobCtryCode ? oMobCtryCode.telefto + "" + oData.parentDTO.customData
-						.gen_adr2.gen_adr2_2.tel_number : oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-					oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_long = oFaxCtryCode ? oFaxCtryCode.telefto + "" + oData.parentDTO.customData
-						.gen_adr3.gen_adr3_1.fax_number : oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+						oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
+						oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
+						oData.parentDTO.customData.gen_adr3.gen_adr3_1.client = "";
+					}
 
-					oData.parentDTO.customData.gen_adr2.gen_adr2_1.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_1.tel_number;
-					oData.parentDTO.customData.gen_adr2.gen_adr2_2.telnr_call = oData.parentDTO.customData.gen_adr2.gen_adr2_2.tel_number;
-					oData.parentDTO.customData.gen_adr3.gen_adr3_1.faxnr_call = oData.parentDTO.customData.gen_adr3.gen_adr3_1.fax_number;
-					oData.parentDTO.customData.gen_adr2.gen_adr2_1.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_1.entity_id;
-					oData.parentDTO.customData.gen_adr2.gen_adr2_2.addrnumber = oData.parentDTO.customData.gen_adr2.gen_adr2_2.entity_id;
-					oData.parentDTO.customData.gen_adr3.gen_adr3_1.addrnumber = oData.parentDTO.customData.gen_adr3.gen_adr3_1.entity_id;
-					oData.parentDTO.customData.gen_adr2.gen_adr2_1.client = "";
-					oData.parentDTO.customData.gen_adr2.gen_adr2_2.client = "";
-					oData.parentDTO.customData.gen_adr3.gen_adr3_1.client = "";
 					//Add Emails
 					var aEmails = this.getView().getModel("emails").getData();
 					oData.parentDTO.customData.gen_adr6 = {};
@@ -1520,9 +1534,9 @@ sap.ui.define([
 				return false;
 			} else {
 				MessageToast.show("Validation Successful'");
-				if (oEvent) {
+				/*if (oEvent) {
 					this._checkAddress();
-				}
+				}*/
 				return true;
 			}
 		},

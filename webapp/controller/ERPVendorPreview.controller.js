@@ -301,7 +301,7 @@ sap.ui.define([
 						}
 
 						// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
-
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
 						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
 						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
 						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
@@ -336,6 +336,7 @@ sap.ui.define([
 				}
 				if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
 					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id =  sEntityId;
 				}
 				if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
 					oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
@@ -392,7 +393,12 @@ sap.ui.define([
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
 			}
-
+			// Remove genAdr6, genAdr3, genAdr12
+			delete oData.parentDTO.customData.gen_adr2;
+			delete oData.parentDTO.customData.gen_adr3;
+			delete oData.parentDTO.customData.gen_adr6;
+			delete oData.parentDTO.customData.gen_adr12;
+			
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";

@@ -50,6 +50,8 @@ sap.ui.define([
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
 					var oDate = new Date(),
 						sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+					var oVendorModel = this.getView().getModel("CreateVendorModel");
+
 					if (!oParam || (oParam && !oParam.vndDetails)) {
 						var oCustomData = {
 							"vnd_lfa1": {
@@ -860,9 +862,18 @@ sap.ui.define([
 
 							}
 						});
+					} else {
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/date_from", sDate);
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_2/date_from", sDate);
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/date_from", sDate);
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/entity_id", oData.result.vendorDTOs[
+							0].customVendorBusDTO.entity_id);
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/addrnumber", oData.result.vendorDTOs[
+							0].customVendorBusDTO.entity_id);
+						oVendorModel.setProperty("/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/date_from", sDate);
+
 					}
 					var oChangeReqData = oData.result.vendorDTOs[0].customVendorBusDTO;
-					var oVendorModel = this.getView().getModel("CreateVendorModel");
 					oVendorModel.setProperty("/createCRVendorData/crID", oChangeReqData.change_request_id);
 					oVendorModel.setProperty("/changeReq/genData/change_request_by", oChangeReqData.created_by);
 					oVendorModel.setProperty("/changeReq/genData/modified_by", oChangeReqData.modified_by);
@@ -883,7 +894,7 @@ sap.ui.define([
 					/*oVendorModel.setProperty(
 						"/createCRVendorData/formData/parentDTO/customData/vnd_lfm1/vnd_lfm1_1/entity_id",
 						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);*/
-					this.getView().getModel("vndLfm1").setProperty("lfm1/entity_id",
+					this.getView().getModel("vndLfm1").setProperty("/lfm1/entity_id",
 						oData.result.vendorDTOs[0].customVendorBusDTO.entity_id);
 					oVendorModel.setProperty(
 						"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad/pra_bp_ad_1/entity_id",
@@ -958,9 +969,9 @@ sap.ui.define([
 					this.getView().getModel("crERPCommentedModel").setData(null);
 					this.getView().getModel("crERPAttachmentModel").setData(null);
 					this.getView().getModel("crAuditLogModel").setData({
-							"items": [],
-							"details": {}
-						});
+						"items": [],
+						"details": {}
+					});
 					oVendorModel.refresh();
 				}.bind(this),
 				function (oData) {
@@ -996,7 +1007,7 @@ sap.ui.define([
 
 		handleGetAllChangeRequests: function (nPageNo, sSearchType, oTaxonomy_id) {
 			var oDataResources = this.getView().getModel("userManagementModel").getData();
-			
+
 			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/rightEnabled", false);
@@ -1010,7 +1021,7 @@ sap.ui.define([
 			if (!sSearchType) {
 				sSearchType = "GET_ALL_CR";
 			}
-			
+
 			var objParam = {
 				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/page",
 				hasPayload: true,
@@ -1023,12 +1034,13 @@ sap.ui.define([
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 			// "userId": oDataResources.data.user_id
-			
-			
+
 			if (oTaxonomy_id) {
-				objParam.data.parentCrDTOs = [{"crDTO": {
-        			"workflow_type_id":oTaxonomy_id
-    				}}];
+				objParam.data.parentCrDTOs = [{
+					"crDTO": {
+						"workflow_type_id": oTaxonomy_id
+					}
+				}];
 			}
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
@@ -1175,80 +1187,83 @@ sap.ui.define([
 		},
 
 		getAllCommentsForCR: function (sEntityID) {
-			this.getView().setBusy(true);
-			var sCRID, sIsclaimable;
-			// if (this.getView().getId().indexOf("changeRequestId") > -1) {
-			// 	sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
-			// 	sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
-			// } else {
-			sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
-			sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
-			// }
-			var objParamCreate = {
-				url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
-				type: 'POST',
-				hasPayload: true,
-				data: {
-					"parentCrDTOs": [{
-						"crDTO": {
-							"entity_id": sEntityID
-						}
-					}]
-				}
-			};
-			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
-					this.getView().setBusy(false);
-					if (oDataResp.result && oDataResp.result.parentCrDTOs && oDataResp.result.parentCrDTOs[0] && oDataResp.result.parentCrDTOs[0].crCommentDTOs) {
-						oDataResp.result.parentCrDTOs[0].crCommentDTOs.forEach(function (currentValue, index) {
-							if (currentValue.note_by_user.user_id === this.getView().getModel("userManagementModel").getProperty("/data/user_id")) {
-								var aRole = this.getView().getModel("userManagementModel").getProperty("/role");
-								if ((aRole.indexOf('stew') !== -1 || aRole.indexOf('approv') !== -1) && sIsclaimable) {
-									currentValue.actions = [{
-										"Text": "Edit",
-										"Icon": "sap-icon://edit",
-										"Key": "edit"
-									}, {
-										"Text": "Delete",
-										"Icon": "sap-icon://delete",
-										"Key": "delete"
-									}];
-								} else if (aRole.indexOf('req') !== -1 && !sCRID) {
-									currentValue.actions = [{
-										"Text": "Edit",
-										"Icon": "sap-icon://edit",
-										"Key": "edit"
-									}, {
-										"Text": "Delete",
-										"Icon": "sap-icon://delete",
-										"Key": "delete"
-									}];
+			//get comments if sEntityId is available. 
+			if (sEntityID) {
+				this.getView().setBusy(true);
+				var sCRID, sIsclaimable;
+				// if (this.getView().getId().indexOf("changeRequestId") > -1) {
+				// 	sCRID = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.change_request_id;
+				// 	sIsclaimable = this.getView().byId("crList").getSelectedItem().getBindingContext("changeRequestGetAllModel").getObject().crDTO.isClaimable;
+				// } else {
+				sCRID = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/crID");
+				sIsclaimable = this.getView().getModel("CreateVendorModel").getProperty("/changeReq/genData/isClaimable");
+				// }
+				var objParamCreate = {
+					url: "/murphyCustom/mdm/change-request-service/changerequests/changerequest/comments/get",
+					type: 'POST',
+					hasPayload: true,
+					data: {
+						"parentCrDTOs": [{
+							"crDTO": {
+								"entity_id": sEntityID
+							}
+						}]
+					}
+				};
+				this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+						this.getView().setBusy(false);
+						if (oDataResp.result && oDataResp.result.parentCrDTOs && oDataResp.result.parentCrDTOs[0] && oDataResp.result.parentCrDTOs[0].crCommentDTOs) {
+							oDataResp.result.parentCrDTOs[0].crCommentDTOs.forEach(function (currentValue, index) {
+								if (currentValue.note_by_user.user_id === this.getView().getModel("userManagementModel").getProperty("/data/user_id")) {
+									var aRole = this.getView().getModel("userManagementModel").getProperty("/role");
+									if ((aRole.indexOf('stew') !== -1 || aRole.indexOf('approv') !== -1) && sIsclaimable) {
+										currentValue.actions = [{
+											"Text": "Edit",
+											"Icon": "sap-icon://edit",
+											"Key": "edit"
+										}, {
+											"Text": "Delete",
+											"Icon": "sap-icon://delete",
+											"Key": "delete"
+										}];
+									} else if (aRole.indexOf('req') !== -1 && !sCRID) {
+										currentValue.actions = [{
+											"Text": "Edit",
+											"Icon": "sap-icon://edit",
+											"Key": "edit"
+										}, {
+											"Text": "Delete",
+											"Icon": "sap-icon://delete",
+											"Key": "delete"
+										}];
+
+									}
 
 								}
-
+							}.bind(this));
+							this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
+							this.getView().getModel("crERPCommentedModel").refresh(true);
+							if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
+								this.getView().getModel("crAuditLogModel").setProperty("/details", {});
 							}
-						}.bind(this));
-						this.getView().getModel("crERPCommentedModel").setData(oDataResp.result);
-						this.getView().getModel("crERPCommentedModel").refresh(true);
-						if (!this.getView().getModel("crAuditLogModel").getProperty("/details")) {
-							this.getView().getModel("crAuditLogModel").setProperty("/details", {});
+							var nCommentCount = oDataResp.result.parentCrDTOs[0].crCommentDTOs ? oDataResp.result.parentCrDTOs[0].crCommentDTOs.length :
+								0;
+							this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", nCommentCount);
+
+						} else {
+							this.getView().getModel("crERPCommentedModel").setData(null);
+							this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", 0);
 						}
-						var nCommentCount = oDataResp.result.parentCrDTOs[0].crCommentDTOs ? oDataResp.result.parentCrDTOs[0].crCommentDTOs.length :
-							0;
-						this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", nCommentCount);
-
-					} else {
-						this.getView().getModel("crERPCommentedModel").setData(null);
+					}.bind(this),
+					function (oError) {
+						this.getView().setBusy(false);
+						this.getView().getModel("crERPCommentedModel").setData([]);
 						this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", 0);
-					}
-				}.bind(this),
-				function (oError) {
-					this.getView().setBusy(false);
-					this.getView().getModel("crERPCommentedModel").setData([]);
-					this.getView().getModel("crAuditLogModel").setProperty("/details/commentCount", 0);
-					MessageToast.show("Failed to get all Comment, Please Try after some time.");
+						MessageToast.show("Failed to get all Comment, Please Try after some time.");
 
-				}.bind(this)
-			);
+					}.bind(this)
+				);
+			}
 		},
 
 		getAllDocumentsForCR: function (sEntityID) {
