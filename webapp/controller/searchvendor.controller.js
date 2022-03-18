@@ -263,7 +263,21 @@ sap.ui.define([
 
 		handleOverFlowButton: function (oEvent) {
 			var oBindingObj = oEvent.getSource().getBindingContext('SearchVendorModel').getObject();
-			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oBindingObj.customVendorLFA1DTO);
+			var sDeleteFlag =  oBindingObj.customVendorLFA1DTO.loevm;
+			var iOpenCrFlag =  oBindingObj.customVendorLFA1DTO.openCrCount;
+			var oResultOb = {status : "Active",info:''};
+			if(sDeleteFlag === "X"){
+				oResultOb.status = "Inactive";
+				oResultOb.info = "Marked for Deletion";
+			}else if(iOpenCrFlag === 0){
+				oResultOb.status = "Active";
+				oResultOb.info = " ";
+			}if(iOpenCrFlag !== 0){
+				oResultOb.status = "Inactive";
+				oResultOb.info = "A change request is in progress.";
+			}
+			
+			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oResultOb);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
 

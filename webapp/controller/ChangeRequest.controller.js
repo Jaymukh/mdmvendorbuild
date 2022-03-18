@@ -126,7 +126,7 @@ sap.ui.define([
 				oVendorModel.setProperty("/changeReq/genData/is_cr_closed", oChangeReq.is_cr_closed);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
-				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by.created_by);
+				oVendorModel.setProperty("/changeReq/genData/createdBy",  oChangeReq.modified_by ? oChangeReq.modified_by.created_by : "");
 				if (oChangeReq.change_request_due_date) {
 					var sDueDate = oChangeReq.change_request_due_date.substring(0, 10).replaceAll("-", "");
 					oVendorModel.setProperty("/changeReq/genData/dueDate", sDueDate);

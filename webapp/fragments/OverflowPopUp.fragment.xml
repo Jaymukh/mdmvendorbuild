@@ -4,14 +4,14 @@
 			<List id="list">
 				<!--type="{=${SearchVendorPopupModel>/pendingRequest} ==='OverDue'? 'Active' :'Inactive'}"-->
 				<StandardListItem title="Edit" 
-					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://edit"
-					type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}"
+					info="{SearchVendorPopupModel>/info}" icon="sap-icon://edit"
+					type="{SearchVendorPopupModel>/status}"
 					press="onEditVendorPress"/>
-				<StandardListItem title="Block" type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}"
-					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
+				<StandardListItem title="Block" type="{SearchVendorPopupModel>/status}"
+					info="{SearchVendorPopupModel>/info}" icon="sap-icon://cancel"
 					press="onBlockVendorPress"/>
-				<StandardListItem title="Delete" type="{=${SearchVendorPopupModel>/openCrCount} === 0 ? 'Active' : 'Inactive'}" press="onDeleteVendorPress"
-					info="{=${SearchVendorPopupModel>/openCrCount} === 0 ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+				<StandardListItem title="Delete" type="{SearchVendorPopupModel>/status}" press="onDeleteVendorPress"
+					info="{SearchVendorPopupModel>/info}" icon="sap-icon://delete"/>
 			</List>
 		</content>
 	</Popover>

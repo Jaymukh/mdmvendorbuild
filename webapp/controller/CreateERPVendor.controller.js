@@ -1534,9 +1534,9 @@ sap.ui.define([
 				return false;
 			} else {
 				MessageToast.show("Validation Successful'");
-				/*if (oEvent) {
+				if (oEvent) {
 					this._checkAddress();
-				}*/
+				}
 				return true;
 			}
 		},
