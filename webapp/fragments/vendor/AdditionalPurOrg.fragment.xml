@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Data Maintenance Levels"/>
+			<Label text="plant level relevant"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/WERKR" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<Label text="plant"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/WERKS}" maxLength="4"/>
+			<core:Title/>
+			<Label text="Vendor Sub-Range Relevant"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/LTSNA" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

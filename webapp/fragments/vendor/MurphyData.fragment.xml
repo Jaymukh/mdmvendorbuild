@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<Label text="Ariba Supplier Network ID"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZARIBA_NET}" maxLength="30"/>
+			<Label text="Validate From Date"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_FM}"/>
+			<core:Title/>
+			<Label text="Validate To Date"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ZZVAL_TO}"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

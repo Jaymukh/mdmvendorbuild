@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Reference Data"/>
+			<Label text="Train Station"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BAHNS}" maxLength="25"/>
+			<Label text="External Manufaturer"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/EMNFR}" maxLength="10"/>
+			<Label text="Relevant for POD"/>
+			<Select forceSelection="false" id="refDataRelevantPODId"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PODKZB}">
+				<items>
+					<core:Item text="Do Not send POD" key="1"/>
+					<core:Item text="Always Send POD" key="A"/>
+					<core:Item text="Only Send POD if any Changes" key="B"/>
+				</items>
+			</Select>
+			<Label text="SCAC"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SCACD}" maxLength="4"/>
+			<Label text="Actual QM System"/>
+			<Select forceSelection="false" id="refDataActualQMSystemId"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYS}">
+				<items>
+					<core:Item text="ISO 9001,w/out cert.,audit score >80" key="1080"/>
+					<core:Item text="ISO 9001,w/out cert.,audit score >99" key="1099"/>
+					<core:Item text="ISO 9001,w/cert.,audit score >80" key="1180"/>
+					<core:Item text="ISO 9001,w/cert.,audit score >99" key="1199"/>
+					<core:Item text="ISO 9001,with cert.,skip" key="1299"/>
+					<core:Item text="ISO 9002,w/out cert.,audit score >80" key="2080"/>
+					<core:Item text="ISO 9002,w/out cert.,audit score >99" key="2099"/>
+					<core:Item text="ISO 9002,w/cert.,audit score >80" key="2180"/>
+					<core:Item text="ISO 9002,w/cert.,audit score >99" key="2199"/>
+					<core:Item text="ISO 9002,with cert.,skip" key="2299"/>
+					<core:Item text="ISO 9003,w/out cert.,audit score >80" key="3080"/>
+					<core:Item text="ISO 9003,w/out cert.,audit score >99" key="3099"/>
+					<core:Item text="ISO 9003,w/cert.,audit score >80" key="3180"/>
+					<core:Item text="ISO 9003,w/cert.,audit score >99" key="3199"/>
+					<core:Item text="ISO 9003,with cert.,skip" key="3299"/>
+				</items>
+			</Select>
+			<Label text="Carrier Freight Group"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SFRGR}" maxLength="4"/>
+			<core:Title text=""/>
+			<Label text="Industry"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/BRSCH}" maxLength="4"/>
+			<Label text="Service agent procedure group"/>
+			<Select forceSelection="false" id="refDataServiceAgentPGId"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/DLGRP}">
+				<items>
+					<core:Item text="Street" key="0001"/>
+					<core:Item text="Post and Package services" key="0002"/>
+					<core:Item text="Rail" key="0003"/>
+					<core:Item text="Sea" key="0004"/>
+					<core:Item text="Load transfer point" key="0005"/>
+					<core:Item text="Customs" key="0006"/>
+				</items>
+			</Select>
+			<Label text="Credit information No."/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/KRAUS}" maxLength="11"/>
+			<Label text="Last External Review"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REVDB}"/>
+			<Label text="Statistics Group, Service agent"/>
+			<Select id="refDataStatGrpServiceAgntId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STGDL}">
+				<!--	<items>
+													<core:Item text="Agent 1" key="1"/>
+													<core:Item text="Agent 2" key="2"/>
+													<core:Item text="Agent 3" key="3"/>
+												</items>-->
+			</Select>
+			<Label text="QM System Valid to"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/QSSYSDAT}"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

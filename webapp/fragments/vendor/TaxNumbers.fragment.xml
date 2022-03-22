@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Tax Numbers"/>
+			<!--<Label text="Edit or Create New"/>-->
+			<!--<Input/>-->
+			<!--	<Label text="Tax Numbers Category"/>
+											<Input value="" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+												<customData>
+													<core:CustomData key="title" value="Tax Numbers Category"></core:CustomData>
+													<core:CustomData key="table" value=""></core:CustomData>
+													<core:CustomData key="Key1" value="Column 1"></core:CustomData>
+													<core:CustomData key="Key2" value="Column 2"></core:CustomData>
+													<core:CustomData key="inputKey" value=""></core:CustomData>
+													<core:CustomData key="inputText" value=""></core:CustomData>
+												</customData>
+											</Input>-->
+			<Label text="Description"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
+			<core:Title text=""/>
+			<Label text="Tax Number"/>
+			<DatePicker displayFormat="MM-dd-YYYY" valueFormat="YYYYMMdd"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

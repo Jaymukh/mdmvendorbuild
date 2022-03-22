@@ -1,0 +1,101 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Tax Information"/>
+			<Label text="Tax Number1"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD1}" maxLength="18"/>
+			<Label text="Tax Number2"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD2}" maxLength="18"/>
+			<Label text="Tax Number3"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD3}" maxLength="18"/>
+			<Label text="Tax Number4"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STCD4}" maxLength="18"/>
+			<Label text="Fiscal Address"/>
+			<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKN}">
+				<customData>
+					<core:CustomData key="title" value="Fiscal Address"></core:CustomData>
+					<core:CustomData key="table" value="LFA1"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+					<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+					<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Tax Office"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FISKU}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="Tax Office"></core:CustomData>
+					<core:CustomData key="table" value="LFA1"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/lifnr" value="Vendor"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/name1" value="Name"></core:CustomData>
+					<core:CustomData key="customVendorLFA1DTO/land1" value="Country"></core:CustomData>
+					<core:CustomData key="inputKey" value="customVendorLFA1DTO/lifnr"></core:CustomData>
+					<core:CustomData key="inputText" value="customVendorLFA1DTO/name1"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Tax No."/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STENR}" maxLength="18"/>
+			<Label text="Tax Base"/>
+			<Select forceSelection="false" id="taxInfoTaxBaseId"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/TAXBS}">
+				<items>
+					<core:Item text="80%" key="1"/>
+				</items>
+			</Select>
+			<Label text="Tax Type"/>
+			<Select id="taxTypeId" forceSelection="false"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/FITYP}">
+				<!--<items>-->
+				<!--	<core:Item text="TaxType 1" key="1"/>-->
+				<!--	<core:Item text="TaxType 2" key="2"/>-->
+				<!--	<core:Item text="TaxType 3" key="3"/>-->
+				<!--</items>-->
+			</Select>
+			<Label text="Type of Business"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTBUS}" maxLength="30"/>
+			<Label text="Name of Representative"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFREPRE}" maxLength="10"/>
+			<core:Title text=""/>
+			<Label text="Sales Equalization Tax"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/STKZA" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<Label text="Liable for VAT"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/STKZU" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<Label text="Tax Split"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/IPISP" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<Label text="Social Insurance"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="/vnd_lfa1/REGSS" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<Label text="Social Insurance Code"/>
+			<Select id="taxInfoSocialInsuCodeId" selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ACTSS}">
+				<!--<items>
+													<core:Item text="Code 1" key="1"/>
+													<core:Item text="Code 2" key="2"/>
+													<core:Item text="Code 3" key="3"/>
+												</items>-->
+			</Select>
+			<Label text="Type of Industry"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/J_1KFTIND}" maxLength="30"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

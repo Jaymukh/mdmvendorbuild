@@ -1,0 +1,222 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Addresses"/>
+			<Label text="House No.And Street"/>
+			<Input id="idAddrStreetHouseNumber" required="true"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/STRAS}" maxLength="35"/>
+			<Label text="Postal Code / City"/>
+			<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTLZ}" maxLength="10"/>
+			<Input liveChange="onHandleCityValue" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/ORT01}"
+				maxLength="35">
+				<layoutData>
+					<l:GridData span="XL2 L3 M3 S4"/>
+				</layoutData>
+			</Input>
+			<Label text="Country"/>
+			<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LAND1}" showSuggestion="true"
+				suggestionItems="{countryRegionModel>/Country/modelMap}" change="onCountryChanged">
+				<suggestionItems>
+					<core:ListItem text="{countryRegionModel>land1}" additionalText="{countryRegionModel>landx}"/>
+				</suggestionItems>
+				<customData>
+					<core:CustomData key="title" value="Country"></core:CustomData>
+					<core:CustomData key="table" value="T005"></core:CustomData>
+					<core:CustomData key="inputKey" value="land1"></core:CustomData>
+					<core:CustomData key="inputText" value="land1"></core:CustomData>
+					<core:CustomData key="land1" value="Country Code"></core:CustomData>
+					<core:CustomData key="lkvrz" value="Country"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Region" required="true"/>
+			<Input id="idAddrRegion" showValueHelp="true" valueHelpRequest=".onValueHelpRequested"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/REGIO}" showSuggestion="true"
+				suggestionRows="{countryRegionModel>/RegionFiltered/modelMap}" change="onRegionChanged">
+				<suggestionColumns>
+					<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+						<Label text="Region"/>
+					</Column>
+					<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+						<Label text="Name"/>
+					</Column>
+					<Column hAlign="Center" popinDisplay="Inline" demandPopin="false" minScreenWidth="Tablet">
+						<Label text="Country"/>
+					</Column>
+				</suggestionColumns>
+				<suggestionRows>
+					<ColumnListItem>
+						<cells>
+							<Label text="{countryRegionModel>bland}"/>
+							<Label text="{countryRegionModel>bezei}"/>
+							<Label text="{countryRegionModel>land1}"/>
+						</cells>
+					</ColumnListItem>
+				</suggestionRows>
+				<customData>
+					<core:CustomData key="title" value="Region"></core:CustomData>
+					<core:CustomData key="table" value="T005S"></core:CustomData>
+					<core:CustomData key="inputKey" value="bland"></core:CustomData>
+					<core:CustomData key="inputText" value="bland"></core:CustomData>
+					<core:CustomData key="bezei" value="Region"></core:CustomData>
+					<core:CustomData key="bland" value="Region Code"></core:CustomData>
+					<core:CustomData key="land1" value="Country"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Language"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="LanguageAdrc"></core:CustomData>
+					<core:CustomData key="table" value="T002"></core:CustomData>
+					<core:CustomData key="inputKey" value="laiso"></core:CustomData>
+					<core:CustomData key="inputText" value="sptxt"></core:CustomData>
+					<core:CustomData key="laiso" value="Key"></core:CustomData>
+					<core:CustomData key="sptxt" value="Language"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Transportation Zone"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LZONE}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="Transportation Zone"></core:CustomData>
+					<core:CustomData key="table" value="TZONE"></core:CustomData>
+					<core:CustomData key="inputKey" value="land1"></core:CustomData>
+					<core:CustomData key="inputText" value="vtext"></core:CustomData>
+					<core:CustomData key="land1" value="Code"></core:CustomData>
+					<core:CustomData key="vtext" value="Transportation Zone"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="Timezone"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/time_zone}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="Timezone"></core:CustomData>
+					<core:CustomData key="table" value="TZONE"></core:CustomData>
+					<core:CustomData key="inputKey" value="land1"></core:CustomData>
+					<core:CustomData key="inputText" value="vtext"></core:CustomData>
+					<core:CustomData key="land1" value="Code"></core:CustomData>
+					<core:CustomData key="vtext" value="Timezone"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="PO Box postal code / PO Box"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/PSTL2}" maxLength="10"/>
+			<Label text="PO Box Without No."/>
+			<CheckBox select="onSelectCheckBox"
+				selected="{= ${CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num} === 'X'}">
+				<customData>
+					<core:CustomData key="/gen_adrc/gen_adrc_1/po_box_num" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/po_box_num}"/>-->
+			<Label text="Company Post code"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code3}"/>
+			<core:Title/>
+			<Label text="Supplement"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/house_num2}"/>
+			<Label text="Title"/>
+			<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}"/>-->
+			<Select forceSelection="false" id="idAddressTitle" items="{crERPTitleFilterModel>/modelMap}"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/title}">
+				<items>
+					<core:Item text="{crERPTitleFilterModel>title_MEDI}" key="{crERPTitleFilterModel>title}"/>
+				</items>
+			</Select>
+			<Label text="Name"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name1}"/>
+			<Label text="Name 2"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/name2}"/>
+			<Label text="Search Term 1"/>
+			<Input required="true" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/sort1}"
+				maxLength="20"/>
+			<Label text="Postal Code"/>
+			<Input id="idAddrPostalCode" value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/post_code1}"/>
+			<Label text="Country Key"/>
+			<Input id="idAddrCountryKey" required="true"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/country}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="Country Key"></core:CustomData>
+					<core:CustomData key="table" value="T005"></core:CustomData>
+					<core:CustomData key="inputKey" value="land1"></core:CustomData>
+					<core:CustomData key="inputText" value="landx50"></core:CustomData>
+					<core:CustomData key="land1" value="Country Code"></core:CustomData>
+					<core:CustomData key="landx50" value="Country"></core:CustomData>
+				</customData>
+			</Input>
+			<Label text="City"/>
+			<Input id="idAddrCity1" liveChange="onHandleCityValue" required="true"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/city1}"/>
+			<Label text="Language Key"/>
+			<Input id="idAddrLangKey" required="true"
+				value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adrc/gen_adrc_1/langu}" showValueHelp="true"
+				valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true">
+				<customData>
+					<core:CustomData key="title" value="Langauge Key"></core:CustomData>
+					<core:CustomData key="table" value="T002"></core:CustomData>
+					<core:CustomData key="inputKey" value="laiso"></core:CustomData>
+					<core:CustomData key="inputText" value="sptxt"></core:CustomData>
+					<core:CustomData key="laiso" value="Key"></core:CustomData>
+					<core:CustomData key="sptxt" value="Language"></core:CustomData>
+				</customData>
+			</Input>
+			<core:Title text="Telephone No's."/>
+			<Label text="Country"/>
+			<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/teleCountry}"/>-->
+			<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/country}">
+				<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+			</ComboBox>
+			<Label text="Telephone"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_number}"/>
+			<Label text="Extention"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr2/gen_adr2_1/tel_extens}"/>
+			<Label text="Standard"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<core:Title text="Fax No."/>
+			<Label text="Country"/>
+			<!--<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/faxCountry}"/>-->
+			<ComboBox items="{valueHelps>/TelCountryCodes}" placeholder="Dailing Code"
+				selectedKey="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/country}">
+				<core:Item key="{valueHelps>land1}" text="{valueHelps>telefto} - {valueHelps>land1}"/>
+			</ComboBox>
+			<Label text="Telephone"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_number}"/>
+			<Label text="Extention"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr3/gen_adr3_1/fax_extens}"/>
+			<Label text="Standard"/>
+			<CheckBox select="onSelectCheckBox">
+				<customData>
+					<core:CustomData key="" value="X"></core:CustomData>
+				</customData>
+			</CheckBox>
+			<core:Title text="Email Address"/>
+			<Label text="Email Address"/>
+			<MultiInput tokens="{emails>/}" type="Email" showValueHelp="false" submit="onAddEmail" tooltip="Please press enter after you enter email"
+				placeholder="Please press enter after you enter email">
+				<tokens>
+					<Token key="{emails>mail}" text="{emails>mail}" delete="onDeleteEmail"/>
+				</tokens>
+			</MultiInput>
+			<Label text="Standard"/>
+			<CheckBox/>
+			<core:Title text="Website"/>
+			<Label text="URL"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/gen_adr12/gen_adr12_1/uri_addr}"/>
+			<core:Title text="International Versions"/>
+			<Label text="Address Version"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internalVersionsAddressVersion}"/>
+			<Label text="Name"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsName}"/>
+			<Label text="Address"/>
+			<Input value="{CreateVendorModel>/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/internationalVersionsAddress}"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>
