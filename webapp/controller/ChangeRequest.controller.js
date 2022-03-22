@@ -853,7 +853,7 @@ sap.ui.define([
 			var oSelectedItem = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject();
 			var aUsers = this.getView().getModel("userManagementModel").getProperty("/users");
 			var aSelUser = [];
-			if (oSelectedItem.crDTO.assignmentStage === 1) {
+		/*	if (oSelectedItem.crDTO.assignmentStage === 1) {
 				aSelUser = aUsers.filter(function (e, i) {
 					var aGRP = (e.groups) ? e.groups.filter(function (o) {
 						return o.value.split("DA_MDM_VEND_STEW_").length > 1;
@@ -870,11 +870,34 @@ sap.ui.define([
 					}) : [];
 					return aGRP.length > 0;
 				});
-			}
-			var oJSONModel = new sap.ui.model.json.JSONModel({
+			}*/
+				var oJSONModel = new sap.ui.model.json.JSONModel({
 				crDara: oSelectedItem,
 				aSelUser: aSelUser
 			});
+				var objParamSubmit = {
+				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/assignees",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"workflowAssigneeRequestDTO": {
+						 "taskId": oSelectedItem.crDTO.workflow_instance_id ? oSelectedItem.crDTO.workflow_instance_id : "",
+    					 "statusTypeId":17006
+					}
+				}
+			};
+			
+			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
+				this.getView().setBusy(false);
+				aSelUser = oData.result;
+				oJSONModel.setProperty("/aSelUser", aSelUser);
+				oJSONModel.refresh(true);
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+				
+			}.bind(this));
+			
+		
 			// if (!this._oDialogForward) {
 			// 	this._oDialogForward = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.forwardCR", this);
 			// 	this._oDialogForward.setModel(oJSONModel);
@@ -909,16 +932,16 @@ sap.ui.define([
 						"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname") + " " + this.getView().getModel(
 							"userManagementModel").getProperty("/data/lastname"),
 						"task": [{
-							"instanceId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/workflow_task_id"),
+							"instanceId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/workflow_instance_id"),
 							"origin": "Ad-hoc",
 							"actionType": "Forward",
 							"isAdmin": true,
 							"platform": "Web",
 							"signatureVerified": "NO",
 							// "sendToUser": oSelectedUser.id,
-							"sendToUserExternalId" : oSelectedUser.id,
-							"sendToUserName": oSelectedUser.name.givenName + " " + oSelectedUser.name.familyName,
-							"sendToEmailId": oSelectedUser.emails[0].value,
+							"sendToUser" : oSelectedUser.user_id,
+							"sendToUserName": oSelectedUser.firstname + " " + oSelectedUser.lastname,
+							"sendToEmailId": oSelectedUser.email_id,
 							"userId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/user_id"),
 							"userName": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/firstname") + " " + oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/lastname"),
 							"emailId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/email_id")

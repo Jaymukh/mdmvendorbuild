@@ -7,9 +7,9 @@
 				singleContainerFullSize="false">
 				<f:content>
 					<Label text="User"/>
-					<Select items="{/aSelUser}">
+					<Select items="{/aSelUser}" forceSelection="false">
 						<items>
-							<core:Item text="{name/givenName} {name/familyName} - {id}" key="{id}"/>
+							<core:Item text="{firstname} {lastname} - {user_id}" key="{user_id}"/>
 						</items>
 					</Select>
 				</f:content>
