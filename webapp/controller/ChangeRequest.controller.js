@@ -905,27 +905,30 @@ sap.ui.define([
 				data: {
 					"workboxTaskForwardActionRequestDTO": {
 						"isChatBot": false,
-						"userId": 72,
-						"userDisplay": "Murphy1 User1",
+						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+						"userDisplay": this.getView().getModel("userManagementModel").getProperty("/data/firstname") + " " + this.getView().getModel(
+							"userManagementModel").getProperty("/data/lastname"),
 						"task": [{
-							"instanceId": "848b8b239da2466db374b5b0f0876ba41",
+							"instanceId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/workflow_task_id"),
 							"origin": "Ad-hoc",
 							"actionType": "Forward",
-							"isAdmin": false,
+							"isAdmin": true,
 							"platform": "Web",
 							"signatureVerified": "NO",
-							"sendToUser": 73,
-							"sendToUserName": "Murphy2 User2",
-							"sendToEmailId": "murphy_nyc@yahoo.com",
-							"userId": "78",
-							"userName": "David Richardson",
-							"emailId": "DAVID_RICHARDSON@CONTRACTOR.MURPHYOILCORP.COM"
+							// "sendToUser": oSelectedUser.id,
+							"sendToUserExternalId" : oSelectedUser.id,
+							"sendToUserName": oSelectedUser.name.givenName + " " + oSelectedUser.name.familyName,
+							"sendToEmailId": oSelectedUser.emails[0].value,
+							"userId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/user_id"),
+							"userName": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/firstname") + " " + oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/lastname"),
+							"emailId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/email_id")
 						}]
 					}
 				}
 			};
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 				this.getView().setBusy(false);
+				MessageToast.show("CR has been forwarded succesfully.");
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
 				MessageToast.show("Error in Forwarding Request");
