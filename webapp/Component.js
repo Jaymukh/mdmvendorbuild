@@ -82,7 +82,8 @@ sap.ui.define([
 								"created_by": 1,
 								"modified_by": 1,
 								"roles": aTotalRoles,
-								"is_active": true
+								"is_active": true,
+								"additional_param1" : oUserModelResources.userName
 							}]
 						}
 
