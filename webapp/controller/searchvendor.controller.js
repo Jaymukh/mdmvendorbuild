@@ -1216,6 +1216,7 @@ sap.ui.define([
 					case 'COPY':
 						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr",
 							"");
+							sOperationKey = 50001;
 						break;
 					}
 
