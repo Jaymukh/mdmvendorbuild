@@ -381,7 +381,6 @@ sap.ui.define([
 			var bAction = false;
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var sActionCode = oModel.getProperty("/changeReq/genData/change_request_id");
-			debugger;
 			var bCompanyCodeAction = false;
 			for (var i = 1; i <= oModel.getProperty("/addCompanyCodeRows").length; i++) {
 				var sCompanyCodeDelete = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/LOEVM");
