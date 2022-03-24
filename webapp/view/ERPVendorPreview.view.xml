@@ -578,12 +578,12 @@
 													<Text text="{CreateVendorModel>lfb1/AKONT}"></Text>
 													<CheckBox selected="{= ${CreateVendorModel>lfb1/LOEVM} === 'X'}" select="onSelectERPCheckBox">
 														<customData>
-															<core:CustomData key="/addCompanyCodeRows/lfb1/LOEVM" value="addComp"></core:CustomData>
+															<core:CustomData key="/lfb1/LOEVM" value="addComp"></core:CustomData>
 														</customData>
 													</CheckBox>
 													<CheckBox selected="{= ${CreateVendorModel>lfb1/SPERR} === 'X'}" select="onSelectERPCheckBox">
 														<customData>
-															<core:CustomData key="/addCompanyCodeRows/lfb1/SPERR" value="addComp"></core:CustomData>
+															<core:CustomData key="/lfb1/SPERR" value="addComp"></core:CustomData>
 														</customData>
 													</CheckBox>
 													<!--<HBox>-->
