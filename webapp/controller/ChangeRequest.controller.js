@@ -88,6 +88,7 @@ sap.ui.define([
 				data: {
 					"entitySearchType": "GET_BY_ENTITY_ID",
 					"entityType": "VENDOR",
+					"entityTypeId": 41001,
 					"parentDTO": {
 						"customData": {
 							"business_entity": {
@@ -126,7 +127,7 @@ sap.ui.define([
 				oVendorModel.setProperty("/changeReq/genData/is_cr_closed", oChangeReq.is_cr_closed);
 				/*/changeReq/genData/status
 				/changeReq/genData/currWrkItem*/
-				oVendorModel.setProperty("/changeReq/genData/createdBy",  oChangeReq.modified_by ? oChangeReq.modified_by.created_by : "");
+				oVendorModel.setProperty("/changeReq/genData/createdBy", oChangeReq.modified_by ? oChangeReq.modified_by.created_by : "");
 				if (oChangeReq.change_request_due_date) {
 					var sDueDate = oChangeReq.change_request_due_date.substring(0, 10).replaceAll("-", "");
 					oVendorModel.setProperty("/changeReq/genData/dueDate", sDueDate);
@@ -853,40 +854,40 @@ sap.ui.define([
 			var oSelectedItem = oEvent.getSource().getBindingContext("changeRequestGetAllModel").getObject();
 			var aUsers = this.getView().getModel("userManagementModel").getProperty("/users");
 			var aSelUser = [];
-		/*	if (oSelectedItem.crDTO.assignmentStage === 1) {
-				aSelUser = aUsers.filter(function (e, i) {
-					var aGRP = (e.groups) ? e.groups.filter(function (o) {
-						return o.value.split("DA_MDM_VEND_STEW_").length > 1;
-					}) : [];
-					// if(aGRP.length > 0 || i === 483) {
-					// 	var a = "";
-					// }
-					return aGRP.length > 0;
-				});
-			} else if (oSelectedItem.crDTO.assignmentStage === 2) {
-				aSelUser = aUsers.filter(function (e) {
-					var aGRP = (e.groups) ? e.groups.filter(function (o) {
-						return o.value.split("DA_MDM_VEND_APPROV_").length > 1;
-					}) : [];
-					return aGRP.length > 0;
-				});
-			}*/
-				var oJSONModel = new sap.ui.model.json.JSONModel({
+			/*	if (oSelectedItem.crDTO.assignmentStage === 1) {
+					aSelUser = aUsers.filter(function (e, i) {
+						var aGRP = (e.groups) ? e.groups.filter(function (o) {
+							return o.value.split("DA_MDM_VEND_STEW_").length > 1;
+						}) : [];
+						// if(aGRP.length > 0 || i === 483) {
+						// 	var a = "";
+						// }
+						return aGRP.length > 0;
+					});
+				} else if (oSelectedItem.crDTO.assignmentStage === 2) {
+					aSelUser = aUsers.filter(function (e) {
+						var aGRP = (e.groups) ? e.groups.filter(function (o) {
+							return o.value.split("DA_MDM_VEND_APPROV_").length > 1;
+						}) : [];
+						return aGRP.length > 0;
+					});
+				}*/
+			var oJSONModel = new sap.ui.model.json.JSONModel({
 				crDara: oSelectedItem,
 				aSelUser: aSelUser
 			});
-				var objParamSubmit = {
+			var objParamSubmit = {
 				url: "/murphyCustom/mdm/workflow-service/workflows/tasks/assignees",
 				type: 'POST',
 				hasPayload: true,
 				data: {
 					"workflowAssigneeRequestDTO": {
-						 "taskId": oSelectedItem.crDTO.workflow_instance_id ? oSelectedItem.crDTO.workflow_instance_id : "",
-    					 "statusTypeId":17006
+						"taskId": oSelectedItem.crDTO.workflow_instance_id ? oSelectedItem.crDTO.workflow_instance_id : "",
+						"statusTypeId": 17006
 					}
 				}
 			};
-			
+
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(function (oData) {
 				this.getView().setBusy(false);
 				aSelUser = oData.result;
@@ -894,10 +895,9 @@ sap.ui.define([
 				oJSONModel.refresh(true);
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);
-				
+
 			}.bind(this));
-			
-		
+
 			// if (!this._oDialogForward) {
 			// 	this._oDialogForward = sap.ui.xmlfragment("murphy.mdm.vendor.murphymdmvendor.fragments.forwardCR", this);
 			// 	this._oDialogForward.setModel(oJSONModel);
@@ -939,11 +939,12 @@ sap.ui.define([
 							"platform": "Web",
 							"signatureVerified": "NO",
 							// "sendToUser": oSelectedUser.id,
-							"sendToUser" : oSelectedUser.user_id,
+							"sendToUser": oSelectedUser.user_id,
 							"sendToUserName": oSelectedUser.firstname + " " + oSelectedUser.lastname,
 							"sendToEmailId": oSelectedUser.email_id,
 							"userId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/user_id"),
-							"userName": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/firstname") + " " + oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/lastname"),
+							"userName": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/firstname") + " " + oEvent.getSource().getModel()
+								.getProperty("/crDara/crDTO/claimedBy/lastname"),
 							"emailId": oEvent.getSource().getModel().getProperty("/crDara/crDTO/claimedBy/email_id")
 						}]
 					}

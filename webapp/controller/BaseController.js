@@ -1006,6 +1006,7 @@ sap.ui.define([
 		},
 
 		handleGetAllChangeRequests: function (nPageNo, sSearchType, oTaxonomy_id) {
+			this.getView().setBusy(true);
 			var oDataResources = this.getView().getModel("userManagementModel").getData();
 
 			if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
@@ -1029,7 +1030,8 @@ sap.ui.define([
 				data: {
 					"crSearchType": sSearchType,
 					"currentPage": nPageNo,
-					"userId": oDataResources.data.user_id
+					"userId": oDataResources.data.user_id,
+					"entityTypeId": 41001
 				}
 			};
 			// "userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
@@ -1060,7 +1062,7 @@ sap.ui.define([
 				}
 				if (this.getOwnerComponent().getModel("changeRequestGetAllModel")) {
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/oChangeReq", oData.result);
-					////Total count 
+					//Total count 
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/totalCount", oData.result.parentCrDTOs.length);
 					this.getOwnerComponent().getModel("changeRequestGetAllModel").setProperty("/selectedPageKey", oData.result.currentPage);
 					if (oData.result.totalPageCount > oData.result.currentPage) {
@@ -1088,7 +1090,9 @@ sap.ui.define([
 						this.getView().getModel("changeRequestGetAllModel").setProperty("/leftEnabled", false);
 					}
 				}
-
+				this.getView().setBusy(false);
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
 			}.bind(this));
 		},
 		handleErrorLogs: function () {
