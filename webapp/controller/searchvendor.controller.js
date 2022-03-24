@@ -38,6 +38,7 @@ sap.ui.define([
 			}
 		},
 		handleGo: function (oParameters) {
+			this.getView().setBusy(true);
 			if (this.getOwnerComponent().getModel("SearchVendorModel")) {
 				this.getOwnerComponent().getModel("SearchVendorModel").setProperty("/leftEnabled", false);
 				this.getOwnerComponent().getModel("SearchVendorModel").setProperty("/rightEnabled", false);
@@ -111,27 +112,11 @@ sap.ui.define([
 					}
 					oSearchVendorModel.setProperty("/searchAllModelData", oData.result);
 				}
+				this.getView().setBusy(false);
 
-				// aResultDataArr.forEach(oItem => {
-				// 	var sValue = (oItem.listOfCRs && oItem.listOfCRs.length > 0) ? oItem.listOfCRs[0]["change_request_due_date"] : oItem.listOfCRs;
-				// 	var sResultDate = '';
-				// 	var sDate = '';
-				// 	var sPendingRequest = '';
-				// 	if (sValue) {
-				// 		sDate = sValue.split('T')[0];
-				// 		sResultDate = new Date(sDate);
-				// 		sResultDate = sResultDate.getDate() + '-' + (sResultDate.getMonth() + 1) + '-' + sResultDate.getFullYear();
-				// 		if (new Date(sDate).getTime() > new Date().getTime()) {
-				// 			sPendingRequest = "Pending";
-				// 		} else {
-				// 			sPendingRequest = "OverDue"
-				// 		}
-				// 	}
-				// 	oItem.overDueDate = sResultDate;
-				// 	oItem.pendingRequest = sPendingRequest;
-				// })
-
-			});
+			}.bind(this), function (oError) {
+				this.getView().setBusy(false);
+			}.bind(this));
 		},
 
 		onSearchVendor: function () {
@@ -263,20 +248,24 @@ sap.ui.define([
 
 		handleOverFlowButton: function (oEvent) {
 			var oBindingObj = oEvent.getSource().getBindingContext('SearchVendorModel').getObject();
-			var sDeleteFlag =  oBindingObj.customVendorLFA1DTO.loevm;
-			var iOpenCrFlag =  oBindingObj.customVendorLFA1DTO.openCrCount;
-			var oResultOb = {status : "Active",info:''};
-			if(sDeleteFlag === "X"){
+			var sDeleteFlag = oBindingObj.customVendorLFA1DTO.loevm;
+			var iOpenCrFlag = oBindingObj.customVendorLFA1DTO.openCrCount;
+			var oResultOb = {
+				status: "Active",
+				info: ''
+			};
+			if (sDeleteFlag === "X") {
 				oResultOb.status = "Inactive";
 				oResultOb.info = "Marked for Deletion";
-			}else if(iOpenCrFlag === 0){
+			} else if (iOpenCrFlag === 0) {
 				oResultOb.status = "Active";
 				oResultOb.info = " ";
-			}if(iOpenCrFlag !== 0){
+			}
+			if (iOpenCrFlag !== 0) {
 				oResultOb.status = "Inactive";
 				oResultOb.info = "A change request is in progress.";
 			}
-			
+
 			this.getOwnerComponent().getModel('SearchVendorPopupModel').setData(oResultOb);
 			var oButton = oEvent.getSource(),
 				oView = this.getView();
@@ -1209,6 +1198,8 @@ sap.ui.define([
 						break;
 					case 'BLOCK':
 						sOperationKey = 50004;
+						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
+							"X");
 						break;
 					case 'DELETE':
 						sOperationKey = 50005;
@@ -1216,12 +1207,13 @@ sap.ui.define([
 					case 'COPY':
 						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr",
 							"");
-							sOperationKey = 50001;
+						sOperationKey = 50001;
 						break;
 					}
 
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', sOperationKey);
 					this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/isClaimable', true);
+					var titleID = this.getView().byId("idTitle");
 					if (operation === "DELETE" || operation === "BLOCK") {
 						this.getView().byId("pageContainer").to(this.createId("erpVendorPreview"));
 						/*var sID = this.getView().getParent().getPages().find(function (e) {
@@ -1232,17 +1224,19 @@ sap.ui.define([
 						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", false);
+						// titleID.setText(operation + "Vendor");
 					} else if (operation === "EDIT" || operation === "COPY") {
 						this.getView().byId("pageContainer").to(this.createId("createERPVendorView"));
 						this.getView().getModel("CreateVendorModel").setProperty("/preview", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndDetails", false);
 						this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", true);
 						this.getView().getModel("CreateVendorModel").setProperty("/approvalView", false);
+						// titleID.setText(operation + "Vendor");
 					}
 
 					this.byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-					var titleID = this.getView().byId("idTitle");
-					titleID.setText(this.oBundle.getText("createERPVendorView-title"));
+					titleID.setText(operation.charAt(0).toUpperCase() + operation.slice(1).toLowerCase() + " Vendor");
+
 				}
 			}.bind(this), function (oError) {
 				this.getView().setBusy(false);

@@ -216,12 +216,12 @@ sap.ui.define([
 		onSelectCompanyCodeItem: function (oEvent) {
 			var oData = oEvent.getParameter("listItem").getBindingContext("CreateVendorModel").getObject();
 			var sSelectedKey = oData.lfb1.bukrs;
-				var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
-				var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
-				if (obj && obj.payMethod) {
-					this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
-					this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
-				}
+			var aPaymentMethodData = this.getOwnerComponent().getModel('CreateVendorModel').getProperty('/paymentMethodData');
+			var obj = aPaymentMethodData.find(oItem => Number(oItem.compCode) === Number(sSelectedKey));
+			if (obj && obj.payMethod) {
+				this.getOwnerComponent().getModel('CreateVendorModel').setProperty('/paymentMehtodBinding', obj.payMethod);
+				this.getOwnerComponent().getModel('CreateVendorModel').refresh(true);
+			}
 			this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeFormData", oData);
 
 		},
@@ -235,10 +235,15 @@ sap.ui.define([
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData" + sKey, "");
 				}
 			} else if (sValue && sValue === "addComp") {
+				var sIndex = oEvent.getSource().getBindingContext("CreateVendorModel").getPath().split("/")[2];
 				if (oEvent.getParameter("selected")) {
-					this.getView().getModel("CreateVendorModel").setProperty(sKey, "X");
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex + sKey, "X");
 				} else {
-					this.getView().getModel("CreateVendorModel").setProperty(sKey, "");
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex  + sKey, "");
+				}
+				if (sKey === "/addCompanyCodeRows/lfb1/SPERR") {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
+						"");
 				}
 			}
 		},
@@ -248,7 +253,6 @@ sap.ui.define([
 
 		},
 		onERPSaveClick: function (oEvent) {
-			this.getView().setBusy(true);
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var oData = oModel.getProperty("/createCRVendorData/formData");
 
@@ -264,104 +268,139 @@ sap.ui.define([
 			oData.parentDTO.customData.vnd_lfbw = objFormationLfbw;
 
 			var sEntityId = this.getView().getModel("CreateVendorModel").getProperty("/createCRVendorData/entityId");
-			if (!oData.parentDTO.customData.vnd_lfa1.lifnr) {
-				var objParamFirstCall = {
-					url: "/murphyCustom/mdm/entity-service/entities/entity/update",
-					hasPayload: true,
-					type: 'POST',
-					data: {
-						"entityType": "VENDOR",
-						"parentDTO": {
-							"customData": {
-								"vnd_lfa1": {
-									"entity_id": sEntityId,
-									"KTOKK": oData.parentDTO.customData.vnd_lfa1.KTOKK
+			var _bActionAllowed = this._actionAllowed();
+			if (_bActionAllowed) {
+				this.getView().setBusy(true);
+				if (!oData.parentDTO.customData.vnd_lfa1.lifnr) {
+					var objParamFirstCall = {
+						url: "/murphyCustom/mdm/entity-service/entities/entity/update",
+						hasPayload: true,
+						type: 'POST',
+						data: {
+							"entityType": "VENDOR",
+							"parentDTO": {
+								"customData": {
+									"vnd_lfa1": {
+										"entity_id": sEntityId,
+										"KTOKK": oData.parentDTO.customData.vnd_lfa1.KTOKK
+									}
 								}
 							}
 						}
+
+					};
+					this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
+						if (oDataResp.result) {
+							var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
+							oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
+
+							oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
+							// oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
+							var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+							for (var i = 0; i < sKeylfb1.length; i++) {
+								oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLifnr;
+							}
+
+							var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+							for (var i = 0; i < sKeylfbw.length; i++) {
+								oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLifnr;
+							}
+
+							// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
+							oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
+							oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
+							oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+							oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
+							this._handleSaveWithLifnr(oData);
+
+						}
+					}.bind(this), function (oError) {
+						this.getView().setBusy(false);
+						MessageToast.show("Error In Generating Lifnr");
+					}.bind(this));
+				} else {
+					var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
+					if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1')) {
+						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
+					}
+					if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
+						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
 					}
 
-				};
-				this.serviceCall.handleServiceRequest(objParamFirstCall).then(function (oDataResp) {
-					if (oDataResp.result) {
-						var sLifnr = oDataResp.result.vendorDTOs[0].customVendorLFA1DTO.lifnr;
-						oData.parentDTO.customData.vnd_lfa1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLifnr;
-
-						oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLifnr;
-						// oData.parentDTO.customData.vnd_lfb1.vnd_lfb1_1.lifnr = sLifnr;
-						var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-						for (var i = 0; i < sKeylfb1.length; i++) {
-							oData.parentDTO.customData.vnd_lfb1[sKeylfb1[i]]["lifnr"] = sLifnr;
-						}
-
-						var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-						for (var i = 0; i < sKeylfbw.length; i++) {
-							oData.parentDTO.customData.vnd_lfbw[sKeylfbw[i]]["lifnr"] = sLifnr;
-						}
-
-						// oData.parentDTO.customData.vnd_lfbw.vnd_lfbw_1.lifnr = sLifnr;
-						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
-						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLifnr;
-						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLifnr;
-						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLifnr;
-						oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLifnr;
-						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLifnr;
+					var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
+					for (var k = 0; k < sKeylfb1.length; k++) {
+						oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
+					}
+					var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
+					for (var j = 0; j < sKeylfbw.length; j++) {
+						oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
+					}
+					if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
+						oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id = sEntityId;
+					}
+					if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
+						oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.hasOwnProperty('pra_bp_vend_esc_1')) {
+						oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.hasOwnProperty('pra_bp_vend_md_1')) {
+						oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
+						oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
+					}
+					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
 						oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
+					}
+					if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
 						oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
 						oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-						this._handleSaveWithLifnr(oData);
-
 					}
-				}.bind(this), function (oError) {
-					this.getView().setBusy(false);
-					MessageToast.show("Error In Generating Lifnr");
-				}.bind(this));
+
+					this._handleSaveWithLifnr(oData);
+
+				}
 			} else {
-				var sLIFNR = oData.parentDTO.customData.vnd_lfa1.lifnr;
-				if (oData.parentDTO.customData.vnd_lfbk && oData.parentDTO.customData.vnd_lfbk.hasOwnProperty('vnd_lfbk_1')) {
-					oData.parentDTO.customData.vnd_lfbk.vnd_lfbk_1.LIFNR = sLIFNR;
-				}
-				if (oData.parentDTO.customData.vnd_knvk && oData.parentDTO.customData.vnd_knvk.hasOwnProperty('vnd_knvk_1')) {
-					oData.parentDTO.customData.vnd_knvk.vnd_knvk_1.lifnr = sLIFNR;
-				}
-
-				var sKeylfb1 = Object.keys(oData.parentDTO.customData.vnd_lfb1);
-				for (var k = 0; k < sKeylfb1.length; k++) {
-					oData.parentDTO.customData.vnd_lfb1[sKeylfb1[k]]["lifnr"] = sLIFNR;
-				}
-				var sKeylfbw = Object.keys(oData.parentDTO.customData.vnd_lfbw);
-				for (var j = 0; j < sKeylfbw.length; j++) {
-					oData.parentDTO.customData.vnd_lfbw[sKeylfbw[j]]["lifnr"] = sLIFNR;
-				}
-				if (oData.parentDTO.customData.vnd_lfm1 && oData.parentDTO.customData.vnd_lfm1.hasOwnProperty('vnd_lfm1_1')) {
-					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.lifnr = sLIFNR;
-					oData.parentDTO.customData.vnd_lfm1.vnd_lfm1_1.entity_id =  sEntityId;
-				}
-				if (oData.parentDTO.customData.pra_bp_ad && oData.parentDTO.customData.pra_bp_ad.hasOwnProperty('pra_bp_ad_1')) {
-					oData.parentDTO.customData.pra_bp_ad.pra_bp_ad_1.vendid = sLIFNR;
-				}
-				if (oData.parentDTO.customData.pra_bp_vend_esc && oData.parentDTO.customData.pra_bp_vend_esc.hasOwnProperty('pra_bp_vend_esc_1')) {
-					oData.parentDTO.customData.pra_bp_vend_esc.pra_bp_vend_esc_1.vendid = sLIFNR;
-				}
-				if (oData.parentDTO.customData.pra_bp_vend_md && oData.parentDTO.customData.pra_bp_vend_md.hasOwnProperty('pra_bp_vend_md_1')) {
-					oData.parentDTO.customData.pra_bp_vend_md.pra_bp_vend_md_1.vendid = sLIFNR;
-				}
-				if (oData.parentDTO.customData.pra_bp_cust_md && oData.parentDTO.customData.pra_bp_cust_md.hasOwnProperty('pra_bp_cust_md_1')) {
-					oData.parentDTO.customData.pra_bp_cust_md.pra_bp_cust_md_1.custid = sLIFNR;
-				}
-				if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_1')) {
-					oData.parentDTO.customData.gen_adrc.gen_adrc_1.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-				}
-				if (oData.parentDTO.customData.gen_adrc && oData.parentDTO.customData.gen_adrc.hasOwnProperty('gen_adrc_2')) {
-					oData.parentDTO.customData.gen_adrc.gen_adrc_2.country = oData.parentDTO.customData.vnd_lfa1.LAND1;
-					oData.parentDTO.customData.gen_adrc.gen_adrc_2.date_from = oData.parentDTO.customData.gen_adrc.gen_adrc_1.date_from;
-				}
-
-				this._handleSaveWithLifnr(oData);
-
+				MessageToast.show("You have not selected any action to be performed");
 			}
 
+		},
+
+		_actionAllowed: function () {
+			var bAction = false;
+			var oModel = this.getView().getModel("CreateVendorModel");
+			var sActionCode = oModel.getProperty("/changeReq/genData/change_request_id");
+			debugger;
+			var bCompanyCodeAction = false;
+			for (var i = 1; i <= oModel.getProperty("/addCompanyCodeRows").length; i++) {
+				var sCompanyCodeDelete = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/LOEVM");
+				var sCompanyCodeBlock = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/SPERR");
+				if (sCompanyCodeDelete || sCompanyCodeBlock) {
+					bCompanyCodeAction = true;
+				}
+			}
+			if (sActionCode === 50004) {
+				//Block
+				if (bCompanyCodeAction || oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR")) {
+					bAction = true;
+				}
+			} else if (sActionCode === 50005) {
+				//Delete
+				if (bCompanyCodeAction || oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM")) {
+					bAction = true;
+				}
+			} else {
+				bAction = true;
+			}
+			return bAction;
 		},
 
 		_handleSaveWithLifnr: function (oData) {
@@ -398,7 +437,7 @@ sap.ui.define([
 			delete oData.parentDTO.customData.gen_adr3;
 			delete oData.parentDTO.customData.gen_adr6;
 			delete oData.parentDTO.customData.gen_adr12;
-			
+
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.banka = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.ort01 = "";
 			oData.parentDTO.customData.gen_bnka.gen_bnka_1.stars = "";
@@ -934,9 +973,9 @@ sap.ui.define([
 
 		onSelectPraAddress: function (oEvent) {
 			var oAddress = Object.assign({}, oEvent.getParameter("listItem").getBindingContext("praAddressModel").getObject()),
-			oPraBpAd = this.getView().getModel("CreateVendorModel").getProperty(
+				oPraBpAd = this.getView().getModel("CreateVendorModel").getProperty(
 					"/createCRVendorData/formData/parentDTO/customData/pra_bp_ad"),
-			 aKeys = Object.keys(oPraBpAd);
+				aKeys = Object.keys(oPraBpAd);
 			aKeys.forEach((key, index) => {
 				if (oPraBpAd[key].adrnr == oAddress.addrnumber) {
 					// this code is auto populate the Address type in the PRA address section.
