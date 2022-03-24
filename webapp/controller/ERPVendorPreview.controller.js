@@ -239,10 +239,13 @@ sap.ui.define([
 				if (oEvent.getParameter("selected")) {
 					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex + sKey, "X");
 				} else {
-					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex  + sKey, "");
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex + sKey, "");
 				}
-				if (sKey === "/addCompanyCodeRows/lfb1/SPERR") {
+				if (sKey === "/lfb1/SPERR") {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
+						"");
+				} else if (sKey === "/lfb1/LOEVM") {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM",
 						"");
 				}
 			}

@@ -1203,6 +1203,8 @@ sap.ui.define([
 						break;
 					case 'DELETE':
 						sOperationKey = 50005;
+						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM",
+							"X");
 						break;
 					case 'COPY':
 						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr",
