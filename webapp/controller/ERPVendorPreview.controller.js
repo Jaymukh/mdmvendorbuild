@@ -239,10 +239,13 @@ sap.ui.define([
 				if (oEvent.getParameter("selected")) {
 					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex + sKey, "X");
 				} else {
-					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex  + sKey, "");
+					this.getView().getModel("CreateVendorModel").setProperty("/addCompanyCodeRows/" + sIndex + sKey, "");
 				}
-				if (sKey === "/addCompanyCodeRows/lfb1/SPERR") {
+				if (sKey === "/lfb1/SPERR") {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
+						"");
+				} else if (sKey === "/lfb1/LOEVM") {
+					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM",
 						"");
 				}
 			}
@@ -378,7 +381,6 @@ sap.ui.define([
 			var bAction = false;
 			var oModel = this.getView().getModel("CreateVendorModel");
 			var sActionCode = oModel.getProperty("/changeReq/genData/change_request_id");
-			debugger;
 			var bCompanyCodeAction = false;
 			for (var i = 1; i <= oModel.getProperty("/addCompanyCodeRows").length; i++) {
 				var sCompanyCodeDelete = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/LOEVM");
