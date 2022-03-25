@@ -36,7 +36,7 @@ sap.ui.define([
 				this.getView().getModel("CreateVendorModel").setProperty("/vndEdit", true);
 			}
 
-			this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', 50002);
+		//	this.getOwnerComponent().getModel("CreateVendorModel").setProperty('/changeReq/genData/change_request_id', 50002);
 			this.getOwnerComponent().getModel("CreateVendorModel").refresh(true);
 			var sID = this.getView().getParent().getPages().find(function (e) {
 				return e.getId().indexOf("createERPVendorView") !== -1;
