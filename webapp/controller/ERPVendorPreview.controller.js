@@ -244,11 +244,16 @@ sap.ui.define([
 				if (sKey === "/lfb1/SPERR") {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
 						"");
+
 				} else if (sKey === "/lfb1/LOEVM") {
 					this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM",
 						"");
 				}
 			}
+			// if (sKey === "/vnd_lfa1/SPERR" || sKey === "/lfb1/SPERR") {
+			// 	this.getView().getModel("CreateVendorModel").setProperty("/bBlockModeChangesDone",
+			// 		!this.getView().getModel("CreateVendorModel").getProperty("/bBlockModeChangesDone"));
+			// }
 		},
 		onERPSaveClick1: function (oEvent) {
 			var oModel = this.getView().getModel("CreateVendorModel");
@@ -383,20 +388,20 @@ sap.ui.define([
 			var sActionCode = oModel.getProperty("/changeReq/genData/change_request_id");
 			var bCompanyCodeAction = false;
 			for (var i = 1; i <= oModel.getProperty("/addCompanyCodeRows").length; i++) {
-				var sCompanyCodeDelete = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/LOEVM");
-				var sCompanyCodeBlock = oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/SPERR");
+				var sCompanyCodeDelete = !(oModel.getProperty("/addCompanyCodeRowsOlDVALUE/" + (i - 1) + "/lfb1/LOEVM") === oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/LOEVM"));
+				var sCompanyCodeBlock =  !(oModel.getProperty("/addCompanyCodeRowsOlDVALUE/" + (i - 1) + "/lfb1/SPERR") === oModel.getProperty("/addCompanyCodeRows/" + (i - 1) + "/lfb1/SPERR"));
 				if (sCompanyCodeDelete || sCompanyCodeBlock) {
 					bCompanyCodeAction = true;
 				}
 			}
 			if (sActionCode === 50004) {
 				//Block
-				if (bCompanyCodeAction || oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR")) {
+				if (bCompanyCodeAction || !(oModel.getProperty("/vnd_lfa1OlDVALUE/SPERR") === oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR"))) {
 					bAction = true;
 				}
 			} else if (sActionCode === 50005) {
 				//Delete
-				if (bCompanyCodeAction || oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM")) {
+				if (bCompanyCodeAction || !(oModel.getProperty("/vnd_lfa1OlDVALUE/LOEVM") === oModel.getProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/LOEVM"))) {
 					bAction = true;
 				}
 			} else {

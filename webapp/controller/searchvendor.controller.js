@@ -996,6 +996,7 @@ sap.ui.define([
 				if (oDataResp.result.parentDTO.customData) {
 					var respPayload = Object.keys(oDataResp.result.parentDTO.customData);
 					var addCompanyCodeRows = [];
+					var addCompanyCodeRowsOlDVALUE = [];
 					for (var i = 0; i < respPayload.length; i++) {
 						switch (respPayload[i]) {
 							// case "business_entity":
@@ -1012,6 +1013,9 @@ sap.ui.define([
 								oDataResp.result.parentDTO.customData.vnd_lfa1.MCOD1 = sSearchTerm ? sSearchTerm : oDataResp.result.parentDTO.customData.vnd_lfa1
 									.SORTL;
 								// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/lifnr", "");
+							
+								this.getView().getModel("CreateVendorModel").setProperty(
+						"/vnd_lfa1OlDVALUE", Object.assign({}, oDataResp.result.parentDTO.customData.vnd_lfa1));
 							}
 							break;
 						case "vnd_lfb1":
@@ -1031,6 +1035,14 @@ sap.ui.define([
 									} else {
 										addCompanyCodeRows.push({
 											"lfb1": oDataResp.result.parentDTO.customData.vnd_lfb1[sKey],
+											"lfbw": {}
+										});
+									}
+									if (addCompanyCodeRowsOlDVALUE[j]) {
+										addCompanyCodeRowsOlDVALUE[j].lfb1 = Object.assign({}, oDataResp.result.parentDTO.customData.vnd_lfb1[sKey]);
+									} else {
+										addCompanyCodeRowsOlDVALUE.push({
+											"lfb1": Object.assign({}, oDataResp.result.parentDTO.customData.vnd_lfb1[sKey]),
 											"lfbw": {}
 										});
 									}
@@ -1075,6 +1087,14 @@ sap.ui.define([
 									} else {
 										addCompanyCodeRows.push({
 											"lfbw": oDataResp.result.parentDTO.customData.vnd_lfbw[sKey],
+											"lfb1": {}
+										});
+									}
+									if (addCompanyCodeRowsOlDVALUE[j]) {
+										addCompanyCodeRowsOlDVALUE[j].lfbw = Object.assign({}, oDataResp.result.parentDTO.customData.vnd_lfbw[sKey]);
+									} else {
+										addCompanyCodeRowsOlDVALUE.push({
+											"lfbw": Object.assign({}, oDataResp.result.parentDTO.customData.vnd_lfbw[sKey]),
 											"lfb1": {}
 										});
 									}
@@ -1189,6 +1209,9 @@ sap.ui.define([
 					}
 					this.getView().getModel("CreateVendorModel").setProperty(
 						"/addCompanyCodeRows", addCompanyCodeRows);
+						var companyCodeOldValue = addCompanyCodeRowsOlDVALUE;
+					this.getView().getModel("CreateVendorModel").setProperty(
+						"/addCompanyCodeRowsOlDVALUE", companyCodeOldValue);
 					this._createCREntityID({
 						"vndDetails": true
 					});
@@ -1198,8 +1221,8 @@ sap.ui.define([
 						break;
 					case 'BLOCK':
 						sOperationKey = 50004;
-						this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
-							"X");
+						// this.getView().getModel("CreateVendorModel").setProperty("/createCRVendorData/formData/parentDTO/customData/vnd_lfa1/SPERR",
+						// 	"X");
 						break;
 					case 'DELETE':
 						sOperationKey = 50005;
@@ -1237,7 +1260,7 @@ sap.ui.define([
 					}
 
 					this.byId("sideNavigation").setSelectedItem(this.byId("sideNavigation").getItem().getItems()[1]);
-					titleID.setText(operation.charAt(0).toUpperCase() + operation.slice(1).toLowerCase() + " Vendor");
+					titleID.setText(operation.charAt(0).toUpperCase() + operation.slice(1).toLowerCase() + " ERP Vendor");
 
 				}
 			}.bind(this), function (oError) {
