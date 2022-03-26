@@ -431,7 +431,7 @@ sap.ui.define([
 		handleChangeReqDate: function (sDateText) {
 			var sResultDate = "";
 			if (sDateText) {
-				sResultDate = new Date(sDateText.split('T')[0]);
+				sResultDate = new Date(sDateText);
 				var sDate = (sResultDate.getDate()).toString();
 				sDate = sDate.length === 2 ? sDate : ('0' + sDate);
 				var sMonth = ((sResultDate.getMonth()) + 1).toString();
