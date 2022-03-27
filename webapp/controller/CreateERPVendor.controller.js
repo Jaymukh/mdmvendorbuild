@@ -287,8 +287,8 @@ sap.ui.define([
 				var oData = oModel.getProperty("/createCRVendorData/formData"),
 					oLfm1Model = this.getView().getModel("vndLfm1"),
 					oLfm1Data = oLfm1Model.getData(),
-					oDate = new Date(),
-					sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+					sDate = new Date().toISOString();
+					// sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 				var objFormationLfb1 = {};
 				var objFormationLfbw = {};
@@ -725,8 +725,8 @@ sap.ui.define([
 				delete oData.parentDTO.customData.gen_adrc.gen_adrc_2;
 
 			} else {
-				var oDate = new Date();
-				var sResultDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+				var sResultDate = new Date().toISOString();
+				// var sResultDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 				oPraAddress.rows.forEach(function (oItem, index) {
 					oItem.entity_id = oData.parentDTO.customData.vnd_lfa1.entity_id;
 					oItem.addrnumber = oData.parentDTO.customData.vnd_lfa1.entity_id + "_" + (index + 1);

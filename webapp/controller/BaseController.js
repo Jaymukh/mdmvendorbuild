@@ -48,8 +48,10 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-					var oDate = new Date(),
-						sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+				var sDate = new Date().toISOString();
+				
+					// var oDate = new Date(),
+					// 	sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 					var oVendorModel = this.getView().getModel("CreateVendorModel");
 
 					if (!oParam || (oParam && !oParam.vndDetails)) {
