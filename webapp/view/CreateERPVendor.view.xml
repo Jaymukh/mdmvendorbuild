@@ -1344,7 +1344,7 @@
 										adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 										singleContainerFullSize="false">
 										<form:content>
-											<core:Title text="ERP Vendor Parchasing Organization"/>
+											<core:Title text="ERP Vendor Purchasing Organization"/>
 											<Label text="Purchasing Organization" required="true"/>
 											<ComboBox id="purOrgPurOrgId" showSecondaryValues="true" items="{purOrgPurOrgModel>/modelMap}" change="handleAutoPopulatePurOrg"
 												selectedKey="{vndLfm1>/lfm1/ekorg}">
@@ -1352,7 +1352,7 @@
 													<core:ListItem text="{purOrgPurOrgModel>ekotx}" additionalText="{purOrgPurOrgModel>ekorg}" key="{purOrgPurOrgModel>ekorg}"/>
 												</items>
 											</ComboBox>
-											<core:Title text="ERP Vendor Parchasing Organization : Conditions" tooltip="ERP Vendor Parchasing Organization : Conditions"/>
+											<core:Title text="ERP Vendor Purchasing Organization : Conditions" tooltip="ERP Vendor Purchasing Organization : Conditions"/>
 											<Label text="Order Currency"/>
 											<Input id="idPurOrgOrderCurrency" required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
 												value="{vndLfm1>/lfm1/WAERS}">
